@@ -115,7 +115,7 @@ class Brewerie(db.Model):
 
 
 class Beer(db.Model):
-    __tablename__: 'table'
+    __tablename__: 'beer'
 
     id = db.Column(db.Integer, primary_key=True)
     brand = db.Column(db.String(), unique=False, nullable=False)
