@@ -20,15 +20,11 @@ const Layout = () => {
 			<BrowserRouter basename={basename}>
 					<Navbar />
 					<Routes>
-						<Route exact path="/">
+						<Route path="/">
 							<Home />
 						</Route>
-						<Route exact path="/demo">
-							<Demo />
-						</Route>
-						<Route exact path="/single/:theid">
-							<Single />
-						</Route>
+						<Route path="/all_products" element={<Demo />} />
+						<Route path="/single/:theid" element={<Single />} />
 						<Route>
 							<h1>Not found!</h1>
 						</Route>
