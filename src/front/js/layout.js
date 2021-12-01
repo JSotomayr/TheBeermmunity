@@ -6,6 +6,7 @@ import { Home } from "./pages/home";
 
 import AllBeers from "./pages/allBeers.jsx";
 import Wishlist from "./pages/wishlist";
+import Cerveteca from "./pages/cerveteca";
 
 const Layout = () => {
 	const basename = process.env.BASENAME || "";
@@ -21,6 +22,9 @@ const Layout = () => {
 				</Route>
 				<Route exact path="/wishlist">
 					<Wishlist />
+				</Route>
+				<Route exact path="/cerveteca">
+					<Cerveteca />
 				</Route>
 				<Route>
 					<h1>Not found!</h1>
