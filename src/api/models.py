@@ -27,11 +27,6 @@ brewer_go_to_event = db.Table('brewer_go_to_event',
     db.Column('event_id', db.Integer, db.ForeignKey('event.id'), primary_key=True))
 
 
-friend = db.Table('friend',
-    db.Column('customer_id', db.ForeignKey('customer.id'), primary_key=True),
-    db.Column('friend_id', db.ForeignKey('customer.id'), primary_key=True))
-
-
 class Customer(db.Model):
     __tablename__: 'customer'
     id = db.Column(db.Integer, primary_key=True)
@@ -45,12 +40,12 @@ class Customer(db.Model):
     _is_active = db.Column(db.Boolean, unique=False, nullable=False, default=True)
     _is_brewerie = db.Column(db.Boolean, unique=False, nullable=False, default=False)
     _is_admin = db.Column(db.Boolean, unique=False, nullable=False, default=False)
+    friend_id = db.Column(db.Integer, db.ForeignKey('customer.id'), unique=False, nullable=False )
+
+    friend = db.relationship("Customer", lazy="joined", join_depth=2)
 
     has_brewer = db.relationship("Brewer", backref="customer")
     has_brewerie = db.relationship("Brewerie", backref="customer")
-
-    customer_has_friend = db.relationship("Customer", secondary=friend, back_populates="friend_has_customer")
-    friend_has_customer = db.relationship("Customer", secondary=friend, back_populates="customer_has_friend")
 
 
     def __repr__(self):
