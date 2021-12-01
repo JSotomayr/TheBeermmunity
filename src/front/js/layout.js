@@ -5,6 +5,7 @@ import injectContext from "./store/appContext";
 import { Home } from "./pages/home";
 
 import AllBeers from "./pages/allBeers.jsx";
+import Wishlist from "./pages/wishlist";
 
 const Layout = () => {
 	const basename = process.env.BASENAME || "";
@@ -17,6 +18,9 @@ const Layout = () => {
 				</Route>
 				<Route exact path="/all_beers">
 					<AllBeers />
+				</Route>
+				<Route exact path="/wishlist">
+					<Wishlist />
 				</Route>
 				<Route>
 					<h1>Not found!</h1>

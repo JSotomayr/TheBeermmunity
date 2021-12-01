@@ -5,7 +5,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			baseUrl: `${PROTOCOL}://${PORT}-${HOST}`,
-			beers: []
+			beers: [], 
+			wishlist: []
 		},
 		actions: {
 			getBeer: () => {
@@ -25,7 +26,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 
-			getFavBeer
+			addWishlist: (beer) => {
+				setStore({wishlist = [...getStore().wishlist, beer]})
+			}
 		}
 	};
 };
