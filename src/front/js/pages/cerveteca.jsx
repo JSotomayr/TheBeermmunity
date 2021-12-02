@@ -17,11 +17,11 @@ const Cerveteca = () => {
 	}, [store.favourite]);
 
 	return (
-        <div>
-            <span className="title">Cerveteca</span>
-            {triedList}
-        </div>
-    );
+		<div>
+			<span className="title">Cerveteca</span>
+			{triedList}
+		</div>
+	);
 };
 
 export default Cerveteca;

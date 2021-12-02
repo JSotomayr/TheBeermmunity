@@ -5,7 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			baseUrl: `${PROTOCOL}://${PORT}-${HOST}`,
-			beers: [], 
+			beers: [],
 			wishlist: [],
 			favourite: []
 		},
@@ -27,12 +27,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 
-			addWishlist: (beer) => {
-				setStore({wishlist = [...getStore().wishlist, beer]})
+			addWishlist: beer => {
+				setStore({ wishlist: [...getStore().wishlist, beer] });
 			},
 
-			addFavourite: (beer) => {
-				setStore({favourite = [...getStore().favourite, beer]})
+			addFavourite: beer => {
+				setStore({ favourite: [...getStore().favourite, beer] });
 			}
 		}
 	};

@@ -5,8 +5,8 @@ import injectContext from "./store/appContext";
 import { Home } from "./pages/home";
 
 import AllBeers from "./pages/allBeers.jsx";
-import Wishlist from "./pages/wishlist";
-import Cerveteca from "./pages/cerveteca";
+import Wishlist from "./pages/wishlist.jsx";
+import Cerveteca from "./pages/cerveteca.jsx";
 
 const Layout = () => {
 	const basename = process.env.BASENAME || "";
@@ -14,21 +14,15 @@ const Layout = () => {
 	return (
 		<div>
 			<BrowserRouter basename={basename}>
-				<Route exact path="/">
-					<Home />
-				</Route>
-				<Route exact path="/all_beers">
-					<AllBeers />
-				</Route>
-				<Route exact path="/wishlist">
-					<Wishlist />
-				</Route>
-				<Route exact path="/cerveteca">
-					<Cerveteca />
-				</Route>
-				<Route>
-					<h1>Not found!</h1>
-				</Route>
+				<Routes>
+					<Route path="/" element={<Home />} />
+					<Route path="/all_beers" element={<AllBeers />} />
+					<Route path="/wishlist" element={<Wishlist />} />
+					<Route path="/cerveteca" element={<Cerveteca />} />
+					{/* <Route>
+						<h1>Not found!</h1>
+					</Route> */}
+				</Routes>
 			</BrowserRouter>
 		</div>
 	);
