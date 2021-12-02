@@ -12,15 +12,13 @@ const Layout = () => {
 	return (
 		<div>
 			<BrowserRouter basename={basename}>
-				<Route exact path="/">
-					<Home />
-				</Route>
-				<Route exact path="/all_beers">
-					<AllBeers />
-				</Route>
-				<Route>
-					<h1>Not found!</h1>
-				</Route>
+				<Routes>
+					<Route path="/" element={<Home />}/>
+					<Route exact path="/all_beers" element={<AllBeers />}/>
+					<Route>
+						<h1>Not found!</h1>
+					</Route>
+				</Routes>
 			</BrowserRouter>
 		</div>
 	);
