@@ -16,7 +16,7 @@ const AllBeers = () => {
 		}
 	}, [store.beers]);
 
-	return <div>ESTO ES UNA MIERDA{beerList}</div>;
+	return <div>Toda la cerveza{beerList}</div>;
 };
 
 export default AllBeers;
