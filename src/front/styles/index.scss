@@ -1,3 +1,77 @@
-/* 
-    General Styles
-*/
+// title ULTRA
+@import url('https://fonts.googleapis.com/css2?family=Ultra&display=swap');
+
+
+// subtitle PT SERIF CAPTION
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif+Caption&display=swap');
+// paragraph PRIDI
+@import url('https://fonts.googleapis.com/css2?family=Pridi:wght@200&display=swap');
+
+// body {
+//     // background-color: #2D2D2D;
+// }
+.title {
+    font-family: 'Ultra', serif;
+    color: #E49B0F;
+    font-size: 1.313rem;
+}
+
+.subtitle {
+    font-family: 'PT Serif Caption', serif;
+    color: white;
+}
+
+.paragraph {
+    font-family: 'Pridi', serif;
+    color: white;
+}
+
+.btn{ 
+    background: #2D2D2D;
+    color:white;
+    border: 1px solid white;
+    border-radius: 0.2rem;
+}
+
+
+
+.btn:hover {
+    color: #E49B0F;
+    border: 1px solid #E49B0F;
+  }
+
+
+.navbar {
+    background-image: url("https://drive.google.com/file/d/15HtLhAkORvt6l2g4J9YTtGLHgHpptXWF/view?usp=sharing");
+    // background: #2C363A;
+    
+    // position: relative;
+    // display: flex;
+    // flex-wrap: wrap;
+    // align-items: center;
+    // justify-content: space-around;
+    // padding-top: 0.5rem;
+    // border-bottom: 2px solid #ffff006b;
+}
+
+.loginContainer {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+
+
+.btn_submit {
+    color: white;
+    font-size: 1.438rem;
+    background-color: #E49B0F;
+    border: 1px solid white;
+    box-shadow: inset 0px 2px 9px rgba(0, 0, 0, 0.25);
+    
+}
+
+.btn_submit:active {
+    background-color: #b38807;
+    color: white;
+
+}
