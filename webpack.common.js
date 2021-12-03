@@ -1,14 +1,13 @@
 const webpack = require('webpack');
-const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
+const path = require('path');
+
+dotenv.config();
 
 module.exports = {
-  entry: [
-    './src/front/js/index.js'
-  ],
+  entry: ['babel-polyfill','./src/front/js/index.js'],
   output: {
-    filename: 'bundle.js',
+    filename: 'bundle.[hash].js',
     path: path.resolve(__dirname, 'public'),
     publicPath: '/'
   },
@@ -17,7 +16,12 @@ module.exports = {
         {
           test: /\.(js|jsx)$/,
           exclude: /node_modules/,
-          use: ['babel-loader', 'eslint-loader']
+          use: {
+            loader: "babel-loader",
+            options: {
+              presets: ['@babel/preset-env']
+            }
+          }
         },
         {
           test: /\.(css|scss)$/, use: [{
@@ -27,11 +31,11 @@ module.exports = {
           }, {
               loader: "sass-loader" // compiles Sass to CSS
           }]
-        }, //css only files
-        {
-          test: /\.(png|svg|jpg|gif|jpeg|webp)$/, use: {
+        },
+        { 
+          test: /\.(png|svg|jpg|gif)$/, use: {
             loader: 'file-loader',
-            options: { name: '[name].[ext]' }
+            options: { name: '[name].[ext]' } 
           }
         }, //for images
         { test: /\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?)/, use: ['file-loader'] } //for fonts
@@ -39,20 +43,5 @@ module.exports = {
   },
   resolve: {
     extensions: ['*', '.js']
-  },
-  plugins: [
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      Popper: 'popper.js',
-      jQuery: 'jquery',
-      // In case you imported plugins individually, you must also require them here:
-      Util: "exports-loader?Util!bootstrap/js/dist/util",
-      Dropdown: "exports-loader?Dropdown!bootstrap/js/dist/dropdown"
-    }),
-    new HtmlWebpackPlugin({
-        favicon: '4geeks.ico',
-        template: 'template.html'
-    }),
-    new Dotenv({ safe: true, systemvars: true })
-  ]
+  }
 };
