@@ -8,26 +8,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 			beers: []
 		},
 		actions: {
-			getBeer: () => {
-				fetch(getStore().baseUrl.concat("/beer"))
-					.then(response => {
-						if (response.ok) {
-							return response.json();
-						}
-						throw new Error("FAIL DOWNLOADING BEER");
-					})
-					.then(responseAsJSON => {
-						console.log("A ver que tiene este RESPONSE", responseAsJSON);
-						setStore({ beers: [...getStore().beers, ...responseAsJSON] });
-					})
-					.catch(error => {
-						console.log(error.message);
+			getBeer: async data => {
+				try {
+					let response = await fetch(getStore().baseUrl.concat("/api/beer"), {
+						method: "GET",
+						mode: "cors",
+						redirect: "follow",
+						headers: new Headers({
+							'Content-Type': 'text/plain'
+						}),
+						body: JSON.stringify(data)
 					});
-			},
+					console.log("RESPUESTA", response);
 
-			getFavBeer
+					if (response.ok) {
+						let newBeer = await response.json();
+						setStore({beers: [...beers, newBeer]});
+						localStorage.setItem("beers", JSON.stringify(getStore().beers));
+						// getActions().getBeer()
+					}
+					throw new Error("Fail downloading beers.")
+				} catch (error) {
+					console.log(error)
+				}
+			},
 		}
-	};
+	}
 };
+
 
 export default getState;
