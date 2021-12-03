@@ -17,13 +17,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 						headers: new Headers({
 							'Content-Type': 'text/plain'
 						}),
-						body: JSON.stringify(data)
+						
 					});
-					console.log("RESPUESTA", response);
-
+					
 					if (response.ok) {
-						let newBeer = await response.json();
-						setStore({beers: [...beers, newBeer]});
+						let allBeer = await response.json();
+						console.log("RESPUESTA", allBeer);
+						setStore({beers: [...beers, allBeer]});
 						localStorage.setItem("beers", JSON.stringify(getStore().beers));
 						// getActions().getBeer()
 					}
