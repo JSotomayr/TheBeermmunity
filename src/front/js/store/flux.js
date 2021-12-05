@@ -1,47 +1,63 @@
+const PORT = 3001;
+const [PROTOCOL, HOST] = process.env.GITPOD_WORKSPACE_URL.split("//")
+
+
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			baseURL: "url",
+			currentUsers: []
 		},
+
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
+			register: (first_name, last_name, email, password, username) => {
+				fetch(getStore().baseURL.concat("/signup"), {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({
+						first_name: first_name,
+						last_name: last_name,
+						email: email,
+						password: password,
+						username: username
+					})
+				})
+					.then(resp => {
+						if (!resp.ok) {
+							throw Error("Invalid register info");
+						}
+					})
+					.then(responseAsJson => {
+						localStorage.setItem("token", responseAsJson);
+					})
+					.catch(error => console.error("There as been an unknown error", error));
 			},
 
-			getMessage: () => {
-				// fetching data from the backend
-				fetch(process.env.BACKEND_URL + "/api/hello")
-					.then(resp => resp.json())
-					.then(data => setStore({ message: data.message }))
-					.catch(error => console.log("Error loading message from backend", error));
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
+			login: async data => {
+                try {
+                    let response = await fetch(getStore().baseUrl.concat("api/loginUser"), {
+                        method: "POST",
+                        mode: "cors",
+                        redirect: "follow",
+                        headers: new Headers({
+                            'Content-Type': 'text/plain'
+                        }),
+                        body: JSON.stringify(data)
+                    });
+                    console.log("RESPUESTA", response);
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
-			}
+                    if (response.ok) {
+                        let newUser = await response.json();
+                        setStore({currentUsers: [...getStore().user, ...responseAsJson.results]});
+ 
+                        // getActions().getBeer()
+                    }
+                    throw new Error("Fail login User")
+                } catch (error) {
+                    console.log("Fail login User", error)
+                }
+            },
 		}
 	};
 };
