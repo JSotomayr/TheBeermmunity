@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
-dotenv.config();
 
 module.exports = {
   entry: ['babel-polyfill','./src/front/js/index.js'],
