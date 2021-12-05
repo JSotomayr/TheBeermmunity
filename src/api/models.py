@@ -40,9 +40,9 @@ class Customer(db.Model):
     _is_active = db.Column(db.Boolean, unique=False, nullable=False, default=True)
     _is_brewerie = db.Column(db.Boolean, unique=False, nullable=False, default=False)
     _is_admin = db.Column(db.Boolean, unique=False, nullable=False, default=False)
-    friend_id = db.Column(db.Integer, db.ForeignKey('customer.id'), unique=False, nullable=False )
+    friend_id = db.Column(db.Integer, db.ForeignKey('customer.id'), unique=False, nullable=True )
 
-    friend = db.relationship("Customer", lazy="joined", join_depth=2)
+    friend = db.relationship("Customer")
 
     has_brewer = db.relationship("Brewer", backref="customer")
     has_brewerie = db.relationship("Brewerie", backref="customer")
@@ -103,7 +103,7 @@ class Brewerie(db.Model):
     review_id = db.Column(db.Integer, db.ForeignKey('review.id'), unique=False, nullable=False)
 
     have_fav_brewerie_brewer = db.relationship("Brewer", secondary=favourite_brewerie, back_populates="have_fav_brewerie")
-
+    
 
     def __repr__(self):
         return f"Breweries with id {self.id}, named {self.company_name} in {self.address} in {self.city}, {self.country}."
@@ -127,14 +127,14 @@ class Beer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     brand = db.Column(db.String(), unique=False, nullable=False)
     variety = db.Column(db.String(), unique=False, nullable=False)
-    style = db.Column(db.Enum('Lager', 'Pilsen', 'Negra', 'IPA', 'Trigo', name='enum_style'), unique=False, nullable=False)
+    style = db.Column(db.Enum('Lager', 'Extra Lager', 'Lager Especial', 'Tostada', 'Märzenbier', 'Pilsner', 'Negra', 'IPA', 'Trigo', name='enum_style'), unique=False, nullable=False)
     origin = db.Column(db.Enum('España', 'Alemania', 'Francia', 'Italia', 'Portugal', 'Holanda', 'Bélgica', 'Polonia', 'USA', name='enum_origin'), unique=False, nullable=False)
     obv = db.Column(db.FLOAT(), unique=False, nullable=False)
-    drinking_temperature = db.Column(db.FLOAT(), unique=False, nullable=False)
+    drinking_temperature = db.Column(db.String(), unique=False, nullable=False)
     description = db.Column(db.Text, unique=False, nullable=False)
     image = db.Column(db.Text, unique=False, nullable=False)
-    publishment_date = db.Column(db.DATE(), unique=False, nullable=True)
-    review_id = db.Column(db.Integer, db.ForeignKey('review.id'), unique=False, nullable=False)
+    publishment_date = db.Column(db.DATE(), unique=False, nullable=False)
+    review_id = db.Column(db.Integer, db.ForeignKey('review.id'), unique=False, nullable=True)
 
     have_fav_beer_brewer = db.relationship("Brewer", secondary=favourite_beer, back_populates="have_fav_beer")
     have_pend_beer_brewer = db.relationship("Brewer", secondary=favourite_beer, back_populates="have_pend_beer")
@@ -167,6 +167,7 @@ class Review(db.Model):
     review_content = db.Column(db.Text, unique=False, nullable=False)
     rating = db.Column(db.Integer, unique=False, nullable=False)
     publishment_date = db.Column(db.DATE(), unique=False, nullable=True)
+    _is_beer = db.Column(db.Boolean, unique=False, nullable=False, default=True)
     brewer_id = db.Column(db.Integer, db.ForeignKey('brewer.id'), unique=False, nullable=False)
 
     rate_beer = db.relationship("Beer", backref="review")
@@ -201,7 +202,7 @@ class Event(db.Model):
     brewerie_id = db.Column(db.Integer, db.ForeignKey('brewerie.id'), unique=True, nullable=False)
 
     go_to_event_brewer = db.relationship("Brewer", secondary=brewer_go_to_event, back_populates="go_to_event")
-
+    
 
 
     def __repr__(self):
