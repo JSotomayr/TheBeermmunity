@@ -1,15 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import "../../styles/defaultCard.scss";
 
 const DefaultCard = props => {
 	return (
 		<div className="card">
-			<div style={{ width: "18rem" }}>
-				<Link to={`/all_beers/${props.element.id}`}>
+			<div>
+				<Link to={`/beers/${props.element.id}`}>
 					<div className="card__body">
-						<span className="card__title">{props.element.name}</span>
-						<img className="card__img" variant="bottom" src={props.element.image} />
+						<h2 className="card__title">{props.element.brand} {props.element.variety}</h2>
+						<img className="card__img" variant="top" src={props.element.image} />
 					</div>
 				</Link>
 			</div>

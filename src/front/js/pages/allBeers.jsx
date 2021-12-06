@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import DefaultCard from "../component/defaultCard.jsx";
+import "../../styles/allBeers.scss";
 
 const AllBeers = () => {
 	const { store, actions } = useContext(Context);
@@ -16,7 +17,12 @@ const AllBeers = () => {
 		}
 	}, [store.beers]);
 
-	return <div>Toda la cerveza{beerList}</div>;
-};
+	return (
+		<div>
+			<h1 className="title">Toda la cerveza</h1>
+			<div className="allBeers">{beerList}</div>
+		</div>);
+	
+}
 
 export default AllBeers;

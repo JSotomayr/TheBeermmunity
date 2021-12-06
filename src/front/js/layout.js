@@ -14,7 +14,7 @@ const Layout = () => {
 			<BrowserRouter basename={basename}>
 				<Routes>
 					<Route path="/" element={<Home />}/>
-					<Route path="/all_beers" element={<AllBeers />}/>
+					<Route path="/beer" element={<AllBeers />}/>
 				</Routes>
 			</BrowserRouter>
 		</div>
