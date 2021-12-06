@@ -1,3 +1,4 @@
+
 // title ULTRA
 @import url('https://fonts.googleapis.com/css2?family=Ultra&display=swap');
 
@@ -7,9 +8,12 @@
 // paragraph PRIDI
 @import url('https://fonts.googleapis.com/css2?family=Pridi:wght@200&display=swap');
 
-// body {
-//     // background-color: #2D2D2D;
-// }
+body {
+    background-color: #2D2D2D;
+    color:white;
+}
+
+
 .title {
     font-family: 'Ultra', serif;
     color: #E49B0F;
@@ -18,28 +22,36 @@
 
 .subtitle {
     font-family: 'PT Serif Caption', serif;
-    color: white;
+   
 }
 
 .paragraph {
     font-family: 'Pridi', serif;
-    color: white;
+   
 }
 
 .btn{ 
     background: #2D2D2D;
-    color:white;
+    
     border: 1px solid white;
     border-radius: 0.2rem;
+
 }
 
 
-
-.btn:hover {
-    color: #E49B0F;
-    border: 1px solid #E49B0F;
+.btn {
+    transition-duration: 0.4s;
+  }
+  
+  .btn:hover {
+    background-color: #4CAF50; /* Green */
+    color: white;
   }
 
+a {
+  color: white;
+  text-decoration: none;
+  }
 
 .navbar {
     background-image: url("https://drive.google.com/file/d/15HtLhAkORvt6l2g4J9YTtGLHgHpptXWF/view?usp=sharing");
@@ -70,8 +82,20 @@
     
 }
 
-.btn_submit:active {
-    background-color: #b38807;
-    color: white;
+// .btn_submit:hover {
+//     background-color: #b38807;
+//     color: white;
 
+// }
+
+
+
+.alertDiv {
+    background-color: yellow;
+}
+
+
+.chooseUserBusiness {
+    display:flex;
+    justify-content: space-between;
 }
