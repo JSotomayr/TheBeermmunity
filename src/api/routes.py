@@ -8,8 +8,9 @@ from api.utils import generate_sitemap, APIException
 api = Blueprint('api', __name__)
 
 
-@api.route('/hello', methods=['POST', 'GET'])
-def handle_hello():
+@api.route('/beer', methods=['GET'])
+def getAllBeers():
+    beers = Beer.get_all()
 
     response_body = {
         "message": "Hello! I'm a message that came from the backend"

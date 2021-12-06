@@ -59,9 +59,6 @@ class Customer(db.Model):
         }
 
 
-
-
-
 class Brewer(db.Model):
     __tablename__: 'brewer'
 
@@ -160,6 +157,11 @@ class Beer(db.Model):
         }
 
 
+    @classmethod
+    def get_all(cls):
+        beers = cls.query.all()
+        return beers
+
 class Review(db.Model):
     __tablename__: 'review'
 
@@ -218,5 +220,3 @@ class Event(db.Model):
             "location": self.location,
             "image": self.image
         }
-
-
