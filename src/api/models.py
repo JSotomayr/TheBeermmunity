@@ -49,16 +49,46 @@ class Customer(db.Model):
 
 
     def __repr__(self):
-        return f'User has {self.id}, {self.username} with {self.email}'
+        return f'Customer has {self.id} and {self.username} with {self.email} living in {self.city}, {self.country}'
 
     def to_dict(self):
         return {
             "id": self.id,
             "email": self.email,
-            "username": self.username
+            "username": self.username,
+            "country": self.country,
+            "city": self.city,
+            "description": self.description,
+            "image": self.image,
         }
 
+    
+    def create(self):
+       db.session.add(self)
+       db.session.commit()
 
+
+    @classmethod
+    def get_by_email(cls, email):
+        account = cls.query.filter_by(email=email).one_or_none()
+        return account
+
+
+    @classmethod
+    def get_by_password(cls, password):
+        secretPass = cls.query.filter_by(password=password).one_or_none()
+        return secretPass
+
+    @classmethod
+    def get_all(cls):
+        customers = cls.query.all()
+        return customers
+  
+
+    @classmethod
+    def get_by_id(cls, id):
+        customer_id = cls.query.get(id)
+        return customer_id
 
 
 
@@ -119,6 +149,23 @@ class Brewerie(db.Model):
             "description": self.description,
             "image": self.image
         }
+
+    
+    def create(self):
+       db.session.add(self)
+       db.session.commit()
+
+
+    @classmethod
+    def get_all(cls):
+        brewerie = cls.query.all()
+        return breweries
+  
+
+    @classmethod
+    def get_brewerie_by_id(cls, id):
+        brewerie_id = cls.query.get(id)
+        return brewerie_id
 
 
 class Beer(db.Model):
