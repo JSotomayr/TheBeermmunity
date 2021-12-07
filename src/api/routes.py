@@ -13,9 +13,7 @@ from flask_cors import CORS
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
 from api.admin import setup_admin
 from sqlalchemy import exc
-
-app.config["JWT_SECRET_KEY"] = os.environ.get('JWT_SECRET_KEY')
-jwt = JWTManager(app)
+from werkzeug.security import check_password_hash, generate_password_hash
 
 
 
@@ -71,6 +69,10 @@ def create_customer():
     new_email = request.json.get('email', None)
     new_username = request.json.get('username', None)
     new_password = request.json.get('password', None)
+    new_country = request.json.get('country', None)
+    new_city = request.json.get('city', None)
+    new_description = request.json.get('description')
+    new_image = request.json.get('image')
 
     if not (new_email and new_username and new_password):
         return jsonify({'error': 'Missing customer'}), 400
@@ -88,7 +90,7 @@ def create_customer():
         return jsonify({'token': access_token}), 200
 
 
-@api.route('/account/<int:id>', methods=['GET'])
+@api.route('/customer/<int:id>', methods=['GET'])
 @jwt_required()
 def get_by_id(id):
     print(get_jwt_identity())
@@ -102,13 +104,13 @@ def get_by_id(id):
 
 
 
-@api.route('/account/<int:id>', methods = ['DELETE'])
+@api.route('/customer/<int:id>', methods = ['DELETE'])
 @jwt_required()
 def delete_account(id):
     if not id == get_jwt_identity():
         return jsonify({'message': 'Not authorized'}), 301
 
-    customer = Account.get_by_id(id)
+    customer = Customer.get_by_id(id)
     if customer:
         customer.disable_customer()
         return jsonify({'message': 'Customer deleted'}, customer.to_dict())
@@ -123,6 +125,8 @@ def get_brewerie():
     breweries_list = [brewerie.to_dict() for brewerie in breweries]
 
     return jsonify(breweries_list), 200
+
+
 
 
 

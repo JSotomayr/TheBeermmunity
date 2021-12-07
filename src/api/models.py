@@ -164,11 +164,6 @@ class Brewerie(db.Model):
             "image": self.image
         }
 
-    
-    def create(self):
-       db.session.add(self)
-       db.session.commit()
-
 
     @classmethod
     def get_all(cls):
@@ -177,7 +172,7 @@ class Brewerie(db.Model):
   
 
     @classmethod
-    def get_brewerie_by_id(cls, id):
+    def get_by_id(cls, id):
         brewerie_id = cls.query.get(id)
         return brewerie_id
 
@@ -246,16 +241,6 @@ class Review(db.Model):
             "beer_id": self.beer_id,
             "brewerie_id": self.brewerie_id
         }
-
-
-    def create(self):
-        db.session.add(self)
-        db.session.commit()
-
-    @classmethod
-    def get_all(cls):
-        get_all_reviews = cls.query.all()
-        return get_all_reviews
 
 
 class Event(db.Model):
