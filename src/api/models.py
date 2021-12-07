@@ -84,11 +84,25 @@ class Customer(db.Model):
         customers = cls.query.all()
         return customers
   
-
     @classmethod
     def get_by_id(cls, id):
-        customer_id = cls.query.get(id)
-        return customer_id
+        customer = cls.query.get(id)
+        return customer
+
+    def update(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+        db.session.commit()
+        return self
+
+    def validate_password(self,password):
+        is_valid = check_password_hash(self._password,password)
+        print(is_valid)
+        return is_valid
+
+    def delete(self):
+        self.is_active = False
+        db.session.commit()
 
 
 
@@ -234,6 +248,16 @@ class Review(db.Model):
         }
 
 
+    def create(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_all(cls):
+        get_all_reviews = cls.query.all()
+        return get_all_reviews
+
+
 class Event(db.Model):
     __tablename__: 'event'
 
@@ -264,5 +288,7 @@ class Event(db.Model):
             "location": self.location,
             "image": self.image
         }
+
+
 
 
