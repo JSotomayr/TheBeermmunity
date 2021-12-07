@@ -28,20 +28,6 @@ export const Navbar = () => {
 				
 			</nav>
 
-			<div className="container">
-				{/* <Link to="/">
-					<span className="navbar-brand mb-0 h1">HOME</span>
-				</Link>
-			</div>
-			<div className="ml-auto">
-				<Link to="/demo">
-					<button className="btn">demo</button>
-				</Link>
-
-				<Link to="/login">
-					<button className="btn">LOGIN</button>
-				</Link> */}
-			</div>
 		</Fragment>
 	);
 };

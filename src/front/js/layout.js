@@ -10,7 +10,6 @@ import {
 
 import injectContext from "./store/appContext";
 import { Home } from "./pages/home";
-import { Demo } from "./pages/demo";
 import { Login } from "./pages/login";
 import { Navbar } from "./component/navbar";
 
@@ -29,10 +28,8 @@ const Layout = () => {
 				
 				<Route path="/" element={<Home />} />
 				<Route path="/navbar" element={<Navbar />} />
+				<Route path="/login" element={<Login />} />
 
-				<Route path="/demo" element={<Demo />} />
-				<Route path="/login" element={<Login />} />
-				<Route path="/login" element={<Login />} />
 				{/* <Route path="/homelog" element={<Homelog />} /> */}
 			</Routes>
 	

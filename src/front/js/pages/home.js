@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
 import { Link } from "react-router-dom";
 import { Navbar } from "../component/navbar";
@@ -20,11 +19,6 @@ export const Home = () => {
 				<Link to="/register">
 					REGISTER
 				</Link>	
-			</div>
-			<div>
-				<Link to="/demo">
-					DEMO
-				</Link>
 			</div>
 			
 			<h1>ESTE ES EL HOME</h1>
