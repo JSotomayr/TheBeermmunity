@@ -67,8 +67,8 @@ class Customer(db.Model):
 
     @classmethod
     def get_by_email(cls, email):
-        user = cls.query.filter_by(email=email).one_or_none()
-        return user
+        customer = cls.query.filter_by(email=email).one_or_none()
+        return customer
 
 
     @classmethod

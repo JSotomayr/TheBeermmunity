@@ -29,10 +29,10 @@ def login():
     if not (email and password and username):
         return({'error':'Missing info'}), 400
 
-    user = User.get_by_email(email)
+    customer = Customer.get_by_email(email)
 
-    if user and check_password_hash(user.password, password) and user.is_active:
-        token = create_access_token(identity=user.serialize(), expires_delta=timedelta(minutes=100))
+    if customer and check_password_hash(customer.password, password) and customer.is_active:
+        token = create_access_token(identity=customer.to_dict(), expires_delta=timedelta(minutes=100))
         return({'token' : token}) , 200
 
     else:
