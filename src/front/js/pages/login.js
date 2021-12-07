@@ -7,6 +7,14 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import Form from 'react-bootstrap/Form'
 
+
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+
+
 import "../../styles/login.scss";
 
 export const Login = () => {
@@ -25,7 +33,7 @@ export const Login = () => {
 		<Fragment>
 
 			<div className="loginContainer">
-				<div className="btn">
+				<div className="btn nearLog">
 					<Link to="/">
 						volver
 					</Link>
@@ -80,7 +88,7 @@ export const Login = () => {
 						</div>
 
 					
-						<div className="chooseUserBusiness mt-3">
+						{/* <div className="chooseUserBusiness mt-3">
 						  <Form.Check
 								type="radio"
 								label="Usuario"
@@ -88,14 +96,23 @@ export const Login = () => {
 								id="formHorizontalRadios2"
 								required
 								/>
-								<Form.Check
+							<Form.Check
 								type="radio"
 								label="Empresa"
 								name="formHorizontalRadios"
 								id="formHorizontalRadios3"
-								/>
-						</div>
+							/>
 
+						</div> */}
+						<div className="chooseUserBusiness mt-3">
+							<FormControl component="fieldset">
+								<RadioGroup row aria-label="gender" name="row-radio-buttons-group">
+									<FormControlLabel value="Usuario" control={<Radio />} label="Usuario" />
+									<FormControlLabel value="Empresa" control={<Radio />} label="Empresa" />
+
+								</RadioGroup>
+							</FormControl>
+						</div>
 						<button type="submit" className="btn btn-primary form-control btn_submit mt-5">Iniciar sesión</button> 
 						{errors.submit && errors.submit.type === "required" && <span role="alertSubmitLog">!ERROR! Se ha producido un error en su intento de Inicio de sesión. Asegúrese de que el correo, el nombre de usuario y la contraseña son correctos</span>}
 

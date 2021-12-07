@@ -31,22 +31,16 @@ body {
 }
 
 .btn{ 
-    background: #2D2D2D;
-    
+    background: #2D2D2D;   
     border: 1px solid white;
     border-radius: 0.2rem;
-
 }
 
-
-.btn {
-    transition-duration: 0.4s;
-  }
-  
-  .btn:hover {
-    background-color: #4CAF50; /* Green */
+.btn:hover{ 
+    background: #E49B0F;   
     color: white;
-  }
+    text-decoration: none;
+}
 
 a {
   color: white;
@@ -82,16 +76,18 @@ a {
     
 }
 
-// .btn_submit:hover {
-//     background-color: #b38807;
-//     color: white;
+.btn_submit:hover {
+    background-color: #7a731a;
+    color: white;
 
-// }
-
+}
 
 
 .alertDiv {
-    background-color: yellow;
+    background-color: #ffc107;
+    color: #41464b;
+    display:flex;
+    justify-content: center;
 }
 
 
