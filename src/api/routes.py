@@ -16,4 +16,4 @@ def getAllBeers():
         beer_list = [beer.to_dict() for beer in beers]
         return jsonify(beer_list), 200
 
-    return jsonify({'error': 'Beer not found'}), 404
+    return jsonify({'error': 'Beers not found'}), 404

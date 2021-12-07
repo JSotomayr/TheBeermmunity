@@ -7,10 +7,12 @@ const AllBeers = () => {
 	const { store, actions } = useContext(Context);
 	const [beerList, setBeerList] = useState([]);
 
+
 	useEffect(() => {
 		actions.getBeer();
 	}, [])
 
+	
 	useEffect(() => {
 		if (store.beers.length != 0) {
 			setBeerList(
