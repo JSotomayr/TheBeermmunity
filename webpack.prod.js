@@ -7,4 +7,3 @@ module.exports = merge(common, {
         publicPath: '/'
     },
 });
-
