@@ -59,7 +59,27 @@ class Customer(db.Model):
         }
 
 
+    def create(self):
+        db.session.add(self)
+        db.session.commit()
 
+
+    @classmethod
+    def get_by_email(cls, email):
+        account = clas.query.filter_by(email=email).one_or_none()
+        return account
+
+    
+    @classmethod
+    def get_by_username(cls, username):
+        user = clas.query.filter_by(username=username).one_or_none()
+        return user
+
+
+    @classmethod
+    def get_by_admin(cls, admin):
+        is_admin = cls.query.filter_by(admin=admin).one_or_none()
+        return is_admin
 
 
 class Brewer(db.Model):
@@ -158,6 +178,13 @@ class Beer(db.Model):
             "image": self.image,
             "publishment_date": self.publishment_date
         }
+
+
+    def create(self):
+        db.session.add(self)
+        db.session.commit()
+
+
 
 
 class Review(db.Model):
