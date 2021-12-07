@@ -8,7 +8,7 @@ from api.utils import generate_sitemap, APIException
 api = Blueprint('api', __name__)
 
 
-@api.route('/all_beers', methods=['GET'])
+@api.route('/beer', methods=['GET'])
 def getAllBeers():
     beers = Beer.get_all()
 

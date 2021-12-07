@@ -8,6 +8,10 @@ const AllBeers = () => {
 	const [beerList, setBeerList] = useState([]);
 
 	useEffect(() => {
+		actions.getBeer();
+	}, [])
+
+	useEffect(() => {
 		if (store.beers.length != 0) {
 			setBeerList(
 				store.beers.map((beer, index) => {
