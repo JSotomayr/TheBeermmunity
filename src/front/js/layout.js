@@ -5,6 +5,7 @@ import injectContext from "./store/appContext";
 import { Home } from "./pages/home";
 
 import AllBeers from "./pages/allBeers.jsx";
+import { BeerDetail } from "./pages/beerDetail.jsx";
 
 const Layout = () => {
 	const basename = process.env.BASENAME || "";
@@ -15,6 +16,7 @@ const Layout = () => {
 				<Routes>
 					<Route path="/" element={<Home />}/>
 					<Route path="/beer" element={<AllBeers />}/>
+					<Route path="/beer/:id" element={<BeerDetail />}/>
 				</Routes>
 			</BrowserRouter>
 		</div>
