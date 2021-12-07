@@ -11,31 +11,6 @@ api = Blueprint('api', __name__)
 app.config["JWT_SECRET_KEY"] = os.environ.get("JWT_KEY")
 jwt = JWTManager(app)
 
-@api.route('/admin', methods=['POST'])
-def create_admin():
-    new_email = request.json.get('email', None)
-    new_password = request.json.get('password', None)
-    new_username = request.json.get('username', None)
-    new_country = request.json.get('country', None)
-    new_city = request.json.get('city', None)
-    new_description = request.json.get('description', None)
-    new_image = request.json.get('image', None)
-
-
-    if not (new_email and new_username and new_password and new_country and new_city):
-        return jsonify({'error': 'Missing user'}), 400
-
-    user_created = User(email=new_email, username=new_username, _password=new_password, country=new_country, city=new_city, description=new_description, image=new_image) 
-
-    try:
-        user_created.create()
-    except exc.IntegrityError:
-        return jsonify({'error': 'Fail in creating user'}), 400
-    
-    account = Customer.get_by_email(new_email)
-    access_token = create_access_token(identity=account.to_dict(), expires_delta=timedelta(days=30))
-    return jsonify({'token': access_token}), 200
-
 
 @api.route('/admin/new_beer', methods=['POST'])
 def create_beer():
@@ -64,3 +39,13 @@ def create_beer():
     
     return jsonify({'Success': 'Beer created successfully'}), 200    
     
+
+@api.route('/beer', methods=['GET'])
+def getAllBeers():
+    beers = Beer.get_all()
+
+    if beers:
+        beer_list = [beer.to_dict() for beer in beers]
+        return jsonify(beer_list), 200
+
+    return jsonify({'error': 'Beers not found'}), 404
