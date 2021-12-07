@@ -12,8 +12,8 @@ api = Blueprint('api', __name__)
 def getAllBeers():
     beers = Beer.get_all()
 
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend"
-    }
+    if beers:
+        beer_list = [beer.to_dict() for beer in beers]
+        return jsonify(beer_list), 200
 
-    return jsonify(response_body), 200
+    return jsonify({'error': 'Beers not found'}), 404

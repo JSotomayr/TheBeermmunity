@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const dotenv = require('dotenv');
 
+dotenv.config();
 
 module.exports = {
   entry: ['babel-polyfill','./src/front/js/index.js'],
@@ -43,23 +44,5 @@ module.exports = {
   },
   resolve: {
     extensions: ['*', '.js']
-  },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env': JSON.stringify(process.env)
-    }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      Popper: 'popper.js',
-      jQuery: 'jquery',
-      // In case you imported plugins individually, you must also require them here:
-      Util: "exports-loader?Util!bootstrap/js/dist/util",
-      Dropdown: "exports-loader?Dropdown!bootstrap/js/dist/dropdown"
-    }),
-    new HtmlWebpackPlugin({
-        favicon: '4geeks.ico',
-        template: 'template.html'
-    })
-  ]
+  }
 };

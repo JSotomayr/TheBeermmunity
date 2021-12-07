@@ -1,16 +1,40 @@
 const PORT = 3001;
-const [PROTOCOL, HOST] = process.env.GITPOD_WORKSPACE_URL.split("//")
-
-
+const [PROTOCOL, HOST] = process.env.GITPOD_WORKSPACE_URL.split("://");
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			baseURL: "url",
-			currentUsers: []
+			currentUsers: [],
+			baseUrl: `${PROTOCOL}://${PORT}-${HOST}`,
+			beers: []
 		},
-
 		actions: {
+			getBeer: async data => {
+				try {
+					let response = await fetch(getStore().baseUrl.concat("/api/beer"), {
+						method: "GET",
+						mode: "cors",
+						redirect: "follow",
+						headers: new Headers({
+							'Content-Type': 'text/plain'
+						}),
+						
+					});
+					 
+					if (response.ok) {
+						let allBeer = await response.json();
+						setStore({beers: [...getStore().beers, ...allBeer]});
+						console.log("RESPUESTA", getStore().beers)
+						localStorage.setItem("beers", JSON.stringify(getStore().beers));
+						// getActions().getBeer()
+					}
+					throw new Error("Fail downloading beers.")
+				} catch (error) {
+					console.log(error)
+				}
+			},
+
+	
 			register: (first_name, last_name, email, password, username) => {
 				fetch(getStore().baseURL.concat("/signup"), {
 					method: "POST",
@@ -58,8 +82,9 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.log("Fail login User", error)
                 }
             },
-		}
-	};
+		},		
+	}
 };
+
 
 export default getState;

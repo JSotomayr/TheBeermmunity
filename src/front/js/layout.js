@@ -1,6 +1,3 @@
-
-
-
 import React from "react";
 import {
 	BrowserRouter,
@@ -12,7 +9,7 @@ import injectContext from "./store/appContext";
 import { Home } from "./pages/home";
 import { Login } from "./pages/login";
 import { Navbar } from "./component/navbar";
-
+import AllBeers from "./pages/allBeers.jsx";
 
 
 //create your first component
@@ -29,7 +26,7 @@ const Layout = () => {
 				<Route path="/" element={<Home />} />
 				<Route path="/navbar" element={<Navbar />} />
 				<Route path="/login" element={<Login />} />
-
+				<Route path="/beer" element={<AllBeers />}/>
 				{/* <Route path="/homelog" element={<Homelog />} /> */}
 			</Routes>
 	
