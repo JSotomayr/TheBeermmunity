@@ -10,7 +10,7 @@ import {
 
 import injectContext from "./store/appContext";
 
-import injectContext from "./store/appContext";
+
 import { Home } from "./pages/home";
 
 import { Login } from "./pages/login";

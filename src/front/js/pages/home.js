@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
 import "../../styles/home.scss";
 import { Link } from "react-router-dom";
 import { Navbar } from "../component/navbar";
