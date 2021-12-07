@@ -14,40 +14,10 @@ from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_requir
 from api.utils import APIException, generate_sitemap
 from api.admin import setup_admin
 from sqlalchemy import exc
-from api.models import db, User
 from werkzeug.security import check_password_hash, generate_password_hash
+from api.models import db, Customer, Brewer, Brewerie, Beer, Review, Event
 
 api = Blueprint('api', __name__)
-
-
-@api.route('/user', methods=['POST'])
-def create_user(): 
-
-    is_active = True
-    email = request.json.get("email", None)
-    password = request.json.get("password", None)
-    username = request.json.get("username", None)
-
-    if not (email and password and username):
-        return {"error":"Missing info"}, 400
-
-    new_user = User(
-        is_active = is_active,
-        email=email,
-        password = generate_password_hash(password, method='pbkdf2:sha256', salt_length=16),
-        username=username
-    )
-
-    try:
-        new_user.create()
-    except exc.IntegrityError: 
-        return {"error":"something went wrong"}, 409
-
-
-    if new_user:
-        token = create_access_token(identity=new_user.serialize(), expires_delta=timedelta(minutes=100))
-        return({'token' : token}), 200
-
 
 
 @api.route('/login', methods=["POST"])
@@ -67,3 +37,14 @@ def login():
 
     else:
         return({'error':'Some parameter is wrong'}), 400
+        
+
+@api.route('/beer', methods=['GET'])
+def getAllBeers():
+    beers = Beer.get_all()
+
+    if beers:
+        beer_list = [beer.to_dict() for beer in beers]
+        return jsonify(beer_list), 200
+
+    return jsonify({'error': 'Beers not found'}), 404

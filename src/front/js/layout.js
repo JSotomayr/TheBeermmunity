@@ -9,34 +9,30 @@ import {
   } from "react-router-dom";
 
 import injectContext from "./store/appContext";
+
+import injectContext from "./store/appContext";
 import { Home } from "./pages/home";
-import { Demo } from "./pages/demo";
+
 import { Login } from "./pages/login";
-import { Navbar } from "./component/navbar";
 
 
 
-//create your first component
+
+import AllBeers from "./pages/allBeers.jsx";
+
 const Layout = () => {
-	//the basename is used when your project is published in a subdirectory and not in the root of the domain
-	// you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
 	const basename = process.env.BASENAME || "";
 
 	return (
-		<BrowserRouter>
-			{/* <Navbar /> */}
-			<Routes>
-				
-				<Route path="/" element={<Home />} />
-				<Route path="/navbar" element={<Navbar />} />
-
-				<Route path="/demo" element={<Demo />} />
-				<Route path="/login" element={<Login />} />
-
-				{/* <Route path="/homelog" element={<Homelog />} /> */}
-			</Routes>
-	
-		</BrowserRouter>
+		<div>
+			<BrowserRouter basename={basename}>
+				<Routes>
+					<Route path="/" element={<Home />}/>
+					<Route path="/beer" element={<AllBeers />}/>
+					<Route path="/login" element={<Login />} />
+				</Routes>
+			</BrowserRouter>
+		</div>
 	);
 };
 
