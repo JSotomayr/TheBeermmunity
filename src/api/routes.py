@@ -30,7 +30,7 @@ def login():
     if email and password:
         brewerie = Brewerie.get_by_email(email)
 
-        if brewerie:
+        if brewerie and check_password_hash(customer.password, password) and customer.is_active:
             """ password = Brewerie.get_by_password(password) """ 
             access_token = create_access_token(identity=brewerie.to_dict(), expires_delta=timedelta(days=30))
             return jsonify({'token': access_token}), 200
@@ -74,10 +74,10 @@ def create_customer():
     new_description = request.json.get('description')
     new_image = request.json.get('image')
 
-    if not (new_email and new_username and new_password):
+    if not (new_email and new_username and new_password and new_country):
         return jsonify({'error': 'Missing customer'}), 400
 
-    customer_created = Customer(email=new_email, username=new_username, _password=generate_password_hash(password, method='pbkdf2:sha256', salt_length=16),is_active = is_active) 
+    customer_created = Customer(email=new_email, username=new_username, country=new_country, city=new_city, description=new_description, image=new_image, _password=generate_password_hash(password, method='pbkdf2:sha256', salt_length=16), is_active = is_active) 
 
     try:
         customer_created.create()
