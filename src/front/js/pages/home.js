@@ -11,6 +11,9 @@ export const Home = () => {
 			<Link to={"/beer"}>
 				<h1>ENSEÑAME LA BIRRA</h1>
 			</Link>
+			<Link to={"/beer"}>
+				<h1>Formulario Business</h1>
+			</Link>
 		</div>
 	);
 };
