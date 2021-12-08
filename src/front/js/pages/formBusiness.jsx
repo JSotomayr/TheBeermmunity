@@ -1,23 +1,20 @@
 import React, { Fragment, useContext } from "react";
 
 import { Context } from "../store/appContext.js";
-import logoBig from "../../img/logoBig.png";
+
 import { useForm } from "react-hook-form";
 
 import { Link } from "react-router-dom";
-import Form from 'react-bootstrap/Form'
-
 
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
 
 
-import "../../styles/login.scss";
 
-export const Login = () => {
+
+export const FormBusiness = () => {
 	const { store, actions } = useContext(Context);
 
 	const {
@@ -39,7 +36,7 @@ export const Login = () => {
 					</Link>
 				</div>
 				<p>
-					<img src={logoBig} />
+					{/* <img src={logoBig} /> */}
 				</p>
 				<div className="title">Iniciar sesión</div>
 				<div className="login-form">

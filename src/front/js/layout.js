@@ -6,6 +6,8 @@ import { Home } from "./pages/home";
 
 import AllBeers from "./pages/allBeers.jsx";
 
+import FormBusiness from "./pages/formBusiness.jsx"
+
 const Layout = () => {
 	const basename = process.env.BASENAME || "";
 
@@ -15,6 +17,8 @@ const Layout = () => {
 				<Routes>
 					<Route path="/" element={<Home />}/>
 					<Route path="/beer" element={<AllBeers />}/>
+					<Route path="/formBusiness" element={<FormBusiness />}/>
+
 				</Routes>
 			</BrowserRouter>
 		</div>
