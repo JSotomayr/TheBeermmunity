@@ -1,59 +1,37 @@
-.fal {font-size: 3rem;}
+
 
 .navbar {
     background-color: #2C363A;
-    height: 5.563rem;
-
-
-    
+    height: 6rem;
 }
 
-// .logoSmall {
-// width: 5.938rem;
-// height: 4.625rem;
-// }
 
-.icons {
+
+
+
+// pone en linea los dos iconos
+.icons_right {
     display:flex;
-    justify-content: center;
-
-}
-.fal {
-    font-size: 2.3rem;
-    display:flex;
-    color:white;
-    font-size: 3rem;
-    border:1rem;
-    
-    
-    }
-    
-.fas {
-font-size: 2.3rem;
-display:flex;
-color:white;
 }
 
-
-.far {
-    font-size: 2.3rem;
-    display:flex;
-    color:white;
-    }
-
-
-.infoIcon {
-    color:white;
-}
-
+// espacio entre usuario y perfil
 .userIconText {
     margin-right: 1rem;
 
 }
 
-.HeartIconText {
-display: flex;
-align-items: center;
-flex-direction: column;
-margin-right: 1rem;
+// css
+.fas {
+    font-size: 2.3rem;
+    color:white;
+}
+
+
+.far {
+    font-size: 2.3rem;
+    color:white;
+}
+
+.fa-beer {
+font-size: 4rem;
 }
