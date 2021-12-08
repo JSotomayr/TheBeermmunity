@@ -22,12 +22,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 						
 					});
 					 
-					if (response.ok) {
+					if (response) {
 						let allBeer = await response.json();
 						setStore({beers: [...getStore().beers, ...allBeer]});
-						console.log("RESPUESTA", getStore().beers)
 						localStorage.setItem("beers", JSON.stringify(getStore().beers));
-						// getActions().getBeer()
 					}
 					throw new Error("Fail downloading beers.")
 				} catch (error) {
@@ -46,12 +44,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 						
 					});
 					 
-					if (response.ok) {
+					if (response) {
 						let allBeer = await response.json();
 						setStore({beersDetail: [...getStore().beersDetail, ...allBeer]});
-						console.log("RESPUESTA", getStore().beersDetail)
 						localStorage.setItem("beers", JSON.stringify(getStore().beersDetail));
-						// getActions().getBeer()
 					}
 					throw new Error("Fail downloading beer detail.")
 				} catch (error) {

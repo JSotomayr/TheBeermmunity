@@ -26,4 +26,4 @@ def beerDetail(id):
     if beer:
         return jsonify(beer.to_dict()), 200
 
-    return jsonify({'error': 'Beer is not found'}), 404
+    return jsonify({'error': 'Beer not found'}), 404
