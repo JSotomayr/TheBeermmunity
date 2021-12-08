@@ -5,7 +5,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			baseUrl: `${PROTOCOL}://${PORT}-${HOST}`,
-			detailUrl: baseUrl.concat("/api/beer/"),
 			beers: [],
 			beersDetail: []
 		},
@@ -32,9 +31,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error)
 				}
 			},
-			getBeerDetail: async (id) => {
+			getBeerDetail: async id => {
 				try {
-					let response = await fetch(getStore().detailUrl.concat(id), {
+					let response = await fetch(getStore().baseUrl.concat("/api/beer/").concat(id), {
 						method: "GET",
 						mode: "cors",
 						redirect: "follow",
@@ -46,7 +45,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					 
 					if (response) {
 						let allBeer = await response.json();
-						setStore({beersDetail: [...getStore().beersDetail, ...allBeer]});
+						console.log("RESPUESTA", response)
+						setStore({beersDetail: [allBeer]});
 						localStorage.setItem("beers", JSON.stringify(getStore().beersDetail));
 					}
 					throw new Error("Fail downloading beer detail.")

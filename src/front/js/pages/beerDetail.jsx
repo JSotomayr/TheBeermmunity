@@ -9,9 +9,9 @@ const BeerDetail = () => {
     const [detailBeer, setDetailBeer] = useState([]);
 
 	let params = useParams();
-
+	
 	useEffect(() => {
-		actions.getBeersDetail(params.uid);
+		actions.getBeerDetail(params.id);
 	}, []);
 
     useEffect(
@@ -30,7 +30,7 @@ const BeerDetail = () => {
 		[store.beersDetail]
 	);
 
-    return <div>{detailBeer}</div>
+    return <>{detailBeer}</>
 }
 
 export default BeerDetail;
