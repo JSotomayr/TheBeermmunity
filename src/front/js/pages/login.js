@@ -59,19 +59,6 @@ export const Login = () => {
 							{errors.email && errors.username.type === "maxLength" && <span role="alert">Max length exceedeed</span>}
 						</div>
 
-						<label htmlFor="email"></label>
-						<input 
-							id ="email"
-							placeholder="Email"
-							className="form-control"
-							aria-invalid={errors.email ? "true" : "false"}
-							{...register("email", { required: true, minLength: 10})}
-						/>
-
-						<div className="alertDiv">
-							{errors.email && errors.email.type === "required" && <span role="alert">El campo Email es obligatorio</span>}
-							{errors.email && errors.email.type === "minLength" && <span role="alert">El formato de email es incorrecto</span>}
-						</div>
 
 						<label htmlFor="password"></label>
 						<input 
@@ -87,29 +74,13 @@ export const Login = () => {
 							{errors.password && errors.password.type === "minLength" && <span role="alert">Max length exceedeed</span>}
 						</div>
 
-					
-						{/* <div className="chooseUserBusiness mt-3">
-						  <Form.Check
-								type="radio"
-								label="Usuario"
-								name="formHorizontalRadios"
-								id="formHorizontalRadios2"
-								required
-								/>
-							<Form.Check
-								type="radio"
-								label="Empresa"
-								name="formHorizontalRadios"
-								id="formHorizontalRadios3"
-							/>
+						<p className="forgottenPassword">He olvidado mi contraseña</p>
 
-						</div> */}
 						<div className="chooseUserBusiness mt-3">
 							<FormControl component="fieldset">
-								<RadioGroup row aria-label="gender" name="row-radio-buttons-group">
+								<RadioGroup row aria-label="gender" name="row-radio-buttons-group" >
 									<FormControlLabel value="Usuario" control={<Radio />} label="Usuario" />
 									<FormControlLabel value="Empresa" control={<Radio />} label="Empresa" />
-
 								</RadioGroup>
 							</FormControl>
 						</div>
@@ -128,3 +99,4 @@ export const Login = () => {
 
 
 };
+
