@@ -55,9 +55,69 @@ class Customer(db.Model):
         return {
             "id": self.id,
             "email": self.email,
-            "username": self.username
+            "username": self.username,
+            "country": self.country,
+            "city": self.city,
+            "description": self.description,
+            "image": self.image,
         }
+            # do not serialize the password, its a security breach
 
+
+    def create(self):
+        db.session.add(self)
+        db.session.commit()
+
+
+    @classmethod
+    def get_by_email(cls, email):
+        customer = cls.query.filter_by(email=email).one_or_none()
+        return customer
+
+
+    @classmethod
+    def get_by_password(cls, password):
+        secretPass = cls.query.filter_by(password=password).one_or_none()
+        return secretPass
+
+
+    @classmethod
+    def get_all(cls):
+        all_customer = cls.query.all()
+        return all_customer
+
+    def update(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+        db.session.commit()
+        return self
+
+    def validate_password(self,password):
+        is_valid = check_password_hash(self._password,password)
+        print(is_valid)
+        return is_valid
+
+    def delete(self):
+        self.is_active = False
+        db.session.commit()
+
+#   cervezas favoritas
+# opcion 1
+    @classmethod
+    def get_by_id_customer(cls, id):
+        customer_id = cls.query.get(id)
+        return user_customer
+
+# opción 2
+    # @classmethod
+    # def get_by_id_customer(cls,id_custumer):
+    #     customer_id = cls.query.filter_by(id=id_customer).one_or_none()
+    #     return customer_id
+
+    def add_fav_beer(self,beer):
+        self.have_allbeer.append(beer)
+        db.session.commit()
+        return self.have_allbeer
 
 class Brewer(db.Model):
     __tablename__: 'brewer'
@@ -82,11 +142,7 @@ class Brewer(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "lastname": self.lastname,
-            "country": self.country,
-            "city": self.city,
-            "description": self.description,
-            "image": self.image
+            "lastname" : self.lastname,
         }
 
 
@@ -112,7 +168,6 @@ class Brewerie(db.Model):
             "company_name": self.company_name,
             "address": self.address,
             "country": self.country,
-            "city": self.city,
             "description": self.description,
             "image": self.image
         }

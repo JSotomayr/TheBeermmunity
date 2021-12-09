@@ -18,7 +18,7 @@ const Layout = () => {
 					<Route path="/" element={<Home />}/>
 					<Route path="/beer" element={<AllBeers />}/>
 					<Route path="/formBusiness" element={<FormBusiness />}/>
-
+					{/* <Route exact path="/formBusiness" /> <FormBusiness />  */}
 				</Routes>
 			</BrowserRouter>
 		</div>
