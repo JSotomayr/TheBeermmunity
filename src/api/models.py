@@ -55,7 +55,11 @@ class Customer(db.Model):
         return {
             "id": self.id,
             "email": self.email,
-            "username": self.username
+            "username": self.username,
+            "country": self.country,
+            "city": self.city,
+            "description": self.description,
+            "image": self.image,
         }
             # do not serialize the password, its a security breach
 
@@ -76,10 +80,26 @@ class Customer(db.Model):
         secretPass = cls.query.filter_by(password=password).one_or_none()
         return secretPass
 
+
     @classmethod
     def get_all(cls):
         all_customer = cls.query.all()
         return all_customer
+
+    def update(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+        db.session.commit()
+        return self
+
+    def validate_password(self,password):
+        is_valid = check_password_hash(self._password,password)
+        print(is_valid)
+        return is_valid
+
+    def delete(self):
+        self.is_active = False
+        db.session.commit()
 
 #   cervezas favoritas
 # opcion 1
