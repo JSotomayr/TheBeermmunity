@@ -118,8 +118,6 @@ export const Login = () => {
 
 		</Fragment>
 	);
-	// }
-
 
 
 };
