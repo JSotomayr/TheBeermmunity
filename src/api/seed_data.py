@@ -201,21 +201,24 @@ data = {
         }
     ],
 
-    "Review" : [
+    "BrewerieReview" : [
         {
             "id": 1,
             "review_content": "Muy buen sitio, aunque como nada es perfecto, la puntuación tampoco. (Las tapas eran un poco flojas, pero la cerveza era espectacular).",
             "rating": 4,
             "publishment_date": "2021/12/03",
-            "_is_beer": True,
+            "brewerie_id": 1,
             "brewer_id": 1
-        },
+        }
+    ],
+    
+    "BeerReview" : [
         {
             "id": 2,
             "review_content": "Para una cerveza tan 'grandilocuente', deja un poco que desear.",
             "rating": 3,
             "publishment_date": "2021/12/01",
-            "_is_beer": False,
+            "beer_id": 4,
             "brewer_id": 4
         }
     ],
