@@ -40,16 +40,16 @@ class Customer(db.Model):
     _is_active = db.Column(db.Boolean, unique=False, nullable=False, default=True)
     _is_brewerie = db.Column(db.Boolean, unique=False, nullable=False, default=False)
     _is_admin = db.Column(db.Boolean, unique=False, nullable=False, default=False)
-    friend_id = db.Column(db.Integer, db.ForeignKey('customer.id'), unique=False, nullable=False )
+    friend_id = db.Column(db.Integer, db.ForeignKey('customer.id'), unique=False, nullable=True )
 
-    friend = db.relationship("Customer", lazy="joined", join_depth=2)
+    friend = db.relationship("Customer")
 
     has_brewer = db.relationship("Brewer", backref="customer")
     has_brewerie = db.relationship("Brewerie", backref="customer")
 
 
     def __repr__(self):
-        return f'Customer has {self.id} and {self.username} with {self.email} living in {self.city}, {self.country}'
+        return f'User has {self.id}, {self.username} with {self.email}'
 
     def to_dict(self):
         return {
@@ -61,17 +61,18 @@ class Customer(db.Model):
             "description": self.description,
             "image": self.image,
         }
+            # do not serialize the password, its a security breach
 
-    
+
     def create(self):
-       db.session.add(self)
-       db.session.commit()
+        db.session.add(self)
+        db.session.commit()
 
 
     @classmethod
     def get_by_email(cls, email):
-        account = cls.query.filter_by(email=email).one_or_none()
-        return account
+        customer = cls.query.filter_by(email=email).one_or_none()
+        return customer
 
 
     @classmethod
@@ -79,15 +80,11 @@ class Customer(db.Model):
         secretPass = cls.query.filter_by(password=password).one_or_none()
         return secretPass
 
+
     @classmethod
     def get_all(cls):
-        customers = cls.query.all()
-        return customers
-  
-    @classmethod
-    def get_by_id(cls, id):
-        customer = cls.query.get(id)
-        return customer
+        all_customer = cls.query.all()
+        return all_customer
 
     def update(self, **kwargs):
         for key, value in kwargs.items():
@@ -104,7 +101,23 @@ class Customer(db.Model):
         self.is_active = False
         db.session.commit()
 
+#   cervezas favoritas
+# opcion 1
+    @classmethod
+    def get_by_id_customer(cls, id):
+        customer_id = cls.query.get(id)
+        return user_customer
 
+# opción 2
+    # @classmethod
+    # def get_by_id_customer(cls,id_custumer):
+    #     customer_id = cls.query.filter_by(id=id_customer).one_or_none()
+    #     return customer_id
+
+    def add_fav_beer(self,beer):
+        self.have_allbeer.append(beer)
+        db.session.commit()
+        return self.have_allbeer
 
 class Brewer(db.Model):
     __tablename__: 'brewer'
@@ -147,7 +160,7 @@ class Brewerie(db.Model):
     review_id = db.Column(db.Integer, db.ForeignKey('review.id'), unique=False, nullable=False)
 
     have_fav_brewerie_brewer = db.relationship("Brewer", secondary=favourite_brewerie, back_populates="have_fav_brewerie")
-
+    
 
     def __repr__(self):
         return f"Breweries with id {self.id}, named {self.company_name} in {self.address} in {self.city}, {self.country}."
@@ -165,32 +178,20 @@ class Brewerie(db.Model):
         }
 
 
-    @classmethod
-    def get_all(cls):
-        brewerie = cls.query.all()
-        return breweries
-  
-
-    @classmethod
-    def get_by_id(cls, id):
-        brewerie_id = cls.query.get(id)
-        return brewerie_id
-
-
 class Beer(db.Model):
     __tablename__: 'beer'
 
     id = db.Column(db.Integer, primary_key=True)
     brand = db.Column(db.String(), unique=False, nullable=False)
     variety = db.Column(db.String(), unique=False, nullable=False)
-    style = db.Column(db.Enum('Lager', 'Pilsen', 'Negra', 'IPA', 'Trigo', name='enum_style'), unique=False, nullable=False)
+    style = db.Column(db.Enum('Lager', 'Extra Lager', 'Lager Especial', 'Tostada', 'Märzenbier', 'Pilsner', 'Negra', 'IPA', 'Trigo', name='enum_style'), unique=False, nullable=False)
     origin = db.Column(db.Enum('España', 'Alemania', 'Francia', 'Italia', 'Portugal', 'Holanda', 'Bélgica', 'Polonia', 'USA', name='enum_origin'), unique=False, nullable=False)
     obv = db.Column(db.FLOAT(), unique=False, nullable=False)
-    drinking_temperature = db.Column(db.FLOAT(), unique=False, nullable=False)
+    drinking_temperature = db.Column(db.String(), unique=False, nullable=False)
     description = db.Column(db.Text, unique=False, nullable=False)
     image = db.Column(db.Text, unique=False, nullable=False)
-    publishment_date = db.Column(db.DATE(), unique=False, nullable=True)
-    review_id = db.Column(db.Integer, db.ForeignKey('review.id'), unique=False, nullable=False)
+    publishment_date = db.Column(db.DATE(), unique=False, nullable=False)
+    review_id = db.Column(db.Integer, db.ForeignKey('review.id'), unique=False, nullable=True)
 
     have_fav_beer_brewer = db.relationship("Brewer", secondary=favourite_beer, back_populates="have_fav_beer")
     have_pend_beer_brewer = db.relationship("Brewer", secondary=favourite_beer, back_populates="have_pend_beer")
@@ -216,6 +217,11 @@ class Beer(db.Model):
         }
 
 
+    @classmethod
+    def get_all(cls):
+        beers = cls.query.all()
+        return beers
+
 class Review(db.Model):
     __tablename__: 'review'
 
@@ -223,6 +229,7 @@ class Review(db.Model):
     review_content = db.Column(db.Text, unique=False, nullable=False)
     rating = db.Column(db.Integer, unique=False, nullable=False)
     publishment_date = db.Column(db.DATE(), unique=False, nullable=True)
+    _is_beer = db.Column(db.Boolean, unique=False, nullable=False, default=True)
     brewer_id = db.Column(db.Integer, db.ForeignKey('brewer.id'), unique=False, nullable=False)
 
     rate_beer = db.relationship("Beer", backref="review")
@@ -257,7 +264,7 @@ class Event(db.Model):
     brewerie_id = db.Column(db.Integer, db.ForeignKey('brewerie.id'), unique=True, nullable=False)
 
     go_to_event_brewer = db.relationship("Brewer", secondary=brewer_go_to_event, back_populates="go_to_event")
-
+    
 
 
     def __repr__(self):
@@ -273,6 +280,7 @@ class Event(db.Model):
             "location": self.location,
             "image": self.image
         }
+
 
 
 
