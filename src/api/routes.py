@@ -17,10 +17,11 @@ from sqlalchemy import exc
 from werkzeug.security import check_password_hash, generate_password_hash
 from api.models import db, Customer, Brewer, Brewerie, Beer, Review, Event
 
+app = Flask(__name__)
 
 api = Blueprint('api', __name__)
 
-@app.route('/customer', methods=['POST'])
+@api.route('/customer', methods=['POST'])
 def create_customer():
 
     is_active = True
@@ -35,9 +36,19 @@ def create_customer():
     if not (new_email and new_username and new_password and new_country):
         return jsonify({'error': 'Missing customer'}), 400
 
-    customer_created = Customer(email=new_email, username=new_username, country=new_country, city=new_city, description=new_description, image=new_image, _password=generate_password_hash(password, method='pbkdf2:sha256', salt_length=16), is_active = is_active) 
+    customer_created = Customer(
+        email=new_email, 
+        username=new_username, 
+        country=new_country, 
+        city=new_city, 
+        description=new_description, 
+        image=new_image, 
+        _password=generate_password_hash(new_password, method='pbkdf2:sha256', 
+        salt_length=16))
+        # is_active = is_active) 
 
     try:
+        print(customer_created)
         customer_created.create()
     except exc.IntegrityError:
         return jsonify({'error': 'Fail in creating user'}), 400
@@ -78,7 +89,7 @@ def getAllBeers():
     return jsonify({'error': 'Beers not found'}), 404
 
 
-@app.route('/customer/<int:id_customer>/favourite-beer/<int:id_beer>', methods=['POST'])
+@api.route('/customer/<int:id_customer>/favourite-beer/<int:id_beer>', methods=['POST'])
 @jwt_required()
 def add_favbeer(id_customer,id_beer):
     token_id = get_jwt_identity()
