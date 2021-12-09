@@ -53,12 +53,28 @@
 // }
 
 
-// @media (max-width: 768px) {
+@media (min-width: 768px) {
 
-//     .icons_right{
-//         margin-right: 1rem;
-//     }
-//     .icons_right {
-//         margin-right: 0.5rem;
-//     }
-// }
+    .icons_left{
+        margin-right: 1rem;
+        display:none;
+    }
+    .patata{
+        margin-right: 1rem;
+        display:flex;
+        font-size: 4rem;
+        color: white;
+    }
+
+}
+
+@media (max-width: 300px) {
+
+    .patata{
+        margin-right: 1rem;
+        display:none;
+        font-size: 4rem;
+        color: white;
+    }
+
+}

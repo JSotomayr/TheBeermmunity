@@ -61,6 +61,7 @@ export const Navbar = () => {
 						<i className="far fa-heart"></i>
 						<p className="infoIcon">Favoritos</p>
 					</div>
+					<div className="patata">!!!!PATATA!!!!</div>
 				</div> 
 			</nav>  
 
