@@ -3,15 +3,20 @@
 .navbar {
     background-color: #2C363A;
     height: 6rem;
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
 }
 
-
-
+.icons_left_center {
+    display:flex;
+}
 
 
 // pone en linea los dos iconos
 .icons_right {
     display:flex;
+    margin-left: 8rem;
+
 }
 
 // espacio entre usuario y perfil
@@ -33,5 +38,16 @@
 }
 
 .fa-beer {
-font-size: 4rem;
+    font-size: 4rem;
+}
+
+
+@media (max-width: 768px) {
+
+    .icons_right{
+        margin-right: 1rem;
+    }
+    .icons_right {
+        margin-right: 0.5rem;
+    }
 }
