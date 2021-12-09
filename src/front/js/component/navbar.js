@@ -23,7 +23,20 @@ export const Navbar = () => {
 			<nav className="navbar">
 				<Container >
 					<Row>
-						<Col xs={4} className="icons_left">
+					<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      One of three columns
+    </div>
+    <div class="col-sm">
+      One of three columns
+    </div>
+    <div class="col-sm">
+      One of three columns
+    </div>
+  </div>
+</div>
+						<div  className="icons_left">
 							<i className="fas fa-beer"></i>
 						</Col>
 						<Col xs={4} className="icons_center">
