@@ -45,13 +45,13 @@ export const Navbar = () => {
 				</Container>			 */}
 				<div className=" icons_left">
 					<i className="fas fa-beer"></i>
-				{/* </div>
+				</div>
 
-				<div className="icons_center"> */}
+				<div className="icons_center"> 
 					<img className="logoNavbar" src={logoSmall} />
 				</div>
 
-				<div className="icons_right">
+				 <div className="icons_right">
 					<div className="userIconText">
 						<i className="fas fa-user"></i>
 						<p className="infoIcon">Perfil</p>
@@ -61,7 +61,7 @@ export const Navbar = () => {
 						<i className="far fa-heart"></i>
 						<p className="infoIcon">Favoritos</p>
 					</div>
-				</div>
+				</div> 
 			</nav>  
 
 		
