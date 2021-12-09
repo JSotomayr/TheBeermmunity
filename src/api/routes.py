@@ -21,43 +21,6 @@ app = Flask(__name__)
 
 api = Blueprint('api', __name__)
 
-@api.route('/customer', methods=['POST'])
-def create_customer():
-
-    is_active = True
-    new_email = request.json.get('email', None)
-    new_username = request.json.get('username', None)
-    new_password = request.json.get('password', None)
-    new_country = request.json.get('country', None)
-    new_city = request.json.get('city', None)
-    new_description = request.json.get('description')
-    new_image = request.json.get('image')
-
-    if not (new_email and new_username and new_password and new_country):
-        return jsonify({'error': 'Missing customer'}), 400
-
-    customer_created = Customer(
-        email=new_email, 
-        username=new_username, 
-        country=new_country, 
-        city=new_city, 
-        description=new_description, 
-        image=new_image, 
-        _password=generate_password_hash(new_password, method='pbkdf2:sha256', 
-        salt_length=16))
-        # is_active = is_active) 
-
-    try:
-        print(customer_created)
-        customer_created.create()
-    except exc.IntegrityError:
-        return jsonify({'error': 'Fail in creating user'}), 400
-
-    if new_customer:
-        account = Customer.get_by_email(new_email)
-        access_token = create_access_token(identity=account.to_dict(), expires_delta=timedelta(days=30))
-        return jsonify({'token': access_token}), 200
-
 
 @api.route('/login', methods=["POST"])
 def login():
@@ -65,12 +28,12 @@ def login():
     username = request.json.get('username', None)
     password = request.json.get('password', None)
 
-    if not (email and password and username):
+    if not (email and username and password):
         return({'error':'Missing info'}), 400
 
     customer = Customer.get_by_email(email)   
 
-    if customer and check_password_hash(customer.password, password) and customer.is_active:
+    if customer and check_password_hash(customer._password, password) and customer._is_active:
         token = create_access_token(identity=customer.to_dict(), expires_delta=timedelta(minutes=100))
         return({'token' : token}) , 200
 
@@ -78,33 +41,9 @@ def login():
         return({'error':'Some parameter is wrong'}), 400
         
 
-@api.route('/beer', methods=['GET'])
-def getAllBeers():
-    beers = Beer.get_all()
-
-    if beers:
-        beer_list = [beer.to_dict() for beer in beers]
-        return jsonify(beer_list), 200
-
-    return jsonify({'error': 'Beers not found'}), 404
 
 
-@api.route('/customer/<int:id_customer>/favourite-beer/<int:id_beer>', methods=['POST'])
-@jwt_required()
-def add_favbeer(id_customer,id_beer):
-    token_id = get_jwt_identity()
-    print(token_id)
 
-    if token_id.get("id") == id_customer:
-        customer = Customer.get_by_id_customer(id_customer)
-        beer = Beer.get_by_id(id_beer)     
-        
-        if user and beer:
-            add_beer = customer.add_fav_beers(beers)
-            fav_beer = [beer.to_dict() for beer in add_beer]
-            return jsonify(fav_beer),200
-
-    return jsonify({'error': 'Not favourites'}),404
 
 
   
