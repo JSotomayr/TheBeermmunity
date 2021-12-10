@@ -55,8 +55,57 @@ class Customer(db.Model):
         return {
             "id": self.id,
             "email": self.email,
-            "username": self.username
+            "username": self.username,
+            "country": self.country,
+            "city": self.city,
+            "description": self.description,
+            "image": self.image,
         }
+            # do not serialize the password, its a security breach
+
+
+    def create(self):
+        db.session.add(self)
+        db.session.commit()
+
+
+    @classmethod
+    def get_by_email(cls, email):
+        customer = cls.query.filter_by(email=email).one_or_none()
+        return customer
+
+
+    @classmethod
+    def get_by_password(cls, password):
+        secretPass = cls.query.filter_by(password=password).one_or_none()
+        return secretPass
+
+
+    @classmethod
+    def get_all(cls):
+        all_customer = cls.query.all()
+        return all_customer
+
+    def update(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+        db.session.commit()
+        return self
+
+    def validate_password(self,password):
+        is_valid = check_password_hash(self._password,password)
+        print(is_valid)
+        return is_valid
+
+    def delete(self):
+        self.is_active = False
+        db.session.commit()
+
+
+    @classmethod
+    def get_by_id(cls, id):
+        customer_id = cls.query.get(id)
+        return user_customer
 
 
 class Brewer(db.Model):
@@ -117,6 +166,27 @@ class Brewerie(db.Model):
         }
 
 
+    def create(self):
+        db.session.add(self)
+        db.session.commit()
+
+
+    @classmethod
+    def get_all(cls):
+        brewerie = cls.query.all()
+        return breweries
+
+    @classmethod
+    def get_by_id(cls, id):
+        brewerie_id = cls.query.get(id)
+        return brewerie_id
+
+
+    def delete(self):
+        self.is_active = False
+        db.session.commit()
+
+
 class Beer(db.Model):
     __tablename__: 'beer'
 
@@ -174,6 +244,7 @@ class BrewerieReview(db.Model):
     review_content = db.Column(db.Text, unique=False, nullable=False)
     rating = db.Column(db.Integer, unique=False, nullable=False)
     publishment_date = db.Column(db.DATE(), unique=False, nullable=True)
+    _is_beer = db.Column(db.Boolean, unique=False, nullable=False, default=True)
     brewer_id = db.Column(db.Integer, db.ForeignKey('brewer.id'), unique=False, nullable=False)
     brewerie_id = db.Column(db.Integer, db.ForeignKey('brewerie.id'), unique=False, nullable=False)
 

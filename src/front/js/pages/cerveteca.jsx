@@ -2,21 +2,26 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import DefaultCard from "../component/defaultCard.jsx";
 
-const Wishlist = () => {
+const Cerveteca = () => {
 	const { store, actions } = useContext(Context);
-	const [toTryList, setToTryList] = useState([]);
+	const [triedList, setTriedList] = useState([]);
 
 	useEffect(() => {
-		if (store.wishlist.length != 0) {
-			setToTryList(
-				store.wishlist.map((wish, index) => {
+		if (store.favourite.length != 0) {
+			setTriedList(
+				store.tastedBeer.map((wish, index) => {
 					return <DefaultCard key={index.toString()} element={wish} />;
 				})
 			);
 		}
-	}, [store.wishlist]);
+	}, [store.tastedBeer]);
 
-	return <div>ESTO ES UNA MIERDA{toTryList}</div>;
+	return (
+		<div>
+			<span className="title">Cerveteca</span>
+			{triedList}
+		</div>
+	);
 };
 
-export default Wishlist;
+export default Cerveteca;

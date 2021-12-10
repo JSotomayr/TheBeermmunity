@@ -6,8 +6,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			baseUrl: `${PROTOCOL}://${PORT}-${HOST}`,
 			beers: [], 
+			beersDetail: [],
 			wishlist: [],
-			beersDetail: []
+			tastedBeer: []
 		},
 		actions: {
 			getBeer: async data => {
@@ -32,6 +33,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error)
 				}
 			},
+
 			getBeerDetail: async id => {
 				try {
 					let response = await fetch(getStore().baseUrl.concat("/api/beer/").concat(id), {
@@ -43,7 +45,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}),
 						
 					});
-					 
+					
 					if (response) {
 						let allBeer = await response.json();
 						console.log("RESPUESTA", response)
@@ -58,6 +60,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			addWishlist: (beer) => {
 				setStore({wishlist = [...getStore().wishlist, beer]})
+			},
+
+			addTastedBeer: beer => {
+				setStore({ tastedBeer: [...getStore().tastedBeer, beer] });
 			}
 		}
 	}
