@@ -106,7 +106,7 @@ class Customer(db.Model):
     @classmethod
     def get_by_id_customer(cls, id):
         customer_id = cls.query.get(id)
-        return user_customer
+        return customer_id
 
 # opción 2
     # @classmethod
@@ -114,10 +114,14 @@ class Customer(db.Model):
     #     customer_id = cls.query.filter_by(id=id_customer).one_or_none()
     #     return customer_id
 
+
+
     def add_fav_beer(self,beer):
-        self.have_allbeer.append(beer)
+        self.have_fav_beer.append(beer)
         db.session.commit()
-        return self.have_allbeer
+        return self.have_fav_beer
+
+
 
 class Brewer(db.Model):
     __tablename__: 'brewer'
@@ -216,6 +220,11 @@ class Beer(db.Model):
     def get_all(cls):
         beers = cls.query.all()
         return beers
+
+    @classmethod
+    def get_by_id_beer(cls, id):
+        beer_id = cls.query.get(id)
+        return beer_id
 
 class Review(db.Model):
     __tablename__: 'review'

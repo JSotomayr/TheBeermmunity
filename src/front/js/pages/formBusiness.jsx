@@ -8,13 +8,21 @@ import { useForm, Controller } from "react-hook-form";
  export const FormBusiness = () => {
 	
 	const [next, setNext] = useState(false);
-	const {registerForm, setRegisterForm} = useState();
+	const [registerForm, setRegisterForm] = useState([]);
 	const { handleSubmit, register, getValues} = useForm();
 	const { store, actions } = useContext(Context);
 
 	useEffect(() => {
-		// setRegisterForm(
+		setRegisterForm(
 			<Fragment>
+ 					{/* <label htmlFor="username"></label> */}
+ 					<input 
+ 						id ="username"
+ 						placeholder="Nombre y apellidos"
+ 						className="form-control"
+ 						aria-invalid={errors.username ? "true" : "false"}
+ 						{...register("username", { required: true, maxLength: 30})}
+ 					/>
 				<input placeholder ="Name"
 				{...register("firstName", {required: true, maxLength: 20})}
  				/>
@@ -46,12 +54,12 @@ import { useForm, Controller } from "react-hook-form";
 					Next
 				</button>
 			</Fragment>
-		// );
+		);
 	}, []);
 
 	useEffect(() => {
 		if (getValues("userType") =="admin") {
-			// setRegisterForm(
+			setRegisterForm(
 				<Fragment>
 					<input
 						plasceholder="Adress"
@@ -60,7 +68,7 @@ import { useForm, Controller } from "react-hook-form";
 					/>
 					<input type ="submit" />
 				</Fragment>
-			// );
+			);
 		} else if (getValues("userType") == "business") {
 			setRegisterForm(
 				<Fragment>

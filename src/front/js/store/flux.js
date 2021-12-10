@@ -6,7 +6,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			register: {},
 			baseUrl: `${PROTOCOL}://${PORT}-${HOST}`,
-			beers: []
+			beers: [],
+			favourites: []
 		},
 		actions: {
 			register: (data) => {console.log(data);
@@ -34,7 +35,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.log(error)
 				}
+				
 			},
+			addFavourite: name => {
+				setStore({ favourites: [...getStore().favourites, name] });
+			}
 		}
 	}
 };
