@@ -70,3 +70,12 @@ def getAllBeers():
 
     return jsonify({'error': 'Beers not found'}), 404
 
+
+@api.route('/beer/<int:id>', methods=['GET'])
+def beerDetail(id):
+    beer = Beer.get_by_id(id)
+
+    if beer:
+        return jsonify(beer.to_dict()), 200
+
+    return jsonify({'error': 'Beer not found'}), 404

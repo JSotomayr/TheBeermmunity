@@ -230,6 +230,13 @@ class Beer(db.Model):
         beers = cls.query.all()
         return beers
 
+
+    @classmethod
+    def get_by_id(cls, id):
+        beer_id = cls.query.get(id)
+        return beer_id
+
+
 class BrewerieReview(db.Model):
     __tablename__: 'brewerie_review'
 
