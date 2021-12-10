@@ -6,6 +6,7 @@ import { Home } from "./pages/home";
 
 import AllBeers from "./pages/allBeers.jsx";
 import Wishlist from "./pages/wishlist";
+import BeerDetail from "./pages/beerDetail.jsx";
 
 const Layout = () => {
 	const basename = process.env.BASENAME || "";
@@ -13,18 +14,12 @@ const Layout = () => {
 	return (
 		<div>
 			<BrowserRouter basename={basename}>
-				<Route exact path="/">
-					<Home />
-				</Route>
-				<Route exact path="/all_beers">
-					<AllBeers />
-				</Route>
-				<Route exact path="/wishlist">
-					<Wishlist />
-				</Route>
-				<Route>
-					<h1>Not found!</h1>
-				</Route>
+				<Routes>
+					<Route path="/" element={<Home />}/>
+					<Route path="/beer" element={<AllBeers />}/>
+					<Route path="/beer/:id" element={<BeerDetail />}/>
+					<Route path="/wishlist" element={<Wishlist />} />
+				</Routes>
 			</BrowserRouter>
 		</div>
 	);

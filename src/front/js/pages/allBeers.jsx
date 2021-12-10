@@ -1,11 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import DefaultCard from "../component/defaultCard.jsx";
+import "../../styles/allBeers.scss";
 
 const AllBeers = () => {
 	const { store, actions } = useContext(Context);
 	const [beerList, setBeerList] = useState([]);
 
+
+	useEffect(() => {
+		actions.getBeer();
+	}, [])
+
+	
 	useEffect(() => {
 		if (store.beers.length != 0) {
 			setBeerList(
@@ -16,7 +23,12 @@ const AllBeers = () => {
 		}
 	}, [store.beers]);
 
-	return <div>ESTO ES UNA MIERDA{beerList}</div>;
-};
+	return (
+		<div>
+			<h1 className="title">Toda la cerveza</h1>
+			<div className="allBeers">{beerList}</div>
+		</div>);
+	
+}
 
 export default AllBeers;

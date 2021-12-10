@@ -6,31 +6,62 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			baseUrl: `${PROTOCOL}://${PORT}-${HOST}`,
 			beers: [], 
-			wishlist: []
+			wishlist: [],
+			beersDetail: []
 		},
 		actions: {
-			getBeer: () => {
-				fetch(getStore().baseUrl.concat("/beer"))
-					.then(response => {
-						if (response.ok) {
-							return response.json();
-						}
-						throw new Error("FAIL DOWNLOADING BEER");
-					})
-					.then(responseAsJSON => {
-						console.log("A ver que tiene este RESPONSE", responseAsJSON);
-						setStore({ beers: [...getStore().beers, ...responseAsJSON] });
-					})
-					.catch(error => {
-						console.log(error.message);
+			getBeer: async data => {
+				try {
+					let response = await fetch(getStore().baseUrl.concat("/api/beer"), {
+						method: "GET",
+						mode: "cors",
+						redirect: "follow",
+						headers: new Headers({
+							'Content-Type': 'text/plain'
+						}),
+						
 					});
+					 
+					if (response) {
+						let allBeer = await response.json();
+						setStore({beers: [...getStore().beers, ...allBeer]});
+						localStorage.setItem("beers", JSON.stringify(getStore().beers));
+					}
+					throw new Error("Fail downloading beers.")
+				} catch (error) {
+					console.log(error)
+				}
+			},
+			getBeerDetail: async id => {
+				try {
+					let response = await fetch(getStore().baseUrl.concat("/api/beer/").concat(id), {
+						method: "GET",
+						mode: "cors",
+						redirect: "follow",
+						headers: new Headers({
+							'Content-Type': 'text/plain'
+						}),
+						
+					});
+					 
+					if (response) {
+						let allBeer = await response.json();
+						console.log("RESPUESTA", response)
+						setStore({beersDetail: [allBeer]});
+						localStorage.setItem("beers", JSON.stringify(getStore().beersDetail));
+					}
+					throw new Error("Fail downloading beer detail.")
+				} catch (error) {
+					console.log(error)
+				}
 			},
 
 			addWishlist: (beer) => {
 				setStore({wishlist = [...getStore().wishlist, beer]})
 			}
 		}
-	};
+	}
 };
+
 
 export default getState;
