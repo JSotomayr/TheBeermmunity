@@ -9,26 +9,30 @@ import { useForm, Controller } from "react-hook-form";
 	
 	const [next, setNext] = useState(false);
 	const [registerForm, setRegisterForm] = useState([]);
-	const { handleSubmit, register, getValues} = useForm();
+	const { handleSubmit, register, getValues, formState: { errors }} = useForm();
 	const { store, actions } = useContext(Context);
 
 	useEffect(() => {
 		setRegisterForm(
 			<Fragment>
- 					<label htmlFor="username"></label>
- 					<input 
- 						id ="username"
- 						placeholder="Nombre y apellidos"
- 						className="form-control"
- 						aria-invalid={errors.username ? "true" : "false"}
- 						{...register("username", { required: true, maxLength: 30})}
- 					/>
+				<label htmlFor="username"></label>
+				<input 
+					id ="username"
+					placeholder="Nombre y apellidos"
+					className="form-control"
+					aria-invalid={errors.username ? "true" : "false"}
+					{...register("username", { required: true, maxLength: 30})}
+				/>
+					<div className="alertDiv">
+							{errors.username && errors.username.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
+							{errors.username && errors.username.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
+					</div>
 				<input placeholder ="Name"
 				{...register("firstName", {required: true, maxLength: 20})}
- 				/>
+				/>
 				<input placeholder ="LastName"
 				{...register("LastName", {required: true, maxLength: 20})}
- 				/>
+				/>
 				<label>Admin</label>
 				<input
 					type="radio"
@@ -96,122 +100,131 @@ import { useForm, Controller } from "react-hook-form";
 
 
 
+//  import React, { Fragment, useContext } from "react";
 
-
-
-
-
-// 	return (
-// 		<Fragment>
-// 			<div>
-// 				<h1 className="title">Crear cuenta de Empresa</h1>
-// 			</div>
-			
-// 				<form
-// 					onSubmit={handleSubmit(onSubmit)} >
-// 					<label htmlFor="username"></label>
-// 					<input 
-// 						id ="username"
-// 						placeholder="Nombre y apellidos"
-// 						className="form-control"
-// 						aria-invalid={errors.username ? "true" : "false"}
-// 						{...register("username", { required: true, maxLength: 30})}
-// 					/>
-					
-// 					<div className="alertDiv">
-// 						{errors.username && errors.username.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
-// 						{errors.username && errors.username.type === "maxLength" && <span role="alert">Max length exceedeed</span>}
-// 					</div>
-// 					<label htmlFor="company_name"></label>
-// 						<input 
-// 							id ="company_name"
-// 							type="company_name"
-// 							placeholder="Nombre de la empresa"
-// 							className="form-control"
-// 							aria-invalid={errors.company_name ? "true" : "false"}
-// 							{...register("company_name", { required: true, minLength: 30})}
-// 							/>
-// 						<div className="alertDiv">
-// 							{errors.company_name && errors.company_name.type === "required" && <span role="alert">El campo Contraseña es obligatorio</span>}
-// 							{errors.company_name && errors.company_name.type === "minLength" && <span role="alert">Max length exceedeed</span>}
-// 						</div>	
-// 					<label htmlFor="Adress"></label>
-// 						<input 
-// 							id ="Adress"
-// 							type="Adress"
-// 							placeholder="Dirección"
-// 							className="form-control"
-// 							aria-invalid={errors.Adress ? "true" : "false"}
-// 							{...register("Adress", { required: true, minLength: 30})}
-// 							/>
-// 						<div className="alertDiv">
-// 							{errors.Adress && errors.Adress.type === "required" && <span role="alert">El campo Contraseña es obligatorio</span>}
-// 							{errors.Adress && errors.Adress.type === "minLength" && <span role="alert">Max length exceedeed</span>}
-// 						</div>
-// 						<label htmlFor="city"></label>
-// 						<input 
-// 							id ="city"
-// 							type="city"
-// 							placeholder="Ciudad"
-// 							className="form-control"
-// 							aria-invalid={errors.city ? "true" : "false"}
-// 							{...register("city", { required: true, minLength: 30})}
-// 							/>
-// 						<div className="alertDiv">
-// 							{errors.city && errors.city.type === "required" && <span role="alert">El campo Contraseña es obligatorio</span>}
-// 							{errors.city && errors.city.type === "minLength" && <span role="alert">Max length exceedeed</span>}
-// 						</div>							
-// 					<label htmlFor="country"></label>
-// 						<input 
-// 							id ="country"
-// 							type="country"
-// 							placeholder="País"
-// 							className="form-control"
-// 							aria-invalid={errors.country ? "true" : "false"}
-// 							{...register("country", { required: true, minLength: 30})}
-// 							/>
-// 						<div className="alertDiv">
-// 							{errors.country && errors.country.type === "required" && <span role="alert">El campo Contraseña es obligatorio</span>}
-// 							{errors.country && errors.country.type === "minLength" && <span role="alert">Max length exceedeed</span>}
-// 						</div>	
-
-// 						<label> Business</label>		
-// 						<input
-// 							type="radio"
-// 							value="Business"	
-// 							name="userType"
-// 							{...register("userType")}
-// 						/>
-// 						<label> Customer </label>		
-// 						<input
-// 							type="radio"
-// 							value="Customer"	
-// 							name="userType"
-// 							{...register("userType")}
-// 						/>
-// 						<button 
-// 							onClick = {(event)} => {
-// 							event.preventDefault();
-// 							if (getValues("userType" != null) {
-// 								setNext(true);
-// 								}
-// 							}}
-// 						>
-// 						Next
-// 						</button>
-							
-// 				</form>
-		
-// 		</Fragment>
-			
-// 	)	
-// }
-
-// export default FormBusiness;
-
-
-
-
+//  import { Context } from "../store/appContext.js";
+//  import logoBig from "../../img/logoBig.png";
+//  import { useForm } from "react-hook-form";
+ 
+//  import { Link } from "react-router-dom";
+ 
+ 
+ 
+//  import Radio from '@mui/material/Radio';
+//  import RadioGroup from '@mui/material/RadioGroup';
+//  import FormControlLabel from '@mui/material/FormControlLabel';
+//  import FormControl from '@mui/material/FormControl';
+ 
+ 
+ 
+//  import "../../styles/login.scss";
+ 
+//  export const Login = () => {
+// 	 const { store, actions } = useContext(Context);
+ 
+// 	 const {
+// 		 register,
+// 		 handleSubmit,
+// 		 formState: {errors}
+ 
+// 	 } = useForm();
+ 
+// 	 const onSubmit = data => actions.login(data)
+ 
+ 
+// 	 return (
+// 		 <Fragment>
+ 
+// 			 <div className="loginContainer">
+// 				 <div className="btn nearLog">
+// 					 <Link to="/">
+// 						 volver
+// 					 </Link>
+// 				 </div>
+// 				 <p>
+// 					 <img src={logoBig} />
+// 				 </p>
+// 				 <div className="title">Iniciar sesión</div>
+// 				 <div className="login-form">
+// 					 <form
+// 						 onSubmit={handleSubmit(onSubmit)} >
+// 						 <label htmlFor="username"></label>
+// 						 <input 
+// 							 id ="username"
+// 							 placeholder="Usuario"
+// 							 className="form-control"
+// 							 aria-invalid={errors.username ? "true" : "false"}
+// 							 {...register("username", { required: true, maxLength: 15})}
+// 						 />
+						 
+// 						 <div className="alertDiv">
+// 							 {errors.username && errors.username.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
+// 							 {errors.username && errors.username.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
+// 						 </div>
+ 
+ 
+// 						 <label htmlFor="password"></label>
+// 						 <input 
+// 							 id ="password"
+// 							 type="password"
+// 							 placeholder="Contraseña"
+// 							 className="form-control"
+// 							 aria-invalid={errors.password ? "true" : "false"}
+// 							 {...register("password", { required: true, minLength: 5})}
+// 							 />
+// 						 <div className="alertDiv">
+// 							 {errors.password && errors.password.type === "required" && <span role="alert">El campo Contraseña es obligatorio</span>}
+// 							 {errors.password && errors.password.type === "minLength" && <span role="alert">Mínimo de longitud es de 5 caracteres</span>}
+// 						 </div>
+ 
+// 						 <p className="forgottenPassword">He olvidado mi contraseña</p>
+ 
+// 					 {/* OPCION 1 */}
+// 						 <div className="chooseUserBusiness mt-3">
+// 							 <FormControl component="fieldset">
+// 								 <RadioGroup row aria-label="gender" name="row-radio-buttons-group" >
+// 									 <FormControlLabel value="Usuario" control={<Radio />} label="Usuario" />
+// 									 <FormControlLabel value="Empresa" control={<Radio />} label="Empresa" />
+// 								 </RadioGroup>
+// 							 </FormControl>
+// 						 </div>
+ 
+// 						 {/* OPCION 2 */}
+// 						 <input {...register("radio")} type="radio" value="A"   />
+// 						   <input {...register("radio")} type="radio" value="B" />
+// 						   <div className="alertDiv">
+// 							 {errors.radio && errors.radio.type === "required" && <span role="alert">El campo elegir usuario o negocio es obligatorio</span>}
+// 						 </div>
+		   
+// 						   {/* OPCION 3 */}
+// 						   <input 
+// 							 id ="chooseUserBusiness"
+// 							 type="radio"
+// 							 value="Usuario"
+// 							 className="chooseUserBusiness"
+// 							 {...register("chooseUserBusiness", { required: true,})}
+// 							 />
+// 						 <div className="alertDiv">
+// 							 {errors.chooseUserBusiness && errors.chooseUserBusiness.type === "required" && <span role="alert">El campo elegir usuario o negocio es obligatorio</span>}
+// 						 </div>
+ 
+ 
+ 
+// 						 <button type="submit" className="btn btn-primary form-control btn_submit mt-5">Iniciar sesión</button> 
+// 						 {errors.submit && errors.submit.type === "required" && <span role="alertSubmitLog">!ERROR! Se ha producido un error en su intento de Inicio de sesión. Asegúrese de que el correo, el nombre de usuario y la contraseña son correctos</span>}
+ 
+// 					 </form>
+// 				 </div>
+				 
+// 			 </div>
+ 
+// 		 </Fragment>
+// 	 );
+ 
+ 
+//  };
+ 
+ 
 
 
 
