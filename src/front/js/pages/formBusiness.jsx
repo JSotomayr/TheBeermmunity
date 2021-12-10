@@ -15,7 +15,7 @@ import { useForm, Controller } from "react-hook-form";
 	useEffect(() => {
 		setRegisterForm(
 			<Fragment>
- 					{/* <label htmlFor="username"></label> */}
+ 					<label htmlFor="username"></label>
  					<input 
  						id ="username"
  						placeholder="Nombre y apellidos"
