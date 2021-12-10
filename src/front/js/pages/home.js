@@ -8,7 +8,7 @@ export const Home = () => {
 
 	return (
 		<div>
-			<Link to={"/beer"}>
+			<Link to={"/all_beers"}>
 				<h1>ENSEÑAME LA BIRRA</h1>
 			</Link>
 		</div>
