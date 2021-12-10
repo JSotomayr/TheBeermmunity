@@ -16,12 +16,8 @@ const Layout = () => {
 			<BrowserRouter basename={basename}>
 				<Routes>
 					<Route path="/" element={<Home />} />
-					<Route path="/all_beers" element={<AllBeers />} />
-					<Route path="/wishlist" element={<Wishlist />} />
+					<Route path="/beer" element={<AllBeers />}/>
 					<Route path="/cerveteca" element={<Cerveteca />} />
-					{/* <Route>
-						<h1>Not found!</h1>
-					</Route> */}
 				</Routes>
 			</BrowserRouter>
 		</div>

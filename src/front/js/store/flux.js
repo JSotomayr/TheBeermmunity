@@ -6,36 +6,40 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			baseUrl: `${PROTOCOL}://${PORT}-${HOST}`,
 			beers: [],
-			wishlist: [],
-			favourite: []
+			tastedBeer: []
 		},
 		actions: {
-			getBeer: () => {
-				fetch(getStore().baseUrl.concat("/beer"))
-					.then(response => {
-						if (response.ok) {
-							return response.json();
-						}
-						throw new Error("FAIL DOWNLOADING BEER");
-					})
-					.then(responseAsJSON => {
-						console.log("A ver que tiene este RESPONSE", responseAsJSON);
-						setStore({ beers: [...getStore().beers, ...responseAsJSON] });
-					})
-					.catch(error => {
-						console.log(error.message);
+			getBeer: async data => {
+				try {
+					let response = await fetch(getStore().baseUrl.concat("/api/beer"), {
+						method: "GET",
+						mode: "cors",
+						redirect: "follow",
+						headers: new Headers({
+							'Content-Type': 'text/plain'
+						}),
+						
 					});
+					 
+					if (response.ok) {
+						let allBeer = await response.json();
+						setStore({beers: [...getStore().beers, ...allBeer]});
+						console.log("RESPUESTA", getStore().beers)
+						localStorage.setItem("beers", JSON.stringify(getStore().beers));
+						// getActions().getBeer()
+					}
+					throw new Error("Fail downloading beers.")
+				} catch (error) {
+					console.log(error)
+				}
 			},
 
-			addWishlist: beer => {
-				setStore({ wishlist: [...getStore().wishlist, beer] });
-			},
-
-			addFavourite: beer => {
-				setStore({ favourite: [...getStore().favourite, beer] });
+			addTastedBeer: beer => {
+				setStore({ tastedBeer: [...getStore().tastedBeer, beer] });
 			}
 		}
-	};
+	}
 };
+
 
 export default getState;

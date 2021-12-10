@@ -9,12 +9,12 @@ const Cerveteca = () => {
 	useEffect(() => {
 		if (store.favourite.length != 0) {
 			setTriedList(
-				store.favourite.map((wish, index) => {
+				store.tastedBeer.map((wish, index) => {
 					return <DefaultCard key={index.toString()} element={wish} />;
 				})
 			);
 		}
-	}, [store.favourite]);
+	}, [store.tastedBeer]);
 
 	return (
 		<div>

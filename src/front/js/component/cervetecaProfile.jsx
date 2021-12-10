@@ -7,14 +7,14 @@ const CervetecaProfile = () => {
 	const [profileTried, setProfileTried] = useState([]);
 
 	useEffect(() => {
-		if (store.favourite.length != 0) {
+		if (store.tastedBeer.length != 0) {
 			setProfileTried(
-				store.favourite.map((fav, index) => {
-					return <DefaultCard key={index.toString()} element={fav} />;
+				store.tastedBeer.map((tasted, index) => {
+					return <DefaultCard key={index.toString()} element={tasted} />;
 				})
 			);
 		}
-	}, [store.favourite]);
+	}, [store.tastedBeer]);
 
 	return (
         <div>
