@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 const DefaultCard = props => {
 	return (
 		<div className="card">
-			<div style={{ width: "18rem" }}>
-				<Link to={`/all_beers/${props.element.id}`}>
+			<div>
+				<Link to={`/beer/${props.element.id}`}>
 					<div className="card__body">
 						<span className="card__title">{props.element.name}</span>
 						<img className="card__img" variant="bottom" src={props.element.image} />

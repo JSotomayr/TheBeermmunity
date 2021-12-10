@@ -7,6 +7,7 @@ import { Home } from "./pages/home";
 import AllBeers from "./pages/allBeers.jsx";
 import Wishlist from "./pages/wishlist.jsx";
 import Cerveteca from "./pages/cerveteca.jsx";
+import BeerDetail from "./pages/beerDetail.jsx";
 
 const Layout = () => {
 	const basename = process.env.BASENAME || "";
