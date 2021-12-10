@@ -9,8 +9,8 @@ import injectContext from "./store/appContext";
 import { Home } from "./pages/home";
 import { Login } from "./pages/login";
 import { Navbar } from "./component/navbar";
-import AllBeers from "./pages/allBeers.jsx";
-import Wishlist from "./pages/wishlist.jsx";
+// import AllBeers from "./pages/allBeers.jsx";
+// import Wishlist from "./pages/wishlist.jsx";
 import Cerveteca from "./pages/cerveteca.jsx";
 import BeerDetail from "./pages/beerDetail.jsx";
 
@@ -30,7 +30,7 @@ const Layout = () => {
 				<Route path="/navbar" element={<Navbar />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/cerveteca" element={<Cerveteca />} />
-				<Route path="/beer" element={<AllBeers />}/>
+				{/* <Route path="/beer" element={<AllBeers />}/> */}
 				{/* <Route path="/homelog" element={<Homelog />} /> */}
 			</Routes>
 	
