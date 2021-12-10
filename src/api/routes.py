@@ -15,9 +15,11 @@ from api.utils import APIException, generate_sitemap
 from api.admin import setup_admin
 from sqlalchemy import exc
 from werkzeug.security import check_password_hash, generate_password_hash
-from api.models import db, Customer, Brewer, Brewerie, Beer, Review, Event
+from api.models import db, Customer, Brewer, Brewerie, Beer, BrewerieReview, BeerReview, Event
+
 
 app = Flask(__name__)
+
 
 api = Blueprint('api', __name__)
 
@@ -57,28 +59,7 @@ def create_customer():
         token = create_access_token(identity=account.to_dict(), expires_delta=timedelta(minutes=100))
         return({'token' : token}), 200
 
-
-
-
-@api.route('/login', methods=["POST"])
-def login():
-    email = request.json.get('email', None)
-    username = request.json.get('username', None)
-    password = request.json.get('password', None)
-
-    if not (email and username and password):
-        return({'error':'Missing info'}), 400
-
-    customer = Customer.get_by_email(email)   
-
-    if customer and check_password_hash(customer._password, password) and customer._is_active:
-        token = create_access_token(identity=customer.to_dict(), expires_delta=timedelta(minutes=100))
-        return({'token' : token}) , 200
-
-    else:
-        return({'error':'Some parameter is wrong'}), 400
         
-
 @api.route('/beer', methods=['GET'])
 def getAllBeers():
     beers = Beer.get_all()
@@ -89,20 +70,3 @@ def getAllBeers():
 
     return jsonify({'error': 'Beers not found'}), 404
 
-
-@api.route('/customer/<int:id_customer>/favourite-beer/<int:id_beer>', methods=['POST'])
-@jwt_required()
-def add_favbeer(id_customer,id_beer):
-    token_id = get_jwt_identity()
-    print(token_id)
-
-    if token_id.get("id") == id_customer:
-        customer = Customer.get_by_id_customer(id_customer)
-        beer = Beer.get_by_id(id_beer)     
-        
-        if user and beer:
-            add_beer = customer.add_fav_beers(beers)
-            fav_beer = [beer.to_dict() for beer in add_beer]
-            return jsonify(fav_beer),200
-
-    return jsonify({'error': 'Not favourites'}),404
