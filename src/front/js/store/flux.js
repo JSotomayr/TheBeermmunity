@@ -11,6 +11,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			tastedBeer: []
 		},
 		actions: {
+
 			getBeer: async data => {
 				try {
 					let response = await fetch(getStore().baseUrl.concat("/api/beer"), {
@@ -58,12 +59,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			addWishlist: (beer) => {
-				setStore({wishlist = [...getStore().wishlist, beer]})
+			addWishlist: (wish) => {
+				setStore({ wishlist: [...getStore().wishlist, ...wish]})
 			},
 
 			addTastedBeer: beer => {
-				setStore({ tastedBeer: [...getStore().tastedBeer, beer] });
+				setStore({ tastedBeer: [...getStore().tastedBeer, ...beer]});
 			}
 		}
 	}
