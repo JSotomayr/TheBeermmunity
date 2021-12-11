@@ -8,8 +8,8 @@
 }
 
 .icons_left {
-    font-size: 2.3rem;
-    color:white; 
+    margin-bottom: 1rem;
+    font-size: 2.7rem;
 }
 
 
@@ -18,8 +18,6 @@
     display:flex;
     justify-content: flex-end;
     padding-right:1rem;
-
-
 }
 
 .fa-user {
@@ -34,47 +32,46 @@
     font-size: 2rem;
 }
 
-// // espacio entre usuario y perfil
-// .userIconText {
-//     margin-right: 1rem;
+.nabvar_menu_pending {
+    margin-left:1rem;
+} 
+.nabvar_menu_cerveteca {
+    margin-left:1rem;
+} 
 
-// }
+// CUANDO SE PASA DE 768
+// DESAPARECE LA CERVEZA
+// APARECEN LAS LETRAS
 
-// css
-
-
-// .far {
-//     font-size: 2.3rem;
-//     color:white;
-// }
-
-// .fa-beer {
-//     font-size: 4rem;
-// }
-
-
-@media (min-width: 768px) {
-
+@media (min-width: 425px) {
     .icons_left{
         margin-right: 1rem;
         display:none;
     }
-    .patata{
-        margin-right: 1rem;
+    .nabvar_menu{
         display:flex;
-        font-size: 4rem;
-        color: white;
+        font-size: 1.2rem;
+        margin: 1rem;
     }
 
 }
 
-@media (max-width: 300px) {
 
-    .patata{
+// CUANDO ES MENOR DE 768
+// APARECE LA CERVEZA
+// DESAPARECE LAS LETRAS
+
+@media (max-width: 425px) {
+    .icons_left{
+        margin-left: 1rem;
+        display:flex;
+    }
+    .nabvar_menu{
         margin-right: 1rem;
         display:none;
-        font-size: 4rem;
-        color: white;
     }
 
+
 }
+
+
