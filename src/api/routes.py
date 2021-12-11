@@ -15,12 +15,28 @@ from api.utils import APIException, generate_sitemap
 from api.admin import setup_admin
 from sqlalchemy import exc
 from werkzeug.security import check_password_hash, generate_password_hash
-from api.models import db, Customer, Brewer, Brewerie, Beer, Review, Event
+from api.models import db, Customer, Brewer, Brewerie, Beer, BrewerieReview, BeerReview, Event
+
 
 app = Flask(__name__)
 
+
 api = Blueprint('api', __name__)
 
+@api.route('/customer', methods=['POST'])
+def create_customer():
+
+    is_active = True
+    new_email = request.json.get('email', None)
+    new_username = request.json.get('username', None)
+    new_password = request.json.get('password', None)
+    new_country = request.json.get('country', None)
+    new_city = request.json.get('city', None)
+    new_description = request.json.get('description')
+    new_image = request.json.get('image')
+
+    if not (new_email and new_username and new_password and new_country and new_city):
+        return jsonify({'error': 'Missing customer'}), 400
 
 # CREAR CUSTOMER
 @api.route('/customer', methods=['POST'])
@@ -99,9 +115,19 @@ def get_customer(id):
 def getAllBeers():
     beers = Beer.get_all()
 
-    if beers:
-        beer_list = [beer.to_dict() for beer in beers]
-        return jsonify(beer_list), 200
+    response_body = {
+        "message": "Hello! I'm a message that came from the backend"
+    }
+
+    return jsonify({'error': 'Beers not found'}), 404
+
+
+@api.route('/beer/<int:id>', methods=['GET'])
+def beerDetail(id):
+    beer = Beer.get_by_id(id)
+
+    if beer:
+        return jsonify(beer.to_dict()), 200
 
     return jsonify({'error': 'Beers not found'}), 404
 
@@ -115,8 +141,6 @@ def get_one_product(id):
         return jsonify(one_beer.to_dict()), 200
     
     return({"error": "Beer not found"}), 404
-
-
 # AÑADIR FAVORITO A USUARIO
 @api.route('/customer/<int:id_customer>/favourite-beer/<int:id_beer>', methods=['POST'])
 @jwt_required()

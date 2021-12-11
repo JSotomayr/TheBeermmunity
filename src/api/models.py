@@ -157,7 +157,6 @@ class Brewerie(db.Model):
     company_name = db.Column(db.String(), unique=False, nullable=False)
     address = db.Column(db.String(), unique=False, nullable=False)
     id_customer = db.Column(db.Integer, db.ForeignKey('customer.id'), unique=True, nullable=False)
-    review_id = db.Column(db.Integer, db.ForeignKey('review.id'), unique=False, nullable=False)
 
     have_fav_brewerie_brewer = db.relationship("Brewer", secondary=favourite_brewerie, back_populates="have_fav_brewerie")
     
@@ -177,6 +176,27 @@ class Brewerie(db.Model):
         }
 
 
+    def create(self):
+        db.session.add(self)
+        db.session.commit()
+
+
+    @classmethod
+    def get_all(cls):
+        brewerie = cls.query.all()
+        return breweries
+
+    @classmethod
+    def get_by_id(cls, id):
+        brewerie_id = cls.query.get(id)
+        return brewerie_id
+
+
+    def delete(self):
+        self.is_active = False
+        db.session.commit()
+
+
 class Beer(db.Model):
     __tablename__: 'beer'
 
@@ -190,7 +210,6 @@ class Beer(db.Model):
     description = db.Column(db.Text, unique=False, nullable=False)
     image = db.Column(db.Text, unique=False, nullable=False)
     publishment_date = db.Column(db.DATE(), unique=False, nullable=False)
-    review_id = db.Column(db.Integer, db.ForeignKey('review.id'), unique=False, nullable=True)
 
     have_fav_beer_brewer = db.relationship("Brewer", secondary=favourite_beer, back_populates="have_fav_beer")
     have_pend_beer_brewer = db.relationship("Brewer", secondary=favourite_beer, back_populates="have_pend_beer")
@@ -226,8 +245,11 @@ class Beer(db.Model):
         beer_id = cls.query.get(id)
         return beer_id
 
-class Review(db.Model):
-    __tablename__: 'review'
+
+
+
+class BrewerieReview(db.Model):
+    __tablename__: 'brewerie_review'
 
     id = db.Column(db.Integer, primary_key=True)
     review_content = db.Column(db.Text, unique=False, nullable=False)
@@ -235,9 +257,33 @@ class Review(db.Model):
     publishment_date = db.Column(db.DATE(), unique=False, nullable=True)
     _is_beer = db.Column(db.Boolean, unique=False, nullable=False, default=True)
     brewer_id = db.Column(db.Integer, db.ForeignKey('brewer.id'), unique=False, nullable=False)
+    brewerie_id = db.Column(db.Integer, db.ForeignKey('brewerie.id'), unique=False, nullable=False)
 
-    rate_beer = db.relationship("Beer", backref="review")
-    rate_brewerie = db.relationship("Brewerie", backref="review")
+
+    def __repr__(self):
+        return f"Review with id {self.id}."
+
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "review_content": self.review_content,
+            "rating": self.rating,
+            "user_id": self.user_id,
+            "brewerie_id": self.brewerie_id
+        }
+
+
+class BeerReview(db.Model):
+    __tablename__: 'beer_review'
+
+    id = db.Column(db.Integer, primary_key=True)
+    review_content = db.Column(db.Text, unique=False, nullable=False)
+    rating = db.Column(db.Integer, unique=False, nullable=False)
+    publishment_date = db.Column(db.DATE(), unique=False, nullable=True)
+    brewer_id = db.Column(db.Integer, db.ForeignKey('brewer.id'), unique=False, nullable=False)
+    beer_id = db.Column(db.Integer, db.ForeignKey('beer.id'), unique=False, nullable=False)
+
 
     def __repr__(self):
         return f"Review with id {self.id}."
@@ -250,7 +296,6 @@ class Review(db.Model):
             "rating": self.rating,
             "user_id": self.user_id,
             "beer_id": self.beer_id,
-            "brewerie_id": self.brewerie_id
         }
 
 

@@ -1,8 +1,9 @@
 import React, { Fragment, useContext } from "react";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
 import "../../styles/home.scss";
 import Dropdown from "react-bootstrap/Dropdown";
+import { Link } from "react-router-dom";
+import { Navbar } from "../component/navbar";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -17,7 +18,7 @@ export const Home = () => {
 					<h1>Formulario Business</h1>
 				</Link>
 			</div>
-			<div>
+
 			<Dropdown>
 				<Dropdown.Toggle className="dropdown" variant="danger" id="dropdown-basic">
 					<i className="fab fa-jedi-order" />
@@ -31,6 +32,26 @@ export const Home = () => {
 					))}
 				</Dropdown.Menu> 
 			</Dropdown>
+		<div className="text-center">
+			<Navbar/>
+			<div className="btn mt-5">
+				<Link to="/login">
+					LOGIN
+				</Link>	
+			</div>
+			<div className="btn mt-5">
+				<Link to="/register">
+					REGISTER
+				</Link>	
+			</div>
+			<div>
+				<Link to={"/beer"}>
+					<h1>CERVEZAS</h1>
+				</Link>
+			</div>
+			<Link to={"/all_beers"}>
+				<h1>ENSEÑAME LA BIRRA</h1>
+			</Link>
 		</div>
 	</Fragment>
 	);

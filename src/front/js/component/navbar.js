@@ -21,7 +21,7 @@ export const Navbar = () => {
 	return (
 		<Fragment>
 			<nav className="navbar">
-				<Container >
+				{/* <Container >
 					<Row>
 						<Col xs={4} className="icons_left">
 							<i className="fas fa-beer"></i>
@@ -44,6 +44,31 @@ export const Navbar = () => {
 					</Row>
 				</Container>			
 			</nav>  
+
+				</Container>			 */}
+				<div className=" icons_left">
+					<i className="fas fa-beer"></i>
+				</div>
+
+				<div className="icons_center"> 
+					<img className="logoNavbar" src={logoSmall} />
+				</div>
+
+				 <div className="icons_right">
+					<div className="userIconText">
+						<i className="fas fa-user"></i>
+						<p className="infoIcon">Perfil</p>
+					</div>
+
+					<div className="HeartIconText">
+						<i className="far fa-heart"></i>
+						<p className="infoIcon">Favoritos</p>
+					</div>
+					<div className="patata">!!!!PATATA!!!!</div>
+				</div> 
+			</nav>  
+
+		
 
 		</Fragment>
 	);

@@ -1,0 +1,80 @@
+
+
+.navbar {
+    background-color: #2C363A;
+    height: 6rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.icons_left {
+    font-size: 2.3rem;
+    color:white; 
+}
+
+
+// pone en linea los dos iconos
+.icons_right {
+    display:flex;
+    justify-content: flex-end;
+    padding-right:1rem;
+
+
+}
+
+.fa-user {
+    font-size: 2rem;
+}
+
+.HeartIconText {
+    margin-left: 0.5rem;
+}
+
+.fa-heart {
+    font-size: 2rem;
+}
+
+// // espacio entre usuario y perfil
+// .userIconText {
+//     margin-right: 1rem;
+
+// }
+
+// css
+
+
+// .far {
+//     font-size: 2.3rem;
+//     color:white;
+// }
+
+// .fa-beer {
+//     font-size: 4rem;
+// }
+
+
+@media (min-width: 768px) {
+
+    .icons_left{
+        margin-right: 1rem;
+        display:none;
+    }
+    .patata{
+        margin-right: 1rem;
+        display:flex;
+        font-size: 4rem;
+        color: white;
+    }
+
+}
+
+@media (max-width: 300px) {
+
+    .patata{
+        margin-right: 1rem;
+        display:none;
+        font-size: 4rem;
+        color: white;
+    }
+
+}

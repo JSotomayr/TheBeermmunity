@@ -1,6 +1,9 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { useForm, Controller } from "react-hook-form";
+// import { Link } from "react-router-dom";
+// import logoBig from "../../img/logoBig.png";
+
 
 
 <p>hola</p>
@@ -90,6 +93,7 @@ import { useForm, Controller } from "react-hook-form";
 						>
 							Next
 						</button>
+					
 					</div>
 				</div>
 			</Fragment>
@@ -115,6 +119,7 @@ import { useForm, Controller } from "react-hook-form";
 						placeholder="CIF"
 						{...register("cif", {required: true, maxLength: 20})}
 					/>
+					<input type ="submit" />
 				</Fragment>
 			);	
 		}				
