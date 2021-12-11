@@ -58,8 +58,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					} catch (error) {
 						console.log("Fail login User", error)
 					}
-				},
-			},	
+				},	
 
 			getBeer: async data => {
 				try {
@@ -111,6 +110,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ tastedBeer: [...getStore().tastedBeer, beer] });
 			}
 		}
+	}
 };
 
 
