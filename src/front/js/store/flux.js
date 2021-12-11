@@ -21,8 +21,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}),
 						
 					});
+
+					if (localStorage.getItem("beers", JSON.stringify(getStore().beers))){
+						localStorage.getItem("beers", JSON.stringify(getStore().beers))
+						console.log("LOCAL STORE", localStorage.getItem("beers", JSON.stringify(getStore().beers)))
+					}
 					 
-					if (response.ok) {
+					else if(response.ok) {
 						let allBeer = await response.json();
 						setStore({beers: [...getStore().beers, ...allBeer]});
 						console.log("RESPUESTA", getStore().beers)
