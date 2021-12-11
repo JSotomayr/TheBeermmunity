@@ -206,8 +206,7 @@ data = {
             "id": 1,
             "company_name": "BeBeer",
             "address": "Calle Edison, 3",
-            "id_customer": 3,
-            "review_id": 1
+            "id_customer": 3
         },
     ],
 
