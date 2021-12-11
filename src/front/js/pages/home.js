@@ -25,9 +25,7 @@ export const Home = () => {
 					<h1>CERVEZAS</h1>
 				</Link>
 			</div>
-			<Link to={"/all_beers"}>
-				<h1>ENSEÑAME LA BIRRA</h1>
-			</Link>
+
 		</div>
 	);
 };
