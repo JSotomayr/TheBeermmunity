@@ -12,7 +12,7 @@ const AllBeers = () => {
 		actions.getBeer();
 	}, [])
 
-	
+
 	useEffect(() => {
 		if (store.beers.length != 0) {
 			setBeerList(
@@ -28,7 +28,7 @@ const AllBeers = () => {
 			<h1 className="title">Toda la cerveza</h1>
 			<div className="allBeers">{beerList}</div>
 		</div>);
-	
+
 }
 
 export default AllBeers;

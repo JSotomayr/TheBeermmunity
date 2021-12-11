@@ -15,40 +15,64 @@ from api.utils import APIException, generate_sitemap
 from api.admin import setup_admin
 from sqlalchemy import exc
 from werkzeug.security import check_password_hash, generate_password_hash
-from api.models import db, Customer, Brewer, Brewerie, Beer, Review, Event
+from api.models import db, Customer, Brewer, Brewerie, Beer, BrewerieReview, BeerReview, Event
+
 
 app = Flask(__name__)
 
+
 api = Blueprint('api', __name__)
 
+@api.route('/customer', methods=['POST'])
+def create_customer():
 
-@api.route('/login', methods=["POST"])
-def login():
-    email = request.json.get('email', None)
-    username = request.json.get('username', None)
-    password = request.json.get('password', None)
+    is_active = True
+    new_email = request.json.get('email', None)
+    new_username = request.json.get('username', None)
+    new_password = request.json.get('password', None)
+    new_country = request.json.get('country', None)
+    new_city = request.json.get('city', None)
+    new_description = request.json.get('description')
+    new_image = request.json.get('image')
 
-    if not (email and username and password):
-        return({'error':'Missing info'}), 400
+    if not (new_email and new_username and new_password and new_country and new_city):
+        return jsonify({'error': 'Missing customer'}), 400
 
-    customer = Customer.get_by_email(email)   
+    customer_created = Customer(
+        email=new_email, 
+        username=new_username, 
+        country=new_country, 
+        city=new_city, 
+        description=new_description, 
+        image=new_image, 
+        _password=generate_password_hash(new_password, method='pbkdf2:sha256', 
+        salt_length=16))
 
-    if customer and check_password_hash(customer._password, password) and customer._is_active:
-        token = create_access_token(identity=customer.to_dict(), expires_delta=timedelta(minutes=100))
-        return({'token' : token}) , 200
+    try:
+        customer_created.create()
+    except exc.IntegrityError:
+        return jsonify({'error': 'Fail in creating user'}), 400
 
-    else:
-        return({'error':'Some parameter is wrong'}), 400
+    account = Customer.get_by_email(new_email)
+ 
+    if account:
+        token = create_access_token(identity=account.to_dict(), expires_delta=timedelta(minutes=100))
+        return({'token' : token}), 200
+
         
+@api.route('/beer', methods=['GET'])
+def getAllBeers():
+    beers = Beer.get_all()
 
 
+    return jsonify({'error': 'Beers not found'}), 404
 
 
+@api.route('/beer/<int:id>', methods=['GET'])
+def beerDetail(id):
+    beer = Beer.get_by_id(id)
 
+    if beer:
+        return jsonify(beer.to_dict()), 200
 
-  
-
-
-
-
-
+    return jsonify({'error': 'Beer not found'}), 404

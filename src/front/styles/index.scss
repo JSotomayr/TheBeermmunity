@@ -31,16 +31,33 @@ body {
 }
 
 .btn{ 
-    background: #2D2D2D;   
+    background: #2D2D2D;
+    
     border: 1px solid white;
     border-radius: 0.2rem;
-}
 
 .btn:hover{ 
     background: #E49B0F;   
     color: white;
     text-decoration: none;
 }
+
+a {
+  color: white;
+  text-decoration: none;
+  }
+
+}
+
+
+.btn {
+    transition-duration: 0.4s;
+  }
+  
+  .btn:hover {
+    background-color: #afad4c; /* Green */
+    color: white;
+  }
 
 a {
   color: white;
@@ -79,7 +96,22 @@ a {
 .btn_submit:hover {
     background-color: #7a731a;
     color: white;
+// .btn_submit:hover {
+//     background-color: #b38807;
+//     color: white;
 
+}
+
+
+
+.alertDiv {
+    background-color: yellow;
+}
+
+
+.chooseUserBusiness {
+    display:flex;
+    justify-content: space-between;
 }
 
 
@@ -89,10 +121,4 @@ a {
     display:flex;
     justify-content: center;
     font-size: 0.85rem;
-}
-
-
-.chooseUserBusiness {
-    display:flex;
-    justify-content: space-between;
 }

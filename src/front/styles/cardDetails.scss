@@ -1,0 +1,34 @@
+.detail {
+    background:#2C363A;
+    display: flex;
+    flex-direction: column;
+}
+
+.detail__top{
+    display: flex;
+    flex-direction: row;
+}
+
+.detail__body {
+    color:white;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.detail__title {
+    color: #E49B0F;
+}
+
+.detail__subtitle {
+    color: #E49B0F;
+}
+
+.detail__properties {
+    list-style-type: none;
+    padding: 0;
+}
+
+.detail__date{
+    color: rgb(184, 184, 184);
+    float: right;
+}
