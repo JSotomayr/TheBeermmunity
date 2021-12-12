@@ -24,11 +24,14 @@ app = Flask(__name__)
 api = Blueprint('api', __name__)
 
 
-@api.route('/admin/new_beer', methods=['POST'])
-def create_beer():
-    admin  = request.json.get('is_admin', None)
+@api.route('/cutomer/<int:id>/new_beer', methods=['POST'])
+@jwt_required()
+def create_beer(id):
+    user  = Customer.get_by_id(id)
+    token_id = get_jwt_identity()
     
-    if admin == True:
+    if token_id("id") == user and check_password_hash(customer._password, password):
+        
         new_brand = request.json.get('brand', None)
         new_variety = request.json.get('variety', None)
         new_style = request.json.get('style', None)
