@@ -115,10 +115,6 @@ def get_customer(id):
 def getAllBeers():
     beers = Beer.get_all()
 
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend"
-    }
-
     return jsonify({'error': 'Beers not found'}), 404
 
 

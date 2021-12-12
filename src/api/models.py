@@ -122,6 +122,16 @@ class Customer(db.Model):
         return self.have_fav_beer
 
 
+# opción 2
+    # @classmethod
+    # def get_by_id_customer(cls,id_custumer):
+    #     customer_id = cls.query.filter_by(id=id_customer).one_or_none()
+    #     return customer_id
+
+    def add_fav_beer(self,beer):
+        self.have_allbeer.append(beer)
+        db.session.commit()
+        return self.have_allbeer
 
 class Brewer(db.Model):
     __tablename__: 'brewer'
