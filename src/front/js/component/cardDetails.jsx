@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
+import { Context } from "../store/appContext";
 import "../../styles/cardDetails.scss";
 
-import GenericButton from "./genericButton.jsx"
 
 const CardDetails = (props) => {
     const { store, actions } = useContext(Context);
@@ -27,7 +27,6 @@ const CardDetails = (props) => {
                 <span className="detail__date">{props.element.publishment_date}</span>
 
             </div>
-            <GenericButton add={actions.addWishlist(element)} name={"Quiero probarla"}/>
         </div>
     );
 };

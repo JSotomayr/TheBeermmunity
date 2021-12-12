@@ -2,14 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import DefaultCard from "../component/defaultCard.jsx";
 
-const Cerveteca = () => {
+const Wishlist = () => {
 	const { store, actions } = useContext(Context);
-	const [triedList, setTriedList] = useState([]);
+	const [toTaste, setToTaste] = useState([]);
 
 	useEffect(() => {
-		if (store.tastedBeer.length != 0) {
-			setTriedList(
-				store.tastedBeer.map((wish, index) => {
+		if (store.wishlist.length != 0) {
+			setToTaste(
+				store.wishlist.map((wish, index) => {
 					return <DefaultCard key={index.toString()} element={wish} />;
 				})
 			);
@@ -18,10 +18,10 @@ const Cerveteca = () => {
 
 	return (
 		<div>
-			<span className="title">Cerveteca</span>
-			{triedList}
+			<span className="title">Cervezas que quiero probar</span>
+			{toTaste}
 		</div>
 	);
 };
 
-export default Cerveteca;
+export default Wishlist;

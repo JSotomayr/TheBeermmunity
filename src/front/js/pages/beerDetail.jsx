@@ -1,7 +1,9 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
-import CardDetails from "../component/cardDetails.jsx";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router";
+
+import CardDetails from "../component/cardDetails.jsx";
+import GenericButton from "../component/genericButton.jsx"
 
 
 const BeerDetail = () => {
@@ -19,10 +21,17 @@ const BeerDetail = () => {
 			setDetailBeer(
 				store.beersDetail.map((detail, index) => {
 					return (
-						<CardDetails
-							key={index.toString()}
-							element={detail}
-						/>
+						<div>
+							<CardDetails
+								key={index.toString()}
+								element={detail}
+							/>
+							<GenericButton
+								key={(1+index).toString()}
+								add={actions.addWishlist(store.beersDetail)} 
+								name={"Quiero probarla"}
+							/>
+						</div>
 					);
 				})
 			);
@@ -30,7 +39,11 @@ const BeerDetail = () => {
 		[store.beersDetail]
 	);
 
-    return <>{detailBeer}</>
+    return (
+		<div>
+			{detailBeer}
+		</div>
+	)
 }
 
 export default BeerDetail;

@@ -64,9 +64,9 @@ def create_customer():
 def getAllBeers():
     beers = Beer.get_all()
 
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend"
-    }
+    if beers:
+        beer_list = [beer.to_dict() for beer in beers]
+        return jsonify(beer_list), 200
 
     return jsonify({'error': 'Beers not found'}), 404
 
@@ -79,3 +79,23 @@ def beerDetail(id):
         return jsonify(beer.to_dict()), 200
 
     return jsonify({'error': 'Beer not found'}), 404
+
+
+@api.route('/customer/<int:id_customer>/wishlist/<int:id_beer>', methods=['POST'])
+@jwt_required()
+def add_favbeer(id_customer, id_beer):
+    token_id = get_jwt_identity()
+    
+
+    if token_id.get("id") == id_customer:
+        customer = Customer.get_by_id_customer(id_customer)
+        beer = Beer.get_by_id_beer(id_beer)   
+        
+        
+        if customer and beer:
+            add_beer = customer.add_wish_beers(beers)
+            wish_beer = [beer.to_dict() for beer in add_beer]
+            return jsonify(wish_beer),200
+        
+
+    return jsonify({'error': 'No Wishlist'}),404
