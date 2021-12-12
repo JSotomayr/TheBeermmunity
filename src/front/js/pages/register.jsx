@@ -8,7 +8,7 @@ import { useForm, Controller } from "react-hook-form";
 
 <p>hola</p>
 
- export const FormBusiness = () => {
+ export const Register = () => {
 	
 	const [next, setNext] = useState(false);
 	const [registerForm, setRegisterForm] = useState([]);
@@ -135,7 +135,7 @@ import { useForm, Controller } from "react-hook-form";
 		);
 	};
  
- export default FormBusiness;
+ export default Register;
 
 
 

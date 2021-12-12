@@ -9,14 +9,7 @@ export const Home = () => {
 
 	return (
 		<Fragment>
-			<div>
-				<Link to={"/beer"}>
-					<h1>ENSEÑAME LA BIRRA</h1>
-				</Link>
-				<Link to={"/formBusiness"}>
-					<h1>Formulario Business</h1>
-				</Link>
-			</div>
+
 {/* 
 			<Dropdown>
 				<Dropdown.Toggle className="dropdown" variant="danger" id="dropdown-basic">
@@ -39,9 +32,9 @@ export const Home = () => {
 				</Link>	
 			</div>
 			<div className="btn mt-5">
-				<Link to="/register">
+			<Link to={"/register"}>
 					REGISTER
-				</Link>	
+			</Link>	
 			</div>
 			<div>
 				<Link to={"/beer"}>
