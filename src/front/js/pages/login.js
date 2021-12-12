@@ -28,7 +28,7 @@ export const Login = () => {
 
 	} = useForm();
 
-	const onSubmit = data => actions.login(data)
+	const onSubmit = dataLogin => actions.login(dataLogin)
 
 	return (
 		<Fragment>
@@ -98,39 +98,6 @@ export const Login = () => {
 
 						<p className="forgottenPassword">He olvidado mi contraseña</p>
 						
-
-					{/* OPCION 1
-						<div className="chooseUserBusiness mt-3">
-							<FormControl component="fieldset">
-								<RadioGroup row aria-label="gender" name="row-radio-buttons-group" >
-									<FormControlLabel value="Usuario" control={<Radio />} label="Usuario" />
-									<FormControlLabel value="Empresa" control={<Radio />} label="Empresa" />
-								</RadioGroup>
-							</FormControl>
-						</div> */}
-
-						{/* OPCION 2 */}
-						{/* <input {...register("radio")} type="radio" value="A"   />
-      					<input {...register("radio")} type="radio" value="B" />
-						  <div className="alertDiv">
-							{errors.radio && errors.radio.type === "required" && <span role="alert">El campo elegir usuario o negocio es obligatorio</span>}
-						</div> */}
-      	
-		  				{/* OPCION 3 */}
-						  {/* <input 
-							id ="chooseUserBusiness"
-							type="radio"
-							value="Usuario"
-							className="chooseUserBusiness"
-							{...register("chooseUserBusiness", { required: true,})}
-							/>
-						<div className="alertDiv">
-							{errors.chooseUserBusiness && errors.chooseUserBusiness.type === "required" && <span role="alert">El campo elegir usuario o negocio es obligatorio</span>}
-						</div> */}
-
-
-
-
 					
 						<div className="chooseUserBusiness mt-3">
 						  <Form.Check
@@ -140,7 +107,7 @@ export const Login = () => {
 								id="formHorizontalRadios2"
 								required
 								/>
-								<Form.Check
+							<Form.Check
 								type="radio"
 								label="Empresa"
 								name="formHorizontalRadios"

@@ -4,7 +4,7 @@ import { useForm, Controller } from "react-hook-form";
 import { Link } from "react-router-dom";
 import logoBig from "../../img/logoBig.png";
 import { Navbar } from "../component/navbar";
-
+import Form from 'react-bootstrap/Form'
 
 <p>hola</p>
 
@@ -14,6 +14,9 @@ import { Navbar } from "../component/navbar";
 	const [registerForm, setRegisterForm] = useState([]);
 	const { handleSubmit, register, getValues, formState: { errors }} = useForm();
 	const { store, actions } = useContext(Context);
+
+
+	const onSubmit = dataRegister => actions.register(dataRegister)
 
 	useEffect(() => {
 		setRegisterForm(
@@ -69,22 +72,24 @@ import { Navbar } from "../component/navbar";
 							 {errors.password && errors.password.type === "minLength" && <span role="alert">Mínimo de longitud es de 5 caracteres</span>}
 						 </div>
 
+						 <div className="chooseUserBusiness mt-3">
+						  <Form.Check
+								type="radio"
+								label="Usuario"
+								value="user"								
+								name="userType"
+								{...register("userType")}
+								/>
+							<Form.Check
+								type="radio"
+								label="Empresa"
+								value="business"								
+								name="userType"
+								{...register("userType")}
+								/>
+						</div>
 
-						<label>Admin</label>
-						<input
-							type="radio"
-							value="admin"
-							name="userType"
-							{...register("userType")}
-						/>
-						<label>Business</label>
-						<input
-							type="radio"
-							value="business"
-							name="userType"
-							{...register("userType")}
-						/>
-						<button 
+						<button className="btn btn-primary form-control btn_submit mt-5"
 						onClick ={ (event) => {
 							event.preventDefault();
 							if (getValues("userType") != null){
@@ -92,8 +97,9 @@ import { Navbar } from "../component/navbar";
 								}
 							}}
 						>
-							Next
+							Crear Cuenta
 						</button>
+
 					
 					</div>
 				</div>
@@ -102,13 +108,13 @@ import { Navbar } from "../component/navbar";
 	}, []);
 
 	useEffect(() => {
-		if (getValues("userType") =="admin") {
+		if (getValues("userType") =="user") {
 			setRegisterForm(
 				<Fragment>
-					<input
-						plasceholder="Adress"
-						{...register("adress", {required: true, maxLength: 20})}
 
+					<input
+					placeholder="CIF"
+					{...register("cif", {required: true, maxLength: 20})}
 					/>
 					<input type ="submit" />
 				</Fragment>
@@ -116,19 +122,105 @@ import { Navbar } from "../component/navbar";
 		} else if (getValues("userType") == "business") {
 			setRegisterForm(
 				<Fragment>
-					<input
+				<div className="loginContainer">
+						<div className="btn nearLog">
+							<Link to="/">
+								volver
+							</Link>
+						</div>
+					<p>
+						<img src={logoBig} />
+					</p>
+					<div className="title">Iniciar sesión</div>
+						<div className="login-form">
+							<input 
+								id ="name"
+								placeholder="Nombre"
+								className="form-control"
+								aria-invalid={errors.name ? "true" : "false"}
+								{...register("name", { required: true, maxLength: 15})}
+							/>
+							
+							<div className="alertDiv">
+								{errors.name && errors.name.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
+								{errors.name && errors.name.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
+							</div>
+							<label htmlFor="LastName"></label>
+							<input 
+								id ="LastName"
+								placeholder="Apellidos"
+								className="form-control"
+								aria-invalid={errors.LastName ? "true" : "false"}
+								{...register("LastName", { required: true, maxLength: 15})}
+							/>
+							
+							<div className="alertDiv">
+								{errors.lastName && errors.lastName.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
+								{errors.lastName && errors.lastName.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
+							</div>
+
+							<label htmlFor="nameBusiness"></label>
+							<input 
+								id ="nameBusiness"
+								placeholder="Nombre Empresa"
+								className="form-control"
+								aria-invalid={errors.nameBusiness ? "true" : "false"}
+								{...register("nameBusiness", { required: true, maxLength: 15})}
+							/>
+							
+							<div className="alertDiv">
+								{errors.nameBusiness && errors.nameBusiness.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
+								{errors.nameBusiness && errors.nameBusiness.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
+							</div>
+
+							<label htmlFor="Adress"></label>
+							<input 
+								id ="Adress"
+								placeholder="Dirección"
+								className="form-control"
+								aria-invalid={errors.Adress ? "true" : "false"}
+								{...register("Adress", { required: true, maxLength: 15})}
+							/>
+							
+							<div className="alertDiv">
+								{errors.Adress && errors.Adress.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
+								{errors.Adress && errors.Adress.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
+							</div>
+
+							<label htmlFor="city"></label>
+							<input 
+								id ="city"
+								placeholder="Ciudad"
+								className="form-control"
+								aria-invalid={errors.city ? "true" : "false"}
+								{...register("city", { required: true, maxLength: 15})}
+							/>
+							
+							<div className="alertDiv">
+								{errors.city && errors.city.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
+								{errors.city && errors.city.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
+							</div> 
+
+						<input
 						placeholder="CIF"
 						{...register("cif", {required: true, maxLength: 20})}
-					/>
-					<input type ="submit" />
+						/>
+
+						{/* OPCION 1 */}
+						<input type ="submit" />
+						{/* OPCION 2 */}
+						<button type="submit" className="btn btn-primary form-control btn_submit mt-5">Iniciar sesión</button> 
+							{errors.submit && errors.submit.type === "required" && <span role="alertSubmitLog">!ERROR! Se ha producido un error en su intento de Inicio de sesión. Asegúrese de que el correo, el nombre de usuario y la contraseña son correctos</span>}
+						</div>
+					</div>
 				</Fragment>
 			);	
 		}				
 	}, [next]);
 	return (
 		<form
-			onSubmit={handleSubmit((data) => {
-				actions.register(data);
+			onSubmit={handleSubmit((dataRegister) => {
+				actions.register(dataRegister);
 			})}
 		>
 			{registerForm}
@@ -138,134 +230,6 @@ import { Navbar } from "../component/navbar";
  
  export default Register;
 
-
-
-
-//  import React, { Fragment, useContext } from "react";
-
-//  import { Context } from "../store/appContext.js";
-//  import logoBig from "../../img/logoBig.png";
-//  import { useForm } from "react-hook-form";
- 
-//  import { Link } from "react-router-dom";
- 
- 
- 
-//  import Radio from '@mui/material/Radio';
-//  import RadioGroup from '@mui/material/RadioGroup';
-//  import FormControlLabel from '@mui/material/FormControlLabel';
-//  import FormControl from '@mui/material/FormControl';
- 
- 
- 
-//  import "../../styles/login.scss";
- 
-//  export const Login = () => {
-// 	 const { store, actions } = useContext(Context);
- 
-// 	 const {
-// 		 register,
-// 		 handleSubmit,
-// 		 formState: {errors}
- 
-// 	 } = useForm();
- 
-// 	 const onSubmit = data => actions.login(data)
- 
- 
-// 	 return (
-// 		 <Fragment>
- 
-// 			 <div className="loginContainer">
-// 				 <div className="btn nearLog">
-// 					 <Link to="/">
-// 						 volver
-// 					 </Link>
-// 				 </div>
-// 				 <p>
-// 					 <img src={logoBig} />
-// 				 </p>
-// 				 <div className="title">Iniciar sesión</div>
-// 				 <div className="login-form">
-// 					 <form
-// 						 onSubmit={handleSubmit(onSubmit)} >
-// 						 <label htmlFor="username"></label>
-// 						 <input 
-// 							 id ="username"
-// 							 placeholder="Usuario"
-// 							 className="form-control"
-// 							 aria-invalid={errors.username ? "true" : "false"}
-// 							 {...register("username", { required: true, maxLength: 15})}
-// 						 />
-						 
-// 						 <div className="alertDiv">
-// 							 {errors.username && errors.username.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
-// 							 {errors.username && errors.username.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
-// 						 </div>
- 
- 
-// 						 <label htmlFor="password"></label>
-// 						 <input 
-// 							 id ="password"
-// 							 type="password"
-// 							 placeholder="Contraseña"
-// 							 className="form-control"
-// 							 aria-invalid={errors.password ? "true" : "false"}
-// 							 {...register("password", { required: true, minLength: 5})}
-// 							 />
-// 						 <div className="alertDiv">
-// 							 {errors.password && errors.password.type === "required" && <span role="alert">El campo Contraseña es obligatorio</span>}
-// 							 {errors.password && errors.password.type === "minLength" && <span role="alert">Mínimo de longitud es de 5 caracteres</span>}
-// 						 </div>
- 
-// 						 <p className="forgottenPassword">He olvidado mi contraseña</p>
- 
-// 					 {/* OPCION 1 */}
-// 						 <div className="chooseUserBusiness mt-3">
-// 							 <FormControl component="fieldset">
-// 								 <RadioGroup row aria-label="gender" name="row-radio-buttons-group" >
-// 									 <FormControlLabel value="Usuario" control={<Radio />} label="Usuario" />
-// 									 <FormControlLabel value="Empresa" control={<Radio />} label="Empresa" />
-// 								 </RadioGroup>
-// 							 </FormControl>
-// 						 </div>
- 
-// 						 {/* OPCION 2 */}
-// 						 <input {...register("radio")} type="radio" value="A"   />
-// 						   <input {...register("radio")} type="radio" value="B" />
-// 						   <div className="alertDiv">
-// 							 {errors.radio && errors.radio.type === "required" && <span role="alert">El campo elegir usuario o negocio es obligatorio</span>}
-// 						 </div>
-		   
-// 						   {/* OPCION 3 */}
-// 						   <input 
-// 							 id ="chooseUserBusiness"
-// 							 type="radio"
-// 							 value="Usuario"
-// 							 className="chooseUserBusiness"
-// 							 {...register("chooseUserBusiness", { required: true,})}
-// 							 />
-// 						 <div className="alertDiv">
-// 							 {errors.chooseUserBusiness && errors.chooseUserBusiness.type === "required" && <span role="alert">El campo elegir usuario o negocio es obligatorio</span>}
-// 						 </div>
- 
- 
- 
-// 						 <button type="submit" className="btn btn-primary form-control btn_submit mt-5">Iniciar sesión</button> 
-// 						 {errors.submit && errors.submit.type === "required" && <span role="alertSubmitLog">!ERROR! Se ha producido un error en su intento de Inicio de sesión. Asegúrese de que el correo, el nombre de usuario y la contraseña son correctos</span>}
- 
-// 					 </form>
-// 				 </div>
-				 
-// 			 </div>
- 
-// 		 </Fragment>
-// 	 );
- 
- 
-//  };
- 
- 
 
 
 

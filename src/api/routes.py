@@ -141,6 +141,8 @@ def get_one_product(id):
         return jsonify(one_beer.to_dict()), 200
     
     return({"error": "Beer not found"}), 404
+
+    
 # AÑADIR FAVORITO A USUARIO
 @api.route('/customer/<int:id_customer>/favourite-beer/<int:id_beer>', methods=['POST'])
 @jwt_required()
