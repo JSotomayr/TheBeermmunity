@@ -7,7 +7,7 @@ favourite_beer = db.Table('favourite_beer',
     db.Column('beer_id', db.Integer, db.ForeignKey('beer.id'), primary_key=True))
 
 
-pending_beer = db.Table('pending_beer',
+tasted_beer = db.Table('tasted_beer',
     db.Column('brewer_id', db.Integer, db.ForeignKey('brewer.id'), primary_key=True),
     db.Column('beer_id', db.Integer, db.ForeignKey('beer.id'), primary_key=True))
 
@@ -108,6 +108,12 @@ class Customer(db.Model):
         return user_customer
 
 
+    def add_tasted_beer(self,beer):
+        self.have_tasted_beer.append(beer)
+        db.session.commit()
+        return self.have_tasted_beer
+
+
 class Brewer(db.Model):
     __tablename__: 'brewer'
 
@@ -177,7 +183,7 @@ class Brewerie(db.Model):
         return breweries
 
     @classmethod
-    def get_by_id(cls, id):
+    def get_by_id_customer(cls, id):
         brewerie_id = cls.query.get(id)
         return brewerie_id
 
@@ -202,7 +208,7 @@ class Beer(db.Model):
     publishment_date = db.Column(db.DATE(), unique=False, nullable=False)
 
     have_fav_beer_brewer = db.relationship("Brewer", secondary=favourite_beer, back_populates="have_fav_beer")
-    have_pend_beer_brewer = db.relationship("Brewer", secondary=favourite_beer, back_populates="have_pend_beer")
+    have_tasted_beer_brewer = db.relationship("Brewer", secondary=tasted_beer, back_populates="have_tasted_beer")
     have_wish_beer_brewer = db.relationship("Brewer", secondary=wishlist_beer, back_populates="have_wish_beer")
 
 

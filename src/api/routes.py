@@ -79,3 +79,22 @@ def beerDetail(id):
         return jsonify(beer.to_dict()), 200
 
     return jsonify({'error': 'Beer not found'}), 404
+
+
+@api.route('/customer/<int:id_customer>/tasted/<int:id_beer>', methods=['POST'])
+@jwt_required()
+def add_tasted_beer(id_customer, id_beer):
+    token_id = get_jwt_identity()
+    
+
+    if token_id.get("id") == id_customer:
+        customer = Customer.get_by_id_customer(id_customer)
+        beer = Beer.get_by_id_beer(id_beer)     
+        
+        if customer and beer:
+            add_beer = customer.add_tasted_beers(beers)
+            tasted_beer = [beer.to_dict() for beer in add_beer]
+            return jsonify(tasted_beer),200
+        
+
+    return jsonify({'error': 'No tasted beers'}),404

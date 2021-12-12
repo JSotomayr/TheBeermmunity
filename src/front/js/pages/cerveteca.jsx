@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import DefaultCard from "../component/defaultCard.jsx";
+import GenericButton from "../component/genericButton.jsx"
 
 const Cerveteca = () => {
 	const { store, actions } = useContext(Context);
@@ -10,7 +11,19 @@ const Cerveteca = () => {
 		if (store.favourite.length != 0) {
 			setTriedList(
 				store.tastedBeer.map((wish, index) => {
-					return <DefaultCard key={index.toString()} element={wish} />;
+					return (
+						<div>
+							<DefaultCard 
+								key={index.toString()} 
+								element={wish} 
+							/>
+							<GenericButton
+									key={(1+index).toString()}
+									add={actions.addTastedBeer(store.beersDetail)} 
+									name={"Mi Cerveteca"}
+							/>
+						</div>
+					)
 				})
 			);
 		}
