@@ -21,14 +21,13 @@ export const Navbar = () => {
 	return (
 		<Fragment>
 			<nav className="navbar">
-
-
 				<div className=" icons_left">
 					<i className="fas fa-beer"></i>
 				</div>
 
-				<div className="icons_center"> 
+				<div className="icons_center"> 	
 					<img className="logoNavbar" src={logoSmall} />
+
 				</div>
 
 				<div className="nabvar_menu">
@@ -36,10 +35,10 @@ export const Navbar = () => {
 							<p>Contactos</p>
 						</div>
 						<div className="nabvar_menu_cerveteca">
-							<div>Cerveteca</div>
+							<p>Cerveteca</p>
 						</div>
 						<div className="nabvar_menu_pending">
-						<div>Pendientes</div>
+							<p>Pendientes</p>
 						</div> 										
 					</div> 
 

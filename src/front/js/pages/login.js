@@ -30,9 +30,14 @@ export const Login = () => {
 						volver
 					</Link>
 				</div>
-				<p>
+				{/* OPCION 1 */}
+				<Link to="/">
 					<img src={logoBig} />
-				</p>
+				</Link>
+				{/* OPCION 2 */}
+				{/* <p>
+					<img src={logoBig} />
+				</p> */}
 				<div className="title">Iniciar sesión</div>
 				<div className="login-form">
 					<form
