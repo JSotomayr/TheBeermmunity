@@ -124,7 +124,7 @@ class Brewer(db.Model):
 
 
     have_fav_beer = db.relationship("Beer", secondary=favourite_beer, back_populates="have_fav_beer_brewer")
-    have_pend_beer = db.relationship("Beer", secondary=pending_beer, back_populates="have_pend_beer_brewer")
+    have_tasted_beer = db.relationship("Beer", secondary=tasted_beer, back_populates="have_tasted_beer_brewer")
     have_wish_beer = db.relationship("Beer", secondary=wishlist_beer, back_populates="have_wish_beer_brewer")
     have_fav_brewerie = db.relationship("Brewerie", secondary=favourite_brewerie, back_populates="have_fav_brewerie_brewer")
     go_to_event = db.relationship("Event", secondary=brewer_go_to_event, back_populates="go_to_event_brewer")
