@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import logoBig from "../../img/logoBig.png";
 import { Navbar } from "../component/navbar";
 import Form from 'react-bootstrap/Form'
+import "../../styles/register.scss";
+
+
 
 <p>hola</p>
 
@@ -45,7 +48,7 @@ import Form from 'react-bootstrap/Form'
 									{errors.username && errors.username.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
 									{errors.username && errors.username.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
 							</div>
-							<label htmlFor="username"></label>
+						<label htmlFor="Email"></label>
 						<input 
 							id ="Email"
 							placeholder="Email"
@@ -78,6 +81,7 @@ import Form from 'react-bootstrap/Form'
 								label="Usuario"
 								value="user"								
 								name="userType"
+								autofocus
 								{...register("userType")}
 								/>
 							<Form.Check
@@ -97,7 +101,7 @@ import Form from 'react-bootstrap/Form'
 								}
 							}}
 						>
-							Crear Cuenta
+							Siguiente
 						</button>
 
 					
@@ -122,97 +126,80 @@ import Form from 'react-bootstrap/Form'
 		} else if (getValues("userType") == "business") {
 			setRegisterForm(
 				<Fragment>
-				<div className="loginContainer">
+					<div className="loginContainer">
 						<div className="btn nearLog">
 							<Link to="/">
 								volver
 							</Link>
 						</div>
-					<p>
-						<img src={logoBig} />
-					</p>
-					<div className="title">Iniciar sesión</div>
-						<div className="login-form">
-							<input 
-								id ="name"
-								placeholder="Nombre"
-								className="form-control"
-								aria-invalid={errors.name ? "true" : "false"}
-								{...register("name", { required: true, maxLength: 15})}
-							/>
-							
-							<div className="alertDiv">
-								{errors.name && errors.name.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
-								{errors.name && errors.name.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
+						<p>
+							<img src={logoBig} />
+						</p>
+						<div className="title">Crear cuenta</div>
+							<div className="register-form">
+
+								<label htmlFor="nameBusiness register_input">Nombre de la Empresa</label>
+									<input 
+										id ="nameBusiness"
+										placeholder="Nombre Empresa"
+										className="form-control"
+										aria-invalid={errors.nameBusiness ? "true" : "false"}
+										{...register("nameBusiness", { required: true, maxLength: 15})}
+									/>
+								
+									<div className="alertDiv">
+										{errors.nameBusiness && errors.nameBusiness.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
+										{errors.nameBusiness && errors.nameBusiness.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
+									</div>
+
+								<label htmlFor="Adress">Dirección Empresa</label>
+									<input 
+										id ="Adress"
+										placeholder="Dirección"
+										className="form-control"
+										aria-invalid={errors.Adress ? "true" : "false"}
+										{...register("Adress", { required: true, maxLength: 15})}
+									/>
+									
+									<div className="alertDiv">
+										{errors.Adress && errors.Adress.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
+										{errors.Adress && errors.Adress.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
+									</div>
+
+								<label htmlFor="city">Ciudad</label>
+									<input 
+										id ="city"
+										placeholder="Ciudad"
+										className="form-control"
+										aria-invalid={errors.city ? "true" : "false"}
+										{...register("city", { required: true, maxLength: 15})}
+									/>
+									
+									<div className="alertDiv">
+										{errors.city && errors.city.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
+										{errors.city && errors.city.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
+									</div> 
+
+									<label htmlFor="city">País</label>
+									<input 
+										id ="country"
+										placeholder="Ciudad"
+										className="form-control"
+										aria-invalid={errors.country ? "true" : "false"}
+										{...register("city", { required: true, maxLength: 15})}
+									/>
+									
+									<div className="alertDiv">
+										{errors.country && errors.country.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
+										{errors.country && errors.country.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
+									</div> 								
+
+									<button type="submit" className="btn btn-primary form-control btn_submit mt-5">Acceder</button> 
+									{errors.submit && errors.submit.type === "required" && <span role="alertSubmitLog">!ERROR! Se ha producido un error en su intento de Inicio de sesión. Asegúrese de que el correo, el nombre de usuario y la contraseña son correctos</span>}
+
 							</div>
-							<label htmlFor="LastName"></label>
-							<input 
-								id ="LastName"
-								placeholder="Apellidos"
-								className="form-control"
-								aria-invalid={errors.LastName ? "true" : "false"}
-								{...register("LastName", { required: true, maxLength: 15})}
-							/>
-							
-							<div className="alertDiv">
-								{errors.lastName && errors.lastName.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
-								{errors.lastName && errors.lastName.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
-							</div>
-
-							<label htmlFor="nameBusiness"></label>
-							<input 
-								id ="nameBusiness"
-								placeholder="Nombre Empresa"
-								className="form-control"
-								aria-invalid={errors.nameBusiness ? "true" : "false"}
-								{...register("nameBusiness", { required: true, maxLength: 15})}
-							/>
-							
-							<div className="alertDiv">
-								{errors.nameBusiness && errors.nameBusiness.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
-								{errors.nameBusiness && errors.nameBusiness.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
-							</div>
-
-							<label htmlFor="Adress"></label>
-							<input 
-								id ="Adress"
-								placeholder="Dirección"
-								className="form-control"
-								aria-invalid={errors.Adress ? "true" : "false"}
-								{...register("Adress", { required: true, maxLength: 15})}
-							/>
-							
-							<div className="alertDiv">
-								{errors.Adress && errors.Adress.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
-								{errors.Adress && errors.Adress.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
-							</div>
-
-							<label htmlFor="city"></label>
-							<input 
-								id ="city"
-								placeholder="Ciudad"
-								className="form-control"
-								aria-invalid={errors.city ? "true" : "false"}
-								{...register("city", { required: true, maxLength: 15})}
-							/>
-							
-							<div className="alertDiv">
-								{errors.city && errors.city.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
-								{errors.city && errors.city.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
-							</div> 
-
-						<input
-						placeholder="CIF"
-						{...register("cif", {required: true, maxLength: 20})}
-						/>
-
-						{/* OPCION 1 */}
-						<input type ="submit" />
-						{/* OPCION 2 */}
-						<button type="submit" className="btn btn-primary form-control btn_submit mt-5">Iniciar sesión</button> 
-							{errors.submit && errors.submit.type === "required" && <span role="alertSubmitLog">!ERROR! Se ha producido un error en su intento de Inicio de sesión. Asegúrese de que el correo, el nombre de usuario y la contraseña son correctos</span>}
 						</div>
-					</div>
+						
 				</Fragment>
 			);	
 		}				
@@ -232,4 +219,15 @@ import Form from 'react-bootstrap/Form'
 
 
 
+							// tirar 
+								{/* <input
+								placeholder="CIF"
+								{...register("cif", {required: true, maxLength: 20})}
+								/> */}
 
+							{/* OPCION ORIGINAL */}
+							// <input type ="submit" />
+							{/* OPCION 2 */}
+							// <label htmlFor="submitRegister">Crear Cuenta</label>
+							// <input type ="submit" className="btn btn-primary form-control btn_submit mt-5" placeholder="Crear cuenta" />
+							//  */}

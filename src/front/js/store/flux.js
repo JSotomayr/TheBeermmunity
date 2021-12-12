@@ -37,7 +37,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 
-
+				login: (dataLogin) => {
+					console.log(dataLogin)
+				},
 
 				// login: async dataLogin => {
 				// 	try {

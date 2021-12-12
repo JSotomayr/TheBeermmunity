@@ -115,7 +115,7 @@ export const Login = () => {
 								/>
 						</div>
 
-						<button type="submit" className="btn btn-primary form-control btn_submit mt-5">Iniciar sesión</button> 
+						<button type="submit" className="btn btn-primary form-control btn_submit mt-5">Acceder</button> 
 						{errors.submit && errors.submit.type === "required" && <span role="alertSubmitLog">!ERROR! Se ha producido un error en su intento de Inicio de sesión. Asegúrese de que el correo, el nombre de usuario y la contraseña son correctos</span>}
 
 					</form>
