@@ -1,9 +1,9 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { useForm, Controller } from "react-hook-form";
-// import { Link } from "react-router-dom";
-// import logoBig from "../../img/logoBig.png";
-
+import { Link } from "react-router-dom";
+import logoBig from "../../img/logoBig.png";
+import { Navbar } from "../component/navbar";
 
 
 <p>hola</p>
@@ -18,21 +18,22 @@ import { useForm, Controller } from "react-hook-form";
 	useEffect(() => {
 		setRegisterForm(
 			<Fragment>
+				<Navbar />
 				 <div className="loginContainer">
 					<div className="btn nearLog">
-						{/* <Link to="/">
+						<Link to="/">
 							volver
-						</Link> */}
+						</Link>
 					</div>
 					<p>
-						{/* <img src={logoBig} /> */}
+						<img src={logoBig} />
 					</p>
 					<div className="title">Crear cuenta</div>
 					<div className="login-form">
 						<label htmlFor="username"></label>
 						<input 
 							id ="username"
-							placeholder="Nombre de usuario"
+							placeholder="Usuario"
 							className="form-control"
 							aria-invalid={errors.username ? "true" : "false"}
 							{...register("username", { required: true, maxLength: 30, })}

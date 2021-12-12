@@ -34,11 +34,11 @@ export const Login = () => {
 		<Fragment>
 
 			<div className="loginContainer">
-				<div className="btn">
-					<Link to="/">
-						volver
-					</Link>
-				</div>
+					<div className="btn nearLog">
+						<Link to="/">
+							volver
+						</Link>
+					</div>
 				<p>
 					<img src={logoBig} />
 				</p>
