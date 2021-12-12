@@ -14,12 +14,11 @@ import { Login } from "./pages/login";
 import { Navbar } from "./component/navbar";
 
 
-
-
-
+import Profile from "./pages/profile.jsx"
 import AllBeers from "./pages/allBeers.jsx";
 import Cerveteca from "./pages/cerveteca.jsx";
 import BeerDetail from "./pages/beerDetail.jsx";
+import Profile from "./pages/profile";
 
 
 //create your first component
@@ -33,11 +32,12 @@ const Layout = () => {
 			<BrowserRouter basename={basename}>
 				<Routes>
 					<Route path="/" element={<Home />} />
+					<Route path="/login" element={<Login />} />
 					<Route path="/beer" element={<AllBeers />}/>
 					<Route path="/beer/:id" element={<BeerDetail />} />
-					<Route path="/cerveteca" element={<Cerveteca />} />
+					<Route path="/profile/:id" element={<Profile />} />
+					<Route path="/profile/:id/cerveteca" element={<Cerveteca />} />
 					<Route path="/navbar" element={<Navbar />} />
-					<Route path="/login" element={<Login />} />
 				</Routes>
 			</BrowserRouter>
 		</div>

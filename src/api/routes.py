@@ -60,6 +60,17 @@ def create_customer():
         return({'token' : token}), 200
 
         
+@api.route('/customer/<int:id>', methods = ['GET'])
+def get_customer(id):
+    one_customer = Customer.get_by_id_customer(id)
+
+    if one_customer:
+        
+        return jsonify(one_customer.to_dict()), 200
+
+    return jsonify({'msg' : 'Customer not foud'}), 404
+
+
 @api.route('/beer', methods=['GET'])
 def getAllBeers():
     beers = Beer.get_all()

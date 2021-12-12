@@ -9,7 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			beers: [],
 			registerCustomer: {},
 			beersDetail: [],
-			tastedBeer: []
+			tastedBeers: []
 		},
 		actions: {
 
