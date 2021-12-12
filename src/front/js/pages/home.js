@@ -20,7 +20,7 @@ export const Home = () => {
 					REGISTER
 				</Link>	
 			</div>
-			<div>
+			<div className="btn mt-5">
 				<Link to={"/beer"}>
 					<h1>CERVEZAS</h1>
 				</Link>
