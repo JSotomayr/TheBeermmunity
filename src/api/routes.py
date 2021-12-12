@@ -64,6 +64,9 @@ def create_customer():
 def getAllBeers():
     beers = Beer.get_all()
 
+    if beers:
+        beer_list = [beer.to_dict() for beer in beers]
+        return jsonify(beer_list), 200
 
     return jsonify({'error': 'Beers not found'}), 404
 
