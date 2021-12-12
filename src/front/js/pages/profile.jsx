@@ -1,13 +1,36 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
+import { useParams } from "react-router";
+import ProfileCard from "../component/profileCard";
 
 
 const Profile = () => {
     const { store, actions } = useContext(Context);
 
+    const [myProfile, setMyProfile] = useState([])
+
     const [myFavBeers, setMyFavBeers] = useState([]);
     const [myTastedBeers, setMyTastedBeers] = useState([]);
     const [myWishBeers, setMyWishBeers] = useState([]);
+
+	let params = useParams();
+	
+	useEffect(() => {
+		actions.getProfileInfo(params.id);
+	}, []);
+
+    useEffect(() => {
+        setMyProfile(
+            store.profileInfo.map((info, index) => {
+                return (
+                    <ProfileCard
+                        key={index.toString()}
+                        element={info}
+                    />
+                );
+            })
+        );
+    }, [store.profileInfo])
 
     useEffect(() => {
         if (store.tastedBeers.length != 0) {
@@ -41,15 +64,7 @@ const Profile = () => {
 
     return(
         <Fragment>
-            <div> {/*Tarjeta con los datos del usuario fetch y .map */}
-                <img src=""/>
-                <h2>Name Lastname</h2>
-                <h3>Username</h3>
-                <span>City, Country</span>
-            </div>
-            <div>
-                Description
-            </div>
+            {myProfile}
             <Link to={"/customer/:id/cerveteca"}>
                 <span className="subtitle">Cerveteca</span>            
             </Link>

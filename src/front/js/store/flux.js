@@ -6,6 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			currentUsers: [],
 			baseUrl: `${PROTOCOL}://${PORT}-${HOST}`,
+			profileInfo: [],
 			beers: [],
 			registerCustomer: {},
 			beersDetail: [],
@@ -73,7 +74,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						
 					});
 					
-					if (response) {
+					if (response.ok) {
 						let allBeer = await response.json();
 						setStore({beers: [...getStore().beers, ...allBeer]});
 						localStorage.setItem("beers", JSON.stringify(getStore().beers));
@@ -96,13 +97,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 						
 					});
 					
-					if (response) {
+					if (response.ok) {
 						let allBeer = await response.json();
 						console.log("RESPUESTA", response)
 						setStore({beersDetail: [allBeer]});
 						localStorage.setItem("beers", JSON.stringify(getStore().beersDetail));
 					}
 					throw new Error("Fail downloading beer detail.")
+				} catch (error) {
+					console.log(error)
+				}
+			},
+			getProfileInfo: async id => {
+				try {
+					let response = await fetch(getStore().baseUrl.concat("/api/customer/").concat(id), {
+						method: "GET",
+						mode: "cors",
+						redirect: "follow",
+						headers: new Headers({
+							'Content-Type': 'text/plain'
+						}),
+						
+					});
+					
+					if (response.ok) {
+						let userData = await response.json();
+						console.log("RESPUESTA", response)
+						setStore({beersDetail: [userData]});
+						localStorage.setItem("beers", JSON.stringify(getStore().profileInfo));
+					}
+					throw new Error("Fail downloading user data.")
 				} catch (error) {
 					console.log(error)
 				}
