@@ -1,3 +1,4 @@
+
 // title ULTRA
 @import url('https://fonts.googleapis.com/css2?family=Ultra&display=swap');
 
@@ -34,6 +35,17 @@ body {
     
     border: 1px solid white;
     border-radius: 0.2rem;
+
+.btn:hover{ 
+    background: #E49B0F;   
+    color: white;
+    text-decoration: none;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  }
 
 }
 
@@ -81,11 +93,14 @@ a {
     
 }
 
+.btn_submit:hover {
+    background-color: #7a731a;
+    color: white;
 // .btn_submit:hover {
 //     background-color: #b38807;
 //     color: white;
 
-// }
+}
 
 
 
@@ -97,4 +112,13 @@ a {
 .chooseUserBusiness {
     display:flex;
     justify-content: space-between;
+}
+
+
+.alertDiv {
+    background-color: #ffc107;
+    color: #41464b;
+    display:flex;
+    justify-content: center;
+    font-size: 0.85rem;
 }

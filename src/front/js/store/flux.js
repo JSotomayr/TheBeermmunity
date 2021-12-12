@@ -7,6 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			currentUsers: [],
 			baseUrl: `${PROTOCOL}://${PORT}-${HOST}`,
 			beers: [],
+			registerCustomer: {},
 			beersDetail: [],
 			tastedBeer: []
 		},
@@ -76,6 +77,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						let allBeer = await response.json();
 						setStore({beers: [...getStore().beers, ...allBeer]});
 						localStorage.setItem("beers", JSON.stringify(getStore().beers));
+						// getActions().getBeer()
 					}
 					throw new Error("Fail downloading beers.")
 				} catch (error) {
@@ -105,6 +107,55 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error)
 				}
 			},
+			// registerBusiness: (data)
+			// registerCustomer: (email, password, username, country, city) => {
+			// 	fetch(getStore().baseURL.concat("/signup"), {
+			// 		method: "POST",
+			// 		headers: { "Content-Type": "application/json" },
+			// 		body: JSON.stringify({
+			// 			email: email,
+			// 			password: password,
+			// 			username: username,
+			// 			country: country,
+			// 			city: city	
+						
+			// 		})
+			// 	})
+			// 		.then(resp => {
+			// 			if (!resp.ok) {
+			// 				throw Error("Invalid register info");
+			// 			}
+			// 		})
+			// 		.then(responseAsJson => {
+			// 			localStorage.setItem("token", responseAsJson);
+			// 		})
+			// 		.catch(error => console.error("There as been an unknown error", error));
+			// },
+
+			// login: async data => {
+            //     try {
+            //         let response = await fetch(getStore().baseUrl.concat("api/loginUser"), {
+            //             method: "POST",
+            //             mode: "cors",
+            //             redirect: "follow",
+            //             headers: new Headers({
+            //                 'Content-Type': 'text/plain'
+            //             }),
+            //             body: JSON.stringify(data)
+            //         });
+            //         console.log("RESPUESTA", response);
+
+            //         if (response.ok) {
+            //             let newUser = await response.json();
+            //             setStore({currentUsers: [...getStore().user, ...responseAsJson.results]});
+ 
+            //             // getActions().getBeer()
+            //         }
+            //         throw new Error("Fail login User")
+            //     } catch (error) {
+            //         console.log("Fail login User", error)
+            //     }
+            // },
 			
 			addTastedBeer: beer => {
 				setStore({ tastedBeer: [...getStore().tastedBeer, beer] });
