@@ -6,8 +6,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			register: {},
 			baseUrl: `${PROTOCOL}://${PORT}-${HOST}`,
-			beers: [],
 			favourites: [],
+			currentUsers: [],
+			beers: [],
 			beersDetail: [],
 			tastedBeer: []
 		},
@@ -59,8 +60,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					} catch (error) {
 						console.log("Fail login User", error)
 					}
-				},
-			},	
+				},	
 
 			getBeer: async data => {
 				try {
@@ -82,8 +82,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					throw new Error("Fail downloading beers.")
 				} catch (error) {
 					console.log(error)
-				}
-				
+				}				
 			},
 			addFavourite: name => {
 				setStore({ favourites: [...getStore().favourites, name] });
@@ -116,6 +115,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ tastedBeer: [...getStore().tastedBeer, beer] });
 			}
 		}
+	}
 };
 
 

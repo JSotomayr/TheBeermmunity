@@ -42,9 +42,6 @@ export const Navbar = () => {
 							
 						</Col>
 					</Row>
-				</Container>			
-			</nav>  
-
 				</Container>			 */}
 				<div className=" icons_left">
 					<i className="fas fa-beer"></i>

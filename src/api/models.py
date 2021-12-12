@@ -246,8 +246,6 @@ class Beer(db.Model):
         return beer_id
 
 
-
-
 class BrewerieReview(db.Model):
     __tablename__: 'brewerie_review'
 

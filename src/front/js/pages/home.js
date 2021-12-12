@@ -1,7 +1,6 @@
 import React, { Fragment, useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.scss";
-import Dropdown from "react-bootstrap/Dropdown";
 import { Link } from "react-router-dom";
 import { Navbar } from "../component/navbar";
 
@@ -18,7 +17,7 @@ export const Home = () => {
 					<h1>Formulario Business</h1>
 				</Link>
 			</div>
-
+{/* 
 			<Dropdown>
 				<Dropdown.Toggle className="dropdown" variant="danger" id="dropdown-basic">
 					<i className="fab fa-jedi-order" />
@@ -31,7 +30,7 @@ export const Home = () => {
 						</Dropdown.Item>
 					))}
 				</Dropdown.Menu> 
-			</Dropdown>
+			</Dropdown> */}
 		<div className="text-center">
 			<Navbar/>
 			<div className="btn mt-5">
@@ -49,9 +48,6 @@ export const Home = () => {
 					<h1>CERVEZAS</h1>
 				</Link>
 			</div>
-			<Link to={"/all_beers"}>
-				<h1>ENSEÑAME LA BIRRA</h1>
-			</Link>
 		</div>
 	</Fragment>
 	);
