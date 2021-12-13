@@ -9,6 +9,7 @@ import "../../styles/register.scss";
 
 
 
+
 <p>hola</p>
 
  export const Register = () => {
@@ -34,6 +35,11 @@ import "../../styles/register.scss";
 					<p>
 						<img src={logoBig} />
 					</p>
+					<div className="step">
+						<div className="step_left">1</div>
+						<div className="step_line"></div>
+						<div className="step_right">2</div>
+					</div>
 					<div className="title">Crear cuenta</div>
 					<div className="login-form">
 						<label htmlFor="username"></label>
@@ -134,7 +140,13 @@ import "../../styles/register.scss";
 						<p>
 							<img src={logoBig} />
 						</p>
+						<div className="step">
+							<div className="step_left">1</div>
+							<div className="step_line"></div>
+							<div className="step_right_completed">2</div>
+						</div>
 						<div className="title">Crear cuenta</div>
+						
 							<div className="register-form">
 
 								<label htmlFor="nameBusiness register_input">Nombre de la Empresa</label>
