@@ -72,19 +72,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}),
 						
 					});
-
-					// if(getStore().beers.length != 0){
-					// 	setStore({beers: [getStore().beers, localStorage.getItem('beers')]})
-					// 	console.log("LOCAL STORE", localStorage.getItem('beers'))
-					// }
-					if(response.ok) {
+					if(localStorage.getItem('beers') != 0){
+						setStore({beers: [localStorage.getItem('beers')]})
+						console.log("LOCAL STORE", getStore().beers)
+					}
+					else if(response.ok) {
 						let allBeer = await response.json();
 						setStore({beers: [...getStore().beers, ...allBeer]});
 						console.log("RESPUESTA", getStore().beers)
 						localStorage.setItem("beers", JSON.stringify(getStore().beers));
 						// getActions().getBeer()
-					}
-					throw new Error("Fail downloading beers.")
+					}else{throw new Error("Fail downloading beers.")}
 				} catch (error) {
 					console.log(error)
 				}
