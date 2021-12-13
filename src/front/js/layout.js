@@ -18,7 +18,6 @@ import Profile from "./pages/profile.jsx"
 import AllBeers from "./pages/allBeers.jsx";
 import Cerveteca from "./pages/cerveteca.jsx";
 import BeerDetail from "./pages/beerDetail.jsx";
-import Profile from "./pages/profile";
 
 
 //create your first component

@@ -7,8 +7,8 @@ const ProfileCard = (props) => {
             <div>
                 <div>
                     <img src={props.element.image}/>
-                    <h2>{props.element.name} {props.element.lastname}</h2>
-                    <h3>{props.element.username}</h3>
+                    <h2>{props.element.username}</h2>
+                    <h3>{props.element.name} {props.element.lastname}</h3>
                     <span>{props.element.city}, {props.element.country}</span>
                 </div>
                 <div>

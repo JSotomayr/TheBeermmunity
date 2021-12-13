@@ -1,7 +1,9 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router";
-import ProfileCard from "../component/profileCard";
+import { Link } from "react-router-dom";
+
+import ProfileCard from "../component/profileCard.jsx";
 
 
 const Profile = () => {
@@ -9,7 +11,7 @@ const Profile = () => {
 
     const [myProfile, setMyProfile] = useState([])
 
-    const [myFavBeers, setMyFavBeers] = useState([]);
+    // const [myFavBeers, setMyFavBeers] = useState([]);
     const [myTastedBeers, setMyTastedBeers] = useState([]);
     const [myWishBeers, setMyWishBeers] = useState([]);
 
@@ -30,6 +32,7 @@ const Profile = () => {
                 );
             })
         );
+        console.log(myProfile)
     }, [store.profileInfo])
 
     useEffect(() => {
@@ -42,25 +45,25 @@ const Profile = () => {
 		}
     }, [store.tastedBeers]);
 
-    useEffect(() => {
-        if (store.favourite.length != 0) {
-			setMyFavBeers(
-				store.favourite.map((wish, index) => {
-					return <DefaultCard key={index.toString()} element={wish} />;
-				})
-			);
-		}
-    }, [store.favourite]);
+    // useEffect(() => {
+    //     if (store.favourite.length != 0) {
+	// 		setMyFavBeers(
+	// 			store.favourite.map((wish, index) => {
+	// 				return <DefaultCard key={index.toString()} element={wish} />;
+	// 			})
+	// 		);
+	// 	}
+    // }, [store.favourite]);
 
-    useEffect(() => {
-        if (store.wishlist.length != 0) {
-			setMyWishBeers(
-				store.wishlist.map((wish, index) => {
-					return <DefaultCard key={index.toString()} element={wish} />;
-				})
-			);
-		}
-    }, [store.wishlist]);
+    // useEffect(() => {
+    //     if (store.wishlist.length != 0) {
+	// 		setMyWishBeers(
+	// 			store.wishlist.map((wish, index) => {
+	// 				return <DefaultCard key={index.toString()} element={wish} />;
+	// 			})
+	// 		);
+	// 	}
+    // }, [store.wishlist]);
 
     return(
         <Fragment>
@@ -69,14 +72,14 @@ const Profile = () => {
                 <span className="subtitle">Cerveteca</span>            
             </Link>
             <div>{myTastedBeers}</div>
-            <Link to={"/customer/:id/favourites"}>
-                <span className="subtitle"><Favoritas></Favoritas></span>            
+            {/* <Link to={"/customer/:id/favourites"}>
+                <span className="subtitle">Favoritas</span>            
             </Link>
-            <div>{myFavBeers}</div>
-            <Link to={"/customer/:id/wishlist"}>
+            <div>{myFavBeers}</div> */}
+            {/* <Link to={"/customer/:id/wishlist"}>
                 <span className="subtitle">Por probar</span>            
             </Link>
-            <div>{myWishBeers}</div>
+            <div>{myWishBeers}</div> */}
         </Fragment>
     )
 }

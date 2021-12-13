@@ -106,7 +106,7 @@ class Customer(db.Model):
     @classmethod
     def get_by_id_customer(cls, id):
         customer_id = cls.query.get(id)
-        return user_customer
+        return customer_id
 
 # opción 2
     # @classmethod
