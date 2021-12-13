@@ -60,6 +60,7 @@ class Customer(db.Model):
             "city": self.city,
             "description": self.description,
             "image": self.image,
+            "user_type": self._is_brewerie
         }
             # do not serialize the password, its a security breach
 
@@ -135,19 +136,21 @@ class Brewer(db.Model):
     go_to_event = db.relationship("Event", secondary=brewer_go_to_event, back_populates="go_to_event_brewer")
 
     def __repr__(self):
-        return f"Brewer with id {self.id}, named {self.name} {self.lastname} in {self.city}, {self.country}."
+        return f"Brewer with id {self.id}, named {self.name} {self.lastname}."
 
 
     def to_dict(self):
         return {
             "id": self.id,
             "name": self.name,
-            "lastname": self.lastname,
-            "country": self.country,
-            "city": self.city,
-            "description": self.description,
-            "image": self.image
+            "lastname": self.lastname
         }
+
+
+    @classmethod
+    def get_by_id_brewer(cls, id):
+        brewer_id = cls.query.get(id)
+        return brewer_id
 
 
 class Brewerie(db.Model):
@@ -162,18 +165,14 @@ class Brewerie(db.Model):
     
 
     def __repr__(self):
-        return f"Breweries with id {self.id}, named {self.company_name} in {self.address} in {self.city}, {self.country}."
+        return f"Breweries with id {self.id}, named {self.company_name} in {self.address}."
 
 
     def to_dict(self):
         return {
             "id": self.id,
             "company_name": self.company_name,
-            "address": self.address,
-            "country": self.country,
-            "city": self.city,
-            "description": self.description,
-            "image": self.image
+            "address": self.address
         }
 
 
@@ -317,7 +316,7 @@ class Event(db.Model):
 
 
     def __repr__(self):
-        return f"Event with id {self.id}, named {self.name} the {self.date} in {self.location}."
+        return f"Event with id {self.id}, named {self.name} the {self.date}."
 
 
     def to_dict(self):
@@ -326,6 +325,8 @@ class Event(db.Model):
             "name": self.name,
             "description": self.description,
             "date": self.date,
-            "location": self.location,
+            "country": self.country,
+            "city": self.city,
+            "address": self.address,
             "image": self.image
         }

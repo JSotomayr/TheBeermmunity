@@ -90,3 +90,25 @@ def beerDetail(id):
         return jsonify(beer.to_dict()), 200
 
     return jsonify({'error': 'Beer not found'}), 404
+
+
+@api.route('/brewer/<int:id>', methods = ['GET'])
+def get_brewer(id):
+    one_brewer = Brewer.get_by_id_brewer(id)
+
+    if one_brewer:
+        
+        return jsonify(one_brewer.to_dict()), 200
+
+    return jsonify({'msg' : 'Brewer not foud'}), 404
+
+
+@api.route('/brewerie/<int:id>', methods = ['GET'])
+def get_brewerie(id):
+    one_brewerie = Brewerie.get_by_id(id)
+
+    if one_brewerie:
+        
+        return jsonify(one_brewerie.to_dict()), 200
+
+    return jsonify({'msg' : 'Brewerie not foud'}), 404

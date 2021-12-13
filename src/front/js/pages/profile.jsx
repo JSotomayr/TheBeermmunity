@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 
 import ProfileCard from "../component/profileCard.jsx";
+import BusinessCard from "../component/businessCard.jsx";
 
 
 const Profile = () => {
@@ -13,7 +14,7 @@ const Profile = () => {
 
     // const [myFavBeers, setMyFavBeers] = useState([]);
     const [myTastedBeers, setMyTastedBeers] = useState([]);
-    const [myWishBeers, setMyWishBeers] = useState([]);
+    // const [myWishBeers, setMyWishBeers] = useState([]);
 
 	let params = useParams();
 	
@@ -22,17 +23,30 @@ const Profile = () => {
 	}, []);
 
     useEffect(() => {
-        setMyProfile(
-            store.profileInfo.map((info, index) => {
-                return (
-                    <ProfileCard
-                        key={index.toString()}
-                        element={info}
-                    />
-                );
-            })
-        );
-        console.log(myProfile)
+        if(store.profileInfo.user_type){
+            setMyProfile(
+                store.profileInfo.map((info, index) => {
+                    return (
+                        <BusinessCard
+                            key={index.toString()}
+                            element={info}
+                        />
+                    );
+                }
+            )
+        )}
+        else{
+            setMyProfile(
+                store.profileInfo.map((info, index) => {
+                    return (
+                        <ProfileCard
+                            key={index.toString()}
+                            element={info}
+                        />
+                    );
+                }
+            )
+        )}
     }, [store.profileInfo])
 
     useEffect(() => {
@@ -68,15 +82,15 @@ const Profile = () => {
     return(
         <Fragment>
             {myProfile}
-            <Link to={"/customer/:id/cerveteca"}>
+            <Link to={"/profile/:id/cerveteca"}>
                 <span className="subtitle">Cerveteca</span>            
             </Link>
             <div>{myTastedBeers}</div>
-            {/* <Link to={"/customer/:id/favourites"}>
+            {/* <Link to={"/profile/:id/favourites"}>
                 <span className="subtitle">Favoritas</span>            
             </Link>
             <div>{myFavBeers}</div> */}
-            {/* <Link to={"/customer/:id/wishlist"}>
+            {/* <Link to={"/profile/:id/wishlist"}>
                 <span className="subtitle">Por probar</span>            
             </Link>
             <div>{myWishBeers}</div> */}
