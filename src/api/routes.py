@@ -23,47 +23,31 @@ app = Flask(__name__)
 
 api = Blueprint('api', __name__)
 
-@api.route('/customer', methods=['POST'])
-def create_customer():
-
-    is_active = True
-    new_email = request.json.get('email', None)
-    new_username = request.json.get('username', None)
-    new_password = request.json.get('password', None)
-    new_country = request.json.get('country', None)
-    new_city = request.json.get('city', None)
-    new_description = request.json.get('description')
-    new_image = request.json.get('image')
-
-    if not (new_email and new_username and new_password and new_country and new_city):
-        return jsonify({'error': 'Missing customer'}), 400
 
 # CREAR CUSTOMER
 @api.route('/customer', methods=['POST'])
 def create_customer():
-
+    print(request.json)
     is_active = True
-    new_email = request.json.get('email', None, )
+    new_email = request.json.get('Email', None, )
     new_username = request.json.get('username', None)
     new_password = request.json.get('password', None)
-    new_country = request.json.get('country', None)
+    new_country = request.json.get('Adress', None)
     new_city = request.json.get('city', None)
     new_description = request.json.get('description')
     new_image = request.json.get('image')
 
     if not (new_email and new_username and new_password and new_country and new_city):
-        return jsonify({'error': 'Missing customer'}), 400
+        return jsonify({'error': 'Missing customer'}), 409
 
     customer_created = Customer(
         email=new_email, 
         username=new_username, 
         country=new_country, 
         city=new_city, 
-        description=new_description, 
-        image=new_image, 
         _password=generate_password_hash(new_password, method='pbkdf2:sha256', 
         salt_length=16))
-    
+    print(customer_created)
 
     try:
         customer_created.create()
@@ -77,8 +61,6 @@ def create_customer():
         return({'token' : token}), 200
 
 # LOGUEAR CUSTOMER
-
-
 @api.route('/login', methods=["POST"])
 def login():
     email = request.json.get('email', None)

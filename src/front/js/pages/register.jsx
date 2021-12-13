@@ -81,7 +81,6 @@ import "../../styles/register.scss";
 								label="Usuario"
 								value="user"								
 								name="userType"
-								autofocus
 								{...register("userType")}
 								/>
 							<Form.Check
@@ -183,7 +182,7 @@ import "../../styles/register.scss";
 									<label htmlFor="city">País</label>
 									<input 
 										id ="country"
-										placeholder="Ciudad"
+										placeholder="País"
 										className="form-control"
 										aria-invalid={errors.country ? "true" : "false"}
 										{...register("city", { required: true, maxLength: 15})}

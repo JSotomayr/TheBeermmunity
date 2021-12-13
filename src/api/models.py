@@ -49,7 +49,7 @@ class Customer(db.Model):
 
 
     def __repr__(self):
-        return f'User has {self.id}, {self.username} with {self.email}'
+        return f'User has {self.id}, {self.username} with {self.email} {self.country} {self.city}'
 
     def to_dict(self):
         return {

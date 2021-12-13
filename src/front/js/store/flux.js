@@ -6,6 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			register: [],
 			baseUrl: `${PROTOCOL}://${PORT}-${HOST}`,
+			// baseUrl: "https://3001-peach-piranha-m7oodx19.ws-eu23.gitpod.io/api/",
 			favourites: [],
 			beers: [],
 
@@ -13,27 +14,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 			tastedBeer: []
 		},
 		actions: {
-				// opción 1 FUNCIONA!!
 				register: (dataRegister) => {
-					console.log(dataRegister)
+					// fetch(getStore().baseURL.concat("customer"), {
+						fetch("https://3001-peach-piranha-m7oodx19.ws-eu23.gitpod.io/api/customer", {
+						method: "POST", 
+						headers: { "Content-Type": "application/json", Accept:"application/json" },
+						body: JSON.stringify(dataRegister)
+					})
+						.then(resp => {
+							if (!resp.ok) {
+								throw Error("Invalid register info");
+							}
+							return resp.json();
+						})
+						.then(responseAsJson => {
+							console.log("respuesta json", responseAsJson);
+							localStorage.setItem("token", responseAsJson.token);
+							console.log("me he registrado")
+						})
+						.catch(error => console.error("There as been an unknown error", error));
 				},
-				// opción 2 NO FUNCIONA!!
-				// register: (dataRegister) => {
-				// 	fetch(getStore().baseURL.concat("/api/customer"), {
-				// 		method: "POST",
-				// 		headers: { "Content-Type": "application/json" },
-				// 		body: JSON.stringify(dataRegister)
-				// 	})
-				// 		.then(resp => {
-				// 			if (!resp.ok) {
-				// 				throw Error("Invalid register info");
-				// 			}
-				// 		})
-				// 		.then(responseAsJson => {
-				// 			localStorage.setItem("token", responseAsJson);
-				// 		})
-				// 		.catch(error => console.error("There as been an unknown error", error));
-				// },
 
 
 
