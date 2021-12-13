@@ -5,12 +5,19 @@
     align-items: center;
 }
 
+.card__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .card__title {
-    margin-top: 1rem;
-    width: 7.266rem;
-    height: 3.422rem;
+    margin-top: 0.5rem;
+    width: 100%;
+    height: fit-content;
     left: 2.77rem;
     top: calc(50% - 3.422rem/2 - 39.967rem);
+    word-wrap: none;
 
     font-family: Ultra;
     font-style: normal;
@@ -27,5 +34,6 @@
     height: 9.358rem;
     left: 3.634rem;
     top: 16.794rem;
+    margin-top: 0.5rem;
     margin-bottom: 1rem;
 }
