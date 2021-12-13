@@ -8,11 +8,13 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 
 
+
 import "../../styles/navbar.scss";
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import MenuListComposition from "../component/menuListComposition.jsx";
 
 
 export const Navbar = () => {
@@ -22,7 +24,7 @@ export const Navbar = () => {
 		<Fragment>
 			<nav className="navbar">
 				<div className=" icons_left">
-					<i className="fas fa-beer"></i>
+						<MenuListComposition />
 				</div>
 
 				<div className="icons_center"> 	

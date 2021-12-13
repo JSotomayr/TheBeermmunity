@@ -13,7 +13,7 @@ import { Navbar } from "./component/navbar";
 import AllBeers from "./pages/allBeers.jsx";
 import Cerveteca from "./pages/cerveteca.jsx";
 import BeerDetail from "./pages/beerDetail.jsx";
-
+// import { MenuListComposition } from "../component/MenuListComposition";
 
 //create your first component
 const Layout = () => {
@@ -31,6 +31,7 @@ const Layout = () => {
 					<Route path="/cerveteca" element={<Cerveteca />} />
 					<Route path="/navbar" element={<Navbar />} />
 					<Route path="/login" element={<Login />} />
+					{/* <Route path="/menuListComposition" element={<MenuListComposition />} /> */}
 				</Routes>
 			</BrowserRouter>
 		</div>
