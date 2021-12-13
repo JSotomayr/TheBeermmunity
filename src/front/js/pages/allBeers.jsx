@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
-import DefaultCard from "../component/defaultCard.jsx";
+// import DefaultCard from "../component/defaultCard.jsx";
 import "../../styles/allBeers.scss";
 
 const AllBeers = () => {
