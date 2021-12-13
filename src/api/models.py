@@ -101,12 +101,23 @@ class Customer(db.Model):
         self.is_active = False
         db.session.commit()
 
-
+#   cervezas favoritas
+# opcion 1
     @classmethod
-    def get_by_id(cls, id):
+    def get_by_id_customer(cls, id):
         customer_id = cls.query.get(id)
         return user_customer
 
+# opción 2
+    # @classmethod
+    # def get_by_id_customer(cls,id_custumer):
+    #     customer_id = cls.query.filter_by(id=id_customer).one_or_none()
+    #     return customer_id
+
+    def add_fav_beer(self,beer):
+        self.have_allbeer.append(beer)
+        db.session.commit()
+        return self.have_allbeer
 
 class Brewer(db.Model):
     __tablename__: 'brewer'
