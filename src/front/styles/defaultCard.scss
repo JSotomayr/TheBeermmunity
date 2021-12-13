@@ -1,0 +1,31 @@
+.card {
+    width: 49%;
+    background: #2C363A;
+    display: flex;
+    align-items: center;
+}
+
+.card__title {
+    margin-top: 1rem;
+    width: 7.266rem;
+    height: 3.422rem;
+    left: 2.77rem;
+    top: calc(50% - 3.422rem/2 - 39.967rem);
+
+    font-family: Ultra;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.172rem;
+    line-height: 1.5rem;
+    text-align: center;
+
+    color: #E49B0F;
+}
+
+.card__img {
+    width: 6.803rem;
+    height: 9.358rem;
+    left: 3.634rem;
+    top: 16.794rem;
+    margin-bottom: 1rem;
+}
