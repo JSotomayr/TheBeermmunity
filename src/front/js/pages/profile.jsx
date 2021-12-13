@@ -38,7 +38,7 @@ const Profile = () => {
     useEffect(() => {
         if (store.tastedBeers.length != 0) {
 			setMyTastedBeers(
-				store.tastedBeers.map((wish, index) => {
+				store.tastedBeers.slice(0, 4).map((wish, index) => {
 					return <DefaultCard key={index.toString()} element={wish} />;
 				})
 			);
@@ -48,7 +48,7 @@ const Profile = () => {
     // useEffect(() => {
     //     if (store.favourite.length != 0) {
 	// 		setMyFavBeers(
-	// 			store.favourite.map((wish, index) => {
+	// 			store.favourite.slice(0, 4).map((wish, index) => {
 	// 				return <DefaultCard key={index.toString()} element={wish} />;
 	// 			})
 	// 		);
@@ -58,7 +58,7 @@ const Profile = () => {
     // useEffect(() => {
     //     if (store.wishlist.length != 0) {
 	// 		setMyWishBeers(
-	// 			store.wishlist.map((wish, index) => {
+	// 			store.wishlist.slice(0, 4).map((wish, index) => {
 	// 				return <DefaultCard key={index.toString()} element={wish} />;
 	// 			})
 	// 		);
