@@ -1,0 +1,31 @@
+.fa-search {
+    font-size:2rem;
+}
+
+.container {
+    display:flex;
+    justify-content: center;
+}
+
+
+// CUANDO SE PASA DE 768
+// DESAPARECE LA LUPA
+
+
+@media (min-width: 425px) {
+    .fa-search{
+        display:none;
+    }
+}
+
+
+// CUANDO ES MENOR DE 768
+// APARECE LA LUPA
+
+
+@media (max-width: 425px) {
+    .fa-search{
+        display:flex;
+        margin-left: 1rem;
+    }
+}
