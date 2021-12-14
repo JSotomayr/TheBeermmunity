@@ -52,6 +52,8 @@ class Customer(db.Model):
         return f'User has {self.id}, {self.username} with {self.email}'
 
     def to_dict(self):
+        user = self.has_brewerie if self._is_brewerie else self.has_brewer
+      
         return {
             "id": self.id,
             "email": self.email,
@@ -60,7 +62,8 @@ class Customer(db.Model):
             "city": self.city,
             "description": self.description,
             "image": self.image,
-            "user_type": self._is_brewerie
+            "user_type": self._is_brewerie,
+            "user_detail": user[0].to_dict()
         }
             # do not serialize the password, its a security breach
 

@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 
 import ProfileCard from "../component/profileCard.jsx";
-import BusinessCard from "../component/businessCard.jsx";
+
 
 
 const Profile = () => {
@@ -23,30 +23,16 @@ const Profile = () => {
 	}, []);
 
     useEffect(() => {
-        if(store.profileInfo.user_type){
-            setMyProfile(
-                store.profileInfo.map((info, index) => {
-                    return (
-                        <BusinessCard
-                            key={index.toString()}
-                            element={info}
-                        />
-                    );
-                }
-            )
-        )}
-        else{
-            setMyProfile(
-                store.profileInfo.map((info, index) => {
-                    return (
-                        <ProfileCard
-                            key={index.toString()}
-                            element={info}
-                        />
-                    );
-                }
-            )
-        )}
+        setMyProfile(
+            store.profileInfo.map((info, index) => {
+                return (
+                    <ProfileCard
+                        key={index.toString()}
+                        element={info}
+                    />
+                );
+            })
+        )
     }, [store.profileInfo])
 
     useEffect(() => {
