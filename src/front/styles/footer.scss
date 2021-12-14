@@ -4,131 +4,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Pridi:wght@200&display=swap%27');
 
 
+.container-fluid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: #2D2D2D;
+    color: white;
+    position: absolute;
+    bottom: 0;
+}
+
+.footerTittle {
+    color:#E49B0F;
+}
+
+
 .footer{
-    background-color: gray;
-
-    padding-left: 9rem;
-}
-
-.footer_row{
-    padding: 3rem;
-}
-
-.footer_column{
-    display: flex;
-    flex-direction: column;
-    margin-left: 5rem;
-}
-
-
-@media (max-width: 768px) {
-    .footer_column {
-        margin-left: 0;
-    }
+  
+    background-color: #2D2D2D;
+    font-family: "Ultra", serif;
 }
 
 .footerTitle{
-    display: flex;
-    align-self: flex-start;
+color:#E49B0F;
 }
 
 .footerTitleConect{
-    display: flex;
-    align-self: flex-start;
-    margin-left: 4rem;
+color: #E49B0F;
 }
 
-.footer_column_div{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 1rem;
-}
-
-.footer_column_img{
-    display: flex;
-    margin-top: 1rem;
-}
-
-@media (max-width: 576px) {
-    .footer_column_img {
-        display: flex;
-        flex-direction: column;
-    }
-}
 
 .footer_img{
-    color: blue;
-    width: 3rem;
-    font-size: 2rem;
+color: white;
+width: 2rem;
+font-size: 2rem;
 }
 
-@media (max-width: 576px) {
-    .footer_img {
-        margin-top: 0.3rem;
-    }
+@media (max-width: 6rem) {
+.footer_img {
+margin-top: 0.3rem;
 }
-
-.footer{
-    background-color: grey;
-    padding-left: 9rem;
-}
-
-.footer_row{
-    padding: 3rem;
-}
-
-.footer_column{
-    display: flex;
-    flex-direction: column;
-    margin-left: 5rem;
-}
-
-
-@media (max-width: 768px) {
-    .footer_column {
-        margin-left: 0;
-    }
-}
-
-.footerTitle{
-    display: flex;
-    align-self: flex-start;
-}
-
-.footerTitleConect{
-    display: flex;
-    align-self: flex-start;
-    margin-left: 4rem;
-}
-
-.footer_column_div{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 1rem;
-}
-
-.footer_column_img{
-    display: flex;
-    margin-top: 1rem;
-}
-
-@media (max-width: 576px) {
-    .footer_column_img {
-        display: flex;
-        flex-direction: column;
-    }
-}
-
-.footer_img{
-    color: blue;
-    width: 3rem;
-    font-size: 2rem;
-}
-
-@media (max-width: 576px) {
-    .footer_img {
-        margin-top: 0.3rem;
-    }
 }
