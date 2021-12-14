@@ -1,0 +1,77 @@
+
+
+.navbar {
+    background-color: #2C363A;
+    height: 6rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.icons_left {
+    margin-bottom: 1rem;
+    font-size: 2.7rem;
+}
+
+
+// pone en linea los dos iconos
+.icons_right {
+    display:flex;
+    justify-content: flex-end;
+    padding-right:1rem;
+}
+
+.fa-user {
+    font-size: 2rem;
+}
+
+.HeartIconText {
+    margin-left: 0.5rem;
+}
+
+.fa-heart {
+    font-size: 2rem;
+}
+
+.nabvar_menu_pending {
+    margin-left:1rem;
+} 
+.nabvar_menu_cerveteca {
+    margin-left:1rem;
+} 
+
+// CUANDO SE PASA DE 768
+// DESAPARECE LA CERVEZA
+// APARECEN LAS LETRAS
+
+@media (min-width: 425px) {
+    .icons_left{
+        margin-right: 1rem;
+        display:none;
+    }
+    .nabvar_menu{
+        display:flex;
+        font-size: 1.2rem;
+        margin: 1rem;
+    }
+
+}
+
+
+// CUANDO ES MENOR DE 768
+// APARECE LA CERVEZA
+// DESAPARECE LAS LETRAS
+
+@media (max-width: 425px) {
+    .icons_left{
+        margin-left: 1rem;
+        display:flex;
+    }
+    .nabvar_menu{
+        margin-right: 1rem;
+        display:none;
+    }
+
+
+}
+
+

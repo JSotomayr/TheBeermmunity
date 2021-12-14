@@ -1,14 +1,26 @@
+
+
+
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import ScrollToTop from "./component/scrollToTop";
+import {
+	BrowserRouter,
+	Routes,
+	Route
+  } from "react-router-dom";
 
-import { Home } from "./pages/home";
-import { Demo } from "./pages/demo";
-import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
-
+import { Home } from "./pages/home";
+import { Login } from "./pages/login";
 import { Navbar } from "./component/navbar";
-import { Footer } from "./component/footer";
+
+
+
+
+
+import AllBeers from "./pages/allBeers.jsx";
+import Cerveteca from "./pages/cerveteca.jsx";
+import BeerDetail from "./pages/beerDetail.jsx";
+
 
 //create your first component
 const Layout = () => {
@@ -19,27 +31,18 @@ const Layout = () => {
 	return (
 		<div>
 			<BrowserRouter basename={basename}>
-				<ScrollToTop>
-					<Navbar />
-					<Switch>
-						<Route exact path="/">
-							<Home />
-						</Route>
-						<Route exact path="/demo">
-							<Demo />
-						</Route>
-						<Route exact path="/single/:theid">
-							<Single />
-						</Route>
-						<Route>
-							<h1>Not found!</h1>
-						</Route>
-					</Switch>
-					<Footer />
-				</ScrollToTop>
+				<Routes>
+					<Route path="/" element={<Home />} />
+					<Route path="/beer" element={<AllBeers />}/>
+					<Route path="/beer/:id" element={<BeerDetail />} />
+					<Route path="/cerveteca" element={<Cerveteca />} />
+					<Route path="/navbar" element={<Navbar />} />
+					<Route path="/login" element={<Login />} />
+				</Routes>
 			</BrowserRouter>
 		</div>
 	);
 };
 
 export default injectContext(Layout);
+
