@@ -6,8 +6,9 @@ import { Navbar } from "../component/navbar";
 import { Footer } from "../component/footer";
 
 export const Home = () => {
-	const { store, actions } = useContext(Context);
+  const { store, actions } = useContext(Context);
 
+<<<<<<< HEAD
 	return (
 		<Fragment>
 
@@ -41,3 +42,29 @@ export const Home = () => {
 		</Fragment>
 	);
 };
+=======
+  return (
+    <Fragment>
+      <div className="text-center">
+        <Navbar />
+        <div className="btn mt-5">
+          <Link to="/login">LOGIN</Link>
+        </div>
+        <div className="btn mt-5">
+          <Link to="/register">REGISTER</Link>
+        </div>
+        <div>
+          <Link to={"/beer"}>
+            <h1>CERVEZAS</h1>
+          </Link>
+        </div>
+        <div>
+          <Link to={"/beer"}>
+            <h1>ENSEÑAME LA BIRRA</h1>
+          </Link>
+        </div>
+      </div>
+    </Fragment>
+  );
+};
+>>>>>>> main
