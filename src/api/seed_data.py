@@ -1,4 +1,5 @@
 from datetime import datetime
+from werkzeug.security import generate_password_hash
 
 data = {
 
@@ -6,7 +7,7 @@ data = {
         {
             "id": 1,
             "email": "ana.limones@email.com",
-            "_password": "1234",
+            "_password": generate_password_hash('1234', method='pbkdf2:sha256'),
             "username": "Lemons",
             "country": "España",
             "city": "Madrid",
@@ -19,7 +20,7 @@ data = {
         {
             "id": 2,
             "email": "carol.traba@email.com",
-            "_password": "5678",
+            "_password": "f8638b979b2f4f793ddb6dbd197e0ee25a7a6ea32b0ae22f5e3c5d119d839e75",
             "username": "Carolth",
             "country": "España",
             "city": "Madrid",
@@ -32,12 +33,12 @@ data = {
         {
             "id": 3,
             "email": "jaime.soto@email.com",
-            "_password": "1478",
+            "_password": "a13df1211cf4c38cdb7a165c67f8e5ab6fded2982c2cb1f55d4cefef880183d5",
             "username": "JSoto",
             "country": "España",
             "city": "Madrid",
             "description": "Yo quiero dar a conocer y probar todas las cervezas que pueda",
-            "image": "https://drive.google.com/file/d/1JDfUb10hXnO4qZ8eFeJQRkI31EYyr-2w/view?usp=sharing",
+            "image": "https://drive.google.com/file/d/1JDfUb10hXnO4qZ8eFeJQRkI31EYyr-2w/view?usp=sharing", 
             "_is_active": True,
             "_is_brewerie": True,
             "_is_admin": True
@@ -45,7 +46,7 @@ data = {
         {
             "id": 4,
             "email": "folkencillo@email.com",
-            "_password": "1478",
+            "_password": "a13df1211cf4c38cdb7a165c67f8e5ab6fded2982c2cb1f55d4cefef880183d5",
             "username": "Folken",
             "country": "España",
             "city": "Málaga",
