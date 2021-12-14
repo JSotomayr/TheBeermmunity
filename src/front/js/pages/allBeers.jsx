@@ -9,7 +9,11 @@ const AllBeers = () => {
 
 
 	useEffect(() => {
-		actions.getBeer();
+		if(store.beers.length = 0){
+			setBeerList(JSON.parse(localStorage.getItem('beers')))
+		}else{
+			actions.getBeer();
+		}
 	}, [])
 
 
