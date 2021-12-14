@@ -43,16 +43,22 @@
 // APARECEN LAS LETRAS
 // el navbar es mas grande
 
-@media (min-width: 425px) {
+@media (min-width: 768px) {
     .icons_left{
         margin-right: 1rem;
         display:none;
+    }
+    .icons_center {
+        display: flex;
+        justify-content: flex-start;
+        padding-left: 2rem;
     }
     .icons_right {
         padding-top: 1rem;
     }
     .nabvar_menu{
         display:flex;
+        justify-content: center;
         font-size: 1.2rem;
         margin: 1rem;
         padding-top: 0.7rem;
@@ -61,7 +67,9 @@
         height: 8rem;
 
         }
+
 }
+
 
 
 // CUANDO ES MENOR DE 768
@@ -74,7 +82,10 @@
         margin-left: 1rem;
         display:flex;
     }
-
+    .icons_center {
+        display: flex;
+        justify-content: center;
+    }
     .nabvar_menu{
         margin-right: 1rem;
         display:none;

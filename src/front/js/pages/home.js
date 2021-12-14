@@ -4,9 +4,9 @@ import "../../styles/home.scss";
 import { Link } from "react-router-dom";
 import { Navbar } from "../component/navbar";
 import { Fragment } from "react";
-import PrimarySearchAppBar from "../component/primarySearchAppBar.jsx"
-import ControllableStates from "../component/ControllableStates.jsx";
-import SearchBar from "../component/search.jsx";
+import SearchBar from "../component/searchBar.jsx";
+import UseAutocomplete from "../component/useAutocomplete.jsx";
+
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -14,34 +14,33 @@ export const Home = () => {
 	return (	
 		<Fragment>	
 			
-				<div className="text-center">
+				<div className="container_navbar_home">
 					<Navbar/>
-				<div className="container">
-					<div className="container_btn">
-						<div className="btn mt-5">
-							<Link to="/login">
-								ACCEDER
-							</Link>	
+									
+					<div className="container">
+						<div className="searchbar_container">
+							<SearchBar />
+							<UseAutocomplete />
 						</div>
-						<div className="btn mt-5">
-							<Link to="/register">
-								REGISTRO
-							</Link>	
+						<div className="container_btn">
+							<div className="btn mt-5">
+								<Link to="/login">
+									ACCEDER
+								</Link>	
+							</div>
+							<div className="btn mt-5">
+								<Link to="/register">
+									REGISTRO
+								</Link>	
+							</div>
+							<div className="btn mt-5">
+								<Link to={"/beer"}>
+									CERVEZAS
+								</Link>
+							</div>
 						</div>
-						<div className="btn mt-5">
-							<Link to={"/beer"}>
-								CERVEZAS
-							</Link>
-						</div>
-					</div>
-					<div className="mt-5">
-						<i className="fas fa-search"></i>
-					</div>
-					<PrimarySearchAppBar />
-					<ControllableStates />
-					<SearchBar />
+					</div>				
 				</div>
-			</div>
 		</Fragment>
 	);
 };

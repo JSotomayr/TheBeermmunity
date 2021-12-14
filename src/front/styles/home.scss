@@ -2,30 +2,18 @@
     font-size:2rem;
 }
 
+
 .container {
     display:flex;
     justify-content: center;
+    height: 10rem;
 }
 
 
-// CUANDO SE PASA DE 768
-// DESAPARECE LA LUPA
-
-
-@media (min-width: 425px) {
-    .fa-search{
-        display:none;
-    }
+.searchbar_container {
+    padding: 0rem;        
 }
 
-
-// CUANDO ES MENOR DE 768
-// APARECE LA LUPA
-
-
-@media (max-width: 425px) {
-    .fa-search{
-        display:flex;
-        margin-left: 1rem;
-    }
+.container_btn {
+    margin: 0;
 }
