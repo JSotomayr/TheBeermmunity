@@ -1,16 +1,14 @@
 import React from "react";
 
 
-
-
 const SearchBar = () => (
     <form>
-        <label htmlFor="header-search"></label>
+        <label htmlFor="search"></label>
         <input
             type="text"
-            id="header-search"
-            placeholder="Search..."
-            name="s" 
+            id="search"
+            placeholder="Favoritos..."
+            name="search" 
         />
         <button type="submit">Search</button>
     </form>
