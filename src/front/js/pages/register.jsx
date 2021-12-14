@@ -10,7 +10,6 @@ import "../../styles/register.scss";
 
 
 
-<p>hola</p>
 
  export const Register = () => {
 	
@@ -50,10 +49,10 @@ import "../../styles/register.scss";
 							aria-invalid={errors.username ? "true" : "false"}
 							{...register("username", { required: true, maxLength: 30, })}
 						/>
-							<div className="alertDiv">
+							{/* <div className="alertDiv">
 									{errors.username && errors.username.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
 									{errors.username && errors.username.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
-							</div>
+							</div> */}
 						<label htmlFor="Email"></label>
 						<input 
 							id ="Email"
@@ -62,11 +61,11 @@ import "../../styles/register.scss";
 							aria-invalid={errors.Email ? "true" : "false"}
 							{...register("Email", { required: true, maxLength: 30, pattern: {value: /\S+@\S+\.\S+/ }})}
 						/>
-							<div className="alertDiv">
+							{/* <div className="alertDiv">
 									{errors.Email && errors.Email.type === "required" && <span role="alert">El campo correo es obligatorio</span>}
 									{errors.Email && errors.Email.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
 									{errors.Email && errors.Email.type === "pattern" && <span role="alert">Correo inválido</span>}
-							</div>
+							</div> */}
 						<label htmlFor="password"></label>
  						 <input 
 							 id ="password"
@@ -76,10 +75,10 @@ import "../../styles/register.scss";
 							 aria-invalid={errors.password ? "true" : "false"}
 							 {...register("password", { required: true, minLength: 5})}
 							 />
-						 <div className="alertDiv">
+						 {/* <div className="alertDiv">
 							 {errors.password && errors.password.type === "required" && <span role="alert">El campo Contraseña es obligatorio</span>}
 							 {errors.password && errors.password.type === "minLength" && <span role="alert">Mínimo de longitud es de 5 caracteres</span>}
-						 </div>
+						 </div> */}
 
 						 <div className="chooseUserBusiness mt-3">
 						  <Form.Check

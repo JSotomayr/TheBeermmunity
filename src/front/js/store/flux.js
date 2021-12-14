@@ -5,6 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			register: [],
+			login: [],
 			baseUrl: `${PROTOCOL}://${PORT}-${HOST}`,
 			// baseUrl: "https://3001-peach-piranha-m7oodx19.ws-eu23.gitpod.io/api/",
 			favourites: [],
@@ -12,6 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			beersDetail: [],
 			tastedBeer: []
+
 		},
 		actions: {
 				register: (dataRegister) => {
@@ -36,17 +38,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 				},
 
 
-
-				login: (dataLogin) => {
-					console.log(dataLogin)
+			login: (dataLogin) => {
+					// fetch(getStore().baseURL.concat("customer"), {
+						
+						fetch("https://3001-peach-piranha-m7oodx19.ws-eu23.gitpod.io/api/login", {
+						method: "POST", 
+						headers: { "Content-Type": "application/json", Accept:"application/json" },
+						body: JSON.stringify(dataLogin)
+					})
+						.then(resp => {
+							if (!resp.ok) {
+								throw Error("Invalid register info");
+							}
+							return resp.json();
+						})
+						.then(responseAsJson => {
+							console.log("respuesta json", responseAsJson);
+							localStorage.setItem("token", responseAsJson.token);
+							console.log("me he logueado")
+						})
+						.catch(error => console.error("There as been an unknown error", error));
 				},
 
 				// login: async dataLogin => {
 				// 	try {
 				// 		let response = await fetch(getStore().baseUrl.concat("api/loginUser"), {
 				// 			method: "POST",
-				// 			mode: "cors",
-				// 			redirect: "follow",
 				// 			headers: new Headers({
 				// 				'Content-Type': 'text/plain'
 				// 			}),

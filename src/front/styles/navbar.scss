@@ -39,9 +39,6 @@
     margin-left:1rem;
 } 
 
-// CUANDO SE PASA DE 768
-// DESAPARECE LA CERVEZA
-// APARECEN LAS LETRAS
 
 @media (min-width: 425px) {
     .icons_left{
@@ -56,10 +53,6 @@
 
 }
 
-
-// CUANDO ES MENOR DE 768
-// APARECE LA CERVEZA
-// DESAPARECE LAS LETRAS
 
 @media (max-width: 425px) {
     .icons_left{
