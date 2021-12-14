@@ -4,7 +4,8 @@ import "../../styles/home.scss";
 import { Link } from "react-router-dom";
 import { Navbar } from "../component/navbar";
 import { Fragment } from "react";
-// import {PrimarySearchAppBar} from "../component/primarySearchAppBar.jsx"
+import PrimarySearchAppBar from "../component/primarySearchAppBar.jsx"
+import CustomizedHook from "../component/CustomizedHook";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -35,7 +36,8 @@ export const Home = () => {
 					<div className="mt-5">
 						<i className="fas fa-search"></i>
 					</div>
-					{/* <PrimarySearchAppBar/> */}
+					<PrimarySearchAppBar />
+					<CustomizedHook />
 				</div>
 			</div>
 		</Fragment>
