@@ -12,13 +12,11 @@ const Cerveteca = () => {
 			setTriedList(
 				store.tastedBeer.map((wish, index) => {
 					return (
-						<div>
+						<div classname="container_detail" key={index.toString()} >
 							<DefaultCard 
-								key={index.toString()} 
 								element={wish} 
 							/>
 							<GenericButton
-									key={(1+index).toString()}
 									add={actions.addTastedBeer(store.beersDetail)} 
 									name={"Mi Cerveteca"}
 							/>
