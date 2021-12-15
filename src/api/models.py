@@ -101,18 +101,12 @@ class Customer(db.Model):
         self.is_active = False
         db.session.commit()
 
-#   cervezas favoritas
-# opcion 1
+
     @classmethod
     def get_by_id_customer(cls, id):
         customer_id = cls.query.get(id)
         return user_customer
 
-# opción 2
-    # @classmethod
-    # def get_by_id_customer(cls,id_custumer):
-    #     customer_id = cls.query.filter_by(id=id_customer).one_or_none()
-    #     return customer_id
 
     def add_fav_beer(self,beer):
         self.have_allbeer.append(beer)
@@ -126,18 +120,18 @@ class Customer(db.Model):
 
     @classmethod
     def get_by_email(cls, email):
-        account = clas.query.filter_by(email=email).one_or_none()
+        account = cls.query.filter_by(email=email).one_or_none()
         return account
 
     
     @classmethod
     def get_by_username(cls, username):
-        user = clas.query.filter_by(username=username).one_or_none()
+        user = cls.query.filter_by(username=username).one_or_none()
         return user
 
 
     @classmethod
-    def get_by_admin(cls, admin):
+    def check_admin(cls, admin):
         is_admin = cls.query.filter_by(admin=admin).one_or_none()
         return is_admin
 
