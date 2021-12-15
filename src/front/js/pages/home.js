@@ -17,7 +17,7 @@ export const Home = () => {
 					<Navbar/>
 									
 					<div className="container">
-						<div className="searchbar_container">
+						<div className="searchbar">
 							<SearchBar />
 						</div>
 						<div className="container_btn">

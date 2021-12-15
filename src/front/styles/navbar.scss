@@ -2,7 +2,6 @@
 
 .navbar {
     background-color: #2C363A;
-
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
@@ -12,15 +11,19 @@
     font-size: 2.7rem;
 }
 
-
 .icons_right {
     display:flex;
     justify-content: flex-end;
     padding-right:1rem;
 }
 
+.userIconText {
+    margin-left: 6.5rem;
+
+}
 .fa-user {
     font-size: 2rem;
+    margin-left: 0.2rem;
 }
 
 .HeartIconText {
@@ -28,6 +31,7 @@
 }
 
 .fa-heart {
+    margin-left: 0.7rem;
     font-size: 2rem;
 }
 
@@ -42,6 +46,7 @@
 // DESAPARECE LA CERVEZA
 // APARECEN LAS LETRAS
 // el navbar es mas grande
+// aparece el buscador
 
 @media (min-width: 768px) {
     .icons_left{
@@ -65,9 +70,10 @@
     }
     .navbar {
         height: 8rem;
-
         }
-
+    .searchbar {
+        display: flex;
+    }
 }
 
 
@@ -76,6 +82,7 @@
 // APARECE LA CERVEZA
 // DESAPARECE LAS LETRAS
 // el navbar es mas pequeño
+// desaparce el buscdor
 
 @media (max-width: 425px) {
     .icons_left{
@@ -91,7 +98,10 @@
         display:none;
     }
     .navbar {
-    height: 6rem;
+        height: 6rem;
+    }
+    .searchbar {
+        display: none;
     }
 }
 

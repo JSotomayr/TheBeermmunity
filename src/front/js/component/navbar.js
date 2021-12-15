@@ -1,20 +1,13 @@
 import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
 import "../../styles/navbar.scss";
 import logoSmall from "../../img/logoSmall.png";
-import Grid from '@mui/material/Grid';
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
+
 
 
 
 import "../../styles/navbar.scss";
-
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 import MenuListComposition from "../component/menuListComposition.jsx";
+import SearchBar from "./searchBar.jsx";
 
 
 export const Navbar = () => {
@@ -45,6 +38,9 @@ export const Navbar = () => {
 					</div> 
 
 				 <div className="icons_right">
+					<div className="searchbar">
+						<SearchBar />
+					</div>
 					<div className="userIconText">
 						<i className="fas fa-user"></i>
 						<p className="infoIcon">Perfil</p>
