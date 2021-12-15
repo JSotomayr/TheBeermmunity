@@ -253,7 +253,7 @@ class Beer(db.Model):
         return beers
 
     @classmethod
-    def get_by_id_beer(cls, id):
+    def get_by_id(cls, id):
         beer_id = cls.query.get(id)
         return beer_id
 
