@@ -28,14 +28,14 @@ export const Login = () => {
 		<Fragment>
 
 			<div className="loginContainer">
-					<div className="btn nearLog">
-						<Link to="/">
-							volver
-						</Link>
-					</div>
-				<p>
+				<div className="btn">
+					<Link to="/">
+						volver
+					</Link>
+				</div>
+				<Link to="/">
 					<img src={logoBig} />
-				</p>
+				</Link>
 				<div className="title">Iniciar sesión</div>
 				<div className="login-form">
 					<form
@@ -113,7 +113,6 @@ export const Login = () => {
 
 		</Fragment>
 	);
-
 };
 
 
