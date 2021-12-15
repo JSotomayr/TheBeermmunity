@@ -52,6 +52,7 @@ class Customer(db.Model):
         return f'User has {self.id}, {self.username} with {self.email}'
 
     def to_dict(self):
+        user = has_brewerie if self._is_brewerie else has_brewer
         return {
             "id": self.id,
             "email": self.email,
@@ -60,6 +61,7 @@ class Customer(db.Model):
             "city": self.city,
             "description": self.description,
             "image": self.image,
+            "user": user
         }
             # do not serialize the password, its a security breach
 
@@ -101,12 +103,23 @@ class Customer(db.Model):
         self.is_active = False
         db.session.commit()
 
-
+#   cervezas favoritas
+# opcion 1
     @classmethod
-    def get_by_id(cls, id):
+    def get_by_id_customer(cls, id):
         customer_id = cls.query.get(id)
         return user_customer
 
+# opción 2
+    # @classmethod
+    # def get_by_id_customer(cls,id_custumer):
+    #     customer_id = cls.query.filter_by(id=id_customer).one_or_none()
+    #     return customer_id
+
+    def add_fav_beer(self,beer):
+        self.have_allbeer.append(beer)
+        db.session.commit()
+        return self.have_allbeer
 
 class Brewer(db.Model):
     __tablename__: 'brewer'

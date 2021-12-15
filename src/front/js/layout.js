@@ -1,3 +1,6 @@
+
+
+
 import React from "react";
 import {
 	BrowserRouter,
@@ -9,6 +12,10 @@ import injectContext from "./store/appContext";
 import { Home } from "./pages/home";
 import { Login } from "./pages/login";
 import { Navbar } from "./component/navbar";
+
+
+
+
 
 import AllBeers from "./pages/allBeers.jsx";
 import Cerveteca from "./pages/cerveteca.jsx";

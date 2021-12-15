@@ -5,6 +5,15 @@ import logoBig from "../../img/logoBig.png";
 import { useForm } from "react-hook-form";
 
 import { Link } from "react-router-dom";
+
+
+
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+
+
 import Form from 'react-bootstrap/Form'
 
 import "../../styles/login.scss";
@@ -43,9 +52,17 @@ export const Login = () => {
 							placeholder="Usuario"
 							className="form-control"
 							aria-invalid={errors.username ? "true" : "false"}
-							{...register("username", { required: true, maxLength: 30})}
+							{...register("username", { required: true, maxLength: 15})}
 						/>
 						
+						<div className="alertDiv">
+							{errors.username && errors.username.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
+							{errors.username && errors.username.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
+						</div>
+{/* 
+							{...register("username", { required: true, maxLength: 30})}
+						/>
+						 */}
 						<div className="alertDiv">
 							{errors.email && errors.username.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
 							{errors.email && errors.username.type === "maxLength" && <span role="alert">Max length exceedeed</span>}
@@ -72,12 +89,47 @@ export const Login = () => {
 							placeholder="Contraseña"
 							className="form-control"
 							aria-invalid={errors.password ? "true" : "false"}
-							{...register("password", { required: true, minLength: 10})}
+							{...register("password", { required: true, minLength: 5})}
 							/>
 						<div className="alertDiv">
 							{errors.password && errors.password.type === "required" && <span role="alert">El campo Contraseña es obligatorio</span>}
-							{errors.password && errors.password.type === "minLength" && <span role="alert">Max length exceedeed</span>}
+							{errors.password && errors.password.type === "minLength" && <span role="alert">Mínimo de longitud es de 5 caracteres</span>}
 						</div>
+
+						<p className="forgottenPassword">He olvidado mi contraseña</p>
+						
+
+					{/* OPCION 1
+						<div className="chooseUserBusiness mt-3">
+							<FormControl component="fieldset">
+								<RadioGroup row aria-label="gender" name="row-radio-buttons-group" >
+									<FormControlLabel value="Usuario" control={<Radio />} label="Usuario" />
+									<FormControlLabel value="Empresa" control={<Radio />} label="Empresa" />
+								</RadioGroup>
+							</FormControl>
+						</div> */}
+
+						{/* OPCION 2 */}
+						{/* <input {...register("radio")} type="radio" value="A"   />
+      					<input {...register("radio")} type="radio" value="B" />
+						  <div className="alertDiv">
+							{errors.radio && errors.radio.type === "required" && <span role="alert">El campo elegir usuario o negocio es obligatorio</span>}
+						</div> */}
+      	
+		  				{/* OPCION 3 */}
+						  {/* <input 
+							id ="chooseUserBusiness"
+							type="radio"
+							value="Usuario"
+							className="chooseUserBusiness"
+							{...register("chooseUserBusiness", { required: true,})}
+							/>
+						<div className="alertDiv">
+							{errors.chooseUserBusiness && errors.chooseUserBusiness.type === "required" && <span role="alert">El campo elegir usuario o negocio es obligatorio</span>}
+						</div> */}
+
+
+
 
 					
 						<div className="chooseUserBusiness mt-3">

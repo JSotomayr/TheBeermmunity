@@ -1,9 +1,8 @@
-import React, { useContext } from "react";
+import React, { Fragment, useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.scss";
 import { Link } from "react-router-dom";
 import { Navbar } from "../component/navbar";
-import { Fragment } from "react";
 import SearchBar from "../component/searchBar.jsx";
 
 
