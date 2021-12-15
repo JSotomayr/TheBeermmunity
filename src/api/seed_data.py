@@ -7,7 +7,7 @@ data = {
         {
             "id": 1,
             "email": "ana.limones@email.com",
-            "_password": generate_password_hash('1234', method='pbkdf2:sha256'),
+            "_password": generate_password_hash('123456', method='pbkdf2:sha256'),
             "username": "Lemons",
             "country": "España",
             "city": "Madrid",
@@ -20,7 +20,7 @@ data = {
         {
             "id": 2,
             "email": "carol.traba@email.com",
-            "_password": generate_password_hash('5678', method='pbkdf2:sha256'),
+            "_password": generate_password_hash('567890', method='pbkdf2:sha256'),
             "username": "Carolth",
             "country": "España",
             "city": "Madrid",
@@ -33,7 +33,7 @@ data = {
         {
             "id": 3,
             "email": "jaime.soto@email.com",
-            "_password": generate_password_hash('1478', method='pbkdf2:sha256'),
+            "_password": generate_password_hash('147890', method='pbkdf2:sha256'),
             "username": "JSoto",
             "country": "España",
             "city": "Madrid",
@@ -46,7 +46,7 @@ data = {
         {
             "id": 4,
             "email": "folkencillo@email.com",
-            "_password": generate_password_hash('1478', method='pbkdf2:sha256'),
+            "_password": generate_password_hash('147890', method='pbkdf2:sha256'),
             "username": "Folken",
             "country": "España",
             "city": "Málaga",
