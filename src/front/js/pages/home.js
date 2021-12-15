@@ -11,15 +11,14 @@ export const Home = () => {
 	const { store, actions } = useContext(Context);
 
 	return (	
-		<Fragment>	
-			
+		<Fragment>				
 				<div className="container_navbar_home">
 					<Navbar/>
 									
 					<div className="container">
-						<div className="searchbar">
+						{/* <div className="searchbar">
 							<SearchBar />
-						</div>
+						</div> */}
 						<div className="container_btn">
 							<div className="btn mt-5">
 								<Link to="/login">

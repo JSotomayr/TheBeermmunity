@@ -8,7 +8,6 @@ import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
-
 import "../../styles/menuListComposition.scss";
 
 export default function MenuListComposition() {
@@ -36,7 +35,6 @@ export default function MenuListComposition() {
     }
   }
 
-  // return focus to the button when we transitioned from !open -> open
   const prevOpen = React.useRef(open);
   React.useEffect(() => {
     if (prevOpen.current === true && open === false) {

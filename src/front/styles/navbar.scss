@@ -1,5 +1,3 @@
-
-
 .navbar {
     background-color: #2C363A;
     display: grid;
@@ -42,11 +40,6 @@
     margin-left:1rem;
 } 
 
-// CUANDO SE PASA DE 768
-// DESAPARECE LA CERVEZA
-// APARECEN LAS LETRAS
-// el navbar es mas grande
-// aparece el buscador
 
 @media (min-width: 768px) {
     .icons_left{
@@ -74,15 +67,14 @@
     .searchbar {
         display: flex;
     }
+
 }
 
-
-
-// CUANDO ES MENOR DE 768
-// APARECE LA CERVEZA
-// DESAPARECE LAS LETRAS
-// el navbar es mas pequeño
-// desaparce el buscdor
+@media (max-width: 768px) {
+    .searchbar {
+        display: none;
+    }
+}
 
 @media (max-width: 425px) {
     .icons_left{
@@ -100,9 +92,7 @@
     .navbar {
         height: 6rem;
     }
-    .searchbar {
-        display: none;
-    }
+
 }
 
 .nabvar_menu_friends:hover, .nabvar_menu_cerveteca:hover, .nabvar_menu_pending:hover, .userIconText:hover, .HeartIconText:hover {

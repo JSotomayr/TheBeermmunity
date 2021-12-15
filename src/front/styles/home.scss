@@ -17,3 +17,17 @@
 .container_btn {
     margin: 0;
 }
+
+
+
+@media (min-width: 768px) {
+    .searchbar{
+        display:none;
+    }
+}
+
+@media (max-width: 425px) {
+    .searchbar{
+        display:flex;
+    }
+}

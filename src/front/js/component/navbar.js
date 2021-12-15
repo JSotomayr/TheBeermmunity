@@ -1,14 +1,9 @@
 import React, { Fragment } from "react";
 import "../../styles/navbar.scss";
 import logoSmall from "../../img/logoSmall.png";
-
-
-
-
 import "../../styles/navbar.scss";
 import MenuListComposition from "../component/menuListComposition.jsx";
 import SearchBar from "./searchBar.jsx";
-
 
 export const Navbar = () => {
 	
@@ -53,27 +48,6 @@ export const Navbar = () => {
 
 				</div> 
 			</nav>  
-
-		
-
 		</Fragment>
 	);
 };
-
-
-
-				{/* ICONOS */}
-				{/* <div className="nabvar_menu">
-						<div className="nabvar_menu_friends">
-							<i class="fas fa-users"></i>
-							<p>Contactos</p>
-						</div>
-						<div className="nabvar_menu_cerveteca">
-							<i class="fas fa-bookmark"></i>
-							<div>Cerveteca</div>
-						</div>
-						<div className="nabvar_menu_pending">
-						<i class="fas fa-shopping-bag"></i>
-						<div>Pendientes</div>
-						</div> 										
-				</div> */}
