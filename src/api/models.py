@@ -49,7 +49,7 @@ class Customer(db.Model):
 
 
     def __repr__(self):
-        return f'User has {self.id}, {self.username} with {self.email}'
+        return f'User has {self.id}, {self.username} with {self.email} {self.country} {self.city}'
 
     def to_dict(self):
         user = has_brewerie if self._is_brewerie else has_brewer
@@ -108,7 +108,21 @@ class Customer(db.Model):
     @classmethod
     def get_by_id_customer(cls, id):
         customer_id = cls.query.get(id)
-        return user_customer
+        return customer_id
+
+# opción 2
+    # @classmethod
+    # def get_by_id_customer(cls,id_custumer):
+    #     customer_id = cls.query.filter_by(id=id_customer).one_or_none()
+    #     return customer_id
+
+
+
+    def add_fav_beer(self,beer):
+        self.have_fav_beer.append(beer)
+        db.session.commit()
+        return self.have_fav_beer
+
 
 # opción 2
     # @classmethod
@@ -144,11 +158,7 @@ class Brewer(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "lastname": self.lastname,
-            "country": self.country,
-            "city": self.city,
-            "description": self.description,
-            "image": self.image
+            "lastname" : self.lastname,
         }
 
 
@@ -173,7 +183,6 @@ class Brewerie(db.Model):
             "company_name": self.company_name,
             "address": self.address,
             "country": self.country,
-            "city": self.city,
             "description": self.description,
             "image": self.image
         }
@@ -243,9 +252,8 @@ class Beer(db.Model):
         beers = cls.query.all()
         return beers
 
-
     @classmethod
-    def get_by_id(cls, id):
+    def get_by_id_beer(cls, id):
         beer_id = cls.query.get(id)
         return beer_id
 

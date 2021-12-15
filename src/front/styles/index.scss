@@ -103,3 +103,28 @@ a, a:visited, a:hover, a:active {
     justify-content: center;
     font-size: 0.85rem;
 }
+
+
+.nearLog {
+    margin-left: 16rem;
+    margin-top: 1rem;
+    }
+    
+
+// CUANDO SE PASA DE 768
+// DESAPARECE EL BOTON VOLVER
+// APARECEN LAS LETRAS
+
+@media (min-width: 425px) {
+    .nearLog{
+        display:none;
+    }
+}
+
+
+@media (max-width: 425px) {
+    .nearLog{
+        display:flex;
+    }
+}
+

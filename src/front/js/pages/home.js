@@ -10,7 +10,7 @@ export const Home = () => {
 	const { store, actions } = useContext(Context);
 
 	return (	
-		<Fragment>				
+		<Fragment>	
 				<div className="container_navbar_home">
 					<Navbar/>
 									

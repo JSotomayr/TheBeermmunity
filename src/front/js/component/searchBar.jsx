@@ -14,7 +14,7 @@ export default function SearchBar() {
   return (
     <div>
           <Paper
-              component="form" className="paper" borderRadius= "6"
+              component="form" className="paper"
               sx={{ p: '0.2rem 0.9rem', display: 'flex', alignItems: 'center', width: 350, borderRadius: '3rem'}}
               
           > 
