@@ -111,7 +111,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			addTastedBeer: beer => {
-				setStore({ tastedBeer: [...getStore().tastedBeer, ...beer]});
+				setStore({ tastedBeer: [...getStore().tastedBeer, beer]});
 			}
 		}
 	}

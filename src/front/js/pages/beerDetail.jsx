@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router";
 
@@ -21,13 +21,13 @@ const BeerDetail = () => {
 			setDetailBeer(
 				store.beersDetail.map((detail, index) => {
 					return (
-						<div>
+						<div classname="detail_container" key={index.toString()}>
 							<CardDetails
-								key={index.toString()}
+								
 								element={detail}
 							/>
 							<GenericButton
-								key={(1+index).toString()}
+								
 								add={actions.addWishlist(store.beersDetail)} 
 								name={"Quiero probarla"}
 							/>
