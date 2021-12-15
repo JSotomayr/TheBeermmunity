@@ -1,10 +1,13 @@
-import React, { Fragment, useContext } from "react";
+import { Navbar } from "../component/navbar";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 
 import { Context } from "../store/appContext.js";
 import logoBig from "../../img/logoBig.png";
 import { useForm } from "react-hook-form";
 
 import { Link } from "react-router-dom";
+
+
 import Form from 'react-bootstrap/Form'
 
 import "../../styles/login.scss";
@@ -19,7 +22,7 @@ export const Login = () => {
 
 	} = useForm();
 
-	const onSubmit = data => actions.login(data)
+	const onSubmit = dataLogin => actions.login(dataLogin)
 
 	return (
 		<Fragment>
@@ -30,9 +33,9 @@ export const Login = () => {
 						volver
 					</Link>
 				</div>
-				<p>
+				<Link to="/">
 					<img src={logoBig} />
-				</p>
+				</Link>
 				<div className="title">Iniciar sesión</div>
 				<div className="login-form">
 					<form
@@ -43,13 +46,14 @@ export const Login = () => {
 							placeholder="Usuario"
 							className="form-control"
 							aria-invalid={errors.username ? "true" : "false"}
-							{...register("username", { required: true, maxLength: 30})}
+							{...register("username", { required: true, maxLength: 15})}
 						/>
 						
-						<div className="alertDiv">
-							{errors.email && errors.username.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
-							{errors.email && errors.username.type === "maxLength" && <span role="alert">Max length exceedeed</span>}
-						</div>
+						{/* <div className="alertDiv">
+							{errors.username && errors.username.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
+							{errors.username && errors.username.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
+						</div> */}
+
 
 						<label htmlFor="email"></label>
 						<input 
@@ -60,10 +64,10 @@ export const Login = () => {
 							{...register("email", { required: true, minLength: 10})}
 						/>
 
-						<div className="alertDiv">
+						{/* <div className="alertDiv">
 							{errors.email && errors.email.type === "required" && <span role="alert">El campo Email es obligatorio</span>}
 							{errors.email && errors.email.type === "minLength" && <span role="alert">El formato de email es incorrecto</span>}
-						</div>
+						</div> */}
 
 						<label htmlFor="password"></label>
 						<input 
@@ -72,13 +76,15 @@ export const Login = () => {
 							placeholder="Contraseña"
 							className="form-control"
 							aria-invalid={errors.password ? "true" : "false"}
-							{...register("password", { required: true, minLength: 10})}
+							{...register("password", { required: true, minLength: 5})}
 							/>
-						<div className="alertDiv">
+						{/* <div className="alertDiv">
 							{errors.password && errors.password.type === "required" && <span role="alert">El campo Contraseña es obligatorio</span>}
-							{errors.password && errors.password.type === "minLength" && <span role="alert">Max length exceedeed</span>}
-						</div>
+							{errors.password && errors.password.type === "minLength" && <span role="alert">Mínimo de longitud es de 5 caracteres</span>}
+						</div> */}
 
+						<p className="forgottenPassword">He olvidado mi contraseña</p>
+						
 					
 						<div className="chooseUserBusiness mt-3">
 						  <Form.Check
@@ -88,7 +94,7 @@ export const Login = () => {
 								id="formHorizontalRadios2"
 								required
 								/>
-								<Form.Check
+							<Form.Check
 								type="radio"
 								label="Empresa"
 								name="formHorizontalRadios"
@@ -96,8 +102,9 @@ export const Login = () => {
 								/>
 						</div>
 
-						<button type="submit" className="btn btn-primary form-control btn_submit mt-5">Iniciar sesión</button> 
+						<button type="submit" className="btn btn-primary form-control btn_submit mt-5">Acceder</button> 
 						{errors.submit && errors.submit.type === "required" && <span role="alertSubmitLog">!ERROR! Se ha producido un error en su intento de Inicio de sesión. Asegúrese de que el correo, el nombre de usuario y la contraseña son correctos</span>}
+
 
 					</form>
 				</div>
@@ -106,10 +113,8 @@ export const Login = () => {
 
 		</Fragment>
 	);
-	// }
-
-
-
 };
+
+
 
 

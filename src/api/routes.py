@@ -23,30 +23,31 @@ app = Flask(__name__)
 
 api = Blueprint('api', __name__)
 
+
+# CREAR CUSTOMER
 @api.route('/customer', methods=['POST'])
 def create_customer():
-
+    print(request.json)
     is_active = True
-    new_email = request.json.get('email', None)
+    new_email = request.json.get('Email', None, )
     new_username = request.json.get('username', None)
     new_password = request.json.get('password', None)
-    new_country = request.json.get('country', None)
+    new_country = request.json.get('Adress', None)
     new_city = request.json.get('city', None)
     new_description = request.json.get('description')
     new_image = request.json.get('image')
 
     if not (new_email and new_username and new_password and new_country and new_city):
-        return jsonify({'error': 'Missing customer'}), 400
+        return jsonify({'error': 'Missing customer'}), 409
 
     customer_created = Customer(
         email=new_email, 
         username=new_username, 
         country=new_country, 
         city=new_city, 
-        description=new_description, 
-        image=new_image, 
         _password=generate_password_hash(new_password, method='pbkdf2:sha256', 
         salt_length=16))
+    print(customer_created)
 
     try:
         customer_created.create()
@@ -59,7 +60,41 @@ def create_customer():
         token = create_access_token(identity=account.to_dict(), expires_delta=timedelta(minutes=100))
         return({'token' : token}), 200
 
+
+# LOGUEAR CUSTOMER
+@api.route('/login', methods=["POST"])
+def login():
+    email = request.json.get('email', None)
+    username = request.json.get('username', None)
+    password = request.json.get('password', None)
+
+    print("EMAIL", email)
+    if not (email and username and password):
+        return({'error':'Missing info'}), 400
+
+    customer = Customer.get_by_email(email)   
+
+    if customer and check_password_hash(customer._password, password) and customer._is_active:
+        token = create_access_token(identity=customer.to_dict(), expires_delta=timedelta(minutes=100))
+        return({'token' : token}) , 200
+
+    else:
+        return({'error':'Some parameter is wrong'}), 400
         
+
+# BUSCAR UN CUSTOMER
+@api.route('/customer/<int:id>', methods = ['GET'])
+def get_customer(id):
+    one_customer = Customer.get_by_id_customer(id)
+
+    if one_customer:
+        
+        return jsonify(one_customer.to_dict()), 200
+
+    return jsonify({'msg' : 'Customer not foud'}), 404
+
+
+#  BUSCAR CERVEZAS
 @api.route('/beer', methods=['GET'])
 def getAllBeers():
     beers = Beer.get_all()
@@ -81,20 +116,64 @@ def beerDetail(id):
     return jsonify({'error': 'Beer not found'}), 404
 
 
-@api.route('/customer/<int:id_customer>/tasted/<int:id_beer>', methods=['POST'])
+# AÑADIR FAVORITO A USUARIO
+@api.route('/customer/<int:id_customer>/favourite-beer/<int:id_beer>', methods=['POST'])
 @jwt_required()
-def add_tasted_beer(id_customer, id_beer):
+def add_favbeer(id_customer, id_beer):
     token_id = get_jwt_identity()
     
 
     if token_id.get("id") == id_customer:
         customer = Customer.get_by_id_customer(id_customer)
-        beer = Beer.get_by_id_beer(id_beer)     
+        beer = Beer.get_by_id_beer(id_beer)   
+        print("este es la cerbeza buscada", beer)
+        print("este es el consumidor", customer)  
         
         if customer and beer:
-            add_beer = customer.add_tasted_beers(beers)
-            tasted_beer = [beer.to_dict() for beer in add_beer]
-            return jsonify(tasted_beer),200
+            add_beer = customer.add_fav_beers(beers)
+            fav_beer = [beer.to_dict() for beer in add_beer]
+            print("este es el diccionario de la cerveza favorita", fav_beer)
+            return jsonify(fav_beer),200
         
 
-    return jsonify({'error': 'No tasted beers'}),404
+    return jsonify({'error': 'Not favourites'}),404
+
+
+
+# CREAR CERVECERIA
+@api.route('/brewerie', methods=['POST'])
+def create_brewerie():
+
+    is_active = True
+    new_email = request.json.get('email', None, )
+    new_username = request.json.get('username', None)
+    new_password = request.json.get('password', None)
+    new_country = request.json.get('country', None)
+    new_city = request.json.get('city', None)
+    new_description = request.json.get('description')
+    new_image = request.json.get('image')
+
+    if not (new_email and new_username and new_password and new_country and new_city):
+        return jsonify({'error': 'Missing brewerie'}), 400
+
+    brewerie_created = brewerie(
+        email=new_email, 
+        username=new_username, 
+        country=new_country, 
+        city=new_city, 
+        description=new_description, 
+        image=new_image, 
+        _password=generate_password_hash(new_password, method='pbkdf2:sha256', 
+        salt_length=16))
+    
+
+    try:
+        brewerie_created.create()
+    except exc.IntegrityError:
+        return jsonify({'error': 'Fail in creating user'}), 400
+
+    account = Brewerie.get_by_email(new_email)
+ 
+    if account:
+        token = create_access_token(identity=account.to_dict(), expires_delta=timedelta(minutes=100))
+        return({'token' : token}), 200

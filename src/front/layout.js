@@ -8,6 +8,7 @@ import AllBeers from "./pages/allBeers.jsx";
 import Cerveteca from "./pages/cerveteca.jsx";
 import BeerDetail from "./pages/beerDetail.jsx";
 
+
 const Layout = () => {
 	const basename = process.env.BASENAME || "";
 
@@ -18,7 +19,8 @@ const Layout = () => {
 					<Route path="/" element={<Home />} />
 					<Route path="/beer" element={<AllBeers />}/>
 					<Route path="/beer/:id" element={<BeerDetail />} />
-					<Route path="/cerveteca" element={<Cerveteca />} />
+
+
 				</Routes>
 			</BrowserRouter>
 		</div>

@@ -1,3 +1,4 @@
+
 // title ULTRA
 @import url('https://fonts.googleapis.com/css2?family=Ultra&display=swap');
 
@@ -31,39 +32,37 @@ body {
 
 .btn{ 
     background: #2D2D2D;
-    
     border: 1px solid white;
     border-radius: 0.2rem;
 
-}
-
-
-.btn {
-    transition-duration: 0.4s;
-  }
-  
-  .btn:hover {
-    background-color: #afad4c; /* Green */
+.btn:hover{ 
+    background: #E49B0F;   
     color: white;
-  }
+    text-decoration: none;
+}
 
 a {
   color: white;
   text-decoration: none;
   }
 
-.navbar {
-    background-image: url("https://drive.google.com/file/d/15HtLhAkORvt6l2g4J9YTtGLHgHpptXWF/view?usp=sharing");
-    // background: #2C363A;
-    
-    // position: relative;
-    // display: flex;
-    // flex-wrap: wrap;
-    // align-items: center;
-    // justify-content: space-around;
-    // padding-top: 0.5rem;
-    // border-bottom: 2px solid #ffff006b;
 }
+
+  
+.btn:hover {
+    background-color: #afad4c; /* Green */
+    color: white;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a, a:visited, a:hover, a:active {
+    color: white;
+  }
+
 
 .loginContainer {
     display:flex;
@@ -78,15 +77,12 @@ a {
     background-color: #E49B0F;
     border: 1px solid white;
     box-shadow: inset 0px 2px 9px rgba(0, 0, 0, 0.25);
-    
 }
 
-// .btn_submit:hover {
-//     background-color: #b38807;
-//     color: white;
-
-// }
-
+.btn_submit:hover {
+    background-color: #7a731a;
+    color: white;
+}
 
 
 .alertDiv {
@@ -98,3 +94,37 @@ a {
     display:flex;
     justify-content: space-between;
 }
+
+
+.alertDiv {
+    background-color: #ffc107;
+    color: #41464b;
+    display:flex;
+    justify-content: center;
+    font-size: 0.85rem;
+}
+
+
+.nearLog {
+    margin-left: 16rem;
+    margin-top: 1rem;
+    }
+    
+
+// CUANDO SE PASA DE 768
+// DESAPARECE EL BOTON VOLVER
+// APARECEN LAS LETRAS
+
+@media (min-width: 425px) {
+    .nearLog{
+        display:none;
+    }
+}
+
+
+@media (max-width: 425px) {
+    .nearLog{
+        display:flex;
+    }
+}
+
