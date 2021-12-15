@@ -8,7 +8,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			login: [],
 			baseUrl: `${PROTOCOL}://${PORT}-${HOST}`,
 			// baseUrl: "https://3001-peach-piranha-m7oodx19.ws-eu23.gitpod.io/api/",
-			favourites: [],
+			favouriteBeer: [],
 			beers: [],
 
 			beersDetail: [],
@@ -111,7 +111,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}				
 			},
 			addFavourite: name => {
-				setStore({ favourites: [...getStore().favourites, name] });
+				setStore({ favouriteBeer: [...getStore().favouriteBeer, name] });
 			},	
 			getBeerDetail: async id => {
 				try {

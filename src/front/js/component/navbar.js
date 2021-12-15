@@ -4,10 +4,10 @@ import logoSmall from "../../img/logoSmall.png";
 import "../../styles/navbar.scss";
 import MenuListComposition from "../component/menuListComposition.jsx";
 import SearchBar from "./searchBar.jsx";
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
 	
-
 	return (
 		<Fragment>
 			<nav className="navbar">
@@ -43,7 +43,10 @@ export const Navbar = () => {
 
 					<div className="HeartIconText">
 						<i className="far fa-heart"></i>
-						<p className="infoIcon">Favoritos</p>
+							<Link to = "/favourite">
+								<p className="infoIcon">
+								Favoritos</p>
+							</Link>			
 					</div>
 
 				</div> 

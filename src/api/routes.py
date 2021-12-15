@@ -117,7 +117,7 @@ def beerDetail(id):
 #  BUSCAR UNA CERVEZA
 @api.route('/beer/<int:id>', methods={"GET"})
 def get_one_product(id):
-    one_beer = Beer.get_by_id_beer(id)
+    one_beer = Beer.get_by_id(id)
 
     if one_beer:
         return jsonify(one_beer.to_dict()), 200
@@ -134,7 +134,7 @@ def add_favbeer(id_customer, id_beer):
 
     if token_id.get("id") == id_customer:
         customer = Customer.get_by_id_customer(id_customer)
-        beer = Beer.get_by_id_beer(id_beer)   
+        beer = Beer.get_by_id(id_beer)   
         print("este es la cerbeza buscada", beer)
         print("este es el consumidor", customer)  
         
