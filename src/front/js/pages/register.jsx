@@ -7,15 +7,20 @@ import logoBig from "../../img/logoBig.png";
 import { Navbar } from "../component/navbar";
 import Form from 'react-bootstrap/Form'
 import "../../styles/register.scss";
-
+import { useNavigate } from 'react-router-dom';
 
 export const Register = () => {
 	const [next, setNext] = useState(false);
 	const [registerForm, setRegisterForm] = useState([]);
 	const { handleSubmit, register, getValues, formState: { errors }} = useForm();
 	const { store, actions } = useContext(Context);
-	let location = useLocation();
-	console.log(window.location, "@@@@@@")  
+	// let location = useLocation();
+	let navigate = useNavigate();
+
+
+	// console.log(window.location, "@@@@@@")  
+	console.log(window.navigate, "@@@@@@")  
+
 	useEffect(() => {
 		setRegisterForm(
 			<Fragment>
@@ -215,9 +220,10 @@ export const Register = () => {
 				e.preventDefault();
 			handleSubmit((dataRegister) => {				
 				if (actions.register(dataRegister)) {
-				window.location.pathname = "/";
+				// window.location.pathname = "/";
+				window.navigate.pathname = "/"
 				}
-				// else AÑADIR faEraser;
+				// else AÑADIR FRASE;
 
 			})}}
 		>
@@ -228,17 +234,3 @@ export const Register = () => {
  
  export default Register;
 
-
-
-							// tirar 
-								{/* <input
-								placeholder="CIF"
-								{...register("cif", {required: true, maxLength: 20})}
-								/> */}
-
-							{/* OPCION ORIGINAL */}
-							// <input type ="submit" />
-							{/* OPCION 2 */}
-							// <label htmlFor="submitRegister">Crear Cuenta</label>
-							// <input type ="submit" className="btn btn-primary form-control btn_submit mt-5" placeholder="Crear cuenta" />
-							//  */}

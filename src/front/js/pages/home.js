@@ -11,19 +11,6 @@ export const Home = () => {
 
 	return (	
 		<Fragment>	
-			{/* <Dropdown>
-				<Dropdown.Toggle className="dropdown" variant="danger" id="dropdown-basic">
-					<i className="fab fa-jedi-order" />
-					FAVORITOS
-				</Dropdown.Toggle>
-				<Dropdown.Menu>
-					{store.favourites.map((favourites, index) => (
-						<Dropdown.Item key={index.toString()} href="#/action-1">
-							{favourites.name}
-						</Dropdown.Item>
-					))}
-				</Dropdown.Menu> 
-			</Dropdown> 		 */}
 				<div className="container_navbar_home">
 					<Navbar/>
 									

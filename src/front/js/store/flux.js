@@ -99,13 +99,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}),
 						
 					});
-					
-					if (response) {
+				if(response.ok) {
 						let allBeer = await response.json();
 						setStore({beers: [...getStore().beers, ...allBeer]});
+						console.log("RESPUESTA", getStore().beers)
 						localStorage.setItem("beers", JSON.stringify(getStore().beers));
-					}
-					throw new Error("Fail downloading beers.")
+						// getActions().getBeer()
+					}else{throw new Error("Fail downloading beers.")}
 				} catch (error) {
 					console.log(error)
 				}				
