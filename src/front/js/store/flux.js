@@ -33,8 +33,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 							console.log("respuesta json", responseAsJson);
 							localStorage.setItem("token", responseAsJson.token);
 							console.log("me he registrado")
+							return true;
 						})
-						.catch(error => console.error("There as been an unknown error", error));
+						.catch(error => {
+							console.error("There as been an unknown error", error);
+							return false;
+						});
+
 				},
 
 

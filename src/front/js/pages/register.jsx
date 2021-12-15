@@ -1,26 +1,21 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
-import { useForm, Controller } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { Link, useLocation } from "react-router-dom";
+// import { Link, useHistory } from "react-router-dom";
 import logoBig from "../../img/logoBig.png";
 import { Navbar } from "../component/navbar";
 import Form from 'react-bootstrap/Form'
 import "../../styles/register.scss";
 
 
-
-
-
- export const Register = () => {
-	
+export const Register = () => {
 	const [next, setNext] = useState(false);
 	const [registerForm, setRegisterForm] = useState([]);
 	const { handleSubmit, register, getValues, formState: { errors }} = useForm();
 	const { store, actions } = useContext(Context);
-
-
-	const onSubmit = dataRegister => actions.register(dataRegister)
-
+	let location = useLocation();
+	console.log(window.location, "@@@@@@")  
 	useEffect(() => {
 		setRegisterForm(
 			<Fragment>
@@ -216,9 +211,15 @@ import "../../styles/register.scss";
 	}, [next]);
 	return (
 		<form
-			onSubmit={handleSubmit((dataRegister) => {
-				actions.register(dataRegister);
-			})}
+			onSubmit={(e) => {
+				e.preventDefault();
+			handleSubmit((dataRegister) => {				
+				if (actions.register(dataRegister)) {
+				window.location.pathname = "/";
+				}
+				// else AÑADIR faEraser;
+
+			})}}
 		>
 			{registerForm}
 		</form>
