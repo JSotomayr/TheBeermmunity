@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { Navbar } from "../component/navbar";
 import { Fragment } from "react";
 import SearchBar from "../component/searchBar.jsx";
-import UseAutocomplete from "../component/useAutocomplete.jsx";
 
 
 export const Home = () => {
@@ -20,7 +19,6 @@ export const Home = () => {
 					<div className="container">
 						<div className="searchbar_container">
 							<SearchBar />
-							<UseAutocomplete />
 						</div>
 						<div className="container_btn">
 							<div className="btn mt-5">

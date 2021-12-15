@@ -40,7 +40,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
-const options = ['Cervezas', 'Cervecerías'];
+const options = ['Cervezas', 'Cervecerías', 'Favoritos'];
 
 export default function SearchBar() {
   const [value, setValue] = React.useState(options[0]);
@@ -62,6 +62,7 @@ export default function SearchBar() {
               onInputChange={(event, newInputValue) => {
                 setInputValue(newInputValue);
               }}
+              // color="default"
               id="controllable-states-demo"
               disableCloseOnSelect
               options={options}
