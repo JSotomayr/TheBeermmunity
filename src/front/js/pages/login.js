@@ -39,9 +39,9 @@ export const Login = () => {
 						volver
 					</Link>
 				</div>
-				<p>
+				<Link to="/">
 					<img src={logoBig} />
-				</p>
+				</Link>
 				<div className="title">Iniciar sesión</div>
 				<div className="login-form">
 					<form
@@ -158,7 +158,6 @@ export const Login = () => {
 
 		</Fragment>
 	);
-
 };
 
 

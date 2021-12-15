@@ -58,8 +58,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						throw new Error("Fail login User")
 					} catch (error) {
 						console.log("Fail login User", error)
-					}
-				},	
+				}	
+			},	
 
 			getBeer: async data => {
 				try {
