@@ -27,18 +27,19 @@ api = Blueprint('api', __name__)
 # CREAR CUSTOMER
 @api.route('/customer', methods=['POST'])
 def create_customer():
-    print(request.json)
     is_active = True
-    new_email = request.json.get('Email', None, )
+    new_email = request.json.get('email', None)
     new_username = request.json.get('username', None)
     new_password = request.json.get('password', None)
-    new_country = request.json.get('Adress', None)
+    new_country = request.json.get('country', None)
     new_city = request.json.get('city', None)
     new_description = request.json.get('description')
     new_image = request.json.get('image')
+    user_type= request.json.get("userType")
+    
 
     if not (new_email and new_username and new_password and new_country and new_city):
-        return jsonify({'error': 'Missing customer'}), 409
+        return jsonify({'error': 'Missing paramethers'}), 409
 
     customer_created = Customer(
         email=new_email, 
@@ -46,19 +47,57 @@ def create_customer():
         country=new_country, 
         city=new_city, 
         _password=generate_password_hash(new_password, method='pbkdf2:sha256', 
-        salt_length=16))
-    print(customer_created)
+        salt_length=16),
+        _is_active=True,
+        _is_brewerie= True if user_type == "business" else False,
+        _is_admin=False
+    )
+        
 
     try:
         customer_created.create()
+
+        if customer_created._is_brewerie:
+            new_address = request.json.get("address", None)
+            new_company_name = request.json.get("company_name", None)
+
+            if (new_address and new_company_name):
+                brewerie_created = Brewerie(
+                    company_name = new_company_name,  
+                    address = new_address,
+                    id_customer = customer_created.id 
+                )
+
+                try:
+                    brewerie_created.create()
+                except exc.IntegrityError:
+                    return jsonify({'error': 'Fail in creating brewerie'}), 400
+            
+            else:
+                return jsonify({'error': 'Missing information: new_address and new company_name'}), 400    
+        else:
+            new_name = request.json.get("name", None)
+            new_lastname = request.json.get("lastname", None)
+
+            if (new_name and new_lastname):
+                brewer_created = Brewer(
+                    name =  new_name,
+                    lastname = new_lastname,
+                    id_customer = customer_created.id    
+                )
+
+                try:
+                    brewer_created.create()
+                except exc.IntegrityError:
+                    return jsonify({'error': 'Fail in creating brewer/user'}), 400
+    
     except exc.IntegrityError:
         return jsonify({'error': 'Fail in creating user'}), 400
+  
 
-    account = Customer.get_by_email(new_email)
- 
-    if account:
-        token = create_access_token(identity=account.to_dict(), expires_delta=timedelta(minutes=100))
-        return({'token' : token}), 200
+    token = create_access_token(identity=customer_created.to_dict(), expires_delta=timedelta(minutes=100))
+    return({'token' : token}), 200
+
 
 # LOGUEAR CUSTOMER
 @api.route('/login', methods=["POST"])

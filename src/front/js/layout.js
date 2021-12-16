@@ -8,6 +8,7 @@ import {
 import injectContext from "./store/appContext";
 import { Home } from "./pages/home";
 import { Login } from "./pages/login";
+import { Register } from "./pages/register.jsx";
 import { Navbar } from "./component/navbar";
 
 import AllBeers from "./pages/allBeers.jsx";
@@ -29,9 +30,11 @@ const Layout = () => {
                     <Route path="/" element={<Home />} />
                     <Route path="/beer" element={<AllBeers />}/>
                     <Route path="/customer/:id/cerveteca" element={<Cerveteca />} />
+                    {/* <Route path="/customer/:id/wishlist" element={<Wishlist />} /> */}
                     <Route path="/beer/:id" element={<BeerDetail />} />
                     <Route path="/navbar" element={<Navbar />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
                 </Routes>
             </BrowserRouter>
         </div>
