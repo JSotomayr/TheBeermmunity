@@ -1,20 +1,20 @@
-import React, { useContext } from "react"
-import { Context } from "../store/appContext";
+// import React, { useContext, useState } from "react"
+// import { Context } from "../store/appContext";
+
+// export const Favourite = () => {
+//     const {store, actions} = useContext(context);
+//     const [favouriteBeer, setFavouriteBeer] = useState([]);
 
 
-
-
-export const Favourite = () => {
-    const {store, actions} = useContext(context);
-    return (
-    <div>
-        <p>CERVEZAS FAVORITAS</p>
-        <div>
-            <p>LISTA DE CERVEZAS</p>
-            {/* {store.favourite.map((favourite, index) => (
-            key={index.toString()}>{favourite.name}
-                            ))}  */}
-        </div>
-    </div>
-    );
-}
+// 			setFavouriteBeer(
+// 				store.favourite.map((favourite, index) => {
+// 					return (
+// 						<CardDetails
+// 							key={index.toString()}
+// 							element={element}
+// 						/>
+// 					);
+// 				})
+// 			);
+// 		};		
+// 	);

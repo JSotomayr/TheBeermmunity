@@ -52,7 +52,8 @@ class Customer(db.Model):
         return f'User has {self.id}, {self.username} with {self.email} {self.country} {self.city}'
 
     def to_dict(self):
-        user = has_brewerie if self._is_brewerie else has_brewer
+        
+        user = self.has_brewerie if self._is_brewerie else self.has_brewer
         return {
             "id": self.id,
             "email": self.email,
@@ -61,7 +62,8 @@ class Customer(db.Model):
             "city": self.city,
             "description": self.description,
             "image": self.image,
-            "user": user
+            "user_type": self._is_brewerie,
+            "user_detail": user[0].to_dict()
         }
             # do not serialize the password, its a security breach
 
@@ -151,7 +153,7 @@ class Brewer(db.Model):
     go_to_event = db.relationship("Event", secondary=brewer_go_to_event, back_populates="go_to_event_brewer")
 
     def __repr__(self):
-        return f"Brewer with id {self.id}, named {self.name} {self.lastname} in {self.city}, {self.country}."
+        return f"Brewer with id {self.id}, named {self.name} {self.lastname}"
 
 
     def to_dict(self):
@@ -174,17 +176,14 @@ class Brewerie(db.Model):
     
 
     def __repr__(self):
-        return f"Breweries with id {self.id}, named {self.company_name} in {self.address} in {self.city}, {self.country}."
+        return f"Breweries with id {self.id}, named {self.company_name} in {self.address}."
 
 
     def to_dict(self):
         return {
             "id": self.id,
             "company_name": self.company_name,
-            "address": self.address,
-            "country": self.country,
-            "description": self.description,
-            "image": self.image
+            "address": self.address
         }
 
 

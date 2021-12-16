@@ -13,10 +13,9 @@ const FavouriteButton = (props) => {
 			variant="danger"
 			onClick={() => {
 				actions.addFavourite(props)}
-			}}>
-				{props.name}
+			}>
 		</Button>
-    )
+    );
 };
 
 FavouriteButton.propTypes = {

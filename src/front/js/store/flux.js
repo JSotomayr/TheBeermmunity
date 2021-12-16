@@ -110,9 +110,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error)
 				}				
 			},
-			addFavourite: name => {
-				setStore({ favouriteBeer: [...getStore().favouriteBeer, name] });
-			},	
+	
 			getBeerDetail: async id => {
 				try {
 					let response = await fetch(getStore().baseUrl.concat("/api/beer/").concat(id), {
@@ -135,6 +133,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.log(error)
 				}
+			},
+
+			addFavourite: element => {
+				setStore({ favouriteBeer: [...getStore().favouriteBeer, element] });
 			},
 
 			addTastedBeer: beer => {
