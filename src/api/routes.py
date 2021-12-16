@@ -29,13 +29,15 @@ api = Blueprint('api', __name__)
 def create_customer():
     print(request.json)
     is_active = True
-    new_email = request.json.get('Email', None, )
+    new_email = request.json.get('email', None)
     new_username = request.json.get('username', None)
     new_password = request.json.get('password', None)
-    new_country = request.json.get('Adress', None)
+    new_country = request.json.get('country', None)
     new_city = request.json.get('city', None)
     new_description = request.json.get('description')
     new_image = request.json.get('image')
+    is_business= request.json.get("business")
+    
 
     if not (new_email and new_username and new_password and new_country and new_city):
         return jsonify({'error': 'Missing customer'}), 409
@@ -50,15 +52,60 @@ def create_customer():
     print(customer_created)
 
     try:
+        print("@")
         customer_created.create()
+        print("@1")
+        if is_business:
+            new_address = request.json.get("address", None)
+            new_company_name = request.json.get("company_name", None)
+            print("@2")
+            if (new_address and new_company_name):
+                brewerie_created = Brewerie(
+                    company_name = new_company_name,  
+                    address = new_address,
+                    id_customer = customer_created.id 
+                )
+                print("@3")
+                try:
+                    brewerie_created.create()
+                except exc.IntegrityError:
+                    return jsonify({'error': 'Fail in creating brewerie'}), 400
+            
+            else:
+                return jsonify({'error': 'Missing information: new_address and new company_name'}), 400    
+        else:
+            new_name = request.json.get("name", None)
+            new_lastname = request.json.get("lastname", None)
+            print("@4")
+            if (new_name and new_lastname):
+                print("@5")
+                brewer_created = Brewer(
+                    name =  new_name,
+                    lastname = new_lastname,
+                    id_customer = customer_created.id    
+                )
+                print("@6")
+                try:
+                    print("@7")
+                    brewer_created.create()
+                    print("@8")
+                except exc.IntegrityError:
+                    return jsonify({'error': 'Fail in creating brewer/user'}), 400
+    
     except exc.IntegrityError:
         return jsonify({'error': 'Fail in creating user'}), 400
-
+    print("@9")
     account = Customer.get_by_email(new_email)
- 
+    print("@10")
+
     if account:
+        print("@11")
         token = create_access_token(identity=account.to_dict(), expires_delta=timedelta(minutes=100))
+        print("@12")
         return({'token' : token}), 200
+
+
+
 
 # LOGUEAR CUSTOMER
 @api.route('/login', methods=["POST"])
