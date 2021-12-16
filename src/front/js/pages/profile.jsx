@@ -29,6 +29,7 @@ const Profile = () => {
                     <ProfileCard
                         key={index.toString()}
                         element={info}
+                        subelement={info.user_detail}
                     />
                 );
             })

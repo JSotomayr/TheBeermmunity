@@ -23,6 +23,27 @@ app = Flask(__name__)
 
 api = Blueprint('api', __name__)
 
+
+@api.route('/login', methods=["POST"])
+def login():
+    email = request.json.get('email', None)
+    username = request.json.get('username', None)
+    password = request.json.get('password', None)
+
+    print("EMAIL", email)
+    if not (email and username and password):
+        return({'error':'Missing info'}), 400
+
+    customer = Customer.get_by_email(email)
+
+    if customer and check_password_hash(customer._password, password) and customer._is_active:
+        token = create_access_token(identity=customer.to_dict(), expires_delta=timedelta(minutes=100))
+        return({'token' : token}) , 200
+
+    else:
+        return({'error':'Some parameter is wrong'}), 400
+        
+
 @api.route('/customer', methods=['POST'])
 def create_customer():
 
@@ -61,11 +82,11 @@ def create_customer():
 
         
 @api.route('/customer/<int:id>', methods = ['GET'])
+@jwt_required
 def get_customer(id):
-    one_customer = Customer.get_by_id_customer(id)
+    token_id = get_jwt_identity
 
-    if one_customer:
-        
+    if token_id.get("id") == id:
         return jsonify(one_customer.to_dict()), 200
 
     return jsonify({'msg' : 'Customer not foud'}), 404
@@ -84,6 +105,7 @@ def getAllBeers():
 
 @api.route('/beer/<int:id>', methods=['GET'])
 def beerDetail(id):
+
     beer = Beer.get_by_id(id)
 
     if beer:
