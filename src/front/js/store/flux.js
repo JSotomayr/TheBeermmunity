@@ -1,3 +1,5 @@
+import jwt_decode from "jwt-decode";
+
 const PORT = 3001;
 const [PROTOCOL, HOST] = process.env.GITPOD_WORKSPACE_URL.split("://");
 
@@ -6,6 +8,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			register: [],
 			login: [],
+			currentUsers: {},
 			baseUrl: `${PROTOCOL}://${PORT}-${HOST}`,
 			// baseUrl: "https://3001-peach-piranha-m7oodx19.ws-eu23.gitpod.io/api/",
 			favourites: [],
@@ -58,35 +61,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 							return resp.json();
 						})
 						.then(responseAsJson => {
-							console.log("respuesta json", responseAsJson);
+							
+							let token = jwt_decode(responseAsJson.token)
+							setStore({currentUsers: token.sub});
+							console.log("token descodificado", token)
 							localStorage.setItem("token", responseAsJson.token);
 							console.log("me he logueado")
 						})
 						.catch(error => console.error("There as been an unknown error", error));
 				},
-
-				// login: async dataLogin => {
-				// 	try {
-				// 		let response = await fetch(getStore().baseUrl.concat("api/loginUser"), {
-				// 			method: "POST",
-				// 			headers: new Headers({
-				// 				'Content-Type': 'text/plain'
-				// 			}),
-				// 			body: JSON.stringify(dataLogin)
-				// 		});
-				// 		console.log("RESPUESTA", response);
-
-				// 		if (response.ok) {
-				// 			let newUser = await response.json();
-				// 			setStore({currentUsers: [...getStore().user, ...responseAsJson.results]});
-	
-				// 			// getActions().getBeer()
-				// 		}
-				// 		throw new Error("Fail login User")
-				// 	} catch (error) {
-				// 		console.log("Fail login User", error)
-				// 	}
-				// },	
 
 			getBeer: async data => {
 				try {

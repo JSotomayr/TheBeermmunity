@@ -15,12 +15,14 @@ export const Register = () => {
 	const { handleSubmit, register, getValues, formState: { errors }} = useForm();
 	const { store, actions } = useContext(Context);
 	// let location = useLocation();
-	let navigate = useNavigate();
+	// let navigate = useNavigate();
 
 
 	// console.log(window.location, "@@@@@@")  
-	console.log(window.navigate, "@@@@@@")  
+	// console.log(window.navigate, "@@@@@@")  
 
+
+								// REGISTRO USER Y BUSINESS COMUN
 	useEffect(() => {
 		setRegisterForm(
 			<Fragment>
@@ -55,16 +57,16 @@ export const Register = () => {
 							</div> */}
 						<label htmlFor="Email"></label>
 						<input 
-							id ="Email"
+							id ="email"
 							placeholder="Email"
 							className="form-control"
-							aria-invalid={errors.Email ? "true" : "false"}
-							{...register("Email", { required: true, maxLength: 30, pattern: {value: /\S+@\S+\.\S+/ }})}
+							aria-invalid={errors.email ? "true" : "false"}
+							{...register("email", { required: true, maxLength: 30, pattern: {value: /\S+@\S+\.\S+/ }})}
 						/>
 							{/* <div className="alertDiv">
-									{errors.Email && errors.Email.type === "required" && <span role="alert">El campo correo es obligatorio</span>}
-									{errors.Email && errors.Email.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
-									{errors.Email && errors.Email.type === "pattern" && <span role="alert">Correo inválido</span>}
+									{errors.email && errors.email.type === "required" && <span role="alert">El campo correo es obligatorio</span>}
+									{errors.email && errors.email.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
+									{errors.email && errors.email.type === "pattern" && <span role="alert">Correo inválido</span>}
 							</div> */}
 						<label htmlFor="password"></label>
  						 <input 
@@ -115,18 +117,95 @@ export const Register = () => {
 		);
 	}, []);
 
+	// HAY QUE ENVIAR AL BACK SI ES USER O BUSINESS
 	useEffect(() => {
 		if (getValues("userType") =="user") {
 			setRegisterForm(
 				<Fragment>
 
-					<input
-					placeholder="CIF"
-					{...register("cif", {required: true, maxLength: 20})}
-					/>
-					<input type ="submit" />
+							{/* REGISTRO USER */}
+					<div className="loginContainer">
+						<div className="btn nearLog">
+							<Link to="/">
+								volver
+							</Link>
+						</div>
+						<p>
+							<img src={logoBig} />
+						</p>
+						<div className="step">
+							<div className="step_left">1</div>
+							<div className="step_line"></div>
+							<div className="step_right_completed">2</div>
+						</div>
+						<div className="title">Crear cuenta</div>
+						
+							<div className="register-form">
+
+								<label htmlFor="name register_input">Nombre</label>
+									<input 
+										id ="name"
+										placeholder="Nombre"
+										className="form-control"
+										aria-invalid={errors.name ? "true" : "false"}
+										{...register("name", { required: true, maxLength: 15})}
+									/>
+								
+									<div className="alertDiv">
+										{errors.name && errors.name.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
+										{errors.name && errors.name.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
+									</div>
+								
+									<label htmlFor="name register_input">Apellidos</label>
+									<input 
+										id ="lastname"
+										placeholder="Apellidos"
+										className="form-control"
+										aria-invalid={errors.lastname ? "true" : "false"}
+										{...register("lastname", { required: true, maxLength: 15})}
+									/>
+								
+									<div className="alertDiv">
+										{errors.lastname && errors.lastname.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
+										{errors.lastname && errors.lastname.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
+									</div>
+						
+									<label htmlFor="name register_input">Ciudad</label>
+									<input 
+										id ="city"
+										placeholder="Ciudad"
+										className="form-control"
+										aria-invalid={errors.country ? "true" : "false"}
+										{...register("city", { required: true, maxLength: 15})}
+									/>
+								
+									<div className="alertDiv">
+										{errors.city && errors.city.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
+										{errors.city && errors.city.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
+									</div>
+
+									<label htmlFor="name register_input">País</label>
+									<input 
+										id ="country"
+										placeholder="País"
+										className="form-control"
+										aria-invalid={errors.country ? "true" : "false"}
+										{...register("country", { required: true, maxLength: 15})}
+									/>
+								
+									<div className="alertDiv">
+										{errors.country && errors.country.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
+										{errors.country && errors.country.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
+									</div>
+					
+							<button type="submit" className="btn btn-primary form-control btn_submit mt-5">Acceder</button> 
+							{errors.submit && errors.submit.type === "required" && <span role="alertSubmitLog">!ERROR! Se ha producido un error en su intento de Inicio de sesión. Asegúrese de que el correo, el nombre de usuario y la contraseña son correctos</span>}
+						</div>
+					</div>
 				</Fragment>
 			);
+
+								// REGISTRO BUSINESS
 		} else if (getValues("userType") == "business") {
 			setRegisterForm(
 				<Fragment>
@@ -214,23 +293,31 @@ export const Register = () => {
 			);	
 		}				
 	}, [next]);
+	
 	return (
-		<form
-			onSubmit={(e) => {
-				e.preventDefault();
-			handleSubmit((dataRegister) => {				
-				if (actions.register(dataRegister)) {
-				// window.location.pathname = "/";
-				window.navigate.pathname = "/"
-				}
-				// else AÑADIR FRASE;
+		// <form
+		// 	onSubmit={(e) => {
+		// 		console.log("DATOS FORMULARIO", dataRegister)
+		// 		e.preventDefault();
+		// 	handleSubmit((dataRegister) => {				
+		// 		if (actions.register(dataRegister)) {
+		// 		// window.location.pathname = "/";
+		// 		window.navigate.pathname = "/"
+		// 		}
+		// 		// else AÑADIR FRASE;
 
-			})}}
+		// 	})}}
+		// >
+
+		<form 
+			onSubmit = {handleSubmit((dataRegister) => {
+				actions.register(dataRegister);
+			})}
 		>
 			{registerForm}
 		</form>
-		);
-	};
- 
- export default Register;
+	);
+}
+
+export default Register;
 
