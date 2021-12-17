@@ -106,12 +106,10 @@ class Customer(db.Model):
         self.is_active = False
         db.session.commit()
 
-
     @classmethod
     def get_by_id(cls, id):
         customer_id = cls.query.get(id)
         return customer_id
-
 
     def add_fav_beer(self,beer):
         self.have_fav_beer.append(beer)
@@ -135,7 +133,7 @@ class Brewer(db.Model):
     go_to_event = db.relationship("Event", secondary=brewer_go_to_event, back_populates="go_to_event_brewer")
 
     def __repr__(self):
-        return f"Brewer with id {self.id}, name {self.name} {self.lastname}, and account {self.id_customer}."
+        return f"Brewer with id {self.id}, name {self.name} {self.lastname}."
 
 
     def to_dict(self):
@@ -145,6 +143,15 @@ class Brewer(db.Model):
             "lastname" : self.lastname,
             "favourite_beer" : list(map(lambda x:x.to_dict(), self.have_fav_beer))
         }
+
+    def create(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_by_id_brewer(cls, id):
+        brewer_id = cls.query.get(id)
+        return brewer_id
 
 
     def create(self):

@@ -19,6 +19,8 @@ export const Register = () => {
 		actions.register(dataRegister);
 	}
 
+
+								// REGISTRO USER Y BUSINESS COMUN
 	useEffect(() => {
 		setRegisterForm(
 			<div className="login-form">
@@ -88,6 +90,7 @@ export const Register = () => {
 		);
 	}, []);
 
+	// HAY QUE ENVIAR AL BACK SI ES USER O BUSINESS
 	useEffect(() => {
 		if (getValues("userType") =="user") {
 			setRegisterForm(
@@ -131,6 +134,8 @@ export const Register = () => {
 					<input type="submit" className="btn btn-primary form-control btn_submit mt-5" value="Acceder" />
 				</div>
 			);
+
+								// REGISTRO BUSINESS
 		} else if (getValues("userType") == "business") {
 			setRegisterForm(
 				<div className="register-form">

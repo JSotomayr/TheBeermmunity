@@ -54,6 +54,7 @@ def create_customer():
         
 
     try:
+        print("@")
         customer_created.create()
 
         if customer_created._is_brewerie:
@@ -66,7 +67,6 @@ def create_customer():
                     address = new_address,
                     id_customer = customer_created.id 
                 )
-
                 try:
                     brewerie_created.create()
                 except exc.IntegrityError:
@@ -93,9 +93,11 @@ def create_customer():
     except exc.IntegrityError:
         return jsonify({'error': 'Fail in creating user'}), 400
   
-
     token = create_access_token(identity=customer_created.to_dict(), expires_delta=timedelta(minutes=100))
     return({'token' : token}), 200
+
+
+
 
 
 # LOGUEAR CUSTOMER
