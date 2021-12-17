@@ -175,9 +175,9 @@ export const Register = () => {
 		}				
 	}, [next]);
 	
-	useEffect(() => {
-		navigate(`/profile/${currentUser.id}`);
-	}, [store.currentUser])
+	// useEffect(() => {
+	// 	navigate(`/profile/${currentUser.id}`);
+	// }, [store.currentUser])
 
 
 	return (

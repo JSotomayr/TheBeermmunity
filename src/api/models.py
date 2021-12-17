@@ -108,7 +108,7 @@ class Customer(db.Model):
 
 
     @classmethod
-    def get_by_id_customer(cls, id):
+    def get_by_id(cls, id):
         customer_id = cls.query.get(id)
         return customer_id
 
@@ -152,7 +152,7 @@ class Brewer(db.Model):
 
 
     @classmethod
-    def get_by_id_brewer(cls, id):
+    def get_by_id(cls, id):
         brewer_id = cls.query.get(id)
         return brewer_id
 

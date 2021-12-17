@@ -153,7 +153,7 @@ def beerDetail(id):
 
 @api.route('/brewer/<int:id>', methods = ['GET'])
 def get_brewer(id):
-    one_brewer = Brewer.get_by_id_brewer(id)
+    one_brewer = Brewer.get_by_id(id)
 
     if one_brewer:
         

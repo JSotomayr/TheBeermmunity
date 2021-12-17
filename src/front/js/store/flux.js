@@ -26,20 +26,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 					headers: { "Content-Type": "application/json", Accept:"application/json" },
 					body: JSON.stringify(dataRegister)
 				})
-					.then(resp => {
-						if (!resp.ok) {
-							throw Error("Invalid register info");
-						}
-						return resp.json();
-					})
-					.then(responseAsJson => {
-						let token = jwt_decode(responseAsJson.token)
-						setStore({currentUser: token.sub});
-						localStorage.setItem("token", responseAsJson.token);
-					})
-					.catch(error => {
-						console.error("There as been an unknown error", error);
-					});
+				.then(resp => {
+					if (!resp.ok) {
+						throw Error("Invalid register info");
+					}
+					return resp.json();
+				})
+				.then(responseAsJson => {
+					let token = jwt_decode(responseAsJson.token)
+					setStore({currentUser: token.sub});
+					localStorage.setItem("token", responseAsJson.token);
+				})
+				.catch(error => {
+					console.error("There as been an unknown error", error);
+				});
 
 			},
 
