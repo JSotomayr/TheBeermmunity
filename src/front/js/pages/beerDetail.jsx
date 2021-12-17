@@ -2,6 +2,8 @@ import React, { Fragment, useContext, useEffect, useState } from "react";
 import CardDetails from "../component/cardDetails.jsx";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router";
+import FavouriteButton from "../component/favouriteButton.jsx";
+
 
 
 const BeerDetail = () => {
@@ -30,7 +32,10 @@ const BeerDetail = () => {
 		[store.beersDetail]
 	);
 
-    return <>{detailBeer}</>
+    return <>
+		<FavouriteButton />
+		{detailBeer}
+	</>
 }
 
 export default BeerDetail;
