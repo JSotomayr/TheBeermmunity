@@ -126,20 +126,21 @@ def get_one_product(id):
 
     
 # AÑADIR FAVORITO A USUARIO
-@api.route('/customer/<int:id_customer>/favourite-beer/<int:id_beer>', methods=['POST'])
+@api.route('/brewer/<int:id_brewer>/favourite-beer/<int:id_beer>', methods=['POST'])
 @jwt_required()
-def add_favbeer(id_customer, id_beer):
-    token_id = get_jwt_identity()
+def add_favbeer(id_brewer, id_beer):
     
-
-    if token_id.get("id") == id_customer:
-        customer = Customer.get_by_id_customer(id_customer)
+    token_id = get_jwt_identity()
+    brewer = Brewer.get_by_id_brewer(id_brewer)
+ 
+    print("@", token_id.get("id"), brewer.id_customer )
+    if token_id.get("id") == brewer.id_customer:
         beer = Beer.get_by_id(id_beer)   
         print("este es la cerbeza buscada", beer)
-        print("este es el consumidor", customer)  
+        print("este es el consumidor", brewer)  
         
-        if customer and beer:
-            add_beer = customer.add_fav_beers(beers)
+        if brewer and beer:
+            add_beer = brewer.add_fav_beer(beer)
             fav_beer = [beer.to_dict() for beer in add_beer]
             print("este es el diccionario de la cerveza favorita", fav_beer)
             return jsonify(fav_beer),200

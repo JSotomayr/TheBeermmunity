@@ -120,10 +120,10 @@ class Customer(db.Model):
 
 
 
-    def add_fav_beer(self,beer):
-        self.have_fav_beer.append(beer)
-        db.session.commit()
-        return self.have_fav_beer
+    # def add_fav_beer(self,beer):
+    #     self.have_fav_beer.append(beer)
+    #     db.session.commit()
+    #     return self.have_fav_beer
 
 
 # opción 2
@@ -132,10 +132,7 @@ class Customer(db.Model):
     #     customer_id = cls.query.filter_by(id=id_customer).one_or_none()
     #     return customer_id
 
-    def add_fav_beer(self,beer):
-        self.have_allbeer.append(beer)
-        db.session.commit()
-        return self.have_allbeer
+
 
 class Brewer(db.Model):
     __tablename__: 'brewer'
@@ -161,7 +158,20 @@ class Brewer(db.Model):
             "id": self.id,
             "name": self.name,
             "lastname" : self.lastname,
+            "favourite_beer" : list(map(lambda x:x.to_dict(), self.have_fav_beer))
         }
+
+
+    @classmethod
+    def get_by_id_brewer(cls, id):
+        brewer = cls.query.get(id)
+        return brewer
+
+    
+    def add_fav_beer(self,beer):
+        self.have_fav_beer.append(beer)
+        db.session.commit()
+        return self.have_fav_beer
 
 
 class Brewerie(db.Model):
