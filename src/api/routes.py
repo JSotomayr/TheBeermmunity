@@ -24,7 +24,6 @@ app = Flask(__name__)
 api = Blueprint('api', __name__)
 
 
-# CREAR CUSTOMER
 @api.route('/customer', methods=['POST'])
 def create_customer():
     is_active = True
@@ -119,19 +118,18 @@ def login():
     else:
         return({'error':'Some parameter is wrong'}), 400
         
-
-# BUSCAR UN CUSTOMER
-@api.route('/customer/<int:id>', methods = ['GET'])
+ 
+@api.route('/customer/<int:id>', methods=['GET'])
+@jwt_required
 def get_customer(id):
-    one_customer = Customer.get_by_id_customer(id)
+    token_id = get_jwt_identity
 
-    if one_customer:
-        
+    if token_id.get("id") == id:
         return jsonify(one_customer.to_dict()), 200
 
     return jsonify({'msg' : 'Customer not foud'}), 404
 
-#  BUSCAR CERVEZAS
+
 @api.route('/beer', methods=['GET'])
 def getAllBeers():
     beers = Beer.get_all()
@@ -150,18 +148,30 @@ def beerDetail(id):
     if beer:
         return jsonify(beer.to_dict()), 200
 
-    return jsonify({'error': 'Beers not found'}), 404
+    return jsonify({'error': 'Beer not found'}), 404
 
 
-#  BUSCAR UNA CERVEZA
-@api.route('/beer/<int:id>', methods={"GET"})
-def get_one_product(id):
-    one_beer = Beer.get_by_id(id)
+@api.route('/brewer/<int:id>', methods = ['GET'])
+def get_brewer(id):
+    one_brewer = Brewer.get_by_id(id)
 
-    if one_beer:
-        return jsonify(one_beer.to_dict()), 200
-    
-    return({"error": "Beer not found"}), 404
+    if one_brewer:
+        
+        return jsonify(one_brewer.to_dict()), 200
+
+    return jsonify({'msg' : 'Brewer not foud'}), 404
+
+
+@api.route('/brewerie/<int:id>', methods = ['GET'])
+def get_brewerie(id):
+    one_brewerie = Brewerie.get_by_id(id)
+
+    if one_brewerie:
+        
+        return jsonify(one_brewerie.to_dict()), 200
+
+    return jsonify({'msg' : 'Brewerie not foud'}), 404
+
 
     
 # AÑADIR FAVORITO A USUARIO
@@ -184,12 +194,9 @@ def add_favbeer(id_brewer, id_beer):
             print("este es el diccionario de la cerveza favorita", fav_beer)
             return jsonify(fav_beer),200
         
-
     return jsonify({'error': 'Not favourites'}),404
 
 
-
-# CREAR CERVECERIA
 @api.route('/brewerie', methods=['POST'])
 def create_brewerie():
 

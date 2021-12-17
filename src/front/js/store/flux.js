@@ -7,38 +7,39 @@ const getState = ({ getStore, getActions, setStore }) => {
 	
 	return {
 		store: {
+
+			baseUrl: `${PROTOCOL}://${PORT}-${HOST}/api/`,
 			register: [],
 			login: [],
 			currentUser: {},
-			baseUrl: `${PROTOCOL}://${PORT}-${HOST}/api/`,
-			favourites: [],
+			profileInfo: [],
 			beers: [],
-
+			favourites: [],
 			beersDetail: [],
-			tastedBeer: []
-
+			tastedBeers: []
 		},
 		actions: {
+			
 			register: (dataRegister) => {
 				fetch(getStore().baseUrl.concat("customer"), {
 					method: "POST", 
 					headers: { "Content-Type": "application/json", Accept:"application/json" },
 					body: JSON.stringify(dataRegister)
 				})
-					.then(resp => {
-						if (!resp.ok) {
-							throw Error("Invalid register info");
-						}
-						return resp.json();
-					})
-					.then(responseAsJson => {
-						let token = jwt_decode(responseAsJson.token)
-						setStore({currentUser: token.sub});
-						localStorage.setItem("token", responseAsJson.token);
-					})
-					.catch(error => {
-						console.error("There as been an unknown error", error);
-					});
+				.then(resp => {
+					if (!resp.ok) {
+						throw Error("Invalid register info");
+					}
+					return resp.json();
+				})
+				.then(responseAsJson => {
+					let token = jwt_decode(responseAsJson.token)
+					setStore({currentUser: token.sub});
+					localStorage.setItem("token", responseAsJson.token);
+				})
+				.catch(error => {
+					console.error("There as been an unknown error", error);
+				});
 
 			},
 
@@ -69,7 +70,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getBeer: async data => {
 				try {
-					let response = await fetch(getStore().baseUrl.concat("/api/beer"), {
+					let response = await fetch(getStore().baseUrl.concat("beer"), {
 						method: "GET",
 						mode: "cors",
 						redirect: "follow",
@@ -78,21 +79,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}),
 						
 					});
-				if(response.ok) {
+					if(response.ok) {
 						let allBeer = await response.json();
 						setStore({beers: [...getStore().beers, ...allBeer]});
 						console.log("RESPUESTA", getStore().beers)
 						localStorage.setItem("beers", JSON.stringify(getStore().beers));
 						// getActions().getBeer()
 					}else{throw new Error("Fail downloading beers.")}
-				} catch (error) {
+
+				}catch (error) { 
 					console.log(error)
-				}				
+				}
 			},
-	
+
+			
 			getBeerDetail: async id => {
 				try {
-					let response = await fetch(getStore().baseUrl.concat("/api/beer/").concat(id), {
+					let response = await fetch(getStore().baseUrl.concat("beer/", id), {
 						method: "GET",
 						mode: "cors",
 						redirect: "follow",
@@ -114,6 +117,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			getProfileInfo: async id => {
+				try {
+					let response = await fetch(getStore().baseUrl.concat("customer/", id), {
+						method: "GET",
+						mode: "cors",
+						redirect: "follow",
+						headers: new Headers({
+							'Content-Type': 'text/plain'
+						}),
+						
+					});
+					
+					if (response) {
+						let userInfo = await response.json();
+						console.log("RESPUESTA", response)
+						setStore({profileInfo: [userInfo]});
+						localStorage.setItem("beers", JSON.stringify(getStore().profileInfo));
+					}else{throw new Error("Fail downloading user info.")}
+				} catch (error) {
+					console.log(error)
+				}
+			},
+			
 			addFavourite: element => {
 				setStore({ favouriteBeer: [...getStore().favouriteBeer, element] });
 			},

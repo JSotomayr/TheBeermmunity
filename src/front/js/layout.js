@@ -11,6 +11,8 @@ import { Login } from "./pages/login";
 import { Register } from "./pages/register.jsx";
 import { Favourite } from "./pages/favourite.jsx";
 import { Navbar } from "./component/navbar";
+
+import Profile from "./pages/profile.jsx"
 import AllBeers from "./pages/allBeers.jsx";
 import BeerDetail from "./pages/beerDetail.jsx";
 import Cerveteca from "./pages/cerveteca.jsx";
@@ -28,15 +30,14 @@ const Layout = () => {
             <BrowserRouter basename={basename}>
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/beer" element={<AllBeers />}/>
-                    <Route path="/customer/:id/cerveteca" element={<Cerveteca />} />
-                    {/* <Route path="/customer/:id/wishlist" element={<Wishlist />} /> */}
-                    <Route path="/beer/:id" element={<BeerDetail />} />
-                    <Route path="/navbar" element={<Navbar />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/favourite" element={<Favourite />} />
-
+					<Route path="/profile/:id" element={<Profile />} />
+					<Route path="/profile/:id/cerveteca" element={<Cerveteca />} />
+                    <Route path="/beer" element={<AllBeers />} />
+                    <Route path="/beer/:id" element={<BeerDetail />} />
+                    <Route path="/navbar" element={<Navbar />} />
                 </Routes>
             </BrowserRouter>
         </div>
