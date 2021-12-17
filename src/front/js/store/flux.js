@@ -117,6 +117,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			getProfileInfo: async id => {
+				try {
+					let response = await fetch(getStore().baseUrl.concat("customer/", id), {
+						method: "GET",
+						mode: "cors",
+						redirect: "follow",
+						headers: new Headers({
+							'Content-Type': 'text/plain'
+						}),
+						
+					});
+					
+					if (response) {
+						let userInfo = await response.json();
+						console.log("RESPUESTA", response)
+						setStore({profileInfo: [userInfo]});
+						localStorage.setItem("beers", JSON.stringify(getStore().profileInfo));
+					}else{throw new Error("Fail downloading user info.")}
+				} catch (error) {
+					console.log(error)
+				}
+			},
+
 			addFavourite: name => {
 				setStore({ favourites: [...getStore().favourites, name] });
 			},
