@@ -52,7 +52,6 @@ class Customer(db.Model):
         return f'User has {self.id}, {self.username} with {self.email} {self.country} {self.city}'
 
     def to_dict(self):
-        
         user = self.has_brewerie if self._is_brewerie else self.has_brewer
         return {
             "id": self.id,
@@ -63,10 +62,9 @@ class Customer(db.Model):
             "description": self.description,
             "image": self.image,
             "user_type": self._is_brewerie,
-            "user_detail": user[0].to_dict()
+            "user": list(map(lambda x: x.to_dict(), user)),
+            # "user_detail": user[0].to_dict()
         }
-            # do not serialize the password, its a security breach
-
 
     def create(self):
         db.session.add(self)
@@ -105,33 +103,17 @@ class Customer(db.Model):
         self.is_active = False
         db.session.commit()
 
-#   cervezas favoritas
-# opcion 1
     @classmethod
     def get_by_id_customer(cls, id):
         customer_id = cls.query.get(id)
         return customer_id
 
-# opción 2
-    # @classmethod
-    # def get_by_id_customer(cls,id_custumer):
-    #     customer_id = cls.query.filter_by(id=id_customer).one_or_none()
-    #     return customer_id
 
 
-
-    # def add_fav_beer(self,beer):
-    #     self.have_fav_beer.append(beer)
-    #     db.session.commit()
-    #     return self.have_fav_beer
-
-
-# opción 2
-    # @classmethod
-    # def get_by_id_customer(cls,id_custumer):
-    #     customer_id = cls.query.filter_by(id=id_customer).one_or_none()
-    #     return customer_id
-
+    def add_fav_beer(self,beer):
+        self.have_fav_beer.append(beer)
+        db.session.commit()
+        return self.have_fav_beer
 
 
 class Brewer(db.Model):
@@ -150,7 +132,7 @@ class Brewer(db.Model):
     go_to_event = db.relationship("Event", secondary=brewer_go_to_event, back_populates="go_to_event_brewer")
 
     def __repr__(self):
-        return f"Brewer with id {self.id}, named {self.name} {self.lastname}"
+        return f"Brewer with id {self.id}, name {self.name} {self.lastname}, and account {self.id_customer}."
 
 
     def to_dict(self):
@@ -160,6 +142,15 @@ class Brewer(db.Model):
             "lastname" : self.lastname,
             "favourite_beer" : list(map(lambda x:x.to_dict(), self.have_fav_beer))
         }
+
+    def create(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_by_id_brewer(cls, id):
+        brewer_id = cls.query.get(id)
+        return brewer_id
 
 
     @classmethod
@@ -186,7 +177,7 @@ class Brewerie(db.Model):
     
 
     def __repr__(self):
-        return f"Breweries with id {self.id}, named {self.company_name} in {self.address}."
+        return f"Breweries with id {self.id}, named {self.company_name} in {self.address}"
 
 
     def to_dict(self):

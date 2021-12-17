@@ -1,14 +1,17 @@
-const PORT = 3001;
-const [PROTOCOL, HOST] = process.env.GITPOD_WORKSPACE_URL.split("://");
+import jwt_decode from "jwt-decode";
+
 
 const getState = ({ getStore, getActions, setStore }) => {
+	const PORT = 3001;
+	const [PROTOCOL, HOST] = process.env.GITPOD_WORKSPACE_URL.split("://");
+	
 	return {
 		store: {
 			register: [],
 			login: [],
-			baseUrl: `${PROTOCOL}://${PORT}-${HOST}`,
-			// baseUrl: "https://3001-peach-piranha-m7oodx19.ws-eu23.gitpod.io/api/",
-			favouriteBeer: [],
+			currentUser: {},
+			baseUrl: `${PROTOCOL}://${PORT}-${HOST}/api/`,
+			favourites: [],
 			beers: [],
 
 			beersDetail: [],
@@ -16,32 +19,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 		},
 		actions: {
-				register: (dataRegister) => {
-					// fetch(getStore().baseURL.concat("customer"), {
-						fetch("https://3001-peach-piranha-m7oodx19.ws-eu23.gitpod.io/api/customer", {
-						method: "POST", 
-						headers: { "Content-Type": "application/json", Accept:"application/json" },
-						body: JSON.stringify(dataRegister)
+			register: (dataRegister) => {
+				fetch(getStore().baseUrl.concat("customer"), {
+					method: "POST", 
+					headers: { "Content-Type": "application/json", Accept:"application/json" },
+					body: JSON.stringify(dataRegister)
+				})
+					.then(resp => {
+						if (!resp.ok) {
+							throw Error("Invalid register info");
+						}
+						return resp.json();
 					})
-						.then(resp => {
-							if (!resp.ok) {
-								throw Error("Invalid register info");
-							}
-							return resp.json();
-						})
-						.then(responseAsJson => {
-							console.log("respuesta json", responseAsJson);
-							localStorage.setItem("token", responseAsJson.token);
-							console.log("me he registrado")
-							return true;
-						})
-						.catch(error => {
-							console.error("There as been an unknown error", error);
-							return false;
-						});
+					.then(responseAsJson => {
+						let token = jwt_decode(responseAsJson.token)
+						setStore({currentUser: token.sub});
+						localStorage.setItem("token", responseAsJson.token);
+					})
+					.catch(error => {
+						console.error("There as been an unknown error", error);
+					});
 
-				},
-
+			},
 
 			login: (dataLogin) => {
 					// fetch(getStore().baseURL.concat("customer"), {
@@ -58,35 +57,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 							return resp.json();
 						})
 						.then(responseAsJson => {
-							console.log("respuesta json", responseAsJson);
+							
+							let token = jwt_decode(responseAsJson.token)
+							setStore({currentUser: token.sub});
+							console.log("token descodificado", token)
 							localStorage.setItem("token", responseAsJson.token);
 							console.log("me he logueado")
 						})
 						.catch(error => console.error("There as been an unknown error", error));
 				},
-
-				// login: async dataLogin => {
-				// 	try {
-				// 		let response = await fetch(getStore().baseUrl.concat("api/loginUser"), {
-				// 			method: "POST",
-				// 			headers: new Headers({
-				// 				'Content-Type': 'text/plain'
-				// 			}),
-				// 			body: JSON.stringify(dataLogin)
-				// 		});
-				// 		console.log("RESPUESTA", response);
-
-				// 		if (response.ok) {
-				// 			let newUser = await response.json();
-				// 			setStore({currentUsers: [...getStore().user, ...responseAsJson.results]});
-	
-				// 			// getActions().getBeer()
-				// 		}
-				// 		throw new Error("Fail login User")
-				// 	} catch (error) {
-				// 		console.log("Fail login User", error)
-				// 	}
-				// },	
 
 			getBeer: async data => {
 				try {
