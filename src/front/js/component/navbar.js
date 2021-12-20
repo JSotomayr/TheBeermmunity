@@ -42,10 +42,9 @@ export const Navbar = () => {
 					</div>
 
 					<div className="HeartIconText">
-						<i className="far fa-heart"></i>
 							<Link to = "/favourite">
-								<p className="infoIcon">
-								Favoritos</p>
+								<i className="far fa-heart"></i>
+								<p className="infoIcon">Favoritos</p>
 							</Link>			
 					</div>
 

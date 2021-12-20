@@ -31,44 +31,32 @@ body {
 }
 
 .btn{ 
+    color: white;
     background: #2D2D2D;
     border: 1px solid white;
     border-radius: 0.2rem;
+}
 
 .btn:hover{ 
     background: #E49B0F;   
+    // background-color: #afad4c; 
     color: white;
     text-decoration: none;
 }
 
-a {
-  color: white;
-  text-decoration: none;
-  }
-
-}
-
-  
-.btn:hover {
-    background-color: #afad4c; /* Green */
-    color: white;
-}
-
-a {
-  color: white;
-  text-decoration: none;
-}
 
 a, a:visited, a:hover, a:active {
     color: white;
-  }
+    text-decoration: none;
+}
 
 
 .loginContainer {
     display:flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; }
+    align-items: center; 
+}
 
 
 .btn_submit {
@@ -80,8 +68,10 @@ a, a:visited, a:hover, a:active {
 }
 
 .btn_submit:hover {
-    background-color: #7a731a;
-    color: white;
+    background-color: white;;
+    color: gray;
+    border: 3px solid #E49B0F;
+    font-weight: bold;
 }
 
 
@@ -128,3 +118,7 @@ a, a:visited, a:hover, a:active {
     }
 }
 
+.btn_return {
+    display:flex;
+    // align-items: center;
+}

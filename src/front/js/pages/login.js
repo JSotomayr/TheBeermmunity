@@ -26,13 +26,17 @@ export const Login = () => {
 
 	return (
 		<Fragment>
-
-			<div className="loginContainer">
-				<div className="btn">
-					<Link to="/">
-						volver
-					</Link>
+				
+			<Link to="/">
+				<div className = "btn">
+					<div className ="btn_return">
+						<i className="fas fa-undo-alt"></i>
+						<p>VOLVER</p>
+					</div>
 				</div>
+			</Link>
+				
+			<div className="loginContainer">
 				<Link to="/">
 					<img src={logoBig} />
 				</Link>

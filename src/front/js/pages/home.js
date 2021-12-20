@@ -18,22 +18,22 @@ export const Home = () => {
 						{/* <div className="searchbar">
 							<SearchBar />
 						</div> */}
-						<div className="container_btn">
-							<div className="btn mt-5">
-								<Link to="/login">
+						<div className="container_btn">	
+							<Link to="/login">
+								<div className="btn mt-5">
 									ACCEDER
-								</Link>	
-							</div>
-							<div className="btn mt-5">
-								<Link to="/register">
-									REGISTRO
-								</Link>	
-							</div>
-							<div className="btn mt-5">
-								<Link to={"/beer"}>
+								</div>
+							</Link>								
+							<Link to="/register">
+								<div className="btn mt-5">
+								REGISTRO
+								</div>
+							</Link>		
+							<Link to={"/beer"}>
+								<div className="btn mt-5">
 									CERVEZAS
-								</Link>
-							</div>
+								</div>
+							</Link>
 						</div>
 					</div>				
 				</div>
