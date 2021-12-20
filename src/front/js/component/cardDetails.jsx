@@ -7,7 +7,7 @@ const CardDetails = (props) => {
         <div className="detail">
             <div className="detail__top">
                 <div className="detail__image">
-                    <img src={props.element.image} alt="top" />
+                    <img className="detail__img" src={props.element.image} alt="top" />
                 </div>
                 <div>
                     <h2 className="detail__title">{props.element.brand} {props.element.variety}</h2>
