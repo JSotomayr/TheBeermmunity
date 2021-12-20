@@ -16,7 +16,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			beers: [],
 			favourites: [],
 			beersDetail: [],
-			tastedBeers: []
+			tastedBeer: []
 		},
 		actions: {
 			
@@ -43,10 +43,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
-			login: (dataLogin) => {
-					// fetch(getStore().baseURL.concat("customer"), {
-						
-						fetch("https://3001-peach-piranha-m7oodx19.ws-eu23.gitpod.io/api/login", {
+			login: (dataLogin) => {						
+					fetch("https://3001-peach-piranha-m7oodx19.ws-eu23.gitpod.io/api/login", {
 						method: "POST", 
 						headers: { "Content-Type": "application/json", Accept:"application/json" },
 						body: JSON.stringify(dataLogin)
@@ -63,12 +61,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 							setStore({currentUser: token.sub});
 							console.log("token descodificado", token)
 							localStorage.setItem("token", responseAsJson.token);
+							localStorage.setItem("currentUser", JSON.stringify(getStore().currentUser))
 							console.log("me he logueado")
 						})
 						.catch(error => console.error("There as been an unknown error", error));
 				},
 
-			getBeer: async data => {
+			getBeer: async () => {
 				try {
 					let response = await fetch(getStore().baseUrl.concat("beer"), {
 						method: "GET",
@@ -118,13 +117,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getProfileInfo: async id => {
+				const token = localStorage.getItem("access_token");
 				try {
 					let response = await fetch(getStore().baseUrl.concat("customer/", id), {
 						method: "GET",
-						mode: "cors",
-						redirect: "follow",
 						headers: new Headers({
-							'Content-Type': 'text/plain'
+							'Content-Type': 'application/json',
+							Authorization: `Bearer ${token}`
 						}),
 						
 					});
@@ -133,7 +132,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						let userInfo = await response.json();
 						console.log("RESPUESTA", response)
 						setStore({profileInfo: [userInfo]});
-						localStorage.setItem("beers", JSON.stringify(getStore().profileInfo));
+						localStorage.setItem("user", JSON.stringify(getStore().profileInfo));
 					}else{throw new Error("Fail downloading user info.")}
 				} catch (error) {
 					console.log(error)

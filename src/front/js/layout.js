@@ -12,7 +12,7 @@ import { Register } from "./pages/register.jsx";
 import { Favourite } from "./pages/favourite.jsx";
 import { Navbar } from "./component/navbar";
 
-import Profile from "./pages/profile.jsx"
+import { Profile } from "./pages/profile.jsx"
 import AllBeers from "./pages/allBeers.jsx";
 import BeerDetail from "./pages/beerDetail.jsx";
 import Cerveteca from "./pages/cerveteca.jsx";
