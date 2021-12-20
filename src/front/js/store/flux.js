@@ -14,8 +14,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			currentUser: {},
 			profileInfo: [],
 			beers: [],
-			favourites: [],
 			beersDetail: [],
+			favouriteBeer: [],
 			tastedBeers: []
 		},
 		actions: {
@@ -140,8 +140,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 			
-			addFavourite: element => {
-				setStore({ favouriteBeer: [...getStore().favouriteBeer, element] });
+			addFavourite: fav => {
+				setStore({ favouriteBeer: [...getStore().favouriteBeer, fav] });
 			},
 
 			addTastedBeer: beer => {

@@ -19,8 +19,7 @@ const FavouriteButton = (props) => {
 };
 
 FavouriteButton.propTypes = {
-    name: PropTypes.string,
-    add: PropTypes.func
+    element: PropTypes.object
 }
 
 export default FavouriteButton;
