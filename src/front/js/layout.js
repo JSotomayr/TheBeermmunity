@@ -9,7 +9,7 @@ import injectContext from "./store/appContext";
 import { Home } from "./pages/home";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register.jsx";
-import { Favourite } from "./pages/favourite.jsx";
+// import { Favourite } from "./pages/favourite.jsx";
 import { Navbar } from "./component/navbar";
 
 import { Profile } from "./pages/profile.jsx"
@@ -32,7 +32,7 @@ const Layout = () => {
                     <Route path="/" element={<Home />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
-                    <Route path="/favourite" element={<Favourite />} />
+                    {/* <Route path="/favourite" element={<Favourite />} /> */}
 					<Route path="/profile/:id" element={<Profile />} />
 					<Route path="/profile/:id/cerveteca" element={<Cerveteca />} />
                     <Route path="/beer" element={<AllBeers />} />

@@ -8,35 +8,12 @@ import ProfileCard from "../component/profileCard.jsx";
 export const Profile = () => {
     const { store, actions } = useContext(Context);
 
-    const [myProfile, setMyProfile] = useState([])
 
     // const [myFavBeers, setMyFavBeers] = useState([]);
     const [myTastedBeers, setMyTastedBeers] = useState([]);
     // const [myWishBeers, setMyWishBeers] = useState([]);
 
 	let params = useParams();
-	
-	useEffect(() => {
-        if(store.currentUSer != {}){
-            setMyProfile(JSON.parse(localStorage.getItem('currentUser')))
-        }else{
-            actions.getProfileInfo(params.id);
-        }
-	}, []);
-
-    useEffect(() => {
-        setMyProfile(
-            store.profileInfo.map((info, index) => {
-                return (
-                    <ProfileCard
-                        key={index.toString()}
-                        element={info}
-                        subelement={info.user_detail}
-                    />
-                );
-            })
-        )
-    }, [store.profileInfo])
 
     useEffect(() => {
         if (store.tastedBeer.length != 0) {
@@ -70,7 +47,11 @@ export const Profile = () => {
 
     return(
         <Fragment>
-            {myProfile}
+            {store.currentUser != null ? 
+                (<ProfileCard
+                    element={store.currentUser.sub}
+                /> ): 
+                ("")}
             <Link to={"/profile/:id/cerveteca"}>
                 <span className="subtitle">Cerveteca</span>            
             </Link>
