@@ -1,8 +1,5 @@
-
-
 .navbar {
     background-color: #2C363A;
-    height: 6rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
@@ -12,16 +9,19 @@
     font-size: 2.7rem;
 }
 
-
-// pone en linea los dos iconos
 .icons_right {
     display:flex;
     justify-content: flex-end;
     padding-right:1rem;
 }
 
+.userIconText {
+    margin-left: 6.5rem;
+
+}
 .fa-user {
     font-size: 2rem;
+    margin-left: 0.2rem;
 }
 
 .HeartIconText {
@@ -29,6 +29,7 @@
 }
 
 .fa-heart {
+    margin-left: 0.7rem;
     font-size: 2rem;
 }
 
@@ -39,39 +40,61 @@
     margin-left:1rem;
 } 
 
-// CUANDO SE PASA DE 768
-// DESAPARECE LA CERVEZA
-// APARECEN LAS LETRAS
 
-@media (min-width: 425px) {
+@media (min-width: 768px) {
     .icons_left{
         margin-right: 1rem;
         display:none;
     }
+    .icons_center {
+        display: flex;
+        justify-content: flex-start;
+        padding-left: 2rem;
+    }
+    .icons_right {
+        padding-top: 1rem;
+    }
     .nabvar_menu{
         display:flex;
+        justify-content: center;
         font-size: 1.2rem;
         margin: 1rem;
+        padding-top: 0.7rem;
+    }
+    .navbar {
+        height: 8rem;
+        }
+    .searchbar {
+        display: flex;
     }
 
 }
 
-
-// CUANDO ES MENOR DE 768
-// APARECE LA CERVEZA
-// DESAPARECE LAS LETRAS
+@media (max-width: 768px) {
+    .searchbar {
+        display: none;
+    }
+}
 
 @media (max-width: 425px) {
     .icons_left{
         margin-left: 1rem;
         display:flex;
     }
+    .icons_center {
+        display: flex;
+        justify-content: center;
+    }
     .nabvar_menu{
         margin-right: 1rem;
         display:none;
     }
-
+    .navbar {
+        height: 6rem;
+    }
 
 }
 
-
+.nabvar_menu_friends:hover, .nabvar_menu_cerveteca:hover, .nabvar_menu_pending:hover, .userIconText:hover, .HeartIconText:hover {
+color: #E49B0F;
+}

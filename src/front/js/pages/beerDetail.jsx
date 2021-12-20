@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router";
+import FavouriteButton from "../component/favouriteButton.jsx";
+
 
 import CardDetails from "../component/cardDetails.jsx";
 import WishButton from "../component/wishButton.jsx"

@@ -49,9 +49,10 @@ class Customer(db.Model):
 
 
     def __repr__(self):
-        return f'User has {self.id}, {self.username} with {self.email}'
+        return f'User has {self.id}, {self.username} with {self.email} {self.country} {self.city}'
 
     def to_dict(self):
+        user = self.has_brewerie if self._is_brewerie else self.has_brewer
         return {
             "id": self.id,
             "email": self.email,
@@ -60,9 +61,10 @@ class Customer(db.Model):
             "city": self.city,
             "description": self.description,
             "image": self.image,
+            "user_type": self._is_brewerie,
+            "user_detail": list(map(lambda x: x.to_dict(), user)),
+            # "user_detail": user[0].to_dict()
         }
-            # do not serialize the password, its a security breach
-
 
     def create(self):
         db.session.add(self)
@@ -86,26 +88,33 @@ class Customer(db.Model):
         all_customer = cls.query.all()
         return all_customer
 
+
     def update(self, **kwargs):
         for key, value in kwargs.items():
             setattr(self, key, value)
         db.session.commit()
         return self
 
+
     def validate_password(self,password):
         is_valid = check_password_hash(self._password,password)
         print(is_valid)
         return is_valid
 
+
     def delete(self):
         self.is_active = False
         db.session.commit()
 
-
     @classmethod
     def get_by_id_customer(cls, id):
         customer_id = cls.query.get(id)
-        return user_customer
+        return customer_id
+
+    def add_fav_beer(self,beer):
+        self.have_fav_beer.append(beer)
+        db.session.commit()
+        return self.have_fav_beer
 
 
 class Brewer(db.Model):
@@ -124,19 +133,54 @@ class Brewer(db.Model):
     go_to_event = db.relationship("Event", secondary=brewer_go_to_event, back_populates="go_to_event_brewer")
 
     def __repr__(self):
-        return f"Brewer with id {self.id}, named {self.name} {self.lastname} in {self.city}, {self.country}."
+        return f"Brewer with id {self.id}, name {self.name} {self.lastname}."
 
 
     def to_dict(self):
         return {
             "id": self.id,
             "name": self.name,
-            "lastname": self.lastname,
-            "country": self.country,
-            "city": self.city,
-            "description": self.description,
-            "image": self.image
+            "lastname" : self.lastname,
+            "favourite_beer" : list(map(lambda x:x.to_dict(), self.have_fav_beer))
         }
+
+    def create(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_by_id_brewer(cls, id):
+        brewer_id = cls.query.get(id)
+        return brewer_id
+
+
+    def create(self):
+        db.session.add(self)
+        db.session.commit()
+
+
+    @classmethod
+    def get_by_id(cls, id):
+        brewer_id = cls.query.get(id)
+        return brewer_id
+
+
+    @classmethod
+    def get_by_id_brewer(cls, id):
+        brewer = cls.query.get(id)
+        return brewer
+
+    
+    def add_fav_beer(self,beer):
+        self.have_fav_beer.append(beer)
+        db.session.commit()
+        return self.have_fav_beer
+
+    
+    def add_wish_beer(self,beer):
+        self.have_wish_beer.append(beer)
+        db.session.commit()
+        return self.have_wish_beer
 
 
 class Brewerie(db.Model):
@@ -151,18 +195,14 @@ class Brewerie(db.Model):
     
 
     def __repr__(self):
-        return f"Breweries with id {self.id}, named {self.company_name} in {self.address} in {self.city}, {self.country}."
+        return f"Breweries with id {self.id}, named {self.company_name} in {self.address}."
 
 
     def to_dict(self):
         return {
             "id": self.id,
             "company_name": self.company_name,
-            "address": self.address,
-            "country": self.country,
-            "city": self.city,
-            "description": self.description,
-            "image": self.image
+            "address": self.address
         }
 
 
@@ -175,6 +215,7 @@ class Brewerie(db.Model):
     def get_all(cls):
         brewerie = cls.query.all()
         return breweries
+
 
     @classmethod
     def get_by_id(cls, id):
@@ -235,12 +276,6 @@ class Beer(db.Model):
     def get_by_id(cls, id):
         beer_id = cls.query.get(id)
         return beer_id
-
-
-    def add_wish_beer(self,beer):
-        self.have_wish_beer.append(beer)
-        db.session.commit()
-        return self.have_wish_beer
 
 
 class BrewerieReview(db.Model):
@@ -312,7 +347,7 @@ class Event(db.Model):
 
 
     def __repr__(self):
-        return f"Event with id {self.id}, named {self.name} the {self.date} in {self.location}."
+        return f"Event with id {self.id}, named {self.name} the {self.date}."
 
 
     def to_dict(self):
@@ -321,6 +356,8 @@ class Event(db.Model):
             "name": self.name,
             "description": self.description,
             "date": self.date,
-            "location": self.location,
+            "country": self.country,
+            "city": self.city,
+            "address": self.address,
             "image": self.image
         }

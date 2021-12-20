@@ -1,69 +1,76 @@
-const PORT = 3001;
-const [PROTOCOL, HOST] = process.env.GITPOD_WORKSPACE_URL.split("://");
+import jwt_decode from "jwt-decode";
+
 
 const getState = ({ getStore, getActions, setStore }) => {
+	const PORT = 3001;
+	const [PROTOCOL, HOST] = process.env.GITPOD_WORKSPACE_URL.split("://");
+	
 	return {
 		store: {
-			currentUsers: [],
-			baseUrl: `${PROTOCOL}://${PORT}-${HOST}`,
-			beers: [], 
+
+			baseUrl: `${PROTOCOL}://${PORT}-${HOST}/api/`,
+			register: [],
+			login: [],
+			currentUser: null,
+			profileInfo: [],
+			beers: [],
+			favourites: [],
 			beersDetail: [],
 			wishlist: [],
 			tastedBeer: []
 		},
 		actions: {
+			
+			register: (dataRegister) => {
+				fetch(getStore().baseUrl.concat("customer"), {
+					method: "POST", 
+					headers: { "Content-Type": "application/json", Accept:"application/json" },
+					body: JSON.stringify(dataRegister)
+				})
+				.then(resp => {
+					if (!resp.ok) {
+						throw Error("Invalid register info");
+					}
+					return resp.json();
+				})
+				.then(responseAsJson => {
+					let token = jwt_decode(responseAsJson.token)
+					setStore({currentUser: token.sub});
+					localStorage.setItem("token", responseAsJson.token);
+				})
+				.catch(error => {
+					console.error("There as been an unknown error", error);
+				});
 
-				register: (first_name, last_name, email, password, username) => {
-					fetch(getStore().baseURL.concat("/signup"), {
-						method: "POST",
-						headers: { "Content-Type": "application/json" },
-						body: JSON.stringify({
-							first_name: first_name,
-							last_name: last_name,
-							email: email,
-							password: password,
-							username: username
-						})
+			},
+
+			login: (dataLogin) => {						
+					fetch("https://3001-peach-piranha-m7oodx19.ws-eu23.gitpod.io/api/login", {
+						method: "POST", 
+						headers: { "Content-Type": "application/json", Accept:"application/json" },
+						body: JSON.stringify(dataLogin)
 					})
 						.then(resp => {
 							if (!resp.ok) {
 								throw Error("Invalid register info");
 							}
+							return resp.json();
 						})
 						.then(responseAsJson => {
-							localStorage.setItem("token", responseAsJson);
+							
+							let token = jwt_decode(responseAsJson.token)
+							setStore({currentUser: token.sub});
+							console.log("token descodificado", token)
+							localStorage.setItem("token", responseAsJson.token);
+							localStorage.setItem("currentUser", JSON.stringify(getStore().currentUser))
+							console.log("me he logueado")
 						})
 						.catch(error => console.error("There as been an unknown error", error));
 				},
 
-				login: async data => {
-					try {
-						let response = await fetch(getStore().baseUrl.concat("api/loginUser"), {
-							method: "POST",
-							mode: "cors",
-							redirect: "follow",
-							headers: new Headers({
-								'Content-Type': 'text/plain'
-							}),
-							body: JSON.stringify(data)
-						});
-						console.log("RESPUESTA", response);
-
-						if (response.ok) {
-							let newUser = await response.json();
-							setStore({currentUsers: [...getStore().user, ...responseAsJson.results]});
-	
-							// getActions().getBeer()
-						}
-						throw new Error("Fail login User")
-					} catch (error) {
-						console.log("Fail login User", error)
-					}
-				},	
-
-			getBeer: async data => {
+			getBeer: async () => {
 				try {
-					let response = await fetch(getStore().baseUrl.concat("/api/beer"), {
+					let response = await fetch(getStore().baseUrl.concat("beer"), {
 						method: "GET",
 						mode: "cors",
 						redirect: "follow",
@@ -72,20 +79,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}),
 						
 					});
-					
-					if (response) {
+					if(response.ok) {
 						let allBeer = await response.json();
 						setStore({beers: [...getStore().beers, ...allBeer]});
+						console.log("RESPUESTA", getStore().beers)
 						localStorage.setItem("beers", JSON.stringify(getStore().beers));
-					}
-					throw new Error("Fail downloading beers.")
-				} catch (error) {
+						// getActions().getBeer()
+					}else{throw new Error("Fail downloading beers.")}
+
+				}catch (error) { 
 					console.log(error)
 				}
-			},	
+			},
+
+			
 			getBeerDetail: async id => {
 				try {
-					let response = await fetch(getStore().baseUrl.concat("/api/beer/").concat(id), {
+					let response = await fetch(getStore().baseUrl.concat("beer/", id), {
 						method: "GET",
 						mode: "cors",
 						redirect: "follow",
@@ -106,6 +116,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			getProfileInfo: async id => {
+				const token = localStorage.getItem("access_token");
+				try {
+					let response = await fetch(getStore().baseUrl.concat("customer/", id), {
+						method: "GET",
+						headers: new Headers({
+							'Content-Type': 'application/json',
+							Authorization: `Bearer ${token}`
+						}),
+						
+					});
+					
+					if (response) {
+						let userInfo = await response.json();
+						console.log("RESPUESTA", response)
+						setStore({profileInfo: [userInfo]});
+						localStorage.setItem("user", JSON.stringify(getStore().profileInfo));
+					}else{throw new Error("Fail downloading user info.")}
+				} catch (error) {
+					console.log(error)
+				}
+			},
+			
 			addWishlist: (wish) => {
 				let newWish = getStore().wishlist.map(x => x.id)
 				if (!newWish.includes(wish.id)){
@@ -113,6 +146,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} else {
 					setStore({ wishlist: [...getStore().wishlist.filter(x => x.id != wish.id)]})
 				}
+			},
+			
+			addFavourite: element => {
+				setStore({ favouriteBeer: [...getStore().favouriteBeer, element] });
 			},
 
 			addTastedBeer: beer => {
@@ -124,3 +161,4 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 export default getState;
+
