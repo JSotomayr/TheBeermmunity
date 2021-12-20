@@ -1,5 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
+
+import { Navbar } from "react-bootstrap";
 import DefaultCard from "../component/defaultCard.jsx";
 
 const Wishlist = () => {
@@ -18,6 +21,9 @@ const Wishlist = () => {
 
 	return (
 		<div>
+			<Link to="/">
+				volver
+			</Link>
 			<span className="title">Cervezas que quiero probar</span>
 			{toTaste}
 		</div>

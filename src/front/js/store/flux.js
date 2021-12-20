@@ -107,7 +107,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			addWishlist: (wish) => {
-				setStore({ wishlist: [...getStore().wishlist, ...wish]})
+				let newWish = getStore().wishlist.map(x => x.id)
+				if (!newWish.includes(wish.id)){
+					setStore({ wishlist: [...getStore().wishlist, ...wish]})
+				} else {
+					setStore({ wishlist: [...getStore().wishlist.filter(x => x.id != wish.id)]})
+				}
 			},
 
 			addTastedBeer: beer => {

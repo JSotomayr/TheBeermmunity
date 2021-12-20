@@ -9,7 +9,7 @@ const GenericButton = (props) => {
 			className="btn"
 			variant="danger"
 			onClick={() => {
-				{props.add}
+				actions.addWishlist(props.element)
 			}}>
 				{props.name}
 		</button>
@@ -17,8 +17,7 @@ const GenericButton = (props) => {
 };
 
 GenericButton.propTypes = {
-    name: PropTypes.string,
-    add: PropTypes.func
+    element: PropTypes.object
 }
 
 export default GenericButton;

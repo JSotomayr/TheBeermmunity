@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 import { useParams } from "react-router";
 
 import CardDetails from "../component/cardDetails.jsx";
-import GenericButton from "../component/genericButton.jsx"
+import WishButton from "../component/wishButton.jsx"
 
 
 const BeerDetail = () => {
@@ -23,20 +23,14 @@ const BeerDetail = () => {
 					return (
 						<div classname="detail_container" key={index.toString()}>
 							<CardDetails
-								
 								element={detail}
 							/>
-							<GenericButton
-								
-								add={actions.addWishlist(store.beersDetail)} 
-								name={"Quiero probarla"}
-							/>
+							<WishButton element={detail}/>
 						</div>
 					);
 				})
 			);
-		},
-		[store.beersDetail]
+		}, [store.beersDetail]
 	);
 
     return (
