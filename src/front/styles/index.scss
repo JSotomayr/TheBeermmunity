@@ -35,6 +35,7 @@ body {
     background: #2D2D2D;
     border: 1px solid white;
     border-radius: 0.2rem;
+
 }
 
 .btn:hover{ 
@@ -68,10 +69,9 @@ a, a:visited, a:hover, a:active {
 }
 
 .btn_submit:hover {
-    background-color: white;;
-    color: gray;
-    border: 3px solid #E49B0F;
-    font-weight: bold;
+    background-color: #a77311;
+    color: white;
+    border: 3px solid #543b0b;
 }
 
 
@@ -119,6 +119,17 @@ a, a:visited, a:hover, a:active {
 }
 
 .btn_return {
+    display: flex;
+    justify-content: end;
+    margin-right: 3rem;
+    margin-top: 3rem;
+}
+
+.btn_return_box {
     display:flex;
-    // align-items: center;
+    align-items: center;
+}
+
+.btn_return_word {
+    margin-left: 0.5rem;
 }

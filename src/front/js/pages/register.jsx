@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { Context } from "../store/appContext";
 import logoBig from "../../img/logoBig.png";
+import { Navbar } from "../component/navbar";
 import "../../styles/register.scss";
 
 
@@ -90,7 +91,7 @@ export const Register = () => {
 		);
 	}, []);
 
-	// HAY QUE ENVIAR AL BACK SI ES USER O BUSINESS
+
 	useEffect(() => {
 		if (getValues("userType") =="user") {
 			setRegisterForm(
@@ -131,7 +132,7 @@ export const Register = () => {
 						{...register("country", { required: true, maxLength: 15})}
 					/>
 	
-					<input type="submit" className="btn btn-primary form-control btn_submit mt-5" value="Acceder" />
+					<input type="submit" className="btn form-control btn_submit mt-5" value="Acceder" />
 				</div>
 			);
 
@@ -174,7 +175,7 @@ export const Register = () => {
 						{...register("city", { required: true, maxLength: 15})}
 					/>							
 
-					<input type="submit" className="btn btn-primary form-control btn_submit mt-5" value="Acceder"/>
+					<input type="submit" className="btn form-control btn_submit mt-5" value="Acceder"/>
 				</div>
 			);	
 		}				
@@ -186,24 +187,30 @@ export const Register = () => {
 
 
 	return (
-		<div className="loginContainer">
-			<div className="btn nearLog">
+		<Fragment>
+			<Navbar/>
+			<div className="btn_return">
 				<Link to="/">
-					volver
+					<div className = "btn btn_return_box">
+						<i className="fas fa-undo-alt"></i>
+						<div className ="btn_return_word">VOLVER</div>
+					</div>
 				</Link>
-			</div>
-			<img src={logoBig} />
-			<div className="step">
-				<div className="step_left">1</div>
-				<div className="step_line"></div>
-				<div className="step_right_completed">2</div>
-			</div>
-			<div className="title">Crear cuenta</div>
+			</div>	
+			<div className="loginContainer">
+				<img src={logoBig} />
+				<div className="step">
+					<div className="step_left">1</div>
+					<div className="step_line"></div>
+					<div className="step_right_completed">2</div>
+				</div>
+				<div className="title">Crear cuenta</div>
 
-			<form onSubmit = {(event) => {event.preventDefault(); onsubmit(getValues())}}>
-				{registerForm}
-			</form>
-		</div>
+				<form onSubmit = {(event) => {event.preventDefault(); onsubmit(getValues())}}>
+					{registerForm}
+				</form>
+			</div>
+		</Fragment>
 	);
 }
 

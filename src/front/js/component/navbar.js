@@ -40,13 +40,14 @@ export const Navbar = () => {
 						<i className="fas fa-user"></i>
 						<p className="infoIcon">Perfil</p>
 					</div>
-
-					<div className="HeartIconText">
-							<Link to = "/favourite">
-								<i className="far fa-heart"></i>
-								<p className="infoIcon">Favoritos</p>
-							</Link>			
-					</div>
+					
+					<Link to = "/favourite">
+						<div className="HeartIconText">
+							<i className="far fa-heart"></i>
+							<p className="infoIcon">Favoritos</p>
+						</div>
+					</Link>			
+					
 
 				</div> 
 			</nav>  

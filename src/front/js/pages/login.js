@@ -1,12 +1,10 @@
-import { Navbar } from "../component/navbar";
-import React, { Fragment, useContext, useEffect, useState } from "react";
 
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext.js";
 import logoBig from "../../img/logoBig.png";
 import { useForm } from "react-hook-form";
-
 import { Link } from "react-router-dom";
-
+import { Navbar } from "../component/navbar";
 
 import Form from 'react-bootstrap/Form'
 
@@ -26,15 +24,15 @@ export const Login = () => {
 
 	return (
 		<Fragment>
-				
-			<Link to="/">
-				<div className = "btn">
-					<div className ="btn_return">
+			<Navbar/>
+			<div className="btn_return">
+				<Link to="/">
+					<div className = "btn btn_return_box">
 						<i className="fas fa-undo-alt"></i>
-						<p>VOLVER</p>
+						<div className ="btn_return_word">VOLVER</div>
 					</div>
-				</div>
-			</Link>
+				</Link>
+			</div>	
 				
 			<div className="loginContainer">
 				<Link to="/">
@@ -106,7 +104,7 @@ export const Login = () => {
 								/>
 						</div>
 
-						<button type="submit" className="btn btn-primary form-control btn_submit mt-5">Acceder</button> 
+						<button type="submit" className="btn form-control btn_submit mt-5">Acceder</button> 
 						{errors.submit && errors.submit.type === "required" && <span role="alertSubmitLog">!ERROR! Se ha producido un error en su intento de Inicio de sesión. Asegúrese de que el correo, el nombre de usuario y la contraseña son correctos</span>}
 
 

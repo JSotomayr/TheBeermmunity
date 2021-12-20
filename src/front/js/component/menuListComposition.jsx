@@ -56,7 +56,12 @@ export default function MenuListComposition() {
           aria-haspopup="true"
           onClick={handleToggle}
         >
-          <i className="fas fa-beer"></i>
+          {/* <i className="fas fa-beer"></i> */}
+          {/* <div className="button_menu"> */}
+            <div className="button_menu_line top"></div>
+            <div className="button_menu_line middle"></div>
+            <div className="button_menu_line bottom"></div>
+          {/* </div>  */}
         </Button>
         <Popper
           open={open}

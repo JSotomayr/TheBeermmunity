@@ -4,3 +4,27 @@
     color:white;
     margin-bottom: 0.5rem;
 }
+
+
+// .button_menu {
+//     display: flex;
+//     flex-direction: column;
+// }
+
+.button_menu_line{
+    width: 2.3rem;
+    height: 0.3rem;
+    background-color: white;
+}
+
+#composition-button {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+}
+
+
+.middle {
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+}
