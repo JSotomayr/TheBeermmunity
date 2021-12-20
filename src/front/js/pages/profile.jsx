@@ -5,9 +5,7 @@ import { Link } from "react-router-dom";
 
 import ProfileCard from "../component/profileCard.jsx";
 
-
-
-const Profile = () => {
+export const Profile = () => {
     const { store, actions } = useContext(Context);
 
     const [myProfile, setMyProfile] = useState([])
@@ -19,7 +17,11 @@ const Profile = () => {
 	let params = useParams();
 	
 	useEffect(() => {
-		actions.getProfileInfo(params.id);
+        if(store.currentUSer != {}){
+            setMyProfile(JSON.parse(localStorage.getItem('currentUser')))
+        }else{
+            actions.getProfileInfo(params.id);
+        }
 	}, []);
 
     useEffect(() => {
@@ -37,7 +39,7 @@ const Profile = () => {
     }, [store.profileInfo])
 
     useEffect(() => {
-        if (store.tastedBeers.length != 0) {
+        if (store.tastedBeer.length != 0) {
 			setMyTastedBeers(
 				store.tastedBeers.slice(0, 4).map((wish, index) => {
 					return <DefaultCard key={index.toString()} element={wish} />;
@@ -73,16 +75,6 @@ const Profile = () => {
                 <span className="subtitle">Cerveteca</span>            
             </Link>
             <div>{myTastedBeers}</div>
-            {/* <Link to={"/profile/:id/favourites"}>
-                <span className="subtitle">Favoritas</span>            
-            </Link>
-            <div>{myFavBeers}</div> */}
-            {/* <Link to={"/profile/:id/wishlist"}>
-                <span className="subtitle">Por probar</span>            
-            </Link>
-            <div>{myWishBeers}</div> */}
         </Fragment>
     )
 }
-
-export default Profile

@@ -12,7 +12,7 @@ export const Register = () => {
 	const [registerForm, setRegisterForm] = useState([]);
 	const { handleSubmit, register, getValues, formState: { errors }} = useForm();
 	const { store, actions } = useContext(Context);
-	let navigate = useNavigate();
+	// let navigate = useNavigate();
 
 	const onsubmit = (dataRegister) => {
 		console.log(dataRegister);
