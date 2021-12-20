@@ -1,19 +1,12 @@
 import React, { useContext, useState, useEffect } from "react"
 import { Context } from "../store/appContext";
 import DefaultCard from "../component/defaultCard.jsx";
-import { useParams } from "react-router";
 import { Navbar } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export const Favourite = () => {
     const {store, actions} = useContext(Context);
     const [favourite, setFavourite] = useState([]);
-
-    let params = useParams();
-
-	useEffect(() => {
-		actions.addFavourite(params.id);
-	}, []);
-
 
     useEffect(() => {
         if (store.favouriteBeer.length != 0) {
@@ -24,10 +17,15 @@ export const Favourite = () => {
             );
             console.log("FAVORITOS", store.favouriteBeer)
         }
-    }, [store.favouriteBeer]);
+    }, []);
 
 return (
     <div>
+        <div className="btn">
+			<Link to="/">
+				volver
+			</Link>
+		</div>
         <Navbar />
         <span className="title">Favoritos</span>
         {favourite}

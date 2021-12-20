@@ -12,7 +12,7 @@ const FavouriteButton = (props) => {
 			className="btn_favourite"
 			variant="danger"
 			onClick={() => {
-				actions.addFavourite(props)}
+				actions.addFavourite(props.element)}
 			}>
 		</Button>
     );
