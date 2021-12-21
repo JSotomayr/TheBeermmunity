@@ -252,7 +252,7 @@ data = {
             "rating": 3,
             "publishment_date": "2021/12/01",
             "beer_id": 4,
-            "brewer_id": 4
+            "brewer_id": 3
         }
     ],
 
