@@ -3,37 +3,40 @@ import { Context } from "../store/appContext";
 import "../../styles/home.scss";
 import { Link } from "react-router-dom";
 import { Navbar } from "../component/navbar";
+import SearchBar from "../component/searchBar.jsx";
+
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
 
-	return (
-		<Fragment>
-
-			<div className="text-center">
-				<Navbar/>
-				<div className="btn mt-5">
-					<Link to="/login">
-						LOGIN
-					</Link>	
+	return (	
+		<Fragment>	
+				<div className="container_navbar_home">
+					
+									
+					<div className="container">
+						{/* <div className="searchbar">
+							<SearchBar />
+						</div> */}
+						<div className="container_btn">
+							<div className="btn mt-5">
+								<Link to="/login">
+									ACCEDER
+								</Link>	
+							</div>
+							<div className="btn mt-5">
+								<Link to="/register">
+									REGISTRO
+								</Link>	
+							</div>
+							<div className="btn mt-5">
+								<Link to={"/beer"}>
+									CERVEZAS
+								</Link>
+							</div>
+						</div>
+					</div>				
 				</div>
-				<div className="btn mt-5">
-					<Link to="/register">
-						REGISTER
-					</Link>	
-				</div>
-				<div>
-					<Link to={"/beer"}>
-						<h1>CERVEZAS</h1>
-					</Link>
-				</div>
-				<div>
-				<Link to={"/beer"}>
-					<h1>ENSEÑAME LA BIRRA</h1>
-				</Link>
-				</div>
-
-			</div>
 		</Fragment>
 	);
 };

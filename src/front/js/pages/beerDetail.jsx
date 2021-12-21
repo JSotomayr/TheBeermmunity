@@ -2,6 +2,9 @@ import React, { Fragment, useContext, useEffect, useState } from "react";
 import CardDetails from "../component/cardDetails.jsx";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router";
+import FavouriteButton from "../component/favouriteButton.jsx";
+import { Link } from "react-router-dom";
+
 
 
 const BeerDetail = () => {
@@ -19,10 +22,18 @@ const BeerDetail = () => {
 			setDetailBeer(
 				store.beersDetail.map((detail, index) => {
 					return (
-						<CardDetails
-							key={index.toString()}
-							element={detail}
+					<div key = {detail.id}>
+						<div className="btn">
+							<Link to="/beer">
+								volver
+							</Link>
+						</div>
+							<CardDetails
+								key={index.toString()}
+								element={detail}	
 						/>
+						<FavouriteButton element = {detail}/>
+					</div>	
 					);
 				})
 			);
@@ -30,7 +41,9 @@ const BeerDetail = () => {
 		[store.beersDetail]
 	);
 
-    return <>{detailBeer}</>
+    return <>
+		{detailBeer}
+	</>
 }
 
 export default BeerDetail;
