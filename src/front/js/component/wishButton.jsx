@@ -2,7 +2,7 @@ import React, { useContext} from "react";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 
-const GenericButton = (props) => {
+const WishButton = (props) => {
     const { store, actions } = useContext(Context);
     return(
         <button
@@ -15,8 +15,8 @@ const GenericButton = (props) => {
     )
 };
 
-GenericButton.propTypes = {
+WishButton.propTypes = {
     element: PropTypes.object
 }
 
-export default GenericButton;
+export default WishButton;
