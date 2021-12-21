@@ -184,7 +184,7 @@ class Brewerie(db.Model):
     company_name = db.Column(db.String(), unique=False, nullable=False)
     address = db.Column(db.String(), unique=False, nullable=False)
     latitude = db.Column(db.String(), unique=False, nullable=True)
-    altitude = db.Column(db.String(), unique=False, nullable=True)
+    longitude = db.Column(db.String(), unique=False, nullable=True)
     id_customer = db.Column(db.Integer, db.ForeignKey('customer.id'), unique=True, nullable=False)
 
     have_fav_brewerie_brewer = db.relationship("Brewer", secondary=favourite_brewerie, back_populates="have_fav_brewerie")
@@ -200,7 +200,7 @@ class Brewerie(db.Model):
             "company_name": self.company_name,
             "address": self.address,
             "latitude": self.latitude,
-            "altitude": self.altitude
+            "altitude": self.longitude
         }
 
 
