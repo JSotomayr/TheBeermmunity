@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
+
 import DefaultCard from "../component/defaultCard.jsx";
-import GenericButton from "../component/genericButton.jsx"
+import { Navbar } from "../component/navbar"
 
 const Cerveteca = () => {
 	const { store, actions } = useContext(Context);
@@ -13,13 +15,7 @@ const Cerveteca = () => {
 				store.tastedBeer.map((wish, index) => {
 					return (
 						<div classname="container_detail" key={index.toString()} >
-							<DefaultCard 
-								element={wish} 
-							/>
-							<GenericButton
-									add={actions.addTastedBeer(store.beersDetail)} 
-									name={"Mi Cerveteca"}
-							/>
+							<DefaultCard element={wish} />
 						</div>
 					)
 				})
@@ -29,9 +25,15 @@ const Cerveteca = () => {
 
 	return (
 		<div>
+			<Navbar />
+			<div className="btn">
+				<Link to="/">
+					volver
+				</Link>
+			</div>
 			<span className="title">Cerveteca</span>
 			{triedList}
-		</div>
+    	</div>
 	);
 };
 

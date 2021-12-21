@@ -24,9 +24,11 @@ export const Navbar = () => {
 						<div className="nabvar_menu_friends">
 							<p>Contactos</p>
 						</div>
-						<div className="nabvar_menu_cerveteca">
-							<p>Cerveteca</p>
-						</div>
+						<Link to={"/cerveteca"}>
+							<div className="nabvar_menu_cerveteca">
+								<p>Cerveteca</p>
+							</div>
+						</Link>
 						<div className="nabvar_menu_pending">
 							<p>Pendientes</p>
 						</div> 										
