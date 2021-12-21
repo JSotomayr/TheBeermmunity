@@ -24,7 +24,7 @@ const BeerDetail = () => {
 					return (
 					<div key = {detail.id}>
 						<div className="btn">
-							<Link to="/">
+							<Link to="/beer">
 								volver
 							</Link>
 						</div>
