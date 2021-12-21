@@ -55,7 +55,20 @@ data = {
             "_is_active": True,
             "_is_brewerie": False,
             "_is_admin": False
-        }
+        },
+        {
+            "id": 5,
+            "email": "beer_joint@email.com",
+            "_password": generate_password_hash('Beerjoint', method='pbkdf2:sha256'),
+            "username": "BeerJoint",
+            "country": "España",
+            "city": "Madrid",
+            "description": "Local dedicado a la venta de cervezas artesanales ubicado en la zona del rastro. Contamos siempre con productos frescos de producción local, así como novedades internacionales.",
+            "image": "https://res.cloudinary.com/de8eg0q3r/image/upload/v1640105529/customers/breweries/Captura_tkn9i6.png",
+            "_is_active": True,
+            "_is_brewerie": False,
+            "_is_admin": False
+        },
     ],
 
     "Brewer" : [
@@ -72,7 +85,7 @@ data = {
             "id_customer": 2
         },
         {
-            "id": 4,
+            "id": 3,
             "name": "Juan",
             "lastname": "Guerrero",
             "id_customer": 4
@@ -207,8 +220,18 @@ data = {
             "id": 1,
             "company_name": "BeBeer",
             "address": "Calle Edison, 3",
+            "latitude": "40.44106820810799",
+            "altitude": "-3.680747125612168",
             "id_customer": 3
         },
+        {
+            "id": 2,
+            "company_name": "Beer Joint",
+            "address": "Calle Rodas, 9, Madrid, Madrid 28005",
+            "latitude": "40.41052423041596",
+            "longitude": "-3.7054391670275773",
+            "id_customer": 5
+        }
     ],
 
     "BrewerieReview" : [
