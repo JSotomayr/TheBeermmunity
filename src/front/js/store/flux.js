@@ -7,7 +7,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 	
 	return {
 		store: {
-
 			baseUrl: `${PROTOCOL}://${PORT}-${HOST}/api/`,
 			register: [],
 			login: [],
@@ -27,46 +26,50 @@ const getState = ({ getStore, getActions, setStore }) => {
 					headers: { "Content-Type": "application/json", Accept:"application/json" },
 					body: JSON.stringify(dataRegister)
 				})
-				.then(resp => {
-					if (!resp.ok) {
-						throw Error("Invalid register info");
-					}
-					return resp.json();
-				})
-				.then(responseAsJson => {
-					let token = jwt_decode(responseAsJson.token)
-					setStore({currentUser: token.sub});
-					localStorage.setItem("token", responseAsJson.token);
-				})
-				.catch(error => {
-					console.error("There as been an unknown error", error);
-				});
+					.then(resp => {
+						if (!resp.ok) {
+							throw Error("Invalid register info");
+						}
+						return resp.json();
+					})
+					.then(responseAsJson => {
+						let token = jwt_decode(responseAsJson.token)
+						setStore({currentUser: token.sub});
+						localStorage.setItem("token", responseAsJson.token);
+					})
+					.catch(error => {
+						console.error("There as been an unknown error", error);
+					});
 
 			},
 
-			login: (dataLogin) => {						
+			login: (dataLogin) => {
+				// fetch(getStore().baseURL.concat("customer"), {
+					
 					fetch("https://3001-peach-piranha-m7oodx19.ws-eu23.gitpod.io/api/login", {
-						method: "POST", 
-						headers: { "Content-Type": "application/json", Accept:"application/json" },
-						body: JSON.stringify(dataLogin)
+					method: "POST", 
+					headers: { "Content-Type": "application/json", Accept:"application/json" },
+					body: JSON.stringify(dataLogin)
+				})
+					.then(resp => {
+						if (!resp.ok) {
+							throw Error("Invalid register info");
+						}
+						return resp.json();
 					})
-						.then(resp => {
-							if (!resp.ok) {
-								throw Error("Invalid register info");
-							}
-							return resp.json();
-						})
-						.then(responseAsJson => {
-							
-							let token = jwt_decode(responseAsJson.token)
-							setStore({currentUser: token.sub});
-							console.log("token descodificado", token)
-							localStorage.setItem("token", responseAsJson.token);
-							localStorage.setItem("currentUser", JSON.stringify(getStore().currentUser))
-							console.log("me he logueado")
-						})
-						.catch(error => console.error("There as been an unknown error", error));
-				},
+					.then(responseAsJson => {
+						let token = jwt_decode(responseAsJson.token)
+						setStore({currentUser: token.sub});
+						console.log("token descodificado", token)
+						localStorage.setItem("token", responseAsJson.token);
+						console.log("me he logueado")
+					})
+					.catch(error => console.error("There as been an unknown error", error));
+			},
+
+			setUser: (token) => {
+				setStore({currentUser: jwt_decode(token)})
+			},
 
 			getBeer: async () => {
 				try {
@@ -117,7 +120,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getProfileInfo: async id => {
-				const token = localStorage.getItem("access_token");
+				const token = localStorage.getItem("token");
 				try {
 					let response = await fetch(getStore().baseUrl.concat("customer/", id), {
 						method: "GET",

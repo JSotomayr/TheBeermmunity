@@ -6,7 +6,6 @@ import "../../styles/defaultCard.scss";
 const DefaultCard = props => {
 	return (
 		<div className="card">
-			<div>
 				<Link to={`/beer/${props.element.id}`}>
 					<div className="card__body">
 						<span className="card__title">{props.element.brand}</span> 
@@ -14,7 +13,6 @@ const DefaultCard = props => {
 						<img className="card__img" variant="bottom" src={props.element.image} />
 					</div>
 				</Link>
-			</div>
 		</div>
 	);
 };

@@ -12,7 +12,7 @@ export const Home = () => {
 	return (	
 		<Fragment>	
 				<div className="container_navbar_home">
-					<Navbar/>
+					
 									
 					<div className="container">
 						{/* <div className="searchbar">
