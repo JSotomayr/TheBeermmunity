@@ -5,6 +5,7 @@ import "../../styles/navbar.scss";
 import MenuListComposition from "../component/menuListComposition.jsx";
 import SearchBar from "./searchBar.jsx";
 import { Link } from "react-router-dom";
+import AccountMenu from "../component/accountMenu.jsx";
 
 export const Navbar = () => {
 	
@@ -21,24 +22,24 @@ export const Navbar = () => {
 				</div>
 
 				<div className="nabvar_menu">
-						<div className="nabvar_menu_friends">
-							<p>Contactos</p>
+					<Link to={"/beer"}>
+						<div className="btn container_btn_beers m-2">
+							CERVEZAS
 						</div>
-						<div className="nabvar_menu_cerveteca">
-							<p>Cerveteca</p>
+					</Link>
+					{/* <Link> */}
+						<div className="btn container_btn_breweries m-2">
+							CERVECERIAS
 						</div>
-						<div className="nabvar_menu_pending">
-							<p>Pendientes</p>
-						</div> 										
-					</div> 
+					{/* </Link> */}									
+				</div> 
 
 				 <div className="icons_right">
 					<div className="searchbar">
 						<SearchBar />
 					</div>
 					<div className="userIconText">
-						<i className="fas fa-user"></i>
-						<p className="infoIcon">Perfil</p>
+						<AccountMenu />
 					</div>
 					
 					<Link to = "/favourite">
@@ -47,8 +48,6 @@ export const Navbar = () => {
 							<p className="infoIcon">Favoritos</p>
 						</div>
 					</Link>			
-					
-
 				</div> 
 			</nav>  
 		</Fragment>
