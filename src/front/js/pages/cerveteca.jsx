@@ -8,7 +8,7 @@ const Cerveteca = () => {
 	const [triedList, setTriedList] = useState([]);
 
 	useEffect(() => {
-		if (store.favourite.length != 0) {
+		if (store.tastedBeer.length != 0) {
 			setTriedList(
 				store.tastedBeer.map((wish, index) => {
 					return (

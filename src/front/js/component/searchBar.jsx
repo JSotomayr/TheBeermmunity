@@ -5,6 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
+
 const options = ['Cervezas', 'Cervecerías', 'Favoritos'];
 
 export default function SearchBar() {
@@ -14,7 +15,7 @@ export default function SearchBar() {
   return (
     <div>
           <Paper
-              component="form" className="paper"
+              className="paper"
               sx={{ p: '0.2rem 0.9rem', display: 'flex', alignItems: 'center', width: 350, borderRadius: '3rem'}}
               
           > 

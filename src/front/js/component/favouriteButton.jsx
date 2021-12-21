@@ -2,24 +2,24 @@ import React, { useContext} from "react";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 import Button from "react-bootstrap/Button";
+import "../../styles/favouriteButton.scss";
 
-const GenericButton = (props) => {
+
+const FavouriteButton = (props) => {
     const { store, actions } = useContext(Context);
     return(
         <Button
-			className="btn"
+			className="btn_favourite"
 			variant="danger"
 			onClick={() => {
-				{props.add}
-			}}>
-				{props.name}
+				actions.addFavourite(props.element)}
+			}>
 		</Button>
-    )
+    );
 };
 
-GenericButton.propTypes = {
-    name: PropTypes.string,
-    add: PropTypes.func
+FavouriteButton.propTypes = {
+    element: PropTypes.object
 }
 
-export default GenericButton;
+export default FavouriteButton;
