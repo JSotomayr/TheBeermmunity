@@ -38,7 +38,7 @@ def create_customer():
     
 
     if not (new_email and new_username and new_password and new_country and new_city):
-        return jsonify({'error': 'Missing paramethers'}), 409
+        return jsonify({'error': 'Missing parameters'}), 409
 
     customer_created = Customer(
         email=new_email, 
@@ -54,7 +54,6 @@ def create_customer():
         
 
     try:
-        print("@")
         customer_created.create()
 
         if customer_created._is_brewerie:
@@ -93,12 +92,8 @@ def create_customer():
     except exc.IntegrityError:
         return jsonify({'error': 'Fail in creating user'}), 400
   
-    token = create_access_token(identity=customer_created.to_dict(), expires_delta=timedelta(minutes=100))
+    token = create_access_token(identity=customer_created.to_dict(), expires_delta=timedelta(days=100))
     return({'token' : token}), 200
-
-
-
-
 
 
 # LOGUEAR CUSTOMER
@@ -115,7 +110,7 @@ def login():
     customer = Customer.get_by_email(email)   
 
     if customer and check_password_hash(customer._password, password) and customer._is_active:
-        token = create_access_token(identity=customer.to_dict(), expires_delta=timedelta(minutes=100))
+        token = create_access_token(identity=customer.to_dict(), expires_delta=timedelta(days=100))
         return({'token' : token}) , 200
 
     else:
@@ -125,7 +120,8 @@ def login():
 @api.route('/customer/<int:id>', methods=['GET'])
 @jwt_required
 def get_customer(id):
-    token_id = get_jwt_identity
+    one_customer = Customer.get_by_id_customer(id)
+    token_id = get_jwt_identity()
 
     if token_id.get("id") == id:
         return jsonify(one_customer.to_dict()), 200
@@ -155,30 +151,7 @@ def beerDetail(id):
     return jsonify({'error': 'Beer not found'}), 404
 
 
-@api.route('/brewer/<int:id>', methods = ['GET'])
-def get_brewer(id):
-    one_brewer = Brewer.get_by_id(id)
-
-    if one_brewer:
-        
-        return jsonify(one_brewer.to_dict()), 200
-
-    return jsonify({'msg' : 'Brewer not foud'}), 404
-
-
-@api.route('/brewerie/<int:id>', methods = ['GET'])
-def get_brewerie(id):
-    one_brewerie = Brewerie.get_by_id(id)
-
-    if one_brewerie:
-        
-        return jsonify(one_brewerie.to_dict()), 200
-
-    return jsonify({'msg' : 'Brewerie not foud'}), 404
-
-
-    
-# AÑADIR FAVORITO A USUARIO
+# AÑADIR FAVORITO A USUARIO (modificado por Carol??)
 @api.route('/brewer/<int:id_brewer>/favourite-beer/<int:id_beer>', methods=['POST'])
 @jwt_required()
 def add_favbeer(id_brewer, id_beer):
@@ -199,6 +172,28 @@ def add_favbeer(id_brewer, id_beer):
             return jsonify(fav_beer),200
         
     return jsonify({'error': 'Not favourites'}),404
+
+
+@api.route('/brewer/<int:id>', methods = ['GET'])
+def get_brewer(id):
+    one_brewer = Brewer.get_by_id_brewer(id)
+
+    if one_brewer:
+        
+        return jsonify(one_brewer.to_dict()), 200
+
+    return jsonify({'msg' : 'Brewer not foud'}), 404
+
+
+@api.route('/brewerie/<int:id>', methods = ['GET'])
+def get_brewerie(id):
+    one_brewerie = Brewerie.get_by_id(id)
+
+    if one_brewerie:
+        
+        return jsonify(one_brewerie.to_dict()), 200
+
+    return jsonify({'msg' : 'Brewerie not foud'}), 404
 
 
 @api.route('/brewerie', methods=['POST'])

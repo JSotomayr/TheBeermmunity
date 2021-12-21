@@ -12,8 +12,9 @@ const FavouriteButton = (props) => {
 			className="btn_favourite"
 			variant="danger"
 			onClick={() => {
-				actions.addFavourite(props.element)}
-			}>
+				actions.addFavourite(props.element)
+				console.log(store.favouriteBeer)
+			}}>
 		</Button>
     );
 };

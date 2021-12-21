@@ -21,6 +21,10 @@ const injectContext = PassedComponent => {
 		);
 
 		useEffect(() => {
+			let token = localStorage.getItem("token");
+			if(token){
+				state.actions.setUser(token);
+			}
 		}, []);
 
 		return (

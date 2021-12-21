@@ -13,11 +13,7 @@ const Cerveteca = () => {
 		if (store.tastedBeer.length != 0) {
 			setTriedList(
 				store.tastedBeer.map((wish, index) => {
-					return (
-						<div classname="container_detail" key={index.toString()} >
-							<DefaultCard element={wish} />
-						</div>
-					)
+					return <DefaultCard key={index.toString()} element={wish} />
 				})
 			);
 		}
@@ -25,7 +21,6 @@ const Cerveteca = () => {
 
 	return (
 		<div>
-			<Navbar />
 			<div className="btn">
 				<Link to="/">
 					volver
