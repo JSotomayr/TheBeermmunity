@@ -165,20 +165,24 @@ class Brewerie(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     company_name = db.Column(db.String(), unique=False, nullable=False)
     address = db.Column(db.String(), unique=False, nullable=False)
+    latitude = db.Column(db.String(), unique=False, nullable=True)
+    longitude = db.Column(db.String(), unique=False, nullable=True)
     id_customer = db.Column(db.Integer, db.ForeignKey('customer.id'), unique=True, nullable=False)
 
     have_fav_brewerie_brewer = db.relationship("Brewer", secondary=favourite_brewerie, back_populates="have_fav_brewerie")
     
 
     def __repr__(self):
-        return f"Breweries with id {self.id}, named {self.company_name} in {self.address}."
+        return f"Breweries with id {self.id}, named {self.company_name} in {self.address}, in location latitude {self.latitude} and altitude {self.altitude}."
 
 
     def to_dict(self):
         return {
             "id": self.id,
             "company_name": self.company_name,
-            "address": self.address
+            "address": self.address,
+            "latitude": self.latitude,
+            "altitude": self.longitude
         }
 
 
