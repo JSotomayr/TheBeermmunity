@@ -117,6 +117,29 @@ class Customer(db.Model):
         return self.have_fav_beer
 
 
+    def create(self):
+        db.session.add(self)
+        db.session.commit()
+
+
+    @classmethod
+    def get_by_email(cls, email):
+        account = cls.query.filter_by(email=email).one_or_none()
+        return account
+
+    
+    @classmethod
+    def get_by_username(cls, username):
+        user = cls.query.filter_by(username=username).one_or_none()
+        return user
+
+
+    @classmethod
+    def check_admin(cls, admin):
+        is_admin = cls.query.filter_by(admin=admin).one_or_none()
+        return is_admin
+
+
 class Brewer(db.Model):
     __tablename__: 'brewer'
 
@@ -244,6 +267,12 @@ class Beer(db.Model):
             "image": self.image,
             "publishment_date": self.publishment_date
         }
+
+
+    def create(self):
+        db.session.add(self)
+        db.session.commit()
+
 
 
     @classmethod
