@@ -7,11 +7,10 @@ const GenericButton = (props) => {
     return(
         <button
 			className="btn"
-			variant="danger"
 			onClick={() => {
-				actions.addWishlist(props.element)
-			}}>
-				{props.name}
+				actions.addWishlist(props.element)}
+			}>
+			Pendiente
 		</button>
     )
 };

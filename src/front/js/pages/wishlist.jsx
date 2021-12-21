@@ -16,11 +16,13 @@ const Wishlist = () => {
 					return <DefaultCard key={index.toString()} element={wish} />;
 				})
 			);
+			console.log("WISHLIST", store.wishlist)
 		}
-	}, [store.tastedBeer]);
+	}, []);
 
 	return (
 		<div>
+			<Navbar />
 			<Link to="/">
 				volver
 			</Link>

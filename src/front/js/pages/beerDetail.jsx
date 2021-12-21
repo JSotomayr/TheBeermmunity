@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router";
 import FavouriteButton from "../component/favouriteButton.jsx";
+import { Link } from "react-router-dom";
 
 
 import CardDetails from "../component/cardDetails.jsx";
@@ -23,12 +24,19 @@ const BeerDetail = () => {
 			setDetailBeer(
 				store.beersDetail.map((detail, index) => {
 					return (
-						<div classname="detail_container" key={index.toString()}>
-							<CardDetails
-								element={detail}
-							/>
-							<WishButton element={detail}/>
+					<div key = {detail.id}>
+						<div className="btn">
+							<Link to="/">
+								volver
+							</Link>
 						</div>
+							<CardDetails
+								key={index.toString()}
+								element={detail}	
+						/>
+						<FavouriteButton element = {detail}/>
+						<WishButton element={detail}/>
+					</div>	
 					);
 				})
 			);

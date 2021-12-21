@@ -27,9 +27,11 @@ export const Navbar = () => {
 						<div className="nabvar_menu_cerveteca">
 							<p>Cerveteca</p>
 						</div>
-						<div className="nabvar_menu_pending">
-							<p>Pendientes</p>
-						</div> 										
+						<Link to={"/wishlist"}>
+							<div className="nabvar_menu_pending">
+								<p>Pendientes</p>
+							</div> 	
+						</Link>							
 					</div> 
 
 				 <div className="icons_right">
