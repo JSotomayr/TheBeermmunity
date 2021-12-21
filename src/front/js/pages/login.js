@@ -1,10 +1,8 @@
 import { Navbar } from "../component/navbar";
 import React, { Fragment, useContext, useEffect, useState } from "react";
-
 import { Context } from "../store/appContext.js";
 import logoBig from "../../img/logoBig.png";
 import { useForm } from "react-hook-form";
-
 import { Link } from "react-router-dom";
 
 

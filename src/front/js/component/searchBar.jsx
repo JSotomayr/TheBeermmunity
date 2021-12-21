@@ -5,6 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
+
 const options = ['Cervezas', 'Cervecerías', 'Favoritos'];
 
 export default function SearchBar() {

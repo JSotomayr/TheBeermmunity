@@ -12,15 +12,15 @@ const FavouriteButton = (props) => {
 			className="btn_favourite"
 			variant="danger"
 			onClick={() => {
-				actions.addFavourite(props)}
-			}>
+				actions.addFavourite(props.element)
+				console.log(store.favouriteBeer)
+			}}>
 		</Button>
     );
 };
 
 FavouriteButton.propTypes = {
-    name: PropTypes.string,
-    add: PropTypes.func
+    element: PropTypes.object
 }
 
 export default FavouriteButton;
