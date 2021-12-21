@@ -3,7 +3,7 @@ import "../../styles/navbar.scss";
 import logoSmall from "../../img/logoSmall.png";
 import "../../styles/navbar.scss";
 import MenuListComposition from "../component/menuListComposition.jsx";
-import SearchBar from "./searchBar.jsx";
+
 import { Link } from "react-router-dom";
 import AccountMenu from "../component/accountMenu.jsx";
 
@@ -17,8 +17,9 @@ export const Navbar = () => {
 				</div>
 
 				<div className="icons_center"> 	
-					<img className="logoNavbar" src={logoSmall} />
-
+					<Link to={"/"}>
+						<img className="logoNavbar" src={logoSmall} />
+					</Link>
 				</div>
 
 				<div className="nabvar_menu">
@@ -35,9 +36,6 @@ export const Navbar = () => {
 				</div> 
 
 				 <div className="icons_right">
-					<div className="searchbar">
-						<SearchBar />
-					</div>
 					<div className="userIconText">
 						<AccountMenu />
 					</div>

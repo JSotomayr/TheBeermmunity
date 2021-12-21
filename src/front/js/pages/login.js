@@ -42,7 +42,7 @@ export const Login = () => {
 				<div className="login-form">
 					<form
 						onSubmit={handleSubmit(onSubmit)} >
-						<label htmlFor="username"></label>
+						<label htmlFor="username" className ="subtitle">Usuario</label>
 						<input 
 							id ="username"
 							placeholder="Usuario"
@@ -57,7 +57,7 @@ export const Login = () => {
 						</div> */}
 
 
-						<label htmlFor="email"></label>
+						<label htmlFor="email" className ="subtitle">Email</label>
 						<input 
 							id ="email"
 							placeholder="Email"
@@ -71,7 +71,7 @@ export const Login = () => {
 							{errors.email && errors.email.type === "minLength" && <span role="alert">El formato de email es incorrecto</span>}
 						</div> */}
 
-						<label htmlFor="password"></label>
+						<label htmlFor="password" className ="subtitle">Contraseña</label>
 						<input 
 							id ="password"
 							type="password"

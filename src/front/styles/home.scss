@@ -3,33 +3,17 @@
 }
 
 
-.container {
+.container_searchBar {
     display:flex;
     justify-content: center;
     height: 10rem;
+    margin-top: 3rem;  
 }
 
 .searchbar_container {
-    padding: 0rem;        
+    padding: 0rem;
+          
 }
-
-
-
-// .container_btn_register {
-//     margin-left: 2rem;
-//     margin-right: 2rem;
-// }
-
-
-// CUANDO ES MAS PEQUEÑO QUE 425 APARECE
-// CUANDO ES MAS GRANDE QUE 425 DESAPARECE
-// @media (min-width: 768px) {
-//     .container_home_searchbar{
-//         display:none;
-//         background-color: red;
-//         padding: 2rem;
-//     }
-// }
 
 
 

@@ -25,7 +25,7 @@ export const Register = () => {
 	useEffect(() => {
 		setRegisterForm(
 			<div className="login-form">
-				<label htmlFor="username"></label>
+				<label htmlFor="username" className ="subtitle">Usuario</label>
 				<input 
 					id ="username"
 					placeholder="Usuario"
@@ -37,7 +37,7 @@ export const Register = () => {
 						{errors.username && errors.username.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
 						{errors.username && errors.username.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
 				</div>
-				<label htmlFor="Email"></label>
+				<label htmlFor="Email" className ="subtitle">Email</label>
 				<input 
 					id ="email"
 					placeholder="Email"
@@ -45,7 +45,7 @@ export const Register = () => {
 					type="email"
 					{...register("email", { required: true, maxLength: 30, pattern: {value: /\S+@\S+\.\S+/ }})}
 				/>
-				<label htmlFor="password"></label>
+				<label htmlFor="password" className ="subtitle">Contraseña</label>
 					<input 
 						id ="password"
 						type="password"
@@ -96,7 +96,7 @@ export const Register = () => {
 		if (getValues("userType") =="user") {
 			setRegisterForm(
 				<div className="register-form">
-					<label htmlFor="name register_input">Nombre</label>
+					<label htmlFor="name register_input" className ="subtitle">Nombre</label>
 					<input 
 						id ="name"
 						placeholder="Nombre"
@@ -105,7 +105,7 @@ export const Register = () => {
 						{...register("name", { required: true, maxLength: 15})}
 					/>	
 				
-					<label htmlFor="name register_input">Apellidos</label>
+					<label htmlFor="name register_input" className ="subtitle">Apellidos</label>
 					<input 
 						id ="lastname"
 						placeholder="Apellidos"
@@ -114,7 +114,7 @@ export const Register = () => {
 						{...register("lastname", { required: true, maxLength: 15})}
 					/>
 		
-					<label htmlFor="name register_input">Ciudad</label>
+					<label htmlFor="name register_input" className ="subtitle">Ciudad</label>
 					<input 
 						id ="city"
 						placeholder="Ciudad"
@@ -123,7 +123,7 @@ export const Register = () => {
 						{...register("city", { required: true, maxLength: 15})}
 					/>
 
-					<label htmlFor="name register_input">País</label>
+					<label htmlFor="name register_input" className ="subtitle">País</label>
 					<input 
 						id ="country"
 						placeholder="País"
@@ -140,7 +140,7 @@ export const Register = () => {
 		} else if (getValues("userType") == "business") {
 			setRegisterForm(
 				<div className="register-form">
-					<label htmlFor="nameBusiness register_input">Nombre de la Empresa</label>
+					<label htmlFor="nameBusiness register_input" className ="subtitle">Nombre de la Empresa</label>
 					<input 
 						id ="nameBusiness"
 						placeholder="Nombre Empresa"
@@ -148,7 +148,7 @@ export const Register = () => {
 						aria-invalid={errors.nameBusiness ? "true" : "false"}
 						{...register("nameBusiness", { required: true, maxLength: 15})}
 					/>
-					<label htmlFor="Adress">Dirección Empresa</label>
+					<label htmlFor="Adress" className ="subtitle">Dirección Empresa</label>
 					<input 
 						id ="Adress"
 						placeholder="Dirección"
@@ -157,7 +157,7 @@ export const Register = () => {
 						{...register("Adress", { required: true, maxLength: 15})}
 					/>
 
-					<label htmlFor="city">Ciudad</label>
+					<label htmlFor="city" className ="subtitle">Ciudad</label>
 					<input 
 						id ="city"
 						placeholder="Ciudad"
@@ -166,13 +166,13 @@ export const Register = () => {
 						{...register("city", { required: true, maxLength: 15})}
 					/>
 
-					<label htmlFor="city">País</label>
+					<label htmlFor="country" className ="subtitle">País</label>
 					<input 
 						id ="country"
 						placeholder="País"
 						className="form-control"
 						aria-invalid={errors.country ? "true" : "false"}
-						{...register("city", { required: true, maxLength: 15})}
+						{...register("country", { required: true, maxLength: 15})}
 					/>							
 
 					<input type="submit" className="btn form-control btn_submit mt-5" value="Acceder"/>

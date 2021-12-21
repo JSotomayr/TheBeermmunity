@@ -33,14 +33,6 @@
     font-size: 2rem;
 }
 
-// .nabvar_menu_pending {
-//     margin-left:1rem;
-// } 
-// .nabvar_menu_cerveteca {
-//     margin-left:1rem;
-// } 
-
-// CUANDO ES IGUAL A 7
 @media (min-width: 768px) {
     .icons_left{
         margin-right: 1rem;
@@ -61,41 +53,27 @@
         margin: 1rem;
         padding-top: 0.7rem;
     }
-//     .navbar {
-//         height: 8rem;
-//         }
-    .searchbar {
-        display: flex;
-    }
+    .navbar {
+        height: 8rem;
+        }
 
 }
 
-@media (max-width: 768px) {
-    .searchbar {
-        display: none;
+
+@media (max-width: 425px) {
+    .icons_left{
+        margin-left: 1rem;
+        display:flex;
     }
+    .icons_center {
+        display: flex;
+        justify-content: center;
+    }
+    .nabvar_menu{
+        margin-right: 1rem;
+        display:none;
 
-// @media (max-width: 425px) {
-//     .icons_left{
-//         margin-left: 1rem;
-//         display:flex;
-//     }
-//     .icons_center {
-//         display: flex;
-//         justify-content: center;
-//     }
-//     .nabvar_menu{
-//         margin-right: 1rem;
-//         display:none;
-//     }
-//     .navbar {
-//         height: 6rem;
-//         box-sizing: content-box;
-//     }
-//     .userIconText {
-//         margin-left: 1.5rem;
-//     }
-
+    }
 }
 
 .nabvar_menu_friends:hover, .nabvar_menu_cerveteca:hover, .nabvar_menu_pending:hover, .userIconText:hover, .HeartIconText:hover {

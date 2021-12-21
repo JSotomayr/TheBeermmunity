@@ -9,7 +9,7 @@ import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import { Link } from "react-router-dom";
-import "../../styles/accountMenu.scss";
+
 
 
 export default function AccountMenu() {
@@ -24,9 +24,6 @@ export default function AccountMenu() {
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-
-        
-          {/* <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}> */}
           <div className="userIconText" onClick={handleClick}>
 						<i className="fas fa-user"></i>
 						<p className="infoIcon">Perfil</p>

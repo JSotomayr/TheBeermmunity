@@ -9,6 +9,7 @@ import MenuList from '@mui/material/MenuList';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import "../../styles/menuListComposition.scss";
+import { Link } from "react-router-dom";
 
 export default function MenuListComposition() {
   const [open, setOpen] = React.useState(false);
@@ -56,12 +57,11 @@ export default function MenuListComposition() {
           aria-haspopup="true"
           onClick={handleToggle}
         >
-          {/* <i className="fas fa-beer"></i> */}
-          {/* <div className="button_menu"> */}
+         
             <div className="button_menu_line top"></div>
             <div className="button_menu_line middle"></div>
             <div className="button_menu_line bottom"></div>
-          {/* </div>  */}
+          
         </Button>
         <Popper
           open={open}
@@ -87,10 +87,9 @@ export default function MenuListComposition() {
                     aria-labelledby="composition-button"
                     onKeyDown={handleListKeyDown}
                   >
-                    <MenuItem onClick={handleClose}>Iniciar sesión</MenuItem>
-                    <MenuItem onClick={handleClose}>Crear Cuenta</MenuItem>
+                    <MenuItem onClick={handleClose}><Link to={"/beer"}><div className ="menu">Cervezas</div></Link></MenuItem>
+                    <MenuItem onClick={handleClose}>Cervecerías</MenuItem>
 
-                    <Divider />
                   </MenuList>
                 </ClickAwayListener>
               </Paper>

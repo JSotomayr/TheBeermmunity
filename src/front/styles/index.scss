@@ -22,7 +22,8 @@ body {
 
 .subtitle {
     font-family: 'PT Serif Caption', serif;
-   
+    margin-top: 1.2rem;
+    margin-bottom: 0.6rem;
 }
 
 .paragraph {
@@ -101,10 +102,6 @@ a, a:visited, a:hover, a:active {
     }
     
 
-// CUANDO SE PASA DE 768
-// DESAPARECE EL BOTON VOLVER
-// APARECEN LAS LETRAS
-
 @media (min-width: 425px) {
     .nearLog{
         display:none;
@@ -133,3 +130,8 @@ a, a:visited, a:hover, a:active {
 .btn_return_word {
     margin-left: 0.5rem;
 }
+
+.menu {
+    color: #000000DE;
+}
+
