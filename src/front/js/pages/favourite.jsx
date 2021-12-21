@@ -12,9 +12,11 @@ export const Favourite = () => {
     const [favourite, setFavourite] = useState([]);
     
     const [message, setMessage] = useState("");
-
     useEffect(() => {
-        const currentUserToken = localStorage.getItem('token');
+        actions.getFavouriteBeer();
+    },[])
+
+    useEffect(() => {        
         if (store.favouriteBeer.length != 0) {
             setFavourite(
                 store.favouriteBeer.map((fav, index) => {
@@ -23,11 +25,8 @@ export const Favourite = () => {
             );
             console.log("FAVORITOS", store.favouriteBeer)
         }
-        // if (currentUserToken == null || currentUserToken == undefined) {
-        //     setMessage("")
-        // }
        
-    }, []);
+    }, [store.favouriteBeer]);
 
 
 

@@ -141,31 +141,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 			
 			addFavourite: async fav => {
 				let newFavBeer = getStore().favouriteBeer.map(x => x.id)
-				if (!newFavBeer.includes(fav.id)){
-					setStore({ favouriteBeer: [...getStore().favouriteBeer, fav] });
-				} else {
-					setStore({favouriteBeer:[...getStore().favouriteBeer.filter(x => x.id != fav.id)]}) 
-				}
-			
-				const token = localStorage.getItem("access_token");
-				const tokenID = localStorage.getItem("tokenID");
-			
-				try {
-					let response = await fetch(getStore().baseUrl.concat("favourite/", tokenID), {
-						method: "POST",
-						body: JSON.stringify(fav),
-						headers: { "Content-Type": "application/json", Accept:"application/json" },
-					});
-
-					if (response.ok) {
-						let responseAsJson = await response.json();
-						console.log("RESPUESTA FAVORITO", response)
-					} else {throw new Error("Fail in add favourite.")}
-					
-				} catch (error) {
-						console.log(error);
+					const token = localStorage.getItem("token");			
+					try {
+						let response = await fetch(getStore().baseUrl + "brewer/favourite-beer/" + fav.id , {
+							method: "POST",
+							body: JSON.stringify(fav),
+							headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json", Accept:"application/json" }, 
+						});
+						if (response.ok) {
+							let responseAsJson = await response.json();
+							setStore({ favouriteBeer: responseAsJson});
+						} else {throw new Error("Fail in add favourite.")}
+					} catch (error) {
+							console.log(error);
 					}
+			},
 
+			getFavouriteBeer: async () => {
+				const token = localStorage.getItem("token");			
+				const response = await fetch(getStore().baseUrl + "brewer/favourite-beers", {
+					headers: { Authorization: `Bearer ${token}`}, 
+			} );
+				const data = await response.json();
+				setStore({favouriteBeer:data})
 			},
 
 			addTastedBeer: beer => {
