@@ -221,7 +221,7 @@ data = {
             "company_name": "BeBeer",
             "address": "Calle Edison, 3",
             "latitude": "40.44106820810799",
-            "altitude": "-3.680747125612168",
+            "longitude": "-3.680747125612168",
             "id_customer": 3
         },
         {
