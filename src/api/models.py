@@ -107,7 +107,7 @@ class Customer(db.Model):
         db.session.commit()
 
     @classmethod
-    def get_by_id(cls, id):
+    def get_by_id_customer(cls, id):
         customer_id = cls.query.get(id)
         return customer_id
 
@@ -133,7 +133,7 @@ class Brewer(db.Model):
     go_to_event = db.relationship("Event", secondary=brewer_go_to_event, back_populates="go_to_event_brewer")
 
     def __repr__(self):
-        return f"Brewer with id {self.id}, name {self.name} {self.lastname}."
+        return f"Brewer with id {self.id}, name {self.name} {self.lastname} and account {self.id_customer}."
 
 
     def to_dict(self):
@@ -141,7 +141,6 @@ class Brewer(db.Model):
             "id": self.id,
             "name": self.name,
             "lastname" : self.lastname,
-            "favourite_beer" : list(map(lambda x:x.to_dict(), self.have_fav_beer))
         }
 
     def create(self):
@@ -152,23 +151,6 @@ class Brewer(db.Model):
     def get_by_id_brewer(cls, id):
         brewer_id = cls.query.get(id)
         return brewer_id
-
-
-    def create(self):
-        db.session.add(self)
-        db.session.commit()
-
-
-    @classmethod
-    def get_by_id(cls, id):
-        brewer_id = cls.query.get(id)
-        return brewer_id
-
-
-    @classmethod
-    def get_by_id_brewer(cls, id):
-        brewer = cls.query.get(id)
-        return brewer
 
     
     def add_fav_beer(self,beer):
@@ -183,20 +165,24 @@ class Brewerie(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     company_name = db.Column(db.String(), unique=False, nullable=False)
     address = db.Column(db.String(), unique=False, nullable=False)
+    latitude = db.Column(db.String(), unique=False, nullable=True)
+    longitude = db.Column(db.String(), unique=False, nullable=True)
     id_customer = db.Column(db.Integer, db.ForeignKey('customer.id'), unique=True, nullable=False)
 
     have_fav_brewerie_brewer = db.relationship("Brewer", secondary=favourite_brewerie, back_populates="have_fav_brewerie")
     
 
     def __repr__(self):
-        return f"Breweries with id {self.id}, named {self.company_name} in {self.address}."
+        return f"Breweries with id {self.id}, named {self.company_name} in {self.address}, in location latitude {self.latitude} and altitude {self.altitude}."
 
 
     def to_dict(self):
         return {
             "id": self.id,
             "company_name": self.company_name,
-            "address": self.address
+            "address": self.address,
+            "latitude": self.latitude,
+            "altitude": self.longitude
         }
 
 

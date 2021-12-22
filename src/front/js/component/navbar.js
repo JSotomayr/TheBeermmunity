@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import "../../styles/navbar.scss";
 import logoSmall from "../../img/logoSmall.png";
 import "../../styles/navbar.scss";
 import MenuListComposition from "../component/menuListComposition.jsx";
@@ -15,12 +14,11 @@ export const Navbar = () => {
 				<div className=" icons_left">
 						<MenuListComposition />
 				</div>
-
-				<div className="icons_center"> 	
-					<Link to={"/"}>
+				<Link to={"/"}>
+					<div className="icons_center"> 	
 						<img className="logoNavbar" src={logoSmall} />
-					</Link>
-				</div>
+					</div>
+				</Link>
 
 				<div className="nabvar_menu">
 					<Link to={"/beer"}>

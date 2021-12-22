@@ -9,16 +9,8 @@ export const Home = () => {
 	const { store, actions } = useContext(Context);
 
 	return (	
-		<Fragment>	
-				<div className="container_navbar_home">
-					<Navbar/>
-									
-					<div className="container_searchBar">
-						
-							<SearchBar />
-						
-					</div>				
-				</div>
-		</Fragment>
+		<div className="container_searchBar">						
+			<SearchBar />						
+		</div>				
 	);
 };

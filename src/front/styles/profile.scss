@@ -43,3 +43,88 @@
         margin-left: 2.5rem;
     }
 }
+@media (min-width: 768px){
+    // #app {
+    //     display: flex;
+    //     justify-content: center;
+    // }
+    .profileContainer {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        background: rgba(102, 103, 104, 0.445);
+    }
+
+    .profileContainer__top {
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .profileContainer__details {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .profileContainer__img {
+        width: 25%;
+        border-radius: 100%;
+        border: 0.2rem solid #E49B0F;
+    }
+    .profileContainer__title {
+        width: fit-content;
+    }
+    .profileContainer__subtitle {
+        width: fit-content;
+    }
+    .profileContainer__text {
+        width: fit-content;
+    }
+    .profileContainer__description {
+        margin-top: 1rem;
+        margin-right: 2.5rem;
+        margin-bottom: 1rem;
+        margin-left: 2.5rem;
+    }
+
+    .subtitle {
+        margin-left: 2.5rem;
+    }
+
+    .container__cerveteca {
+        padding-top: 0.5rem;
+        padding-left: 2.5rem;
+        margin-top: 2rem;
+        background: rgba(102, 103, 104, 0.445);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container__fav {
+        padding-top: 0.5rem;
+        padding-left: 2.5rem;
+        margin-top: 2rem;
+        background: rgba(102, 103, 104, 0.445);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container__wish {
+        padding-top: 0.5rem;
+        padding-left: 2.5rem;
+        margin-top: 2rem;
+        background: rgba(102, 103, 104, 0.445);
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .display__cards {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .card {
+        margin-bottom: 1rem;
+    }
+}

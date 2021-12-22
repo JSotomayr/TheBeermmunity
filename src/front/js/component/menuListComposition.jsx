@@ -87,8 +87,16 @@ export default function MenuListComposition() {
                     aria-labelledby="composition-button"
                     onKeyDown={handleListKeyDown}
                   >
-                    <MenuItem onClick={handleClose}><Link to={"/beer"}><div className ="menu">Cervezas</div></Link></MenuItem>
-                    <MenuItem onClick={handleClose}>Cervecerías</MenuItem>
+                    <MenuItem onClick={handleClose}>
+                        <Link to={"/beer"}><div className ="menu">
+                      <i className="fas fa-beer menu_beer">
+                        </i>Cervezas</div>
+                      </Link>
+                      </MenuItem>
+                    <MenuItem onClick={handleClose}>
+                    <i className="fas fa-store-alt menu_brewerie"></i>
+                      Cervecerías
+                      </MenuItem>
 
                   </MenuList>
                 </ClickAwayListener>

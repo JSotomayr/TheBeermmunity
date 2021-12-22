@@ -1,9 +1,8 @@
-
 import React, { Fragment, useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext.js";
 import logoBig from "../../img/logoBig.png";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Navbar } from "../component/navbar";
 
 import Form from 'react-bootstrap/Form'
@@ -12,7 +11,7 @@ import "../../styles/login.scss";
 
 export const Login = () => {
 	const { store, actions } = useContext(Context);
-
+	let navigate = useNavigate();
 	const {
 		register,
 		handleSubmit,
@@ -24,7 +23,6 @@ export const Login = () => {
 
 	return (
 		<Fragment>
-			<Navbar/>
 			<div className="btn_return">
 				<Link to="/">
 					<div className = "btn btn_return_box">
@@ -42,7 +40,7 @@ export const Login = () => {
 				<div className="login-form">
 					<form
 						onSubmit={handleSubmit(onSubmit)} >
-						<label htmlFor="username" className ="subtitle">Usuario</label>
+						<label htmlFor="username" className ="subtitle_form">Usuario</label>
 						<input 
 							id ="username"
 							placeholder="Usuario"
@@ -57,7 +55,7 @@ export const Login = () => {
 						</div> */}
 
 
-						<label htmlFor="email" className ="subtitle">Email</label>
+						<label htmlFor="email" className ="subtitle_form">Email</label>
 						<input 
 							id ="email"
 							placeholder="Email"
@@ -71,7 +69,7 @@ export const Login = () => {
 							{errors.email && errors.email.type === "minLength" && <span role="alert">El formato de email es incorrecto</span>}
 						</div> */}
 
-						<label htmlFor="password" className ="subtitle">Contraseña</label>
+						<label htmlFor="password" className ="subtitle_form">Contraseña</label>
 						<input 
 							id ="password"
 							type="password"
@@ -104,7 +102,10 @@ export const Login = () => {
 								/>
 						</div>
 
-						<button type="submit" className="btn form-control btn_submit mt-5">Acceder</button> 
+						<button type="submit" 
+						onClick = {navigate("/")} 
+						// onClick = {navigate(`/profile/${store.currentUser.id}`)}
+						className="btn form-control btn_submit mt-5">Acceder</button> 
 						{errors.submit && errors.submit.type === "required" && <span role="alertSubmitLog">!ERROR! Se ha producido un error en su intento de Inicio de sesión. Asegúrese de que el correo, el nombre de usuario y la contraseña son correctos</span>}
 
 

@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { Context } from "../store/appContext";
 import logoBig from "../../img/logoBig.png";
-import { Navbar } from "../component/navbar";
 import "../../styles/register.scss";
 
 
@@ -20,12 +19,10 @@ export const Register = () => {
 		actions.register(dataRegister);
 	}
 
-
-								// REGISTRO USER Y BUSINESS COMUN
 	useEffect(() => {
 		setRegisterForm(
 			<div className="login-form">
-				<label htmlFor="username" className ="subtitle">Usuario</label>
+				<label htmlFor="username" className ="subtitle_form">Usuario</label>
 				<input 
 					id ="username"
 					placeholder="Usuario"
@@ -37,7 +34,7 @@ export const Register = () => {
 						{errors.username && errors.username.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
 						{errors.username && errors.username.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
 				</div>
-				<label htmlFor="Email" className ="subtitle">Email</label>
+				<label htmlFor="Email" className ="subtitle_form">Email</label>
 				<input 
 					id ="email"
 					placeholder="Email"
@@ -45,7 +42,7 @@ export const Register = () => {
 					type="email"
 					{...register("email", { required: true, maxLength: 30, pattern: {value: /\S+@\S+\.\S+/ }})}
 				/>
-				<label htmlFor="password" className ="subtitle">Contraseña</label>
+				<label htmlFor="password" className ="subtitle_form">Contraseña</label>
 					<input 
 						id ="password"
 						type="password"
@@ -91,12 +88,11 @@ export const Register = () => {
 		);
 	}, []);
 
-
 	useEffect(() => {
 		if (getValues("userType") =="user") {
 			setRegisterForm(
 				<div className="register-form">
-					<label htmlFor="name register_input" className ="subtitle">Nombre</label>
+					<label htmlFor="name register_input" className ="subtitle_form">Nombre</label>
 					<input 
 						id ="name"
 						placeholder="Nombre"
@@ -105,7 +101,7 @@ export const Register = () => {
 						{...register("name", { required: true, maxLength: 15})}
 					/>	
 				
-					<label htmlFor="name register_input" className ="subtitle">Apellidos</label>
+					<label htmlFor="name register_input" className ="subtitle_form">Apellidos</label>
 					<input 
 						id ="lastname"
 						placeholder="Apellidos"
@@ -114,7 +110,7 @@ export const Register = () => {
 						{...register("lastname", { required: true, maxLength: 15})}
 					/>
 		
-					<label htmlFor="name register_input" className ="subtitle">Ciudad</label>
+					<label htmlFor="name register_input" className ="subtitle_form">Ciudad</label>
 					<input 
 						id ="city"
 						placeholder="Ciudad"
@@ -123,7 +119,7 @@ export const Register = () => {
 						{...register("city", { required: true, maxLength: 15})}
 					/>
 
-					<label htmlFor="name register_input" className ="subtitle">País</label>
+					<label htmlFor="name register_input" className ="subtitle_form">País</label>
 					<input 
 						id ="country"
 						placeholder="País"
@@ -135,12 +131,10 @@ export const Register = () => {
 					<input type="submit" className="btn form-control btn_submit mt-5" value="Acceder" />
 				</div>
 			);
-
-								// REGISTRO BUSINESS
 		} else if (getValues("userType") == "business") {
 			setRegisterForm(
 				<div className="register-form">
-					<label htmlFor="nameBusiness register_input" className ="subtitle">Nombre de la Empresa</label>
+					<label htmlFor="nameBusiness register_input" className ="subtitle_form">Nombre de la Empresa</label>
 					<input 
 						id ="nameBusiness"
 						placeholder="Nombre Empresa"
@@ -148,7 +142,7 @@ export const Register = () => {
 						aria-invalid={errors.nameBusiness ? "true" : "false"}
 						{...register("nameBusiness", { required: true, maxLength: 15})}
 					/>
-					<label htmlFor="Adress" className ="subtitle">Dirección Empresa</label>
+					<label htmlFor="Adress" className ="subtitle_form">Dirección Empresa</label>
 					<input 
 						id ="Adress"
 						placeholder="Dirección"
@@ -157,7 +151,7 @@ export const Register = () => {
 						{...register("Adress", { required: true, maxLength: 15})}
 					/>
 
-					<label htmlFor="city" className ="subtitle">Ciudad</label>
+					<label htmlFor="city" className ="subtitle_form">Ciudad</label>
 					<input 
 						id ="city"
 						placeholder="Ciudad"
@@ -166,7 +160,7 @@ export const Register = () => {
 						{...register("city", { required: true, maxLength: 15})}
 					/>
 
-					<label htmlFor="country" className ="subtitle">País</label>
+					<label htmlFor="country" className ="subtitle_form">País</label>
 					<input 
 						id ="country"
 						placeholder="País"
@@ -182,13 +176,12 @@ export const Register = () => {
 	}, [next]);
 	
 	// useEffect(() => {
-	// 	navigate(`/profile/${currentUser.id}`);
+	// 	navigate(`/profile/${store.currentUser.id}`);
 	// }, [store.currentUser])
 
 
 	return (
 		<Fragment>
-			<Navbar/>
 			<div className="btn_return">
 				<Link to="/">
 					<div className = "btn btn_return_box">
@@ -206,7 +199,12 @@ export const Register = () => {
 				</div>
 				<div className="title">Crear cuenta</div>
 
-				<form onSubmit = {(event) => {event.preventDefault(); onsubmit(getValues())}}>
+				<form onSubmit = {(event) => {
+					event.preventDefault(); 
+					onsubmit(getValues())
+					// navigate(`/profile/${store.currentUser.id}`);
+					navigate("/");
+				}}>
 					{registerForm}
 				</form>
 			</div>
@@ -215,4 +213,3 @@ export const Register = () => {
 }
 
 export default Register;
-

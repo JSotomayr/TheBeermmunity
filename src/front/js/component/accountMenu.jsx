@@ -65,8 +65,9 @@ export default function AccountMenu() {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem>
+        <Link to="/login"> 
           <Avatar /> 
-
+        </Link>
           <Link to="/login"> 
             <div className="menu">
               Iniciar Sesión
@@ -80,6 +81,16 @@ export default function AccountMenu() {
           <Link to="/register">
 							<div className="menu">
                 Crear Cuenta
+							</div>
+					</Link>	
+        </MenuItem>
+        <MenuItem>
+          <ListItemIcon>
+          <Avatar /> 
+          </ListItemIcon>
+          <Link to="/profile/:id">
+							<div className="menu">
+                Perfil
 							</div>
 					</Link>	
         </MenuItem>
