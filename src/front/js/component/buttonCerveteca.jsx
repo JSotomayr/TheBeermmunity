@@ -16,7 +16,7 @@ const ButtonCerveteca = (props) => {
 				console.log(store.tastedBeer);
 			}}>
 			Cerveteca
-		</button>
+	</button>
     )
 };
 

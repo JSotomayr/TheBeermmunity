@@ -11,7 +11,7 @@ const Cerveteca = () => {
 	useEffect(() => {
 		actions.getTastedBeer();
 	},[])
-
+	
 	useEffect(() => {
 		if (store.tastedBeer.length != 0) {
 			setTriedList(
