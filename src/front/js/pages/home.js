@@ -3,6 +3,7 @@ import { Context } from "../store/appContext";
 import "../../styles/home.scss";
 import { Link } from "react-router-dom";
 import { Navbar } from "../component/navbar";
+import Landing from "./landing";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
@@ -28,6 +29,7 @@ export const Home = () => {
           </Link>
         </div>
       </div>
+      <Landing />
     </Fragment>
   );
 };
