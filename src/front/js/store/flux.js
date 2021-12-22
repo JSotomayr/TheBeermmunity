@@ -147,13 +147,35 @@ const getState = ({ getStore, getActions, setStore }) => {
 				if (!newFavBeer.includes(fav.id)){
 					setStore({ favouriteBeer: [...getStore().favouriteBeer, fav] });
 				} else {
-					setStore({favouriteBeer:[...getStore().favouriteBeer.filter(x => x.id != fav.id)]}) 
+					setStore({ favouriteBeer: [...getStore().favouriteBeer.filter(x => x.id != fav.id)]}) 
 				}
 
 			},
 
-			addTastedBeer: beer => {
-				setStore({ tastedBeer: [...getStore().tastedBeer, beer] });
+			addTastedBeer: async tasted => {
+					const token = localStorage.getItem("token");			
+					try {
+						let response = await fetch(getStore().baseUrl + "brewer/tasted-beer/" + tasted.id , {
+							method: "POST",
+							body: JSON.stringify(tasted),
+							headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json", Accept:"application/json" }, 
+						});
+						if (response.ok) {
+							let responseAsJson = await response.json();
+							setStore({ tastedBeer: responseAsJson});
+						} else {throw new Error("Fail in add tasted.")}
+					} catch (error) {
+							console.log(error);
+					}
+			},
+			
+			getTastedBeer: async () => {
+				const token = localStorage.getItem("token");			
+				const response = await fetch(getStore().baseUrl + "brewer/tasted-beer", {
+					headers: { Authorization: `Bearer ${token}`}, 
+				});
+				const beer = await response.json();
+				setStore({ tastedBeer: beer})
 			}
 		}
 	}
