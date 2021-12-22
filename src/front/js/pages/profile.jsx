@@ -63,7 +63,7 @@ export const Profile = () => {
                <div className="display__cards">{myTastedBeers}</div>
             </div>
             <div className="container__fav">
-                <Link to={"/favourite"}>
+                <Link to={"/profile/:id/favourite"}>
                     <p className="subtitle">Favoritas</p>            
                 </Link>
                 <div className="display__cards">{myFavBeers}</div>

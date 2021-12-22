@@ -3,11 +3,10 @@ import { Context } from "../store/appContext.js";
 import logoBig from "../../img/logoBig.png";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { Navbar } from "../component/navbar";
-
 import Form from 'react-bootstrap/Form'
 
 import "../../styles/login.scss";
+
 
 export const Login = () => {
 	const { store, actions } = useContext(Context);
@@ -19,8 +18,14 @@ export const Login = () => {
 
 	} = useForm();
 
-	const onSubmit = dataLogin => actions.login(dataLogin)
+	const submit = dataLogin => actions.login(dataLogin)
 
+	useEffect(() => {
+		if (Object.keys(store.currentUser).length) {
+			navigate(`/profile/${store.currentUser.id}`);
+		}
+	}, [store.currentUser])
+	
 	return (
 		<Fragment>
 			<div className="btn_return">
@@ -39,7 +44,7 @@ export const Login = () => {
 				<div className="title">Iniciar sesión</div>
 				<div className="login-form">
 					<form
-						onSubmit={handleSubmit(onSubmit)} >
+						onSubmit={handleSubmit(submit)} >
 						<label htmlFor="username" className ="subtitle_form">Usuario</label>
 						<input 
 							id ="username"
@@ -102,10 +107,9 @@ export const Login = () => {
 								/>
 						</div>
 
-						<button type="submit" 
-						onClick = {navigate("/")} 
-						// onClick = {navigate(`/profile/${store.currentUser.id}`)}
-						className="btn form-control btn_submit mt-5">Acceder</button> 
+						<input type="submit" 
+						
+						className="btn form-control btn_submit mt-5" value = "Acceder" /> 
 						{errors.submit && errors.submit.type === "required" && <span role="alertSubmitLog">!ERROR! Se ha producido un error en su intento de Inicio de sesión. Asegúrese de que el correo, el nombre de usuario y la contraseña son correctos</span>}
 
 

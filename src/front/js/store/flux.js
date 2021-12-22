@@ -10,7 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			baseUrl: `${PROTOCOL}://${PORT}-${HOST}/api/`,
 			register: [],
 			login: [],
-			currentUser: null,
+			currentUser: {},
 			profileInfo: [],
 			beers: [],
 			beersDetail: [],

@@ -26,11 +26,11 @@ export const Navbar = () => {
 							CERVEZAS
 						</div>
 					</Link>
-					{/* <Link> */}
+					<Link to = {"/map"}>
 						<div className="btn container_btn_breweries m-2">
 							CERVECERIAS
 						</div>
-					{/* </Link> */}									
+					</Link>									
 				</div> 
 
 				 <div className="icons_right">
@@ -38,7 +38,7 @@ export const Navbar = () => {
 						<AccountMenu />
 					</div>
 					
-					<Link to = "/favourite">
+					<Link to = "profile/:id/favourite">
 						<div className="HeartIconText">
 							<i className="far fa-heart"></i>
 							<p className="infoIcon">Favoritos</p>

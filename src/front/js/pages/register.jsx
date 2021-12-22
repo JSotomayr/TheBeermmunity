@@ -175,9 +175,11 @@ export const Register = () => {
 		}				
 	}, [next]);
 	
-	// useEffect(() => {
-	// 	navigate(`/profile/${store.currentUser.id}`);
-	// }, [store.currentUser])
+	useEffect(() => {
+		if (Object.keys(store.currentUser).length) {
+			navigate(`/profile/${store.currentUser.id}`);
+		}
+	}, [store.currentUser])
 
 
 	return (
@@ -203,7 +205,7 @@ export const Register = () => {
 					event.preventDefault(); 
 					onsubmit(getValues())
 					// navigate(`/profile/${store.currentUser.id}`);
-					navigate("/");
+					// navigate("/");
 				}}>
 					{registerForm}
 				</form>
