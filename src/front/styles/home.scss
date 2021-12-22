@@ -1,33 +1,20 @@
 .fa-search {
-    font-size:2rem;
+  font-size: 2rem;
 }
 
-
-.container {
-    display:flex;
-    justify-content: center;
-    height: 10rem;
+.container_searchBar {
+  display: flex;
+  justify-content: center;
+  height: 10rem;
+  margin-top: 3rem;
 }
-
 
 .searchbar_container {
-    padding: 0rem;        
-}
-
-.container_btn {
-    margin: 0;
-}
-
-
-
-@media (min-width: 768px) {
-    .searchbar{
-        display:none;
-    }
+  padding: 0rem;
 }
 
 @media (max-width: 425px) {
-    .searchbar{
-        display:flex;
-    }
+  .searchbar {
+    display: flex;
+  }
 }

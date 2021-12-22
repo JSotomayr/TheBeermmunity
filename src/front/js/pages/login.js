@@ -1,18 +1,16 @@
-import { Navbar } from "../component/navbar";
 import React, { Fragment, useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext.js";
 import logoBig from "../../img/logoBig.png";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-
-
+import { Link, useNavigate } from "react-router-dom";
 import Form from 'react-bootstrap/Form'
 
 import "../../styles/login.scss";
 
+
 export const Login = () => {
 	const { store, actions } = useContext(Context);
-
+	let navigate = useNavigate();
 	const {
 		register,
 		handleSubmit,
@@ -20,25 +18,34 @@ export const Login = () => {
 
 	} = useForm();
 
-	const onSubmit = dataLogin => actions.login(dataLogin)
+	const submit = dataLogin => actions.login(dataLogin)
 
+	useEffect(() => {
+		if (Object.keys(store.currentUser).length) {
+			navigate(`/profile/${store.currentUser.id}`);
+		}
+	}, [store.currentUser])
+	
 	return (
 		<Fragment>
-
+			<div className="btn_return">
+				<Link to="/">
+					<div className = "btn btn_return_box">
+						<i className="fas fa-undo-alt"></i>
+						<div className ="btn_return_word">VOLVER</div>
+					</div>
+				</Link>
+			</div>	
+				
 			<div className="loginContainer">
-				<div className="btn">
-					<Link to="/">
-						volver
-					</Link>
-				</div>
 				<Link to="/">
 					<img src={logoBig} />
 				</Link>
 				<div className="title">Iniciar sesión</div>
 				<div className="login-form">
 					<form
-						onSubmit={handleSubmit(onSubmit)} >
-						<label htmlFor="username"></label>
+						onSubmit={handleSubmit(submit)} >
+						<label htmlFor="username" className ="subtitle_form">Usuario</label>
 						<input 
 							id ="username"
 							placeholder="Usuario"
@@ -53,7 +60,7 @@ export const Login = () => {
 						</div> */}
 
 
-						<label htmlFor="email"></label>
+						<label htmlFor="email" className ="subtitle_form">Email</label>
 						<input 
 							id ="email"
 							placeholder="Email"
@@ -67,7 +74,7 @@ export const Login = () => {
 							{errors.email && errors.email.type === "minLength" && <span role="alert">El formato de email es incorrecto</span>}
 						</div> */}
 
-						<label htmlFor="password"></label>
+						<label htmlFor="password" className ="subtitle_form">Contraseña</label>
 						<input 
 							id ="password"
 							type="password"
@@ -100,7 +107,9 @@ export const Login = () => {
 								/>
 						</div>
 
-						<button type="submit" className="btn btn-primary form-control btn_submit mt-5">Acceder</button> 
+						<input type="submit" 
+						
+						className="btn form-control btn_submit mt-5" value = "Acceder" /> 
 						{errors.submit && errors.submit.type === "required" && <span role="alertSubmitLog">!ERROR! Se ha producido un error en su intento de Inicio de sesión. Asegúrese de que el correo, el nombre de usuario y la contraseña son correctos</span>}
 
 

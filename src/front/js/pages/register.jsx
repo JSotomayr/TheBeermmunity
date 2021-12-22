@@ -12,7 +12,7 @@ export const Register = () => {
 	const [registerForm, setRegisterForm] = useState([]);
 	const { handleSubmit, register, getValues, formState: { errors }} = useForm();
 	const { store, actions } = useContext(Context);
-	// let navigate = useNavigate();
+	let navigate = useNavigate();
 
 	const onsubmit = (dataRegister) => {
 		console.log(dataRegister);
@@ -22,7 +22,7 @@ export const Register = () => {
 	useEffect(() => {
 		setRegisterForm(
 			<div className="login-form">
-				<label htmlFor="username"></label>
+				<label htmlFor="username" className ="subtitle_form">Usuario</label>
 				<input 
 					id ="username"
 					placeholder="Usuario"
@@ -34,7 +34,7 @@ export const Register = () => {
 						{errors.username && errors.username.type === "required" && <span role="alert">El campo Usuario es obligatorio</span>}
 						{errors.username && errors.username.type === "maxLength" && <span role="alert">Máximo de caracteres excedido</span>}
 				</div>
-				<label htmlFor="Email"></label>
+				<label htmlFor="Email" className ="subtitle_form">Email</label>
 				<input 
 					id ="email"
 					placeholder="Email"
@@ -42,7 +42,7 @@ export const Register = () => {
 					type="email"
 					{...register("email", { required: true, maxLength: 30, pattern: {value: /\S+@\S+\.\S+/ }})}
 				/>
-				<label htmlFor="password"></label>
+				<label htmlFor="password" className ="subtitle_form">Contraseña</label>
 					<input 
 						id ="password"
 						type="password"
@@ -92,7 +92,7 @@ export const Register = () => {
 		if (getValues("userType") =="user") {
 			setRegisterForm(
 				<div className="register-form">
-					<label htmlFor="name register_input">Nombre</label>
+					<label htmlFor="name register_input" className ="subtitle_form">Nombre</label>
 					<input 
 						id ="name"
 						placeholder="Nombre"
@@ -101,7 +101,7 @@ export const Register = () => {
 						{...register("name", { required: true, maxLength: 15})}
 					/>	
 				
-					<label htmlFor="name register_input">Apellidos</label>
+					<label htmlFor="name register_input" className ="subtitle_form">Apellidos</label>
 					<input 
 						id ="lastname"
 						placeholder="Apellidos"
@@ -110,7 +110,7 @@ export const Register = () => {
 						{...register("lastname", { required: true, maxLength: 15})}
 					/>
 		
-					<label htmlFor="name register_input">Ciudad</label>
+					<label htmlFor="name register_input" className ="subtitle_form">Ciudad</label>
 					<input 
 						id ="city"
 						placeholder="Ciudad"
@@ -119,7 +119,7 @@ export const Register = () => {
 						{...register("city", { required: true, maxLength: 15})}
 					/>
 
-					<label htmlFor="name register_input">País</label>
+					<label htmlFor="name register_input" className ="subtitle_form">País</label>
 					<input 
 						id ="country"
 						placeholder="País"
@@ -128,13 +128,13 @@ export const Register = () => {
 						{...register("country", { required: true, maxLength: 15})}
 					/>
 	
-					<input type="submit" className="btn btn-primary form-control btn_submit mt-5" value="Acceder" />
+					<input type="submit" className="btn form-control btn_submit mt-5" value="Acceder" />
 				</div>
 			);
 		} else if (getValues("userType") == "business") {
 			setRegisterForm(
 				<div className="register-form">
-					<label htmlFor="nameBusiness register_input">Nombre de la Empresa</label>
+					<label htmlFor="nameBusiness register_input" className ="subtitle_form">Nombre de la Empresa</label>
 					<input 
 						id ="nameBusiness"
 						placeholder="Nombre Empresa"
@@ -142,7 +142,7 @@ export const Register = () => {
 						aria-invalid={errors.nameBusiness ? "true" : "false"}
 						{...register("nameBusiness", { required: true, maxLength: 15})}
 					/>
-					<label htmlFor="Adress">Dirección Empresa</label>
+					<label htmlFor="Adress" className ="subtitle_form">Dirección Empresa</label>
 					<input 
 						id ="Adress"
 						placeholder="Dirección"
@@ -151,7 +151,7 @@ export const Register = () => {
 						{...register("Adress", { required: true, maxLength: 15})}
 					/>
 
-					<label htmlFor="city">Ciudad</label>
+					<label htmlFor="city" className ="subtitle_form">Ciudad</label>
 					<input 
 						id ="city"
 						placeholder="Ciudad"
@@ -160,45 +160,57 @@ export const Register = () => {
 						{...register("city", { required: true, maxLength: 15})}
 					/>
 
-					<label htmlFor="city">País</label>
+					<label htmlFor="country" className ="subtitle_form">País</label>
 					<input 
 						id ="country"
 						placeholder="País"
 						className="form-control"
 						aria-invalid={errors.country ? "true" : "false"}
-						{...register("city", { required: true, maxLength: 15})}
+						{...register("country", { required: true, maxLength: 15})}
 					/>							
 
-					<input type="submit" className="btn btn-primary form-control btn_submit mt-5" value="Acceder"/>
+					<input type="submit" className="btn form-control btn_submit mt-5" value="Acceder"/>
 				</div>
 			);	
 		}				
 	}, [next]);
 	
-	// useEffect(() => {
-	// 	navigate(`/profile/${currentUser.id}`);
-	// }, [store.currentUser])
+	useEffect(() => {
+		if (Object.keys(store.currentUser).length) {
+			navigate(`/profile/${store.currentUser.id}`);
+		}
+	}, [store.currentUser])
 
 
 	return (
-		<div className="loginContainer">
-			<div className="btn nearLog">
+		<Fragment>
+			<div className="btn_return">
 				<Link to="/">
-					volver
+					<div className = "btn btn_return_box">
+						<i className="fas fa-undo-alt"></i>
+						<div className ="btn_return_word">VOLVER</div>
+					</div>
 				</Link>
-			</div>
-			<img src={logoBig} />
-			<div className="step">
-				<div className="step_left">1</div>
-				<div className="step_line"></div>
-				<div className="step_right_completed">2</div>
-			</div>
-			<div className="title">Crear cuenta</div>
+			</div>	
+			<div className="loginContainer">
+				<img src={logoBig} />
+				<div className="step">
+					<div className="step_left">1</div>
+					<div className="step_line"></div>
+					<div className="step_right_completed">2</div>
+				</div>
+				<div className="title">Crear cuenta</div>
 
-			<form onSubmit = {(event) => {event.preventDefault(); onsubmit(getValues())}}>
-				{registerForm}
-			</form>
-		</div>
+				<form onSubmit = {(event) => {
+					event.preventDefault(); 
+					onsubmit(getValues())
+					// navigate(`/profile/${store.currentUser.id}`);
+					// navigate("/");
+				}}>
+					{registerForm}
+				</form>
+			</div>
+		</Fragment>
 	);
 }
 

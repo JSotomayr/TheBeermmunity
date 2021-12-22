@@ -17,11 +17,23 @@ body {
   font-family: "PT Serif Caption", serif;
 }
 
+.subtitle_form {
+  font-family: "PT Serif Caption", serif;
+  margin-top: 1.2rem;
+  margin-bottom: 0.6rem;
+  margin-left: -0.1rem;
+}
+
+.subtitle {
+  font-family: "PT Serif Caption", serif;
+}
+
 .paragraph {
   font-family: "Pridi", serif;
 }
 
 .btn {
+  color: white;
   background: #2d2d2d;
   border: 1px solid white;
   border-radius: 0.2rem;
@@ -29,11 +41,7 @@ body {
 
 .btn:hover {
   background: #e49b0f;
-  color: white;
-  text-decoration: none;
-}
-
-a {
+  // background-color: #afad4c;
   color: white;
   text-decoration: none;
 }
@@ -43,6 +51,7 @@ a:visited,
 a:hover,
 a:active {
   color: white;
+  text-decoration: none;
 }
 
 .loginContainer {
@@ -61,6 +70,12 @@ a:active {
 }
 
 .btn_submit:hover {
+  background-color: #a77311;
+  color: white;
+  border: 3px solid #543b0b;
+}
+
+.alertDiv {
   background-color: #7a731a;
   color: white;
 }
@@ -83,10 +98,6 @@ a:active {
   margin-top: 1rem;
 }
 
-// CUANDO SE PASA DE 768
-// DESAPARECE EL BOTON VOLVER
-// APARECEN LAS LETRAS
-
 @media (min-width: 425px) {
   .nearLog {
     display: none;
@@ -97,4 +108,24 @@ a:active {
   .nearLog {
     display: flex;
   }
+}
+
+.btn_return {
+  display: flex;
+  justify-content: end;
+  margin-right: 3rem;
+  margin-top: 3rem;
+}
+
+.btn_return_box {
+  display: flex;
+  align-items: center;
+}
+
+.btn_return_word {
+  margin-left: 0.5rem;
+}
+
+.menu {
+  color: #000000de;
 }
