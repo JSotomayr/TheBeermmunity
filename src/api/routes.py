@@ -173,31 +173,10 @@ def add_favbeer(id_brewer, id_beer):
         
     return jsonify({'error': 'Not favourites'}),404
 
-@api.route('/brewer/tasted-beer/<int:id_beer>', methods=['POST'])
-@jwt_required()
-def add_tasted_beer(id_beer):
-    identity = get_jwt_identity()
-    brewer = Brewer.get_by_id_brewer(identity["id"])
-
-    if brewer:
-        beer = Beer.get_by_id(id_beer) 
-        tasted_beers_id = list(map(lambda x:x.id, brewer.have_tasted_beer))
-        if brewer and beer and beer.id not in tasted_beers_id:
-            add_beer = brewer.add_tasted_beer(beer)
-            tasted_beer = [beer.to_dict() for beer in add_beer]
-            return jsonify(tasted_beer),200
-
-        elif beer.id in tasted_beers_id:
-            delete_beer = brewer.delete_tasted_beer(beer)
-            tasted_beer = [beer.to_dict() for beer in delete_beer]
-            return jsonify(tasted_beer),200
-
-    return jsonify({'error': 'No Tasted beers'}),404
-
 
 @api.route('/brewer/tasted-beer', methods = ['GET'])
 @jwt_required()
-def get_fav_beers():
+def get_tasted_beers():
     identity = get_jwt_identity()
     brewer = Brewer.get_by_id_brewer(identity["id"])
     if brewer:        
@@ -225,16 +204,6 @@ def add_tasted_beer(id_beer):
             return jsonify(tasted_beer),200
 
     return jsonify({'error': 'No Tasted beers'}),404
-
-
-@api.route('/brewer/tasted-beer', methods = ['GET'])
-@jwt_required()
-def get_fav_beers():
-    identity = get_jwt_identity()
-    brewer = Brewer.get_by_id_brewer(identity["id"])
-    if brewer:        
-        return jsonify(list(map(lambda x:x.to_dict(), brewer.have_tasted_beer))), 200
-    return jsonify({'error' : 'Tasted beers not found'}), 404
 
 
 @api.route('/brewer/<int:id>', methods = ['GET'])
