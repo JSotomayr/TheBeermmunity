@@ -107,7 +107,7 @@ class Customer(db.Model):
         db.session.commit()
 
     @classmethod
-    def get_by_id_customer(cls, id):
+    def get_by_id(cls, id):
         customer_id = cls.query.get(id)
         return customer_id
 
@@ -149,9 +149,11 @@ class Brewer(db.Model):
             "lastname" : self.lastname,
         }
 
+
     def create(self):
         db.session.add(self)
         db.session.commit()
+
 
     @classmethod
     def get_by_id_brewer(cls, id):
@@ -163,6 +165,23 @@ class Brewer(db.Model):
         self.have_fav_beer.append(beer)
         db.session.commit()
         return self.have_fav_beer
+
+
+    def add_tasted_beer(self,beer):
+        self.have_tasted_beer.append(beer)
+        db.session.commit()
+        return self.have_tasted_beer
+
+    
+    def delete_tasted_beer(self,beer):
+        tasted_beer = self.have_tasted_beer
+        new_tasted = []
+        for tasted in tasted_beer:
+            if tasted.id != beer.id:
+                new_tasted.append(tasted)
+        self.have_tasted_beer = new_tasted
+        db.session.commit()
+        return self.have_tasted_beer
 
 
 class Brewerie(db.Model):
@@ -200,7 +219,7 @@ class Brewerie(db.Model):
 
 
     @classmethod
-    def get_by_id_customer(cls, id):
+    def get_by_id(cls, id):
         brewerie_id = cls.query.get(id)
         return brewerie_id
 

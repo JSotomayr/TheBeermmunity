@@ -152,13 +152,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
-			addTastedBeer: tasted => {
-				let newTasted = getStore().tastedBeer.map(x => x.id)
-				if (!newTasted.includes(tasted.id)){
-					setStore({ tastedBeer: [...getStore().tastedBeer, tasted] });
-				} else {
-					setStore({ tastedBeer:[...getStore().tastedBeer.filter(x => x.id != tasted.id)]})
-				}
+			addTastedBeer: async tasted => {
+					const token = localStorage.getItem("token");			
+					try {
+						let response = await fetch(getStore().baseUrl + "brewer/tasted-beer/" + tasted.id , {
+							method: "POST",
+							body: JSON.stringify(tasted),
+							headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json", Accept:"application/json" }, 
+						});
+						if (response.ok) {
+							let responseAsJson = await response.json();
+							setStore({ tastedBeer: responseAsJson});
+						} else {throw new Error("Fail in add tasted.")}
+					} catch (error) {
+							console.log(error);
+					}
+			},
+			
+			getTastedBeer: async () => {
+				const token = localStorage.getItem("token");			
+				const response = await fetch(getStore().baseUrl + "brewer/tasted-beer", {
+					headers: { Authorization: `Bearer ${token}`}, 
+				});
+				const beer = await response.json();
+				setStore({ tastedBeer: beer})
 			}
 		}
 	}
