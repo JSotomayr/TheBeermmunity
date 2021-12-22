@@ -9,15 +9,17 @@ def setup_admin(app):
     app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
     admin = Admin(app, name='4Geeks Admin', template_mode='bootstrap3')
 
-    
+    class MyModel(ModelView):
+      column_display_pk = True
+      
     # Add your models here, for example this is how we add a the User model to the admin
-    admin.add_view(ModelView(Customer, db.session))
-    admin.add_view(ModelView(Brewer, db.session))
-    admin.add_view(ModelView(Brewerie, db.session))
-    admin.add_view(ModelView(Beer, db.session))
-    admin.add_view(ModelView(BrewerieReview, db.session))   
-    admin.add_view(ModelView(BeerReview, db.session))
-    admin.add_view(ModelView(Event, db.session))
+    admin.add_view(MyModel(Customer, db.session))
+    admin.add_view(MyModel(Brewer, db.session))
+    admin.add_view(MyModel(Brewerie, db.session))
+    admin.add_view(MyModel(Beer, db.session))
+    admin.add_view(MyModel(BrewerieReview, db.session))   
+    admin.add_view(MyModel(BeerReview, db.session))
+    admin.add_view(MyModel(Event, db.session))
 
     # You can duplicate that line to add mew models
     # admin.add_view(ModelView(YourModelName, db.session))

@@ -4,12 +4,17 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import injectContext from "./store/appContext";
 import { Home } from "./pages/home";
 import { Login } from "./pages/login";
+import { Register } from "./pages/register.jsx";
+import { Favourite } from "./pages/favourite.jsx";
 import { Navbar } from "./component/navbar";
 import Landing from "./pages/landing";
 
+import Map from "./pages/map.jsx";
+import { Profile } from "./pages/profile.jsx";
 import AllBeers from "./pages/allBeers.jsx";
-import Cerveteca from "./pages/cerveteca.jsx";
 import BeerDetail from "./pages/beerDetail.jsx";
+import Cerveteca from "./pages/cerveteca.jsx";
+import Wishlist from "./pages/wishlist.jsx";
 
 //create your first component
 const Layout = () => {
@@ -20,14 +25,18 @@ const Layout = () => {
   return (
     <div>
       <BrowserRouter basename={basename}>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/landing" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/profile/:id" element={<Profile />} />
+          <Route path="/profile/:id/cerveteca" element={<Cerveteca />} />
+          <Route path="/profile/:id/favourite" element={<Favourite />} />
+          <Route path="/profile/:id/wishlist" element={<Wishlist />} />
           <Route path="/beer" element={<AllBeers />} />
           <Route path="/beer/:id" element={<BeerDetail />} />
-          <Route path="/cerveteca" element={<Cerveteca />} />
-          <Route path="/navbar" element={<Navbar />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/map" element={<Map />} />
         </Routes>
       </BrowserRouter>
     </div>

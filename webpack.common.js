@@ -1,12 +1,13 @@
-const webpack = require("webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const path = require("path");
-const dotenv = require("dotenv");
+
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const dotenv = require('dotenv');
 
 dotenv.config();
 
 module.exports = {
-  entry: ["babel-polyfill", "./src/front/js/index.js"],
+  entry: ['regenerator-runtime/runtime.js', './src/front/js/index.js'],
   output: {
     filename: "bundle.[hash].js",
     path: path.resolve(__dirname, "public"),

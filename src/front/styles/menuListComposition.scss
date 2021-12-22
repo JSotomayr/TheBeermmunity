@@ -1,0 +1,43 @@
+
+.fa-beer {
+    font-size: 2.7rem;
+    color:white;
+    margin-bottom: 0.5rem;
+}
+
+
+// .button_menu {
+//     display: flex;
+//     flex-direction: column;
+// }
+
+.button_menu_line{
+    width: 2.3rem;
+    height: 0.3rem;
+    background-color: white;
+}
+
+#composition-button {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+}
+
+
+.middle {
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+}
+
+.menu_beer {
+    color: gray;
+    font-size: 1.5rem;
+    margin-right: 0.6rem;
+}
+
+.menu_brewerie {
+    color: gray;
+    font-size: 1.3rem;
+    margin-right: 0.5rem;
+    margin-left: -0.2rem;
+}

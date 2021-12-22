@@ -7,7 +7,7 @@ favourite_beer = db.Table('favourite_beer',
     db.Column('beer_id', db.Integer, db.ForeignKey('beer.id'), primary_key=True))
 
 
-pending_beer = db.Table('pending_beer',
+tasted_beer = db.Table('tasted_beer',
     db.Column('brewer_id', db.Integer, db.ForeignKey('brewer.id'), primary_key=True),
     db.Column('beer_id', db.Integer, db.ForeignKey('beer.id'), primary_key=True))
 
@@ -49,10 +49,10 @@ class Customer(db.Model):
 
 
     def __repr__(self):
-        return f'User has {self.id}, {self.username} with {self.email}'
+        return f'User has {self.id}, {self.username} with {self.email} {self.country} {self.city}'
 
     def to_dict(self):
-        user = has_brewerie if self._is_brewerie else has_brewer
+        user = self.has_brewerie if self._is_brewerie else self.has_brewer
         return {
             "id": self.id,
             "email": self.email,
@@ -61,10 +61,10 @@ class Customer(db.Model):
             "city": self.city,
             "description": self.description,
             "image": self.image,
-            "user": user
+            "user_type": self._is_brewerie,
+            "user_detail": list(map(lambda x: x.to_dict(), user)),
+            # "user_detail": user[0].to_dict()
         }
-            # do not serialize the password, its a security breach
-
 
     def create(self):
         db.session.add(self)
@@ -88,38 +88,40 @@ class Customer(db.Model):
         all_customer = cls.query.all()
         return all_customer
 
+
     def update(self, **kwargs):
         for key, value in kwargs.items():
             setattr(self, key, value)
         db.session.commit()
         return self
 
+
     def validate_password(self,password):
         is_valid = check_password_hash(self._password,password)
         print(is_valid)
         return is_valid
 
+
     def delete(self):
         self.is_active = False
         db.session.commit()
 
-#   cervezas favoritas
-# opcion 1
     @classmethod
-    def get_by_id_customer(cls, id):
+    def get_by_id(cls, id):
         customer_id = cls.query.get(id)
-        return user_customer
-
-# opción 2
-    # @classmethod
-    # def get_by_id_customer(cls,id_custumer):
-    #     customer_id = cls.query.filter_by(id=id_customer).one_or_none()
-    #     return customer_id
+        return customer_id
 
     def add_fav_beer(self,beer):
-        self.have_allbeer.append(beer)
+        self.have_fav_beer.append(beer)
         db.session.commit()
-        return self.have_allbeer
+        return self.have_fav_beer
+
+
+    def add_tasted_beer(self,beer):
+        self.have_tasted_beer.append(beer)
+        db.session.commit()
+        return self.have_tasted_beer
+
 
 class Brewer(db.Model):
     __tablename__: 'brewer'
@@ -131,40 +133,94 @@ class Brewer(db.Model):
 
 
     have_fav_beer = db.relationship("Beer", secondary=favourite_beer, back_populates="have_fav_beer_brewer")
-    have_pend_beer = db.relationship("Beer", secondary=pending_beer, back_populates="have_pend_beer_brewer")
+    have_tasted_beer = db.relationship("Beer", secondary=tasted_beer, back_populates="have_tasted_beer_brewer")
     have_wish_beer = db.relationship("Beer", secondary=wishlist_beer, back_populates="have_wish_beer_brewer")
     have_fav_brewerie = db.relationship("Brewerie", secondary=favourite_brewerie, back_populates="have_fav_brewerie_brewer")
     go_to_event = db.relationship("Event", secondary=brewer_go_to_event, back_populates="go_to_event_brewer")
 
     def __repr__(self):
-        return f"Brewer with id {self.id}, named {self.name} {self.lastname} in {self.city}, {self.country}."
+        return f"Brewer with id {self.id}, name {self.name} {self.lastname} and account {self.id_customer}."
 
 
     def to_dict(self):
         return {
             "id": self.id,
             "name": self.name,
-            "lastname": self.lastname,
-            "country": self.country,
-            "city": self.city,
-            "description": self.description,
-            "image": self.image
+            "lastname" : self.lastname,
         }
 
+    def create(self):
+        db.session.add(self)
+        db.session.commit()
 
+    @classmethod
+    def get_by_id(cls, id):
+        brewer_id = cls.query.get(id)
+        return brewer_id
+
+
+    @classmethod
+    def get_by_id_brewer(cls, id):
+        brewer = cls.query.get(id)
+        return brewer
+
+    
+    def add_fav_beer(self,beer):
+        self.have_fav_beer.append(beer)
+        db.session.commit()
+        return self.have_fav_beer
+    
+    def delete_fav_beer(self, beer):
+        favourites = self.have_fav_beer
+        new_fav = []
+        for fav in favourites:
+            if fav.id != beer.id:
+                new_fav.append(fav)
+        self.have_fav_beer = new_fav
+        db.session.commit()
+        return self.have_fav_beer
+
+        
+
+    
+    def add_wish_beer(self,beer):
+        self.have_wish_beer.append(beer)
+        db.session.commit()
+        return self.have_wish_beer
+
+
+    def add_tasted_beer(self,beer):
+        self.have_tasted_beer.append(beer)
+        db.session.commit()
+        return self.have_tasted_beer
+    
+    
+    def delete_tasted_beer(self,beer):
+        tasted_beer = self.have_tasted_beer
+        new_tasted = []
+        for tasted in tasted_beer:
+            if tasted.id != beer.id:
+                new_tasted.append(tasted)
+        self.have_tasted_beer = new_tasted
+        db.session.commit()
+        return self.have_tasted_beer
+    
+    
 class Brewerie(db.Model):
     __tablename__: 'brewerie'
 
     id = db.Column(db.Integer, primary_key=True)
     company_name = db.Column(db.String(), unique=False, nullable=False)
     address = db.Column(db.String(), unique=False, nullable=False)
+    latitude = db.Column(db.String(), unique=False, nullable=True)
+    longitude = db.Column(db.String(), unique=False, nullable=True)
     id_customer = db.Column(db.Integer, db.ForeignKey('customer.id'), unique=True, nullable=False)
 
     have_fav_brewerie_brewer = db.relationship("Brewer", secondary=favourite_brewerie, back_populates="have_fav_brewerie")
     
 
     def __repr__(self):
-        return f"Breweries with id {self.id}, named {self.company_name} in {self.address} in {self.city}, {self.country}."
+        return f"Breweries with id {self.id}, named {self.company_name} in {self.address}, in location latitude {self.latitude} and altitude {self.altitude}."
 
 
     def to_dict(self):
@@ -172,10 +228,8 @@ class Brewerie(db.Model):
             "id": self.id,
             "company_name": self.company_name,
             "address": self.address,
-            "country": self.country,
-            "city": self.city,
-            "description": self.description,
-            "image": self.image
+            "latitude": self.latitude,
+            "longitude": self.longitude
         }
 
 
@@ -187,7 +241,8 @@ class Brewerie(db.Model):
     @classmethod
     def get_all(cls):
         brewerie = cls.query.all()
-        return breweries
+        return brewerie
+
 
     @classmethod
     def get_by_id(cls, id):
@@ -215,7 +270,7 @@ class Beer(db.Model):
     publishment_date = db.Column(db.DATE(), unique=False, nullable=False)
 
     have_fav_beer_brewer = db.relationship("Brewer", secondary=favourite_beer, back_populates="have_fav_beer")
-    have_pend_beer_brewer = db.relationship("Brewer", secondary=favourite_beer, back_populates="have_pend_beer")
+    have_tasted_beer_brewer = db.relationship("Brewer", secondary=tasted_beer, back_populates="have_tasted_beer")
     have_wish_beer_brewer = db.relationship("Brewer", secondary=wishlist_beer, back_populates="have_wish_beer")
 
 
@@ -319,7 +374,7 @@ class Event(db.Model):
 
 
     def __repr__(self):
-        return f"Event with id {self.id}, named {self.name} the {self.date} in {self.location}."
+        return f"Event with id {self.id}, named {self.name} the {self.date}."
 
 
     def to_dict(self):
@@ -328,6 +383,8 @@ class Event(db.Model):
             "name": self.name,
             "description": self.description,
             "date": self.date,
-            "location": self.location,
+            "country": self.country,
+            "city": self.city,
+            "address": self.address,
             "image": self.image
         }

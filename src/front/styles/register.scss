@@ -1,0 +1,32 @@
+.register-form {
+    margin: 0.3rem;
+
+}
+
+.step {
+    display:flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+.step_left, .step_right_completed{
+    border-radius: 1rem;
+    border: solid 1px #d5961c;
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 0.8rem;
+    display:flex;
+    justify-content: center;
+    background-color: #d5961c;
+}
+
+.step_right {
+    background-color: #F1C46D;
+}
+
+
+.step_line {
+    width: 3.7rem;
+    height: 0.2rem;
+    background-color: #d5961c;
+    margin-top: 0.6rem;
+}
