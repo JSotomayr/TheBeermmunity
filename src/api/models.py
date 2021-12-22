@@ -164,6 +164,13 @@ class Brewer(db.Model):
         db.session.commit()
         return self.have_fav_beer
 
+    
+    def add_tasted_beer(self,beer):
+        self.have_tasted_beer.append(beer)
+        db.session.commit()
+        return self.have_tasted_beer
+    
+    
     def delete_tasted_beer(self,beer):
         tasted_beer = self.have_tasted_beer
         new_tasted = []
