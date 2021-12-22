@@ -129,6 +129,7 @@ def get_customer(id):
     return jsonify({'msg' : 'Customer not foud'}), 404
 
 
+#  BUSCAR CERVEZAS
 @api.route('/beer', methods=['GET'])
 def getAllBeers():
     beers = Beer.get_all()
@@ -150,32 +151,9 @@ def beerDetail(id):
     return jsonify({'error': 'Beer not found'}), 404
 
 
-# AÑADIR FAVORITO A USUARIO (modificado por Carol??)
-@api.route('/brewer/<int:id_brewer>/favourite-beer/<int:id_beer>', methods=['POST'])
-@jwt_required()
-def add_favbeer(id_brewer, id_beer):
-    
-    token_id = get_jwt_identity()
-    brewer = Brewer.get_by_id_brewer(id_brewer)
- 
-    print("@", token_id.get("id"), brewer.id_customer )
-    if token_id.get("id") == brewer.id_customer:
-        beer = Beer.get_by_id(id_beer)   
-        print("este es la cerbeza buscada", beer)
-        print("este es el consumidor", brewer)  
-        
-        if brewer and beer:
-            add_beer = brewer.add_fav_beer(beer)
-            fav_beer = [beer.to_dict() for beer in add_beer]
-            print("este es el diccionario de la cerveza favorita", fav_beer)
-            return jsonify(fav_beer),200
-        
-    return jsonify({'error': 'Not favourites'}),404
-
-
 @api.route('/brewer/<int:id>', methods = ['GET'])
 def get_brewer(id):
-    one_brewer = Brewer.get_by_id_brewer(id)
+    one_brewer = Brewer.get_by_id(id)
 
     if one_brewer:
         
@@ -193,6 +171,88 @@ def get_brewerie(id):
         return jsonify(one_brewerie.to_dict()), 200
 
     return jsonify({'msg' : 'Brewerie not foud'}), 404
+
+
+
+# AÑADIR FAVORITO A USUARIO 
+@api.route('/brewer/<int:id_brewer>/favourite-beer/<int:id_beer>', methods=['POST'])
+@jwt_required()
+def add_favbeer(id_beer):
+    identity = get_jwt_identity()
+    brewer = Brewer.get_by_id_brewer(identity["id"])
+    if brewer:
+        beer = Beer.get_by_id(id_beer) 
+        fav_beers_id = list(map(lambda x:x.id, brewer.have_fav_beer))
+        if brewer and beer and beer.id not in fav_beers_id:
+            add_beer = brewer.add_fav_beer(beer)
+            fav_beer = [beer.to_dict() for beer in add_beer]
+            return jsonify(fav_beer),200
+        elif beer.id in fav_beers_id:
+            delete_beer = brewer.delete_fav_beer(beer)
+            fav_beer = [beer.to_dict() for beer in delete_beer]
+            return jsonify(fav_beer),200
+
+    return jsonify({'error': 'Not favourites'}),404
+
+@api.route('/brewer/favourite-beers', methods = ['GET'])
+@jwt_required()
+def get_fav_beers():
+    identity = get_jwt_identity()
+    brewer = Brewer.get_by_id(identity["id"])
+    if brewer:        
+        return jsonify(list(map(lambda x:x.to_dict(), brewer.have_fav_beer))), 200
+    return jsonify({'error': 'No favourite beers'}),404
+
+
+@api.route('/brewer/tasted-beer/<int:id_beer>', methods=['POST'])
+@jwt_required()
+def add_tasted_beer(id_beer):
+    identity = get_jwt_identity()
+    brewer = Brewer.get_by_id_brewer(identity["id"])
+
+    if brewer:
+        beer = Beer.get_by_id(id_beer) 
+        tasted_beers_id = list(map(lambda x:x.id, brewer.have_tasted_beer))
+        if brewer and beer and beer.id not in tasted_beers_id:
+            add_beer = brewer.add_tasted_beer(beer)
+            tasted_beer = [beer.to_dict() for beer in add_beer]
+            return jsonify(tasted_beer),200
+
+        elif beer.id in tasted_beers_id:
+            delete_beer = brewer.delete_tasted_beer(beer)
+            tasted_beer = [beer.to_dict() for beer in delete_beer]
+            return jsonify(tasted_beer),200
+
+    return jsonify({'error': 'No Tasted beers'}),404
+
+
+@api.route('/brewer/tasted-beer', methods = ['GET'])
+@jwt_required()
+def get_tasted_beers():
+    identity = get_jwt_identity()
+    brewer = Brewer.get_by_id_brewer(identity["id"])
+    if brewer:        
+        return jsonify(list(map(lambda x:x.to_dict(), brewer.have_tasted_beer))), 200
+    return jsonify({'error' : 'Tasted beers not found'}), 404
+
+
+@api.route('/brewer/<int:id_brewer>/wishlist/<int:id_beer>', methods=['POST'])
+@jwt_required()
+def add_wishbeer(id_brewer, id_beer):
+    
+    token_id = get_jwt_identity()
+    brewer = Brewer.get_by_id_brewer(id_brewer)
+ 
+    if token_id.get("id") == brewer.id_customer:
+        beer = Beer.get_by_id(id_beer)   
+        
+        if brewer and beer:
+            add_beer = brewer.add_wish_beer(beer)
+            wish_beer = [beer.to_dict() for beer in add_beer]
+            return jsonify(wish_beer),200
+        
+    return jsonify({'error': 'Not favourites'}),404
+
 
 
 @api.route('/brewerie', methods=['POST'])
@@ -231,3 +291,13 @@ def create_brewerie():
     if account:
         token = create_access_token(identity=account.to_dict(), expires_delta=timedelta(minutes=100))
         return({'token' : token}), 200
+
+@api.route('/brewerie', methods=['GET'])
+def get_all_breweries():
+    brewerie_s = Brewerie.get_all()
+
+    if brewerie_s:
+        all_breweries = [brewerie.to_dict() for brewerie in brewerie_s]
+        return jsonify(all_breweries), 200
+
+    return jsonify({'error': 'Brewerie not found'}), 400
