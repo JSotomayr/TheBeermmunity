@@ -167,22 +167,69 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      addFavourite: (fav) => {
-        let newFavBeer = getStore().favouriteBeer.map((x) => x.id);
-        if (!newFavBeer.includes(fav.id)) {
-          setStore({ favouriteBeer: [...getStore().favouriteBeer, fav] });
-        } else {
-          setStore({
-            favouriteBeer: [
-              ...getStore().favouriteBeer.filter((x) => x.id != fav.id),
-            ],
-          });
-        }
-      },
+      // addFavourite: fav => {
+      // 	let newFavBeer = getStore().favouriteBeer.map(x => x.id)
+      // 	if (!newFavBeer.includes(fav.id)){
+      // 		setStore({ favouriteBeer: [...getStore().favouriteBeer, fav] });
+      // 	} else {
+      // 		setStore({ favouriteBeer: [...getStore().favouriteBeer.filter(x => x.id != fav.id)]})
+      // 	}
+      // },
 
-      addTastedBeer: (beer) => {
-        setStore({ tastedBeer: [...getStore().tastedBeer, beer] });
-      },
+      // getProfileInfo: async (id) => {
+      //     const token = localStorage.getItem("token");
+      //     try {
+      //       let response = await fetch(
+      //         getStore().baseUrl.concat("customer/", id),
+      //         {
+      //           method: "GET",
+      //           headers: new Headers({
+      //             "Content-Type": "application/json",
+      //             Authorization: `Bearer ${token}`,
+      //           }),
+      //         }
+      //       );
+      //       if (response) {
+      //         let userInfo = await response.json();
+      //         console.log("RESPUESTA", response);
+      //         setStore({ profileInfo: [userInfo] });
+      //         localStorage.setItem(
+      //           "user",
+      //           JSON.stringify(getStore().profileInfo)
+      //         );
+      //       } else {
+      //         throw new Error("Fail downloading user info.");
+      //       }
+      //     } catch (error) {
+      //       console.log(error);
+      //     }
+      //   },
+
+      // addTastedBeer: async tasted => {
+      // 		const token = localStorage.getItem("token");
+      // 		try {
+      // 			let response = await fetch(getStore().baseUrl + "brewer/tasted-beer/" + tasted.id , {
+      // 				method: "POST",
+      // 				body: JSON.stringify(tasted),
+      // 				headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json", Accept:"application/json" },
+      // 			});
+      // 			if (response.ok) {
+      // 				let responseAsJson = await response.json();
+      // 				setStore({ tastedBeer: responseAsJson});
+      // 			} else {throw new Error("Fail in add tasted.")}
+      // 		} catch (error) {
+      // 				console.log(error);
+      // 		}
+      // },
+
+      // getTastedBeer: async () => {
+      // 	const token = localStorage.getItem("token");
+      // 	const response = await fetch(getStore().baseUrl + "brewer/tasted-beer", {
+      // 		headers: { Authorization: `Bearer ${token}`},
+      // 	});
+      // 	const beer = await response.json();
+      // 	setStore({ tastedBeer: beer})
+      // }
     },
   };
 };

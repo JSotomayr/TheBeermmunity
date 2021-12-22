@@ -7,9 +7,11 @@ const DefaultCard = props => {
 	return (
 		<div className="card">
 				<Link to={`/beer/${props.element.id}`}>
-					<div className="card__body">
+					<div className="card__header">
 						<span className="card__title">{props.element.brand}</span> 
 						<span className="card__title">{props.element.variety}</span>
+					</div>
+					<div className="card__body">
 						<img className="card__img" variant="bottom" src={props.element.image} />
 					</div>
 				</Link>
