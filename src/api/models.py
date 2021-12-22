@@ -182,7 +182,7 @@ class Brewerie(db.Model):
             "company_name": self.company_name,
             "address": self.address,
             "latitude": self.latitude,
-            "altitude": self.longitude
+            "longitude": self.longitude
         }
 
 
