@@ -138,15 +138,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
       },
 
-      // addFavourite: fav => {
-      // 	let newFavBeer = getStore().favouriteBeer.map(x => x.id)
-      // 	if (!newFavBeer.includes(fav.id)){
-      // 		setStore({ favouriteBeer: [...getStore().favouriteBeer, fav] });
-      // 	} else {
-      // 		setStore({ favouriteBeer: [...getStore().favouriteBeer.filter(x => x.id != fav.id)]})
-      // 	}
-      // },
-
       // getProfileInfo: async (id) => {
       //     const token = localStorage.getItem("token");
       //     try {
@@ -175,6 +166,24 @@ const getState = ({ getStore, getActions, setStore }) => {
       //       console.log(error);
       //     }
       //   },
+      
+      // addFavourite: async fav => {
+			// 	let newFavBeer = getStore().favouriteBeer.map(x => x.id)
+			// 		const token = localStorage.getItem("token");			
+			// 		try {
+			// 			let response = await fetch(getStore().baseUrl + "brewer/favourite-beer/" + fav.id , {
+			// 				method: "POST",
+			// 				body: JSON.stringify(fav),
+			// 				headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json", Accept:"application/json" }, 
+			// 			});
+			// 			if (response.ok) {
+			// 				let responseAsJson = await response.json();
+			// 				setStore({ favouriteBeer: responseAsJson});
+			// 			} else {throw new Error("Fail in add favourite.")}
+			// 		} catch (error) {
+			// 				console.log(error);
+			// 		}
+			// },
 
       // addTastedBeer: async tasted => {
       // 		const token = localStorage.getItem("token");
@@ -192,6 +201,15 @@ const getState = ({ getStore, getActions, setStore }) => {
       // 				console.log(error);
       // 		}
       // },
+
+      // getFavouriteBeer: async () => {
+			// 	const token = localStorage.getItem("token");			
+			// 	const response = await fetch(getStore().baseUrl + "brewer/favourite-beers", {
+			// 		headers: { Authorization: `Bearer ${token}`}, 
+			// } );
+			// 	const data = await response.json();
+			// 	setStore({favouriteBeer:data})
+			// },
 
       // getTastedBeer: async () => {
       // 	const token = localStorage.getItem("token");

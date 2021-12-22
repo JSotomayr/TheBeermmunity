@@ -154,15 +154,33 @@ class Brewer(db.Model):
         db.session.commit()
 
     @classmethod
-    def get_by_id_brewer(cls, id):
+    def get_by_id(cls, id):
         brewer_id = cls.query.get(id)
         return brewer_id
+
+
+    @classmethod
+    def get_by_id_brewer(cls, id):
+        brewer = cls.query.get(id)
+        return brewer
 
     
     def add_fav_beer(self,beer):
         self.have_fav_beer.append(beer)
         db.session.commit()
         return self.have_fav_beer
+    
+    def delete_fav_beer(self, beer):
+        favourites = self.have_fav_beer
+        new_fav = []
+        for fav in favourites:
+            if fav.id != beer.id:
+                new_fav.append(fav)
+        self.have_fav_beer = new_fav
+        db.session.commit()
+        return self.have_fav_beer
+
+        
 
     
     def add_wish_beer(self,beer):
