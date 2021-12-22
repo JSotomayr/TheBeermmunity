@@ -10,6 +10,10 @@ const Cerveteca = () => {
 	const [triedList, setTriedList] = useState([]);
 
 	useEffect(() => {
+		actions.getTastedBeer();
+	},[])
+	
+	useEffect(() => {
 		if (store.tastedBeer.length != 0) {
 			setTriedList(
 				store.tastedBeer.map((wish, index) => {
