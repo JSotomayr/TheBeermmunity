@@ -1,13 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router";
-import FavouriteButton from "../component/favouriteButton.jsx";
 import { Link } from "react-router-dom";
 
-
 import CardDetails from "../component/cardDetails.jsx";
+import FavouriteButton from "../component/favouriteButton.jsx";
 import WishButton from "../component/wishButton.jsx"
-
+import ButtonCerveteca from "../component/buttonCerveteca.jsx"
 
 const BeerDetail = () => {
     const { store, actions } = useContext(Context);
@@ -36,6 +35,7 @@ const BeerDetail = () => {
 						/>
 						<FavouriteButton element = {detail}/>
 						<WishButton element={detail}/>
+						<ButtonCerveteca element={detail} />
 					</div>	
 					);
 				})

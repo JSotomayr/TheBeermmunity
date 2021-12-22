@@ -12,7 +12,7 @@ export const Navbar = () => {
 		<Fragment>
 			<nav className="navbar">
 				<div className=" icons_left">
-						<MenuListComposition />
+					<MenuListComposition />
 				</div>
 				<Link to={"/"}>
 					<div className="icons_center"> 	
@@ -24,14 +24,14 @@ export const Navbar = () => {
 						<div className="nabvar_menu_friends">
 							<p>Contactos</p>
 						</div>
-						<div className="nabvar_menu_cerveteca">
-							<p>Cerveteca</p>
-						</div>
-						<Link to={"/wishlist"}>
-							<div className="nabvar_menu_pending">
-								<p>Pendientes</p>
-							</div> 	
-						</Link>							
+						<Link to={"/cerveteca"}>
+							<div className="nabvar_menu_cerveteca">
+								<p>Cerveteca</p>
+							</div>
+						</Link>
+						<div className="nabvar_menu_pending">
+							<p>Pendientes</p>
+						</div> 										
 					</div> 
 
 				 <div className="icons_right">

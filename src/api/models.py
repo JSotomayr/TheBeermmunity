@@ -107,7 +107,7 @@ class Customer(db.Model):
         db.session.commit()
 
     @classmethod
-    def get_by_id_customer(cls, id):
+    def get_by_id(cls, id):
         customer_id = cls.query.get(id)
         return customer_id
 
@@ -115,6 +115,12 @@ class Customer(db.Model):
         self.have_fav_beer.append(beer)
         db.session.commit()
         return self.have_fav_beer
+
+
+    def add_tasted_beer(self,beer):
+        self.have_tasted_beer.append(beer)
+        db.session.commit()
+        return self.have_tasted_beer
 
 
 class Brewer(db.Model):
@@ -165,26 +171,47 @@ class Brewer(db.Model):
         return self.have_wish_beer
 
 
+    def add_tasted_beer(self,beer):
+        self.have_tasted_beer.append(beer)
+        db.session.commit()
+        return self.have_tasted_beer
+    
+    
+    def delete_tasted_beer(self,beer):
+        tasted_beer = self.have_tasted_beer
+        new_tasted = []
+        for tasted in tasted_beer:
+            if tasted.id != beer.id:
+                new_tasted.append(tasted)
+        self.have_tasted_beer = new_tasted
+        db.session.commit()
+        return self.have_tasted_beer
+    
+    
 class Brewerie(db.Model):
     __tablename__: 'brewerie'
 
     id = db.Column(db.Integer, primary_key=True)
     company_name = db.Column(db.String(), unique=False, nullable=False)
     address = db.Column(db.String(), unique=False, nullable=False)
+    latitude = db.Column(db.String(), unique=False, nullable=True)
+    longitude = db.Column(db.String(), unique=False, nullable=True)
     id_customer = db.Column(db.Integer, db.ForeignKey('customer.id'), unique=True, nullable=False)
 
     have_fav_brewerie_brewer = db.relationship("Brewer", secondary=favourite_brewerie, back_populates="have_fav_brewerie")
     
 
     def __repr__(self):
-        return f"Breweries with id {self.id}, named {self.company_name} in {self.address}."
+        return f"Breweries with id {self.id}, named {self.company_name} in {self.address}, in location latitude {self.latitude} and altitude {self.altitude}."
 
 
     def to_dict(self):
         return {
             "id": self.id,
             "company_name": self.company_name,
-            "address": self.address
+            "address": self.address,
+            "latitude": self.latitude,
+            "longitude": self.longitude
         }
 
 
@@ -196,7 +223,7 @@ class Brewerie(db.Model):
     @classmethod
     def get_all(cls):
         brewerie = cls.query.all()
-        return breweries
+        return brewerie
 
 
     @classmethod
