@@ -1,7 +1,33 @@
-/*
-    home.css: This website contains selectors only used in home.css
+.fa-search {
+    font-size:2rem;
+}
 
-    All pages share the styles on index.css but you should create 
-    one more css for each page that will contain the selected used 
-    on that page only (the ones not reused in other pages).
-*/
+
+.container {
+    display:flex;
+    justify-content: center;
+    height: 10rem;
+}
+
+
+.searchbar_container {
+    padding: 0rem;        
+}
+
+.container_btn {
+    margin: 0;
+}
+
+
+
+@media (min-width: 768px) {
+    .searchbar{
+        display:none;
+    }
+}
+
+@media (max-width: 425px) {
+    .searchbar{
+        display:flex;
+    }
+}
