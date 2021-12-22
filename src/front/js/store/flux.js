@@ -15,6 +15,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       beersDetail: [],
       favouriteBeer: [],
       tastedBeer: [],
+	  wishlist: [],
       breweries: [],
     },
     actions: {
@@ -135,36 +136,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           .catch((error) => {
             console.log(error.message);
           });
-      },
-
-      getProfileInfo: async (id) => {
-        const token = localStorage.getItem("token");
-        try {
-          let response = await fetch(
-            getStore().baseUrl.concat("customer/", id),
-            {
-              method: "GET",
-              headers: new Headers({
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-              }),
-            }
-          );
-
-          if (response) {
-            let userInfo = await response.json();
-            console.log("RESPUESTA", response);
-            setStore({ profileInfo: [userInfo] });
-            localStorage.setItem(
-              "user",
-              JSON.stringify(getStore().profileInfo)
-            );
-          } else {
-            throw new Error("Fail downloading user info.");
-          }
-        } catch (error) {
-          console.log(error);
-        }
       },
 
       // addFavourite: fav => {

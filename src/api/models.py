@@ -165,6 +165,12 @@ class Brewer(db.Model):
         return self.have_fav_beer
 
     
+    def add_wish_beer(self,beer):
+        self.have_wish_beer.append(beer)
+        db.session.commit()
+        return self.have_wish_beer
+
+
     def add_tasted_beer(self,beer):
         self.have_tasted_beer.append(beer)
         db.session.commit()
