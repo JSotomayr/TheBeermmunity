@@ -19,7 +19,7 @@ const Landing = () => {
       <div className="landingDescription container-fluid row">
         <div className="beerLovers">
           <img
-            clasName="brewersPhoto"
+            className="brewersPhoto"
             src="https://images.pexels.com/photos/1267244/pexels-photo-1267244.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350&w=460"
           ></img>
           <p className="brewersText">
@@ -30,7 +30,7 @@ const Landing = () => {
         </div>
         <div className="description">
           <img
-            clasName="brewersPhoto"
+            className="brewersPhoto"
             src="https://images.pexels.com/photos/5935229/pexels-photo-5935229.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350&w=460"
           ></img>
           <p className="brewersText">

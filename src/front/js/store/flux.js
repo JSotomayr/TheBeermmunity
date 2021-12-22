@@ -10,7 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       register: [],
       login: [],
       currentUser: {},
-      profileInfo: [],
+      profileInfo: {},
       beers: [],
       beersDetail: [],
       favouriteBeer: [],
@@ -153,12 +153,8 @@ const getState = ({ getStore, getActions, setStore }) => {
           );
           if (response) {
             let userInfo = await response.json();
-            console.log("RESPUESTA", response);
-            setStore({ profileInfo: [userInfo] });
-            localStorage.setItem(
-              "user",
-              JSON.stringify(getStore().profileInfo)
-            );
+            setStore({ profileInfo: userInfo });
+            localStorage.setItem("user", JSON.stringify(userInfo));
           } else {
             throw new Error("Fail downloading user info.");
           }
