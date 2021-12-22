@@ -16,7 +16,7 @@ export const Profile = () => {
     useEffect(() => {
         if (store.tastedBeer.length != 0) {
 			setMyTastedBeers(
-				store.tastedBeers.slice(0, 4).map((wish, index) => {
+				store.tastedBeer.map((wish, index) => {
 					return <DefaultCard key={index.toString()} element={wish} />
 				})
 			);

@@ -129,6 +129,7 @@ def get_customer(id):
     return jsonify({'msg' : 'Customer not foud'}), 404
 
 
+#  BUSCAR CERVEZAS
 @api.route('/beer', methods=['GET'])
 def getAllBeers():
     beers = Beer.get_all()

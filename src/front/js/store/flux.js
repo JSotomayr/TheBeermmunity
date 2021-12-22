@@ -147,13 +147,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 				if (!newFavBeer.includes(fav.id)){
 					setStore({ favouriteBeer: [...getStore().favouriteBeer, fav] });
 				} else {
-					setStore({favouriteBeer:[...getStore().favouriteBeer.filter(x => x.id != fav.id)]}) 
+					setStore({ favouriteBeer: [...getStore().favouriteBeer.filter(x => x.id != fav.id)]}) 
 				}
 
 			},
 
-			addTastedBeer: beer => {
-				setStore({ tastedBeer: [...getStore().tastedBeer, beer] });
+			addTastedBeer: tasted => {
+				let newTasted = getStore().tastedBeer.map(x => x.id)
+				if (!newTasted.includes(tasted.id)){
+					setStore({ tastedBeer: [...getStore().tastedBeer, tasted] });
+				} else {
+					setStore({ tastedBeer:[...getStore().tastedBeer.filter(x => x.id != tasted.id)]})
+				}
 			}
 		}
 	}

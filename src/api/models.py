@@ -117,6 +117,12 @@ class Customer(db.Model):
         return self.have_fav_beer
 
 
+    def add_tasted_beer(self,beer):
+        self.have_tasted_beer.append(beer)
+        db.session.commit()
+        return self.have_tasted_beer
+
+
 class Brewer(db.Model):
     __tablename__: 'brewer'
 
@@ -198,7 +204,7 @@ class Brewerie(db.Model):
 
 
     @classmethod
-    def get_by_id(cls, id):
+    def get_by_id_customer(cls, id):
         brewerie_id = cls.query.get(id)
         return brewerie_id
 
