@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 import CardDetails from "../component/cardDetails.jsx";
 import FavouriteButton from "../component/favouriteButton.jsx";
+import WishButton from "../component/wishButton.jsx"
 import ButtonCerveteca from "../component/buttonCerveteca.jsx"
 
 const BeerDetail = () => {
@@ -33,18 +34,20 @@ const BeerDetail = () => {
 								element={detail}	
 						/>
 						<FavouriteButton element = {detail}/>
+						<WishButton element={detail}/>
 						<ButtonCerveteca element={detail} />
 					</div>	
 					);
 				})
 			);
-		},
-		[store.beersDetail]
+		}, [store.beersDetail]
 	);
 
-    return <>
-		{detailBeer}
-	</>
+    return (
+		<div>
+			{detailBeer}
+		</div>
+	)
 }
 
 export default BeerDetail;

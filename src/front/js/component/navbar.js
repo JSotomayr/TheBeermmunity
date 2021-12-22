@@ -12,7 +12,7 @@ export const Navbar = () => {
 		<Fragment>
 			<nav className="navbar">
 				<div className=" icons_left">
-						<MenuListComposition />
+					<MenuListComposition />
 				</div>
 				<Link to={"/"}>
 					<div className="icons_center"> 	

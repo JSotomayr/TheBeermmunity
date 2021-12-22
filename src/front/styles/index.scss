@@ -1,57 +1,36 @@
-
-// title ULTRA
-@import url('https://fonts.googleapis.com/css2?family=Ultra&display=swap');
-
-
-// subtitle PT SERIF CAPTION
-@import url('https://fonts.googleapis.com/css2?family=PT+Serif+Caption&display=swap');
-// paragraph PRIDI
-@import url('https://fonts.googleapis.com/css2?family=Pridi:wght@200&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Ultra&display=swap%27");
+@import url("https://fonts.googleapis.com/css2?family=PT+Serif+Caption&display=swap%27");
+@import url("https://fonts.googleapis.com/css2?family=Pridi:wght@200&display=swap%27");
 
 body {
-    background-color: #2D2D2D;
-    color:white;
+  background-color: #2d2d2d;
+  color: white;
 }
 
-
 .title {
-    font-family: 'Ultra', serif;
-    color: #E49B0F;
-    font-size: 1.313rem;
+  font-family: "Ultra", serif;
+  color: #e49b0f;
+  font-size: 1.313rem;
 }
 
 .subtitle {
-    font-family: 'PT Serif Caption', serif;
-   
+  font-family: "PT Serif Caption", serif;
 }
 
 .paragraph {
-    font-family: 'Pridi', serif;
-   
+  font-family: "Pridi", serif;
 }
 
-.btn{ 
-    background: #2D2D2D;
-    border: 1px solid white;
-    border-radius: 0.2rem;
-
-.btn:hover{ 
-    background: #E49B0F;   
-    color: white;
-    text-decoration: none;
+.btn {
+  background: #2d2d2d;
+  border: 1px solid white;
+  border-radius: 0.2rem;
 }
 
-a {
-  color: white;
-  text-decoration: none;
-  }
-
-}
-
-  
 .btn:hover {
-    background-color: #afad4c; /* Green */
-    color: white;
+  background: #e49b0f;
+  color: white;
+  text-decoration: none;
 }
 
 a {
@@ -59,72 +38,63 @@ a {
   text-decoration: none;
 }
 
-a, a:visited, a:hover, a:active {
-    color: white;
-  }
-
+a,
+a:visited,
+a:hover,
+a:active {
+  color: white;
+}
 
 .loginContainer {
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; }
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 .btn_submit {
-    color: white;
-    font-size: 1.438rem;
-    background-color: #E49B0F;
-    border: 1px solid white;
-    box-shadow: inset 0px 2px 9px rgba(0, 0, 0, 0.25);
+  color: white;
+  font-size: 1.438rem;
+  background-color: #e49b0f;
+  border: 1px solid white;
+  box-shadow: inset 0px 2px 9px rgba(0, 0, 0, 0.25);
 }
 
 .btn_submit:hover {
-    background-color: #7a731a;
-    color: white;
+  background-color: #7a731a;
+  color: white;
 }
-
-
-.alertDiv {
-    background-color: yellow;
-}
-
 
 .chooseUserBusiness {
-    display:flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
-
 
 .alertDiv {
-    background-color: #ffc107;
-    color: #41464b;
-    display:flex;
-    justify-content: center;
-    font-size: 0.85rem;
+  background-color: #ffc107;
+  color: #41464b;
+  display: flex;
+  justify-content: center;
+  font-size: 0.85rem;
 }
 
-
 .nearLog {
-    margin-left: 16rem;
-    margin-top: 1rem;
-    }
-    
+  margin-left: 16rem;
+  margin-top: 1rem;
+}
 
 // CUANDO SE PASA DE 768
 // DESAPARECE EL BOTON VOLVER
 // APARECEN LAS LETRAS
 
 @media (min-width: 425px) {
-    .nearLog{
-        display:none;
-    }
+  .nearLog {
+    display: none;
+  }
 }
-
 
 @media (max-width: 425px) {
-    .nearLog{
-        display:flex;
-    }
+  .nearLog {
+    display: flex;
+  }
 }
-
