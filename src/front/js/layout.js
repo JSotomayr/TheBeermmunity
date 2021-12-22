@@ -7,6 +7,8 @@ import { Login } from "./pages/login";
 import { Register } from "./pages/register.jsx";
 import { Favourite } from "./pages/favourite.jsx";
 import { Navbar } from "./component/navbar";
+import Landing from "./pages/landing";
+
 import Map from "./pages/map.jsx";
 import { Profile } from "./pages/profile.jsx";
 import AllBeers from "./pages/allBeers.jsx";
