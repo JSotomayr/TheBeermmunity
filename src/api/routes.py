@@ -117,13 +117,12 @@ def login():
         return({'error':'Some parameter is wrong'}), 400
         
  
-@api.route('/customer/<int:id>', methods=['GET'])
 @jwt_required
+@api.route('/customer/<int:id>', methods=['GET'])
 def get_customer(id):
-    one_customer = Customer.get_by_id_customer(id)
-    token_id = get_jwt_identity()
+    one_customer = Customer.get_by_id(id)
 
-    if token_id.get("id") == id:
+    if one_customer:
         return jsonify(one_customer.to_dict()), 200
 
     return jsonify({'msg' : 'Customer not foud'}), 404

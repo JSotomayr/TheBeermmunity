@@ -10,7 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       register: [],
       login: [],
       currentUser: {},
-      profileInfo: [],
+      profileInfo: {},
       beers: [],
       beersDetail: [],
       favouriteBeer: [],
@@ -138,34 +138,30 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
       },
 
-      // getProfileInfo: async (id) => {
-      //     const token = localStorage.getItem("token");
-      //     try {
-      //       let response = await fetch(
-      //         getStore().baseUrl.concat("customer/", id),
-      //         {
-      //           method: "GET",
-      //           headers: new Headers({
-      //             "Content-Type": "application/json",
-      //             Authorization: `Bearer ${token}`,
-      //           }),
-      //         }
-      //       );
-      //       if (response) {
-      //         let userInfo = await response.json();
-      //         console.log("RESPUESTA", response);
-      //         setStore({ profileInfo: [userInfo] });
-      //         localStorage.setItem(
-      //           "user",
-      //           JSON.stringify(getStore().profileInfo)
-      //         );
-      //       } else {
-      //         throw new Error("Fail downloading user info.");
-      //       }
-      //     } catch (error) {
-      //       console.log(error);
-      //     }
-      //   },
+      getProfileInfo: async (id) => {
+        const token = localStorage.getItem("token");
+        try {
+          let response = await fetch(
+            getStore().baseUrl.concat("customer/", id),
+            {
+              method: "GET",
+              headers: new Headers({
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              }),
+            }
+          );
+          if (response) {
+            let userInfo = await response.json();
+            setStore({ profileInfo: userInfo });
+            localStorage.setItem("user", JSON.stringify(userInfo));
+          } else {
+            throw new Error("Fail downloading user info.");
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      },
 
       // addFavourite: async fav => {
       // 	let newFavBeer = getStore().favouriteBeer.map(x => x.id)
