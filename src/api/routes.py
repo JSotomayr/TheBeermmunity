@@ -263,3 +263,13 @@ def create_brewerie():
     if account:
         token = create_access_token(identity=account.to_dict(), expires_delta=timedelta(minutes=100))
         return({'token' : token}), 200
+
+@api.route('/brewerie', methods=['GET'])
+def get_all_breweries():
+    brewerie_s = Brewerie.get_all()
+
+    if brewerie_s:
+        all_breweries = [brewerie.to_dict() for brewerie in brewerie_s]
+        return jsonify(all_breweries), 200
+
+    return jsonify({'error': 'Brewerie not found'}), 400

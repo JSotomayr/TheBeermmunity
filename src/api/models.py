@@ -217,7 +217,7 @@ class Brewerie(db.Model):
     @classmethod
     def get_all(cls):
         brewerie = cls.query.all()
-        return breweries
+        return brewerie
 
 
     @classmethod
