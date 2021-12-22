@@ -24,26 +24,8 @@ const Map = (props) => {
 
   useEffect(() => {
     setBrewerie(store.breweries);
-
-    /*     setBrewerie(
-      store.breweries.forEach(element => {
-        
-      });((info) => {
-        return (
-          <div key={info.id}>
-            <Marker
-              position={{ lat: info.latitude, lng: info.longitude }}
-              icon={beerIcon}
-            >
-              <Popup></Popup>
-            </Marker>
-          </div>
-        );
-      })
-    ); */
   }, [store.breweries]);
-  console.log("ESTO ES EL CONST", brewerie);
-  console.log("ESTO ES EL FLUX", store.breweries);
+
   return (
     <div className="map-container">
       <MapContainer

@@ -44,19 +44,14 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       login: (dataLogin) => {
-        // fetch(getStore().baseURL.concat("customer"), {
-
-        fetch(
-          "https://3001-peach-piranha-m7oodx19.ws-eu23.gitpod.io/api/login",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-            },
-            body: JSON.stringify(dataLogin),
-          }
-        )
+        fetch(getStore().baseUrl.concat("login"), {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(dataLogin),
+        })
           .then((resp) => {
             if (!resp.ok) {
               throw Error("Invalid register info");
@@ -86,7 +81,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             mode: "cors",
             redirect: "follow",
             headers: new Headers({
-              "Content-Type": "text/plain",
+              "Content-Type": "application/json",
             }),
           });
           if (response.ok) {
@@ -110,7 +105,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             mode: "cors",
             redirect: "follow",
             headers: new Headers({
-              "Content-Type": "text/plain",
+              "Content-Type": "application/json",
             }),
           });
 
@@ -130,9 +125,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       getAllBreweries: () => {
-        fetch(
-          "https://3001-violet-grasshopper-4gteytfa.ws-eu23.gitpod.io/api/brewerie/"
-        )
+        fetch(getStore().baseUrl.concat("brewerie/"))
           .then((resp) => resp.json())
           .then((data) => {
             setStore({
