@@ -7,12 +7,12 @@ import SearchBar from "../component/searchBar.jsx";
 
 
 export const Home = () => {
-	const { store, actions } = useContext(Context);
+  const { store, actions } = useContext(Context);
 
 	return (	
 		<Fragment>	
 				<div className="container_navbar_home">
-					<Navbar/>
+					
 									
 					<div className="container">
 						{/* <div className="searchbar">

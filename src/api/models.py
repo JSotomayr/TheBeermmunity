@@ -117,6 +117,12 @@ class Customer(db.Model):
         return self.have_fav_beer
 
 
+    def add_tasted_beer(self,beer):
+        self.have_tasted_beer.append(beer)
+        db.session.commit()
+        return self.have_tasted_beer
+
+
 class Brewer(db.Model):
     __tablename__: 'brewer'
 
@@ -133,7 +139,7 @@ class Brewer(db.Model):
     go_to_event = db.relationship("Event", secondary=brewer_go_to_event, back_populates="go_to_event_brewer")
 
     def __repr__(self):
-        return f"Brewer with id {self.id}, name {self.name} {self.lastname}."
+        return f"Brewer with id {self.id}, name {self.name} {self.lastname} and account {self.id_customer}."
 
 
     def to_dict(self):
@@ -141,18 +147,11 @@ class Brewer(db.Model):
             "id": self.id,
             "name": self.name,
             "lastname" : self.lastname,
-            "favourite_beer" : list(map(lambda x:x.to_dict(), self.have_fav_beer))
         }
 
     def create(self):
         db.session.add(self)
         db.session.commit()
-
-
-    def create(self):
-        db.session.add(self)
-        db.session.commit()
-
 
     @classmethod
     def get_by_id(cls, id):
@@ -183,27 +182,54 @@ class Brewer(db.Model):
 
         
 
+    
+    def add_wish_beer(self,beer):
+        self.have_wish_beer.append(beer)
+        db.session.commit()
+        return self.have_wish_beer
 
+
+    def add_tasted_beer(self,beer):
+        self.have_tasted_beer.append(beer)
+        db.session.commit()
+        return self.have_tasted_beer
+    
+    
+    def delete_tasted_beer(self,beer):
+        tasted_beer = self.have_tasted_beer
+        new_tasted = []
+        for tasted in tasted_beer:
+            if tasted.id != beer.id:
+                new_tasted.append(tasted)
+        self.have_tasted_beer = new_tasted
+        db.session.commit()
+        return self.have_tasted_beer
+    
+    
 class Brewerie(db.Model):
     __tablename__: 'brewerie'
 
     id = db.Column(db.Integer, primary_key=True)
     company_name = db.Column(db.String(), unique=False, nullable=False)
     address = db.Column(db.String(), unique=False, nullable=False)
+    latitude = db.Column(db.String(), unique=False, nullable=True)
+    longitude = db.Column(db.String(), unique=False, nullable=True)
     id_customer = db.Column(db.Integer, db.ForeignKey('customer.id'), unique=True, nullable=False)
 
     have_fav_brewerie_brewer = db.relationship("Brewer", secondary=favourite_brewerie, back_populates="have_fav_brewerie")
     
 
     def __repr__(self):
-        return f"Breweries with id {self.id}, named {self.company_name} in {self.address}."
+        return f"Breweries with id {self.id}, named {self.company_name} in {self.address}, in location latitude {self.latitude} and altitude {self.altitude}."
 
 
     def to_dict(self):
         return {
             "id": self.id,
             "company_name": self.company_name,
-            "address": self.address
+            "address": self.address,
+            "latitude": self.latitude,
+            "longitude": self.longitude
         }
 
 
@@ -215,7 +241,7 @@ class Brewerie(db.Model):
     @classmethod
     def get_all(cls):
         brewerie = cls.query.all()
-        return breweries
+        return brewerie
 
 
     @classmethod

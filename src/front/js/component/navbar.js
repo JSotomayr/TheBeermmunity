@@ -12,21 +12,23 @@ export const Navbar = () => {
 		<Fragment>
 			<nav className="navbar">
 				<div className=" icons_left">
-						<MenuListComposition />
+					<MenuListComposition />
 				</div>
-
-				<div className="icons_center"> 	
-					<img className="logoNavbar" src={logoSmall} />
-
-				</div>
+				<Link to={"/"}>
+					<div className="icons_center"> 	
+						<img className="logoNavbar" src={logoSmall} />
+					</div>
+				</Link>
 
 				<div className="nabvar_menu">
 						<div className="nabvar_menu_friends">
 							<p>Contactos</p>
 						</div>
-						<div className="nabvar_menu_cerveteca">
-							<p>Cerveteca</p>
-						</div>
+						<Link to={"/cerveteca"}>
+							<div className="nabvar_menu_cerveteca">
+								<p>Cerveteca</p>
+							</div>
+						</Link>
 						<div className="nabvar_menu_pending">
 							<p>Pendientes</p>
 						</div> 										
@@ -36,19 +38,20 @@ export const Navbar = () => {
 					<div className="searchbar">
 						<SearchBar />
 					</div>
-					<div className="userIconText">
-						<i className="fas fa-user"></i>
-						<p className="infoIcon">Perfil</p>
-					</div>
-
-					<div className="HeartIconText">
-						<i className="far fa-heart"></i>
-							<Link to = "/favourite">
-								<p className="infoIcon">
-								Favoritos</p>
-							</Link>			
-					</div>
-
+					<Link to={"/profile/1"}>
+						<div className="userIconText">
+							<i className="fas fa-user"></i>
+							<p className="infoIcon">Perfil</p>
+						</div>
+					</Link>
+					<Link to = "/favourite">
+						<div className="HeartIconText">
+							<i className="far fa-heart"></i>
+							<p className="infoIcon">
+								Favoritos
+							</p>
+						</div>
+					</Link>			
 				</div> 
 			</nav>  
 		</Fragment>
