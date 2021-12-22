@@ -1,0 +1,49 @@
+h1.tittleBeBeer {
+  color: #e49b0f;
+  text-align: center;
+  font-family: Ultra;
+  font-size: 36px;
+  position: absolute;
+  width: 175px;
+  height: 40px;
+  left: 124px;
+  top: 240px;
+  line-height: 46px;
+}
+
+body {
+  text-align: center;
+  font-family: Ultra;
+  background: #2d2d2d;
+}
+
+.brewersPhoto {
+  display: flex;
+  align-items: center;
+}
+
+p.brewersText {
+  color: #e49b0f;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 6%;
+}
+
+.landingDescription {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.brewersLovers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

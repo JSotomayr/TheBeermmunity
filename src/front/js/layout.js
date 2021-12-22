@@ -7,14 +7,14 @@ import { Login } from "./pages/login";
 import { Register } from "./pages/register.jsx";
 import { Favourite } from "./pages/favourite.jsx";
 import { Navbar } from "./component/navbar";
-import Map from "./pages/map.jsx";
+import Landing from "./pages/landing";
 
+import Map from "./pages/map.jsx";
 import { Profile } from "./pages/profile.jsx";
 import AllBeers from "./pages/allBeers.jsx";
 import BeerDetail from "./pages/beerDetail.jsx";
 import Cerveteca from "./pages/cerveteca.jsx";
 import Wishlist from "./pages/wishlist.jsx";
-
 
 //create your first component
 const Layout = () => {
