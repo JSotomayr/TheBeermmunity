@@ -33,7 +33,7 @@ export const Navbar = () => {
             <AccountMenu />
           </div>
 
-          <Link to={`/profile/${localStorage.getItem("user")}/favourite}`}>
+          <Link to={`/profile/${localStorage.getItem("user")}/favourite`}>
             <div className="HeartIconText">
               <i className="far fa-heart"></i>
               <p className="infoIcon">Favoritos</p>
