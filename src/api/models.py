@@ -66,9 +66,22 @@ class Customer(db.Model):
             # "user_detail": user[0].to_dict()
         }
 
+
     def create(self):
         db.session.add(self)
         db.session.commit()
+
+
+    @classmethod
+    def get_by_id(cls, id):
+        user = cls.query.get(id)
+        return user
+
+
+    @classmethod
+    def get_all(cls):
+        all_customer = cls.query.all()
+        return all_customer
 
 
     @classmethod
@@ -81,12 +94,6 @@ class Customer(db.Model):
     def get_by_password(cls, password):
         secretPass = cls.query.filter_by(password=password).one_or_none()
         return secretPass
-
-
-    @classmethod
-    def get_all(cls):
-        all_customer = cls.query.all()
-        return all_customer
 
 
     def update(self, **kwargs):
@@ -105,22 +112,6 @@ class Customer(db.Model):
     def delete(self):
         self.is_active = False
         db.session.commit()
-
-    @classmethod
-    def get_by_id(cls, id):
-        customer_id = cls.query.get(id)
-        return customer_id
-
-    def add_fav_beer(self,beer):
-        self.have_fav_beer.append(beer)
-        db.session.commit()
-        return self.have_fav_beer
-
-
-    def add_tasted_beer(self,beer):
-        self.have_tasted_beer.append(beer)
-        db.session.commit()
-        return self.have_tasted_beer
 
 
 class Brewer(db.Model):
@@ -149,20 +140,16 @@ class Brewer(db.Model):
             "lastname" : self.lastname,
         }
 
+
     def create(self):
         db.session.add(self)
         db.session.commit()
+
 
     @classmethod
     def get_by_id(cls, id):
         brewer_id = cls.query.get(id)
         return brewer_id
-
-
-    @classmethod
-    def get_by_id_brewer(cls, id):
-        brewer = cls.query.get(id)
-        return brewer
 
     
     def add_fav_beer(self,beer):
@@ -170,6 +157,7 @@ class Brewer(db.Model):
         db.session.commit()
         return self.have_fav_beer
     
+
     def delete_fav_beer(self, beer):
         favourites = self.have_fav_beer
         new_fav = []
@@ -181,8 +169,6 @@ class Brewer(db.Model):
         return self.have_fav_beer
 
         
-
-    
     def add_wish_beer(self,beer):
         self.have_wish_beer.append(beer)
         db.session.commit()
