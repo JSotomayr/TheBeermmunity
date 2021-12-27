@@ -1,26 +1,31 @@
-import React, { useContext} from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
-import Button from "react-bootstrap/Button";
+
 import "../../styles/favouriteButton.scss";
 
-
 const FavouriteButton = (props) => {
-    const { store, actions } = useContext(Context);
-    return(
-        <Button
-			className="btn_favourite"
-			variant="danger"
-			onClick={() => {
-				actions.addFavourite(props.element)
-				console.log(store.favouriteBeer)
-			}}>
-		</Button>
-    );
+  const { store, actions } = useContext(Context);
+
+  console.log(localStorage.getItem("user"));
+
+  const storedUserId = localStorage.getItem("user");
+
+  console.log(storedUserId);
+  return (
+    <button
+      className="btn"
+      onClick={() => {
+        actions.addFavourite(storedUserId, props.element);
+      }}
+    >
+      Favoritos
+    </button>
+  );
 };
 
 FavouriteButton.propTypes = {
-    element: PropTypes.object
-}
+  element: PropTypes.object,
+};
 
 export default FavouriteButton;
