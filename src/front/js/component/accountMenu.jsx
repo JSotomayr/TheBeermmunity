@@ -27,7 +27,11 @@ export default function AccountMenu() {
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
         <div className="userIconText" onClick={handleClick}>
           <i className="fas fa-user"></i>
-          <p className="infoIcon">Perfil</p>
+          {localStorage.getItem("logged") ? (
+            <p className="infoIcon">Perfil</p>
+          ) : (
+            <p className="infoIcon">Iniciar Sesión</p>
+          )}
         </div>
       </Box>
       <Menu
@@ -64,43 +68,50 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem>
-          <Link to="/login">
-            <Avatar />
-          </Link>
-          <Link to="/login">
-            <div className="menu">Iniciar Sesión</div>
-          </Link>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <PersonAdd fontSize="small" />
-          </ListItemIcon>
-          <Link to="/register">
-            <div className="menu">Crear Cuenta</div>
-          </Link>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <Avatar />
-          </ListItemIcon>
-          <Link to={`/profile/${localStorage.getItem("user")}`}>
-            <div className="menu">Perfil</div>
-          </Link>
-        </MenuItem>
-        <Divider />
-        <MenuItem>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          Configuración
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <Logout fontSize="small" />
-          </ListItemIcon>
-          Salir
-        </MenuItem>
+        {localStorage.getItem("logged") ? (
+          <>
+            <MenuItem>
+              <ListItemIcon>
+                <Avatar />
+              </ListItemIcon>
+              <Link to={`/profile/${localStorage.getItem("user")}`}>
+                <div className="menu">Perfil</div>
+              </Link>
+            </MenuItem>
+            <Divider />
+            <MenuItem>
+              <ListItemIcon>
+                <Settings fontSize="small" />
+              </ListItemIcon>
+              Configuración
+            </MenuItem>
+            <MenuItem>
+              <ListItemIcon>
+                <Logout fontSize="small" />
+              </ListItemIcon>
+              Salir
+            </MenuItem>
+          </>
+        ) : (
+          <>
+            <MenuItem>
+              <Link to="/login">
+                <Avatar />
+              </Link>
+              <Link to="/login">
+                <div className="menu">Iniciar Sesión</div>
+              </Link>
+            </MenuItem>
+            <MenuItem>
+              <ListItemIcon>
+                <PersonAdd fontSize="small" />
+              </ListItemIcon>
+              <Link to="/register">
+                <div className="menu">Crear Cuenta</div>
+              </Link>
+            </MenuItem>
+          </>
+        )}
       </Menu>
     </React.Fragment>
   );
