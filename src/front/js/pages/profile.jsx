@@ -70,24 +70,30 @@ export const Profile = () => {
   return (
     <Fragment>
       {profileCard}
-      <div className="container__cerveteca">
-        <Link to={"/cerveteca"}>
-          <p className="subtitle">Cerveteca</p>
-        </Link>
-        <div className="display__cards">{myTastedBeers}</div>
-      </div>
-      <div className="container__fav">
-        <Link to={"/profile/:id/favourite"}>
-          <p className="subtitle">Favoritas</p>
-        </Link>
-        <div className="display__cards">{myFavBeers}</div>
-      </div>
-      <div className="container__wish">
-        <Link to={"/wishlist"}>
-          <p className="subtitle">Pendientes</p>
-        </Link>
-        <div className="display__cards">{myWishBeers}</div>
-      </div>
+      {store.profileInfo.user_type ? (
+        <div>MAPA</div>
+      ) : (
+        <>
+          <div className="container__cerveteca">
+            <Link to={"/cerveteca"}>
+              <p className="subtitle">Cerveteca</p>
+            </Link>
+            <div className="display__cards">{myTastedBeers}</div>
+          </div>
+          <div className="container__fav">
+            <Link to={"/profile/:id/favourite"}>
+              <p className="subtitle">Favoritas</p>
+            </Link>
+            <div className="display__cards">{myFavBeers}</div>
+          </div>
+          <div className="container__wish">
+            <Link to={"/wishlist"}>
+              <p className="subtitle">Pendientes</p>
+            </Link>
+            <div className="display__cards">{myWishBeers}</div>
+          </div>
+        </>
+      )}
     </Fragment>
   );
 };
