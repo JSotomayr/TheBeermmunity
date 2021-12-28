@@ -89,7 +89,9 @@ export default function AccountMenu() {
               <ListItemIcon>
                 <Logout fontSize="small" />
               </ListItemIcon>
-              Salir
+              <Link to="/">
+                <div className="menu">Salir</div>
+              </Link>
             </MenuItem>
           </>
         ) : (
