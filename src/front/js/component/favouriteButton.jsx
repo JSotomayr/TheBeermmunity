@@ -9,7 +9,7 @@ const FavouriteButton = (props) => {
 
   console.log(localStorage.getItem("user"));
 
-  const storedUserId = localStorage.getItem("user");
+  const storedUserId = localStorage.getItem("user_type_id");
 
   console.log(storedUserId);
   return (

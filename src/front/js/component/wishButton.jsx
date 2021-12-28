@@ -5,7 +5,7 @@ import { Context } from "../store/appContext";
 const WishButton = (props) => {
   const { store, actions } = useContext(Context);
 
-  const storedUserId = localStorage.getItem("user");
+  const storedUserId = localStorage.getItem("user_type_id");
 
   return (
     <button

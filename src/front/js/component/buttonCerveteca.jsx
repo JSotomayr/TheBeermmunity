@@ -5,7 +5,7 @@ import { Context } from "../store/appContext";
 const ButtonCerveteca = (props) => {
   const { store, actions } = useContext(Context);
 
-  const storedUserId = localStorage.getItem("user");
+  const storedUserId = localStorage.getItem("user_type_id");
 
   return (
     <button
