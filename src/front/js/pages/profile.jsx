@@ -17,10 +17,14 @@ export const Profile = () => {
   let params = useParams();
 
   useEffect(async () => {
-    await actions.getProfileInfo(localStorage.getItem("user"));
-    await actions.getFavouriteBeer(localStorage.getItem("user"));
-    await actions.getTastedBeer(localStorage.getItem("user"));
-    await actions.getWishedBeer(localStorage.getItem("user"));
+    if (localStorage.getItem("user_type" === true)) {
+      await actions.getProfileInfo(localStorage.getItem("user"));
+    } else {
+      await actions.getProfileInfo(localStorage.getItem("user"));
+      await actions.getFavouriteBeer(localStorage.getItem("user_type_id"));
+      await actions.getTastedBeer(localStorage.getItem("user_type_id"));
+      await actions.getWishedBeer(localStorage.getItem("user_type_id"));
+    }
   }, []);
 
   useEffect(() => {
@@ -32,38 +36,51 @@ export const Profile = () => {
   }, [store.profileInfo]);
 
   useEffect(() => {
-    if (store.tastedBeer.length != 0) {
-      setMyTastedBeers(
-        store.tastedBeer.slice(0, 4).map((tasted, index) => {
-          return (
-            <>
-              <DefaultCard key={tasted.id} element={tasted} />
-            </>
-          );
-        })
-      );
-    }
-    if (store.favouriteBeer.length != 0) {
-      setMyFavBeers(
-        store.favouriteBeer.slice(0, 4).map((fav, index) => {
-          return (
-            <>
-              <DefaultCard key={fav.id} element={fav} />
-            </>
-          );
-        })
-      );
-    }
-    if (store.wishlist.length != 0) {
-      setMyWishBeers(
-        store.wishlist.slice(0, 4).map((wish, index) => {
-          return (
-            <>
-              <DefaultCard key={wish.id} element={wish} />
-            </>
-          );
-        })
-      );
+    if (store.profileInfo.user_type) {
+      console.log("nothing to get");
+    } else {
+      if (store.tastedBeer.length != 0) {
+        setMyTastedBeers(
+          store.tastedBeer.slice(0, 4).map((tasted, index) => {
+            return (
+              <>
+                <DefaultCard
+                  key={Math.floor(Math.random() * 100)}
+                  element={tasted}
+                />
+              </>
+            );
+          })
+        );
+      }
+      if (store.favouriteBeer.length != 0) {
+        setMyFavBeers(
+          store.favouriteBeer.slice(0, 4).map((fav, index) => {
+            return (
+              <>
+                <DefaultCard
+                  key={Math.floor(Math.random() * 200)}
+                  element={fav}
+                />
+              </>
+            );
+          })
+        );
+      }
+      if (store.wishlist.length != 0) {
+        setMyWishBeers(
+          store.wishlist.slice(0, 4).map((wish, index) => {
+            return (
+              <>
+                <DefaultCard
+                  key={Math.floor(Math.random() * 300)}
+                  element={wish}
+                />
+              </>
+            );
+          })
+        );
+      }
     }
   }, [store.tastedBeer, store.favouriteBeer, store.wishlist]);
 

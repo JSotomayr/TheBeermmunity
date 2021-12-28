@@ -11,6 +11,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       login: [],
       currentUser: {},
       profileInfo: {},
+      isProfileLogged: false,
       beers: [],
       beersDetail: [],
       favouriteBeer: [],
@@ -62,8 +63,12 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((responseAsJson) => {
             let token = jwt_decode(responseAsJson.token);
             setStore({ currentUser: token.sub });
+            setStore({ isProfileLogged: true });
             localStorage.setItem("token", responseAsJson.token);
             localStorage.setItem("user", token.sub.id);
+            localStorage.setItem("user_type", token.sub.user_type);
+            localStorage.setItem("user_type_id", token.sub.user_detail[0].id);
+            localStorage.setItem("logged", getStore().isProfileLogged);
             console.log("me he logueado");
           })
           .catch((error) =>

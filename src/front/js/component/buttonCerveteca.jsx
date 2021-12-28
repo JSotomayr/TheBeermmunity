@@ -10,9 +10,12 @@ const ButtonCerveteca = (props) => {
   return (
     <button
       className="btn"
-      onClick={(event) => {
-        event.preventDefault();
-        actions.addTastedBeer(storedUserId, props.element);
+      onClick={() => {
+        if (store.profileInfo.user_type) {
+          console.log("No eres el usuario adecuado");
+        } else {
+          actions.addTastedBeer(storedUserId, props.element);
+        }
       }}
     >
       Cerveteca

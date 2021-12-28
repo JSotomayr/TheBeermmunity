@@ -11,7 +11,11 @@ const WishButton = (props) => {
     <button
       className="btn"
       onClick={() => {
-        actions.addWishBeer(storedUserId, props.element);
+        if (store.profileInfo.user_type) {
+          console.log("No eres el usuario adecuado");
+        } else {
+          actions.addWishBeer(storedUserId, props.element);
+        }
       }}
     >
       Pendiente

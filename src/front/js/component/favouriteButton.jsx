@@ -16,7 +16,11 @@ const FavouriteButton = (props) => {
     <button
       className="btn"
       onClick={() => {
-        actions.addFavourite(storedUserId, props.element);
+        if (store.profileInfo.user_type) {
+          console.log("No eres el usuario adecuado");
+        } else {
+          actions.addFavourite(storedUserId, props.element);
+        }
       }}
     >
       Favoritos
