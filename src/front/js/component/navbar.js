@@ -27,19 +27,26 @@ export const Navbar = () => {
             <div className="btn container_btn_breweries m-2">CERVECERIAS</div>
           </Link>
         </div>
-
-        <div className="icons_right">
-          <div className="userIconText">
-            <AccountMenu />
-          </div>
-
-          <Link to="profile/:id/favourite">
-            <div className="HeartIconText">
-              <i className="far fa-heart"></i>
-              <p className="infoIcon">Favoritos</p>
+        {localStorage.getItem("logged") ? (
+          <div className="icons_right">
+            <div className="userIconText">
+              <AccountMenu />
             </div>
-          </Link>
-        </div>
+
+            <Link to={`/profile/${localStorage.getItem("user")}/favourite`}>
+              <div className="HeartIconText">
+                <i className="far fa-heart"></i>
+                <p className="infoIcon">Favoritos</p>
+              </div>
+            </Link>
+          </div>
+        ) : (
+          <div className="icons_right">
+            <div className="userIconText">
+              <AccountMenu />
+            </div>
+          </div>
+        )}
       </nav>
     </Fragment>
   );

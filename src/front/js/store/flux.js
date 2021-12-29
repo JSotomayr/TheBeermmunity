@@ -11,6 +11,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       login: [],
       currentUser: {},
       profileInfo: {},
+      isProfileLogged: false,
       beers: [],
       beersDetail: [],
       favouriteBeer: [],
@@ -62,17 +63,17 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((responseAsJson) => {
             let token = jwt_decode(responseAsJson.token);
             setStore({ currentUser: token.sub });
-            console.log("token descodificado", token);
+            setStore({ isProfileLogged: true });
             localStorage.setItem("token", responseAsJson.token);
+            localStorage.setItem("user", token.sub.id);
+            localStorage.setItem("user_type", token.sub.user_type);
+            localStorage.setItem("user_type_id", token.sub.user_detail[0].id);
+            localStorage.setItem("logged", getStore().isProfileLogged);
             console.log("me he logueado");
           })
           .catch((error) =>
             console.error("There as been an unknown error", error)
           );
-      },
-
-      setUser: (token) => {
-        setStore({ currentUser: jwt_decode(token) });
       },
 
       getBeer: async () => {
@@ -118,8 +119,9 @@ const getState = ({ getStore, getActions, setStore }) => {
               "beers",
               JSON.stringify(getStore().beersDetail)
             );
+          } else {
+            throw new Error("Fail downloading beer detail.");
           }
-          throw new Error("Fail downloading beer detail.");
         } catch (error) {
           console.log(error);
         }
@@ -145,6 +147,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             getStore().baseUrl.concat("customer/", id),
             {
               method: "GET",
+              mode: "cors",
+              redirect: "follow",
               headers: new Headers({
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
@@ -153,8 +157,8 @@ const getState = ({ getStore, getActions, setStore }) => {
           );
           if (response) {
             let userInfo = await response.json();
-            setStore({ profileInfo: userInfo });
-            localStorage.setItem("user", JSON.stringify(userInfo));
+            localStorage.setItem("user", userInfo.id);
+            setStore({ profileInfo: userInfo, isProfileLoaded: true });
           } else {
             throw new Error("Fail downloading user info.");
           }
@@ -163,58 +167,138 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      // addFavourite: async fav => {
-      // 	let newFavBeer = getStore().favouriteBeer.map(x => x.id)
-      // 		const token = localStorage.getItem("token");
-      // 		try {
-      // 			let response = await fetch(getStore().baseUrl + "brewer/favourite-beer/" + fav.id , {
-      // 				method: "POST",
-      // 				body: JSON.stringify(fav),
-      // 				headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json", Accept:"application/json" },
-      // 			});
-      // 			if (response.ok) {
-      // 				let responseAsJson = await response.json();
-      // 				setStore({ favouriteBeer: responseAsJson});
-      // 			} else {throw new Error("Fail in add favourite.")}
-      // 		} catch (error) {
-      // 				console.log(error);
-      // 		}
-      // },
+      addFavourite: async (brewer_id, fav) => {
+        let newFavBeer = getStore().favouriteBeer.map((x) => x.id);
+        const token = localStorage.getItem("token");
+        try {
+          let response = await fetch(
+            getStore().baseUrl.concat(
+              "brewer/",
+              brewer_id,
+              "/favourite-beer/",
+              fav.id
+            ),
+            {
+              method: "POST",
+              body: JSON.stringify(fav),
+              headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+                Accept: "application/json",
+              },
+            }
+          );
+          if (response.ok) {
+            let responseAsJson = await response.json();
+            setStore({ favouriteBeer: responseAsJson });
+            console.log("añadida a favoritos");
+          } else {
+            throw new Error("Fail in add favourite.");
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      },
 
-      // addTastedBeer: async tasted => {
-      // 		const token = localStorage.getItem("token");
-      // 		try {
-      // 			let response = await fetch(getStore().baseUrl + "brewer/tasted-beer/" + tasted.id , {
-      // 				method: "POST",
-      // 				body: JSON.stringify(tasted),
-      // 				headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json", Accept:"application/json" },
-      // 			});
-      // 			if (response.ok) {
-      // 				let responseAsJson = await response.json();
-      // 				setStore({ tastedBeer: responseAsJson});
-      // 			} else {throw new Error("Fail in add tasted.")}
-      // 		} catch (error) {
-      // 				console.log(error);
-      // 		}
-      // },
+      addTastedBeer: async (brewer_id, tasted) => {
+        const token = localStorage.getItem("token");
+        try {
+          let response = await fetch(
+            getStore().baseUrl.concat(
+              "brewer/",
+              brewer_id,
+              "/tasted-beer/",
+              tasted.id
+            ),
+            {
+              method: "POST",
+              body: JSON.stringify(tasted),
+              headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+                Accept: "application/json",
+              },
+            }
+          );
+          if (response.ok) {
+            let responseAsJson = await response.json();
+            setStore({ tastedBeer: responseAsJson });
+            console.log("añadida a cerveteca");
+          } else {
+            throw new Error("Fail in add tasted.");
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      },
 
-      // getFavouriteBeer: async () => {
-      // 	const token = localStorage.getItem("token");
-      // 	const response = await fetch(getStore().baseUrl + "brewer/favourite-beers", {
-      // 		headers: { Authorization: `Bearer ${token}`},
-      // } );
-      // 	const data = await response.json();
-      // 	setStore({favouriteBeer:data})
-      // },
+      addWishBeer: async (brewer_id, wish) => {
+        const token = localStorage.getItem("token");
+        try {
+          let response = await fetch(
+            getStore().baseUrl.concat(
+              "brewer/",
+              brewer_id,
+              "/wish-beer/",
+              wish.id
+            ),
+            {
+              method: "POST",
+              body: JSON.stringify(wish),
+              headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+                Accept: "application/json",
+              },
+            }
+          );
+          if (response.ok) {
+            let responseAsJson = await response.json();
+            setStore({ wishlist: responseAsJson });
+            console.log("añadida a wishlist");
+          } else {
+            throw new Error("Fail in adding wished beer.");
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      },
 
-      // getTastedBeer: async () => {
-      // 	const token = localStorage.getItem("token");
-      // 	const response = await fetch(getStore().baseUrl + "brewer/tasted-beer", {
-      // 		headers: { Authorization: `Bearer ${token}`},
-      // 	});
-      // 	const beer = await response.json();
-      // 	setStore({ tastedBeer: beer})
-      // }
+      getFavouriteBeer: async (id) => {
+        const token = localStorage.getItem("token");
+        const response = await fetch(
+          getStore().baseUrl.concat("brewer/", id, "/favourite-beer"),
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        const data = await response.json();
+        setStore({ favouriteBeer: data });
+      },
+
+      getTastedBeer: async (id) => {
+        const token = localStorage.getItem("token");
+        const response = await fetch(
+          getStore().baseUrl.concat("brewer/", id, "/tasted-beer"),
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        const beer = await response.json();
+        setStore({ tastedBeer: beer });
+      },
+
+      getWishedBeer: async (id) => {
+        const token = localStorage.getItem("token");
+        const response = await fetch(
+          getStore().baseUrl.concat("brewer/", id, "/wish-beer"),
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        const beer = await response.json();
+        setStore({ wishlist: beer });
+      },
     },
   };
 };

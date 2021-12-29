@@ -11,77 +11,106 @@ export const Profile = () => {
 
   const [myFavBeers, setMyFavBeers] = useState([]);
   const [myTastedBeers, setMyTastedBeers] = useState([]);
-  const [profileCard, setProfileCard] = useState();
-  // const [myWishBeers, setMyWishBeers] = useState([]);
+  const [profileCard, setProfileCard] = useState(null);
+  const [myWishBeers, setMyWishBeers] = useState([]);
 
   let params = useParams();
 
-  useEffect(() => {
-    actions.getProfileInfo(params.id);
+  useEffect(async () => {
+    if (localStorage.getItem("user_type" === true)) {
+      await actions.getProfileInfo(localStorage.getItem("user"));
+    } else {
+      await actions.getProfileInfo(localStorage.getItem("user"));
+      await actions.getFavouriteBeer(localStorage.getItem("user_type_id"));
+      await actions.getTastedBeer(localStorage.getItem("user_type_id"));
+      await actions.getWishedBeer(localStorage.getItem("user_type_id"));
+    }
   }, []);
 
   useEffect(() => {
-    if (Object.keys(store.profileInfo).length) {
-      setProfileCard(<ProfileCard element={store.currentUser.sub} />);
+    if (Object.keys(store.profileInfo).length != 0) {
+      setProfileCard(
+        <ProfileCard key={store.profileInfo.id} element={store.profileInfo} />
+      );
     }
   }, [store.profileInfo]);
 
   useEffect(() => {
-    if (store.tastedBeer.length != 0) {
-      setMyTastedBeers(
-        store.tastedBeer.map((wish, index) => {
-          return <DefaultCard key={index.toString()} element={wish} />;
-        })
-      );
+    if (store.profileInfo.user_type) {
+      console.log("nothing to get");
+    } else {
+      if (store.tastedBeer.length != 0) {
+        setMyTastedBeers(
+          store.tastedBeer.slice(0, 4).map((tasted, index) => {
+            return (
+              <>
+                <DefaultCard
+                  key={Math.floor(Math.random() * 100)}
+                  element={tasted}
+                />
+              </>
+            );
+          })
+        );
+      }
+      if (store.favouriteBeer.length != 0) {
+        setMyFavBeers(
+          store.favouriteBeer.slice(0, 4).map((fav, index) => {
+            return (
+              <>
+                <DefaultCard
+                  key={Math.floor(Math.random() * 200)}
+                  element={fav}
+                />
+              </>
+            );
+          })
+        );
+      }
+      if (store.wishlist.length != 0) {
+        setMyWishBeers(
+          store.wishlist.slice(0, 4).map((wish, index) => {
+            return (
+              <>
+                <DefaultCard
+                  key={Math.floor(Math.random() * 300)}
+                  element={wish}
+                />
+              </>
+            );
+          })
+        );
+      }
     }
-  }, []);
-
-  useEffect(() => {
-    if (store.favouriteBeer.length != 0) {
-      console.log("esta es la lista de fav", store.favouriteBeer);
-      setMyFavBeers(
-        store.favouriteBeer.map((wish, index) => {
-          return (
-            <>
-              <DefaultCard key={index.toString()} element={wish} />
-            </>
-          );
-        })
-      );
-    }
-  }, []);
-
-  // useEffect(() => {
-  //     if (store.wishlist.length != 0) {
-  // 		setMyWishBeers(
-  // 			store.wishlist.slice(0, 4).map((wish, index) => {
-  // 				return <DefaultCard key={index.toString()} element={wish} />;
-  // 			})
-  // 		);
-  // 	}
-  // }, [store.wishlist]);
+  }, [store.tastedBeer, store.favouriteBeer, store.wishlist]);
 
   return (
     <Fragment>
       {profileCard}
-      <div className="container__cerveteca">
-        <Link to={"/cerveteca"}>
-          <p className="subtitle">Cerveteca</p>
-        </Link>
-        <div className="display__cards">{myTastedBeers}</div>
-      </div>
-      <div className="container__fav">
-        <Link to={"/profile/:id/favourite"}>
-          <p className="subtitle">Favoritas</p>
-        </Link>
-        <div className="display__cards">{myFavBeers}</div>
-      </div>
-      {/* <div className="container__wish">
-                <Link to={"/wishlist"}>
-                    <p className="subtitle">Pendientes</p>            
-                </Link>
-                <div className="display__cards">{myWishBeers}</div>
-            </div> */}
+      {store.profileInfo.user_type ? (
+        <div>MAPA</div>
+      ) : (
+        <>
+          <div className="container__cerveteca">
+            <Link to={"/cerveteca"}>
+              <p className="subtitle">Cerveteca</p>
+            </Link>
+            <div className="display__cards">{myTastedBeers}</div>
+          </div>
+          <div className="container__fav">
+            <Link to={"/profile/:id/favourite"}>
+              <p className="subtitle">Favoritas</p>
+            </Link>
+            <div className="display__cards">{myFavBeers}</div>
+          </div>
+          <div className="container__wish">
+            <Link to={"/wishlist"}>
+              <p className="subtitle">Pendientes</p>
+            </Link>
+            <div className="display__cards">{myWishBeers}</div>
+          </div>
+        </>
+      )}
     </Fragment>
   );
 };
