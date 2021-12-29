@@ -193,6 +193,7 @@ def add_favbeer(id_beer):
 
     return jsonify({'error': 'Not favourites'}),404
 
+
 @api.route('/brewer/favourite-beers', methods = ['GET'])
 @jwt_required()
 def get_fav_beers():
@@ -291,6 +292,8 @@ def create_brewerie():
         token = create_access_token(identity=account.to_dict(), expires_delta=timedelta(minutes=100))
         return({'token' : token}), 200
 
+
+#GET ALL BREWERIES
 @api.route('/brewerie', methods=['GET'])
 def get_all_breweries():
     brewerie_s = Brewerie.get_all()
@@ -300,3 +303,45 @@ def get_all_breweries():
         return jsonify(all_breweries), 200
 
     return jsonify({'error': 'Brewerie not found'}), 400
+
+
+#   POST BREWERIE REVIEW
+@api.route('/brewer/<int:id_brewer>/brewerie-review/<int:id_brewerie>', methods=['POST'])
+@jwt_required()
+def add_brewerie_review(id_brewer, id_brewerie):
+    token_id = get_jwt_identity()
+    brewer = Brewer.get_by_id(id_brewer)
+
+    if token_id.get("id") == brewer.id_customer:
+        new_content = request.json.get('review_content', None)
+        new_rating = request.json.get('rating', None)
+
+        if not (new_content and new_rating):
+            return jsonify({'error': 'Missing rating parameters'}), 400
+
+        new_review = BrewerieReview(
+            review_content = new_content,
+            rating = new_rating,
+            publishment_date = date,
+            brewer_id = id_brewer,
+            brewerie_id = id_brewerie
+        )
+        
+        try:
+            new_review.create()
+        except exc.IntegrityError:
+            return jsonify({'error': 'Fail in creating review'}), 400
+        
+    return jsonify({new_review.to_dict()}),200
+
+
+# GET REVIEWS
+@api.route('/brewerie/<int:id>/reviews', methods=['GET'])
+def get_all_reviews_brewerie(id):
+    reviews = BrewerieReview.get_by_all_brewerie_reviews(id)
+
+    if reviews:
+        all_reviews = [reviews.to_dict() for review in reviews]
+        return jsonify(all_reviews.to_dict()), 200
+
+    return jsonify({'error': 'reviews not found'}), 400
