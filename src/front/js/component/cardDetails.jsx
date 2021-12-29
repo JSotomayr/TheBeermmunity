@@ -1,10 +1,8 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
-import { Context } from "../store/appContext";
 import "../../styles/cardDetails.scss";
 
 const CardDetails = (props) => {
-  const { store, actions } = useContext(Context);
   return (
     <div className="detail">
       <div className="detail__top">

@@ -66,9 +66,22 @@ class Customer(db.Model):
             # "user_detail": user[0].to_dict()
         }
 
+
     def create(self):
         db.session.add(self)
         db.session.commit()
+
+
+    @classmethod
+    def get_by_id(cls, id):
+        user = cls.query.get(id)
+        return user
+
+
+    @classmethod
+    def get_all(cls):
+        all_customer = cls.query.all()
+        return all_customer
 
 
     @classmethod
@@ -81,12 +94,6 @@ class Customer(db.Model):
     def get_by_password(cls, password):
         secretPass = cls.query.filter_by(password=password).one_or_none()
         return secretPass
-
-
-    @classmethod
-    def get_all(cls):
-        all_customer = cls.query.all()
-        return all_customer
 
 
     def update(self, **kwargs):
@@ -105,22 +112,6 @@ class Customer(db.Model):
     def delete(self):
         self.is_active = False
         db.session.commit()
-
-    @classmethod
-    def get_by_id(cls, id):
-        customer_id = cls.query.get(id)
-        return customer_id
-
-    def add_fav_beer(self,beer):
-        self.have_fav_beer.append(beer)
-        db.session.commit()
-        return self.have_fav_beer
-
-
-    def add_tasted_beer(self,beer):
-        self.have_tasted_beer.append(beer)
-        db.session.commit()
-        return self.have_tasted_beer
 
 
 class Brewer(db.Model):
@@ -149,20 +140,16 @@ class Brewer(db.Model):
             "lastname" : self.lastname,
         }
 
+
     def create(self):
         db.session.add(self)
         db.session.commit()
+
 
     @classmethod
     def get_by_id(cls, id):
         brewer_id = cls.query.get(id)
         return brewer_id
-
-
-    @classmethod
-    def get_by_id_brewer(cls, id):
-        brewer = cls.query.get(id)
-        return brewer
 
     
     def add_fav_beer(self,beer):
@@ -170,6 +157,7 @@ class Brewer(db.Model):
         db.session.commit()
         return self.have_fav_beer
     
+
     def delete_fav_beer(self, beer):
         favourites = self.have_fav_beer
         new_fav = []
@@ -180,7 +168,7 @@ class Brewer(db.Model):
         db.session.commit()
         return self.have_fav_beer
 
-    
+        
     def add_wish_beer(self,beer):
         self.have_wish_beer.append(beer)
         db.session.commit()
@@ -202,12 +190,6 @@ class Brewer(db.Model):
         self.have_tasted_beer = new_tasted
         db.session.commit()
         return self.have_tasted_beer
-
-    
-    def post_review(self,beer):
-        self.have_fav_beer.append(beer)
-        db.session.commit()
-        return self.have_fav_beer
     
     
 class Brewerie(db.Model):
@@ -220,7 +202,6 @@ class Brewerie(db.Model):
     longitude = db.Column(db.String(), unique=False, nullable=True)
     id_customer = db.Column(db.Integer, db.ForeignKey('customer.id'), unique=True, nullable=False)
 
-    brewerie_review = db.relationship("BrewerieReview")
     have_fav_brewerie_brewer = db.relationship("Brewer", secondary=favourite_brewerie, back_populates="have_fav_brewerie")
     
 
@@ -313,13 +294,13 @@ class Beer(db.Model):
 class BrewerieReview(db.Model):
     __tablename__: 'brewerie_review'
 
-    brewer_id = db.Column(db.Integer, db.ForeignKey('brewer.id'), primary_key=True)
-    brewerie_id = db.Column(db.Integer, db.ForeignKey('brewerie.id'), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     review_content = db.Column(db.Text, unique=False, nullable=False)
     rating = db.Column(db.Integer, unique=False, nullable=False)
     publishment_date = db.Column(db.DATE(), unique=False, nullable=True)
-
-    brewerie = db.relationship("Brewerie")
+    _is_beer = db.Column(db.Boolean, unique=False, nullable=False, default=True)
+    brewer_id = db.Column(db.Integer, db.ForeignKey('brewer.id'), unique=False, nullable=False)
+    brewerie_id = db.Column(db.Integer, db.ForeignKey('brewerie.id'), unique=False, nullable=False)
 
 
     def __repr__(self):
@@ -328,23 +309,12 @@ class BrewerieReview(db.Model):
 
     def to_dict(self):
         return {
+            "id": self.id,
             "review_content": self.review_content,
             "rating": self.rating,
             "user_id": self.user_id,
-            "brewerie_id": self.brewerie_id,
-            "publishment_date": self.publishment_date
+            "brewerie_id": self.brewerie_id
         }
-
-
-    def create(self):
-        db.session.add(self)
-        db.session.commit()
-
-
-    @classmethod
-    def get_by_all_brewerie_reviews(cls, id):
-        reviews = cls.query.filter_by(brewerie_id=id)
-        return reviews
 
 
 class BeerReview(db.Model):

@@ -9,8 +9,9 @@ export const Favourite = () => {
   const [favourite, setFavourite] = useState([]);
 
   const [message, setMessage] = useState("");
+
   useEffect(() => {
-    actions.getFavouriteBeer();
+    actions.getFavouriteBeer(localStorage.getItem("user"));
   }, []);
 
   useEffect(() => {
@@ -25,22 +26,10 @@ export const Favourite = () => {
   }, [store.favouriteBeer]);
 
   return (
-    <Fragment>
-      <span className="title">Favoritos</span>
-      <div className="btn">
-        <Link to="/">volver</Link>
-      </div>
-      <div className="MessageLog">{message}</div>
-
-      <div className="btn mt-5">
-        <Link to="/login">ACCEDER</Link>
-      </div>
-      <div className="btn mt-5">
-        <Link to="/register">REGISTRO</Link>
-      </div>
-
-      {favourite}
-    </Fragment>
+    <div>
+      <h1 className="title">Todas tus favoritas</h1>
+      <div className="favourites">{favourite}</div>
+    </div>
   );
 };
 

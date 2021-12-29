@@ -14,26 +14,42 @@ const BeerDetail = () => {
 
   let params = useParams();
 
-  useEffect(() => {
-    actions.getBeerDetail(params.id);
+  useEffect(async () => {
+    await actions.getBeerDetail(params.id);
+    await actions.getProfileInfo(localStorage.getItem("user"));
   }, []);
 
   useEffect(() => {
-    setDetailBeer(
-      store.beersDetail.map((detail, index) => {
-        return (
-          <div className="detail__container" key={detail.id}>
-            <div className="btn">
-              <Link to="/beer">volver</Link>
+    if (store.profileInfo.user_type) {
+      setDetailBeer(
+        store.beersDetail.map((detail, index) => {
+          return (
+            <div className="detail__container" key={detail.id}>
+              <div className="btn">
+                <Link to="/beer">volver</Link>
+              </div>
+              <CardDetails key={index.toString()} element={detail} />
             </div>
-            <CardDetails key={index.toString()} element={detail} />
-            <FavouriteButton element={detail} />
-            <WishButton element={detail} />
-            <ButtonCerveteca element={detail} />
-          </div>
-        );
-      })
-    );
+          );
+        })
+      );
+    } else {
+      setDetailBeer(
+        store.beersDetail.map((detail, index) => {
+          return (
+            <div className="detail__container" key={detail.id}>
+              <div className="btn">
+                <Link to="/beer">volver</Link>
+              </div>
+              <CardDetails key={index.toString()} element={detail} />
+              <FavouriteButton element={detail} />
+              <WishButton element={detail} />
+              <ButtonCerveteca element={detail} />
+            </div>
+          );
+        })
+      );
+    }
   }, [store.beersDetail]);
 
   return <div>{detailBeer}</div>;
