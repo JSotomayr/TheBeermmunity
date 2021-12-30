@@ -337,3 +337,90 @@ def get_all_breweries():
         return jsonify(all_breweries), 200
 
     return jsonify({'error': 'Brewerie not found'}), 400
+
+
+#   POST BREWERIE REVIEW
+@api.route('/brewer/<int:id_brewer>/brewerie-review/<int:id_brewerie>', methods=['POST'])
+@jwt_required()
+def post_brewerie_review(id_brewer, id_brewerie):
+    token_id = get_jwt_identity()
+    brewer = Brewer.get_by_id(id_brewer)
+    print("brewer id", id_brewer)
+    print("token id", token_id.get("id"))
+
+    if token_id.get("id") == brewer.id_customer:
+        new_content = request.json.get('review_content', None)
+        new_rating = request.json.get('rating', None)
+        print("new content", new_content)
+        print("new rating", new_rating)
+
+        if not (new_content and new_rating):
+            return jsonify({'error': 'Missing rating parameters'}), 400
+
+        post_review = BrewerieReview(
+            review_content = new_content,
+            rating = new_rating,
+            brewer_id = id_brewer,
+            brewerie_id = id_brewerie
+        )
+        print(post_review.create())
+        try:
+            post_review.create()
+            return jsonify(post_review.to_dict()),200
+        except exc.IntegrityError:
+            return jsonify({'error': 'Fail in creating review'}), 400
+        
+    return jsonify({'success': 'Review posted'}), 200
+
+
+# GET BREWERIE REVIEWS
+@api.route('/brewerie-reviews/<int:brewerie_id>', methods=['GET'])
+def get_all_breweries_reviews(brewerie_id):
+    all_reviews = BrewerieReview.get_by_all_brewerie_reviews(brewerie_id)
+
+    if all_reviews:
+        return jsonify([reviews.to_dict() for reviews in all_reviews]), 200
+
+    return jsonify({'error': 'reviews not found'}), 400
+
+
+#   POST BEER REVIEW
+@api.route('/brewer/<int:id_brewer>/beer-review/<int:id_beer>', methods=['POST'])
+@jwt_required()
+def post_beer_review(id_brewer, id_beer):
+    token_id = get_jwt_identity()
+    brewer = Brewer.get_by_id(id_brewer)
+
+    if token_id.get("id") == brewer.id_customer:
+        new_content = request.json.get('review_content', None)
+        new_rating = request.json.get('rating', None)
+        
+
+        if not (new_content and new_rating):
+            return jsonify({'error': 'Missing rating parameters'}), 400
+
+        post_review = BeerReview(
+            review_content = new_content,
+            rating = new_rating,
+            brewer_id = id_brewer,
+            beer_id = id_beer
+        )
+        print(post_review.create())
+        try:
+            post_review.create()
+            return jsonify(post_review.to_dict()),200
+        except exc.IntegrityError:
+            return jsonify({'error': 'Fail in creating review'}), 400
+        
+    return jsonify({'success': 'Review posted'}), 200
+
+
+# GET BEER REVIEWS
+@api.route('/beer-reviews/<int:beer_id>', methods=['GET'])
+def get_all_beer_reviews(beer_id):
+    all_reviews = BeerReview.get_by_all_beer_reviews(beer_id)
+
+    if all_reviews:
+        return jsonify([reviews.to_dict() for reviews in all_reviews]), 200
+
+    return jsonify({'error': 'reviews not found'}), 400
