@@ -44,13 +44,19 @@
     color: rgb(184, 184, 184);
     float: right;
   }
+
+  .detail__bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-right: 2rem;
+  }
 }
 
 @media (min-width: 768px) {
   .detail {
     background: #2c363a;
     display: flex;
-    flex-direction: column;
   }
 
   .detail__top {
@@ -65,39 +71,79 @@
   .detail__image {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
   }
 
   .bottle {
-    width: 70%;
+    width: 100%;
+    margin-left: 2rem;
   }
 
   .detail__right {
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
   }
   .detail__body {
+    display: flex;
     margin-top: 1rem;
     color: white;
     padding-left: 1rem;
     padding-right: 1rem;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: center;
   }
 
   .detail__title {
     color: #e49b0f;
+    font-size: 2rem;
   }
 
   .detail__subtitle {
     color: #e49b0f;
+    font-size: 1.5rem;
   }
 
   .detail__properties {
     list-style-type: none;
     padding: 0;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
   }
 
   .detail__date {
     color: rgb(184, 184, 184);
     float: right;
+  }
+
+  .description {
+    width: 89%;
+    margin-left: 3rem;
+    margin-top: 0;
+    padding: inherit;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .detail__bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-right: 2rem;
+  }
+
+  .full_beer {
+    width: 3rem;
+  }
+
+  .empty_beer {
+    width: 3rem;
+  }
+  .divider {
+    height: 0.5rem;
+    background-color: #e49b0f;
   }
 }
