@@ -4,6 +4,8 @@ import { Link, useParams } from "react-router-dom";
 
 import ProfileCard from "../component/profileCard.jsx";
 import DefaultCard from "../component/defaultCard.jsx";
+import Comment from "../component/comment.jsx";
+import { CommentForm } from "../component/commentForm.jsx";
 import "../../styles/profile.scss";
 
 export const Profile = () => {
@@ -13,14 +15,17 @@ export const Profile = () => {
   const [myTastedBeers, setMyTastedBeers] = useState([]);
   const [profileCard, setProfileCard] = useState(null);
   const [myWishBeers, setMyWishBeers] = useState([]);
+  const [reviews, setReviews] = useState([]);
 
   let params = useParams();
 
   useEffect(async () => {
-    if (localStorage.getItem("user_type" === true)) {
-      await actions.getProfileInfo(localStorage.getItem("user"));
+    await actions.getProfileInfo(localStorage.getItem("user"));
+    if (store.profileInfo.user_type) {
+      let brewerie_id = localStorage.getItem("user_type_id");
+      await actions.getBrewerieReviews(brewerie_id);
+      console.log(store.storedBrewerieReviews);
     } else {
-      await actions.getProfileInfo(localStorage.getItem("user"));
       await actions.getFavouriteBeer(localStorage.getItem("user_type_id"));
       await actions.getTastedBeer(localStorage.getItem("user_type_id"));
       await actions.getWishedBeer(localStorage.getItem("user_type_id"));
@@ -84,11 +89,28 @@ export const Profile = () => {
     }
   }, [store.tastedBeer, store.favouriteBeer, store.wishlist]);
 
+  useEffect(async () => {
+    if (store.storedBrewerieReviews.length != 0) {
+      setReviews(
+        store.storedBrewerieReviews.map((review, index) => {
+          console.log(review);
+          return <Comment key={index.toString()} element={review} />;
+        })
+      );
+    }
+  }, [store.storedBrewerieReviews]);
+
   return (
     <Fragment>
       {profileCard}
       {store.profileInfo.user_type ? (
-        <div>MAPA</div>
+        <>
+          <div>MAPA</div>
+          <div className="commentContainer">{reviews} </div>
+          <div className="commentForm">
+            {localStorage.getItem("logged") ? <CommentForm /> : <></>}
+          </div>
+        </>
       ) : (
         <>
           <div className="container__cerveteca">

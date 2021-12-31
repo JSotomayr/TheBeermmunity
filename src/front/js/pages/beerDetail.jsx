@@ -22,7 +22,7 @@ const BeerDetail = () => {
     await actions.getBeerDetail(params.id);
     await actions.getProfileInfo(localStorage.getItem("user"));
     await actions.getBeerReviews(params.id);
-    console.log(store.storedReviews);
+    console.log(store.storedBeerReviews);
   }, []);
 
   useEffect(() => {
@@ -61,15 +61,15 @@ const BeerDetail = () => {
   }, [store.beersDetail]);
 
   useEffect(async () => {
-    if (store.storedReviews.length != 0) {
+    if (store.storedBeerReviews.length != 0) {
       setReviews(
-        store.storedReviews.map((review, index) => {
+        store.storedBeerReviews.map((review, index) => {
           console.log(review);
           return <Comment key={index.toString()} element={review} />;
         })
       );
     }
-  }, [store.storedReviews]);
+  }, [store.storedBeerReviews]);
 
   return (
     <>

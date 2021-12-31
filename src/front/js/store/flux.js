@@ -18,7 +18,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       tastedBeer: [],
       wishlist: [],
       breweries: [],
-      storedReviews: [],
+      storedBeerReviews: [],
+      storedBrewerieReviews: [],
     },
     actions: {
       register: (dataRegister) => {
@@ -331,7 +332,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      getBeerReviews: async (beer_id, review) => {
+      getBeerReviews: async (beer_id) => {
         try {
           let response = await fetch(
             getStore().baseUrl.concat("beer-reviews/", beer_id),
@@ -346,7 +347,61 @@ const getState = ({ getStore, getActions, setStore }) => {
           );
           if (response.ok) {
             let allReviews = await response.json();
-            setStore({ storedReviews: allReviews });
+            setStore({ storedBeerReviews: allReviews });
+          } else {
+            throw new Error("Fail in downloading reviews.");
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      },
+
+      addBrewerieReview: async (brewer_id, brewerie_id, review) => {
+        const token = localStorage.getItem("token");
+        try {
+          let response = await fetch(
+            getStore().baseUrl.concat(
+              "brewer/",
+              brewer_id,
+              "/brewerie-review/",
+              brewerie_id
+            ),
+            {
+              method: "POST",
+              body: JSON.stringify(review),
+              headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+                Accept: "application/json",
+              },
+            }
+          );
+          if (response.ok) {
+            console.log("Review created");
+          } else {
+            throw new Error("Fail in creating review.");
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      },
+
+      getBrewerieReviews: async (brewerie_id) => {
+        try {
+          let response = await fetch(
+            getStore().baseUrl.concat("brewerie-reviews/", brewerie_id),
+            {
+              method: "GET",
+              mode: "cors",
+              redirect: "follow",
+              headers: new Headers({
+                "Content-Type": "application/json",
+              }),
+            }
+          );
+          if (response.ok) {
+            let allReviews = await response.json();
+            setStore({ storedBrewerieReviews: allReviews });
           } else {
             throw new Error("Fail in downloading reviews.");
           }
