@@ -240,7 +240,9 @@ data = {
             "rating": 4,
             "publishment_date": "2021/12/03",
             "brewerie_id": 1,
-            "brewer_id": 1
+            "brewer_id": 1,
+            "username": "Lemons",
+            "image": "https://res.cloudinary.com/de8eg0q3r/image/upload/v1639489231/customers/brewers/PERFIL_LEMONS_aqw80a.png"
         }
     ],
     
@@ -251,7 +253,9 @@ data = {
             "rating": 3,
             "publishment_date": "2021/12/01",
             "beer_id": 4,
-            "brewer_id": 3
+            "brewer_id": 3,
+            "username": "Folken",
+            "image": "https://res.cloudinary.com/de8eg0q3r/image/upload/v1639489231/customers/brewers/LORD_FOLKEN_rzwlr0.png"
         }
     ],
 

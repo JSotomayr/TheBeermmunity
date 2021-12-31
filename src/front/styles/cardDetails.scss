@@ -2,47 +2,72 @@
   .detail {
     background: #2c363a;
     display: flex;
-    flex-direction: column;
   }
 
   .detail__top {
     display: flex;
-    flex-direction: row;
-    justify-content: space-betweens;
+    flex-direction: column-reverse;
+    justify-content: space-evenly;
     margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
   }
 
   .detail__image {
-    width: 30%;
+    width: 100%;
     display: flex;
     justify-content: center;
   }
 
-  .detail__img {
-    width: 30%;
+  .bottle {
+    width: 25%;
+  }
+
+  .detail__right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
   }
   .detail__body {
+    display: flex;
+    margin-top: 1rem;
     color: white;
     padding-left: 1rem;
     padding-right: 1rem;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: center;
   }
 
   .detail__title {
     color: #e49b0f;
+    font-size: 2rem;
   }
 
   .detail__subtitle {
     color: #e49b0f;
+    font-size: 1.5rem;
   }
 
   .detail__properties {
     list-style-type: none;
     padding: 0;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
   }
 
   .detail__date {
     color: rgb(184, 184, 184);
     float: right;
+  }
+
+  .description {
+    width: 89%;
+    margin-top: 0;
+    padding: inherit;
+    font-size: 1rem;
+    text-align: center;
   }
 
   .detail__bottom {
@@ -51,9 +76,116 @@
     align-items: flex-end;
     padding-right: 2rem;
   }
+
+  .full_beer {
+    width: 3rem;
+  }
+
+  .empty_beer {
+    width: 3rem;
+  }
+  .divider {
+    height: 0.5rem;
+    background-color: #e49b0f;
+  }
 }
 
 @media (min-width: 768px) {
+  .detail {
+    background: #2c363a;
+    display: flex;
+  }
+
+  .detail__top {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .detail__image {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .bottle {
+    width: 100%;
+    margin-left: 2rem;
+  }
+
+  .detail__right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  .detail__body {
+    display: flex;
+    margin-top: 1rem;
+    color: white;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .detail__title {
+    color: #e49b0f;
+    font-size: 2rem;
+  }
+
+  .detail__subtitle {
+    color: #e49b0f;
+    font-size: 1.5rem;
+  }
+
+  .detail__properties {
+    list-style-type: none;
+    padding: 0;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .detail__date {
+    color: rgb(184, 184, 184);
+    float: right;
+  }
+
+  .description {
+    width: 89%;
+    margin-left: 3rem;
+    margin-top: 0;
+    padding: inherit;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .detail__bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-right: 2rem;
+  }
+
+  .full_beer {
+    width: 3rem;
+  }
+
+  .empty_beer {
+    width: 3rem;
+  }
+  .divider {
+    height: 0.5rem;
+    background-color: #e49b0f;
+  }
+}
+
+@media (min-width: 1024px) {
   .detail {
     background: #2c363a;
     display: flex;

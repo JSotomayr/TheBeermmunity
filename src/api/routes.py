@@ -358,6 +358,8 @@ def post_brewerie_review(id_brewer, id_brewerie):
             return jsonify({'error': 'Missing rating parameters'}), 400
 
         post_review = BrewerieReview(
+            username = token_id.get("username"),
+            image = token_id.get("image"),
             review_content = new_content,
             rating = new_rating,
             brewer_id = id_brewer,
@@ -390,6 +392,7 @@ def get_all_breweries_reviews(brewerie_id):
 def post_beer_review(id_brewer, id_beer):
     token_id = get_jwt_identity()
     brewer = Brewer.get_by_id(id_brewer)
+    print("este es el usuario", token_id.get("username"))
 
     if token_id.get("id") == brewer.id_customer:
         new_content = request.json.get('review_content', None)
@@ -400,6 +403,8 @@ def post_beer_review(id_brewer, id_beer):
             return jsonify({'error': 'Missing rating parameters'}), 400
 
         post_review = BeerReview(
+            username = token_id.get("username"),
+            image = token_id.get("image"),
             review_content = new_content,
             rating = new_rating,
             brewer_id = id_brewer,

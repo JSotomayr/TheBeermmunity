@@ -27,15 +27,17 @@ const Comment = (props) => {
   return (
     <div className="comment">
       <div>
-        <div>Image</div>
+        <div>
+          <img className="comment__image" src={props.element.image} />
+        </div>
       </div>
       <div>
         <div>
-          <div>Username</div>
+          <div>{props.element.username}</div>
           <div>{props.element.review_content}</div>
         </div>
         <div className="comment__bottom">
-          <div className="rating_box">
+          <div className="rating__box">
             <Rating
               name="rating"
               value={props.element.rating}

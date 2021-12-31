@@ -122,7 +122,6 @@ class Brewer(db.Model):
     lastname = db.Column(db.String(), unique=False, nullable=False)
     id_customer = db.Column(db.Integer, db.ForeignKey('customer.id'), unique=True, nullable=False)
 
-
     have_fav_beer = db.relationship("Beer", secondary=favourite_beer, back_populates="have_fav_beer_brewer")
     have_tasted_beer = db.relationship("Beer", secondary=tasted_beer, back_populates="have_tasted_beer_brewer")
     have_wish_beer = db.relationship("Beer", secondary=wishlist_beer, back_populates="have_wish_beer_brewer")
@@ -137,7 +136,7 @@ class Brewer(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "lastname" : self.lastname,
+            "lastname" : self.lastname
         }
 
 
@@ -304,6 +303,8 @@ class BrewerieReview(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     brewer_id = db.Column(db.Integer, db.ForeignKey('brewer.id'))
     brewerie_id = db.Column(db.Integer, db.ForeignKey('brewerie.id'))
+    username = db.Column(db.String(), unique=False, nullable=False)
+    image = db.Column(db.Text, unique=False, nullable=True)
     review_content = db.Column(db.Text, unique=False, nullable=False)
     rating = db.Column(db.Integer, unique=False, nullable=False)
     publishment_date = db.Column(db.DATE(), unique=False, nullable=True)
@@ -321,6 +322,8 @@ class BrewerieReview(db.Model):
             "rating": self.rating,
             "brewer_id": self.brewer_id,
             "brewerie_id": self.brewerie_id,
+            "username": self.username,
+            "image": self.image,
             "publishment_date": self.publishment_date
         }
 
@@ -350,6 +353,8 @@ class BeerReview(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     brewer_id = db.Column(db.Integer, db.ForeignKey('brewer.id'))
     beer_id = db.Column(db.Integer, db.ForeignKey('beer.id'))
+    username = db.Column(db.String(), unique=False, nullable=False)
+    image = db.Column(db.Text, unique=False, nullable=True)
     review_content = db.Column(db.Text, unique=False, nullable=False)
     rating = db.Column(db.Integer, unique=False, nullable=False)
     publishment_date = db.Column(db.DATE(), unique=False, nullable=True)
@@ -367,6 +372,9 @@ class BeerReview(db.Model):
             "rating": self.rating,
             "brewer_id": self.brewer_id,
             "beer_id": self.beer_id,
+            "username": self.username,
+            "image": self.image,
+            "publishment_date": self.publishment_date
         }
 
 

@@ -76,7 +76,6 @@ const BeerDetail = () => {
       <div>{detailBeer}</div>
       <div className="commentContainer">{reviews} </div>
       <div className="commentForm">
-        <h3 className="comment_subtitle">Tu review</h3>
         {localStorage.getItem("logged") ? <CommentForm /> : <></>}
       </div>
     </>

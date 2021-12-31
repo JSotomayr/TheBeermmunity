@@ -41,14 +41,22 @@ export const CommentForm = () => {
   );
 
   return (
-    <>
+    <div className="formContainer">
+      <h3 className="comment_subtitle">Tu review</h3>
       <form
         onSubmit={(event) => {
-          event.preventDefault();
           onSubmit(getValues());
         }}
       >
-        <div>
+        <div className="formContainer_review">
+          <label>Review</label>
+          <input
+            type="text"
+            {...register("review_content")}
+            placeholder="Your review"
+          />
+        </div>
+        <div className="formContainer_rating">
           <label>Rating</label>
           <input type="hidden" {...register("rating")} value={value} />
           <Rating
@@ -64,16 +72,9 @@ export const CommentForm = () => {
           />
           <Box sx={{ ml: 2 }}>{value}</Box>
         </div>
-        <div>
-          <label>Review</label>
-          <input
-            type="text"
-            {...register("review_content")}
-            placeholder="Your review"
-          />
-        </div>
-        <input type="submit" value="Review" />
+
+        <input type="submit" value="Post" />
       </form>
-    </>
+    </div>
   );
 };
