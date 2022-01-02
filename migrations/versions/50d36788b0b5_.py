@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 62c8ded9564b
+Revision ID: 50d36788b0b5
 Revises: 
-Create Date: 2021-12-29 12:05:21.951194
+Create Date: 2022-01-02 11:24:16.922377
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '62c8ded9564b'
+revision = '50d36788b0b5'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -81,14 +81,16 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('brewerie_review',
-    sa.Column('brewer_id', sa.Integer(), nullable=False),
-    sa.Column('brewerie_id', sa.Integer(), nullable=False),
+    sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('review_content', sa.Text(), nullable=False),
     sa.Column('rating', sa.Integer(), nullable=False),
     sa.Column('publishment_date', sa.DATE(), nullable=True),
+    sa.Column('_is_beer', sa.Boolean(), nullable=False),
+    sa.Column('brewer_id', sa.Integer(), nullable=False),
+    sa.Column('brewerie_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['brewer_id'], ['brewer.id'], ),
     sa.ForeignKeyConstraint(['brewerie_id'], ['brewerie.id'], ),
-    sa.PrimaryKeyConstraint('brewer_id', 'brewerie_id')
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('event',
     sa.Column('id', sa.Integer(), nullable=False),
