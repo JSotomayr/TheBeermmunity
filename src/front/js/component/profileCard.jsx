@@ -24,6 +24,13 @@ const ProfileCard = (props) => {
       alt="empty_beer"
     />
   );
+  const averageValue = () => {
+    let rate = 0;
+    for (let i = 0; i < store.storedBrewerieReviews.length; i++) {
+      rate += store.storedBrewerieReviews[i].rating;
+    }
+    return rate / store.storedBrewerieReviews.length;
+  };
 
   return (
     <>
@@ -50,12 +57,12 @@ const ProfileCard = (props) => {
           <div className="rating__box">
             <Rating
               name="rating"
-              value={3}
+              value={averageValue()}
               readOnly
               icon={beerRate}
               emptyIcon={beerEmptyRate}
             />
-            <Box sx={{ ml: 2 }}>{3}</Box>
+            <Box sx={{ ml: 2 }}>{averageValue()}</Box>
           </div>
           <div className="divider"></div>
         </div>

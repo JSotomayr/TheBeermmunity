@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 62c8ded9564b
+Revision ID: 77b4ec73d44b
 Revises: 
-Create Date: 2021-12-29 12:05:21.951194
+Create Date: 2021-12-30 22:59:32.869455
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '62c8ded9564b'
+revision = '77b4ec73d44b'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -71,24 +71,29 @@ def upgrade():
     )
     op.create_table('beer_review',
     sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('brewer_id', sa.Integer(), nullable=True),
+    sa.Column('beer_id', sa.Integer(), nullable=True),
+    sa.Column('username', sa.String(), nullable=False),
+    sa.Column('image', sa.Text(), nullable=True),
     sa.Column('review_content', sa.Text(), nullable=False),
     sa.Column('rating', sa.Integer(), nullable=False),
     sa.Column('publishment_date', sa.DATE(), nullable=True),
-    sa.Column('brewer_id', sa.Integer(), nullable=False),
-    sa.Column('beer_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['beer_id'], ['beer.id'], ),
     sa.ForeignKeyConstraint(['brewer_id'], ['brewer.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('brewerie_review',
-    sa.Column('brewer_id', sa.Integer(), nullable=False),
-    sa.Column('brewerie_id', sa.Integer(), nullable=False),
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('brewer_id', sa.Integer(), nullable=True),
+    sa.Column('brewerie_id', sa.Integer(), nullable=True),
+    sa.Column('username', sa.String(), nullable=False),
+    sa.Column('image', sa.Text(), nullable=True),
     sa.Column('review_content', sa.Text(), nullable=False),
     sa.Column('rating', sa.Integer(), nullable=False),
     sa.Column('publishment_date', sa.DATE(), nullable=True),
     sa.ForeignKeyConstraint(['brewer_id'], ['brewer.id'], ),
     sa.ForeignKeyConstraint(['brewerie_id'], ['brewerie.id'], ),
-    sa.PrimaryKeyConstraint('brewer_id', 'brewerie_id')
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('event',
     sa.Column('id', sa.Integer(), nullable=False),

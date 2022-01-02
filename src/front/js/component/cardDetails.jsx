@@ -1,11 +1,14 @@
 import React, { useContext, useState } from "react";
+import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 
 import Rating from "@mui/material/Rating";
+import Box from "@mui/material/Box";
+
 import "../../styles/cardDetails.scss";
 
 const CardDetails = (props) => {
-  const [value, setValue] = useState(3);
+  const { store, actions } = useContext(Context);
 
   const beerRate = (
     <img
@@ -22,6 +25,15 @@ const CardDetails = (props) => {
     />
   );
 
+  const averageValue = () => {
+    let rate = 0;
+    for (let i = 0; i < store.storedBeerReviews.length; i++) {
+      rate += store.storedBeerReviews[i].rating;
+      console.log("A saber la suma", rate);
+    }
+    return rate / store.storedBeerReviews.length;
+  };
+  console.log("A saber la media", averageValue());
   return (
     <>
       <div className="detail">
@@ -51,14 +63,12 @@ const CardDetails = (props) => {
               <div className="detail__rate">
                 <Rating
                   name="rating"
-                  value={value}
-                  max={5}
+                  value={averageValue()}
+                  readOnly
                   icon={beerRate}
                   emptyIcon={beerEmptyRate}
-                  onChange={(event, newValue) => {
-                    setValue(newValue);
-                  }}
                 />
+                <Box sx={{ ml: 2 }}>{averageValue()}</Box>
               </div>
             </div>
           </div>
