@@ -33,7 +33,7 @@ const CardDetails = (props) => {
     }
     return rate / store.storedBeerReviews.length;
   };
-  console.log("A saber la media", averageValue());
+
   return (
     <>
       <div className="detail">
