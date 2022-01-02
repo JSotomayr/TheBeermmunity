@@ -66,7 +66,7 @@ data = {
             "description": "Local dedicado a la venta de cervezas artesanales ubicado en la zona del rastro. Contamos siempre con productos frescos de producción local, así como novedades internacionales.",
             "image": "https://res.cloudinary.com/de8eg0q3r/image/upload/v1640105529/customers/breweries/Captura_tkn9i6.png",
             "_is_active": True,
-            "_is_brewerie": False,
+            "_is_brewerie": True,
             "_is_admin": False
         },
     ],
