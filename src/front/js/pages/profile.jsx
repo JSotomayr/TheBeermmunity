@@ -13,17 +13,21 @@ export const Profile = () => {
   const [myTastedBeers, setMyTastedBeers] = useState([]);
   const [profileCard, setProfileCard] = useState(null);
   const [myWishBeers, setMyWishBeers] = useState([]);
+  const [reviews, setReviews] = useState([]);
 
   let params = useParams();
 
   useEffect(async () => {
-    if (localStorage.getItem("user_type" === true)) {
-      await actions.getProfileInfo(localStorage.getItem("user"));
+    await actions.getProfileInfo(params.id);
+    if (store.profileInfo.user_type) {
+      console.log(store.profileInfo);
+      let brewerie_id = store.profileInfo.user_detail[0].id;
+      await actions.getBrewerieReviews(brewerie_id);
+      console.log(store.storedBrewerieReviews);
     } else {
-      await actions.getProfileInfo(localStorage.getItem("user"));
-      await actions.getFavouriteBeer(localStorage.getItem("user_type_id"));
-      await actions.getTastedBeer(localStorage.getItem("user_type_id"));
-      await actions.getWishedBeer(localStorage.getItem("user_type_id"));
+      await actions.getFavouriteBeer(store.profileInfo.user_detail[0].id);
+      await actions.getTastedBeer(store.profileInfo.user_detail[0].id);
+      await actions.getWishedBeer(store.profileInfo.user_detail[0].id);
     }
   }, []);
 

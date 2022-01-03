@@ -184,7 +184,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           );
           if (response) {
             let userInfo = await response.json();
-            localStorage.setItem("user", userInfo.id);
             setStore({ profileInfo: userInfo, isProfileLoaded: true });
           } else {
             throw new Error("Fail downloading user info.");
