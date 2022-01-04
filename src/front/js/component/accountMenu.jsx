@@ -69,7 +69,7 @@ export default function AccountMenu() {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         {localStorage.getItem("logged") ? (
-          <>
+          <div>
             <MenuItem>
               <ListItemIcon>
                 <Avatar />
@@ -93,9 +93,9 @@ export default function AccountMenu() {
                 <div className="menu">Salir</div>
               </Link>
             </MenuItem>
-          </>
+          </div>
         ) : (
-          <>
+          <div>
             <MenuItem>
               <Link to="/login">
                 <Avatar />
@@ -112,7 +112,7 @@ export default function AccountMenu() {
                 <div className="menu">Crear Cuenta</div>
               </Link>
             </MenuItem>
-          </>
+          </div>
         )}
       </Menu>
     </React.Fragment>
