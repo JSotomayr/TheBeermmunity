@@ -112,6 +112,14 @@ export default function AccountMenu() {
                 <div className="menu">Crear Cuenta</div>
               </Link>
             </MenuItem>
+            <MenuItem>
+              <ListItemIcon>
+                <PersonAdd fontSize="small" />
+              </ListItemIcon>
+              <Link to="/homeLog">
+                <div className="menu">HomeLog</div>
+              </Link>
+            </MenuItem>
           </>
         )}
       </Menu>
