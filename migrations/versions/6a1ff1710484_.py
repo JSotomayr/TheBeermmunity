@@ -1,8 +1,14 @@
 """empty message
 
-Revision ID: 50d36788b0b5
+<<<<<<< HEAD:migrations/versions/6a1ff1710484_.py
+Revision ID: 6a1ff1710484
 Revises: 
-Create Date: 2022-01-02 11:24:16.922377
+Create Date: 2022-01-04 17:25:52.859837
+=======
+Revision ID: 77b4ec73d44b
+Revises: 
+Create Date: 2021-12-30 22:59:32.869455
+>>>>>>> ea9a611ec3bf75f94fc05e0703ba9aa5c2aa3374:migrations/versions/77b4ec73d44b_.py
 
 """
 from alembic import op
@@ -10,7 +16,11 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '50d36788b0b5'
+<<<<<<< HEAD:migrations/versions/6a1ff1710484_.py
+revision = '6a1ff1710484'
+=======
+revision = '77b4ec73d44b'
+>>>>>>> ea9a611ec3bf75f94fc05e0703ba9aa5c2aa3374:migrations/versions/77b4ec73d44b_.py
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -71,23 +81,26 @@ def upgrade():
     )
     op.create_table('beer_review',
     sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('brewer_id', sa.Integer(), nullable=True),
+    sa.Column('beer_id', sa.Integer(), nullable=True),
+    sa.Column('username', sa.String(), nullable=False),
+    sa.Column('image', sa.Text(), nullable=True),
     sa.Column('review_content', sa.Text(), nullable=False),
     sa.Column('rating', sa.Integer(), nullable=False),
     sa.Column('publishment_date', sa.DATE(), nullable=True),
-    sa.Column('brewer_id', sa.Integer(), nullable=False),
-    sa.Column('beer_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['beer_id'], ['beer.id'], ),
     sa.ForeignKeyConstraint(['brewer_id'], ['brewer.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('brewerie_review',
     sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('brewer_id', sa.Integer(), nullable=True),
+    sa.Column('brewerie_id', sa.Integer(), nullable=True),
+    sa.Column('username', sa.String(), nullable=False),
+    sa.Column('image', sa.Text(), nullable=True),
     sa.Column('review_content', sa.Text(), nullable=False),
     sa.Column('rating', sa.Integer(), nullable=False),
     sa.Column('publishment_date', sa.DATE(), nullable=True),
-    sa.Column('_is_beer', sa.Boolean(), nullable=False),
-    sa.Column('brewer_id', sa.Integer(), nullable=False),
-    sa.Column('brewerie_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['brewer_id'], ['brewer.id'], ),
     sa.ForeignKeyConstraint(['brewerie_id'], ['brewerie.id'], ),
     sa.PrimaryKeyConstraint('id')

@@ -2,6 +2,8 @@ import React, { Fragment, useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 
+import Rating from "@mui/material/Rating";
+import Box from "@mui/material/Box";
 import "../../styles/profile.scss";
 
 const ProfileCard = (props) => {
@@ -53,6 +55,16 @@ const ProfileCard = (props) => {
           </div>
           <div className="profileContainer__description">
             {props.element.description}
+          </div>
+          <div className="rating__box">
+            <Rating
+              name="rating"
+              value={averageValue()}
+              readOnly
+              icon={beerRate}
+              emptyIcon={beerEmptyRate}
+            />
+            <Box sx={{ ml: 2 }}>{averageValue()}</Box>
           </div>
           <div className="divider"></div>
         </div>

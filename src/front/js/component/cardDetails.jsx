@@ -1,6 +1,9 @@
-import React, { Fragment, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
+
+import Rating from "@mui/material/Rating";
+import Box from "@mui/material/Box";
 
 import "../../styles/cardDetails.scss";
 
@@ -21,6 +24,15 @@ const CardDetails = (props) => {
       alt="empty_beer"
     />
   );
+
+  const averageValue = () => {
+    let rate = 0;
+    for (let i = 0; i < store.storedBeerReviews.length; i++) {
+      rate += store.storedBeerReviews[i].rating;
+      console.log("A saber la suma", rate);
+    }
+    return rate / store.storedBeerReviews.length;
+  };
 
   return (
     <>
@@ -48,6 +60,16 @@ const CardDetails = (props) => {
               <span className="detail__date">
                 {props.element.publishment_date}
               </span>
+              <div className="detail__rate">
+                <Rating
+                  name="rating"
+                  value={averageValue() || 0}
+                  readOnly
+                  icon={beerRate}
+                  emptyIcon={beerEmptyRate}
+                />
+                <Box sx={{ ml: 2 }}>{averageValue() || 0}</Box>
+              </div>
             </div>
           </div>
         </div>

@@ -4,6 +4,8 @@ import { Link, useParams } from "react-router-dom";
 
 import ProfileCard from "../component/profileCard.jsx";
 import DefaultCard from "../component/defaultCard.jsx";
+import Comment from "../component/comment.jsx";
+import { CommentForm } from "../component/commentForm.jsx";
 import "../../styles/profile.scss";
 
 export const Profile = () => {
@@ -88,11 +90,34 @@ export const Profile = () => {
     }
   }, [store.tastedBeer, store.favouriteBeer, store.wishlist]);
 
+  useEffect(async () => {
+    if (store.storedBrewerieReviews.length != 0) {
+      setReviews(
+        store.storedBrewerieReviews.map((review, index) => {
+          console.log(review);
+          return <Comment key={index.toString()} element={review} />;
+        })
+      );
+    }
+  }, [store.storedBrewerieReviews]);
+
   return (
     <Fragment>
       {profileCard}
       {store.profileInfo.user_type ? (
-        <div>MAPA</div>
+        <>
+          <div>MAPA</div>
+          <div className="commentContainer">{reviews} </div>
+          {!localStorage.getItem("logged") ? (
+            <></>
+          ) : store.profileInfo.user_type === true ? (
+            <></>
+          ) : (
+            <div className="commentForm">
+              <CommentForm />
+            </div>
+          )}
+        </>
       ) : (
         <>
           <div className="container__cerveteca">
