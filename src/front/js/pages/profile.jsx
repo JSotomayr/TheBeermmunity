@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import ProfileCard from "../component/profileCard.jsx";
 import DefaultCard from "../component/defaultCard.jsx";
 import Comment from "../component/comment.jsx";
-import { CommentForm } from "../component/commentForm.jsx";
+import { BrewerieCommentForm } from "../component/brewerieCommentForm.jsx";
 import "../../styles/profile.scss";
 
 export const Profile = () => {
@@ -108,6 +108,7 @@ export const Profile = () => {
         <>
           <div>MAPA</div>
           <div className="commentContainer">{reviews} </div>
+          <BrewerieCommentForm />
           {!localStorage.getItem("logged") ? (
             <></>
           ) : store.profileInfo.user_type === true ? (

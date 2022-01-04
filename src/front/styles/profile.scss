@@ -42,6 +42,37 @@
   .subtitle {
     margin-left: 2.5rem;
   }
+
+  .commentForm {
+    background: #2c363a;
+    width: 75%;
+    border-radius: 0.5rem;
+    border: 1px solid #e49b0f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .comment_subtitle {
+    padding-left: 1.5rem;
+    text-align: start;
+  }
+
+  .formContainer_rating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .formContainer_review {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 @media (min-width: 768px) {
   // #app {
@@ -126,5 +157,20 @@
 
   .card {
     margin-bottom: 1rem;
+  }
+
+  .commentForm {
+    background: #2c363a;
+    border-radius: 0.5rem;
+    border: 1px solid #e49b0f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 1.5rem;
+    padding: 1rem;
+  }
+  .comment_subtitle {
+    padding-left: 1.5rem;
+    text-align: start;
   }
 }
