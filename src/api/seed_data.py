@@ -66,7 +66,176 @@ data = {
             "description": "Local dedicado a la venta de cervezas artesanales ubicado en la zona del rastro. Contamos siempre con productos frescos de producción local, así como novedades internacionales.",
             "image": "https://res.cloudinary.com/de8eg0q3r/image/upload/v1640105529/customers/breweries/Captura_tkn9i6.png",
             "_is_active": True,
-            "_is_brewerie": False,
+            "_is_brewerie": True,
+            "_is_admin": False
+        },
+        {
+            "id": 6,
+            "email": "info@latextil.beer",
+            "_password": generate_password_hash('La Textil', method='pbkdf2:sha256'),
+            "username": "La Textil",
+            "country": "España",
+            "city": "Barcelona",
+            "description": "La Textil combina tres aspectos de la experiencia humana que están en el corazón de lo que une a las personas de todo el mundo: tomar una buena cerveza artesanal, compartir buena comida y experimentar la música en vivo.",
+            "image": "https://res.cloudinary.com/de8eg0q3r/image/upload/v1640105529/customers/breweries/Captura_tkn9i6.png",
+            "_is_active": True,
+            "_is_brewerie": True,
+            "_is_admin": False
+        },
+        {
+            "id": 7,
+            "email": "cerveza@fabricamaravillas.com ",
+            "_password": generate_password_hash('Fábrica Maravillas', method='pbkdf2:sha256'),
+            "username": "Fábrica Maravillas",
+            "country": "España",
+            "city": "Madrid",
+            "description": "Una micro-fábrica de cerveza artesanal. Porque Malasaña necesitaba tener su propia cerveza. Porque elaboramos de forma artesanal la bebida de los dioses. Porque en ningún sitio encontrarás cerveza artesanal más fresca. Porque somos un laboratorio donde poder degustar un sinfín de estilos, con multitud de variaciones. En pleno corazón de Malasaña hay una fábrica empeñada en elaborar cerveza artesanal para los paladares más exquisitos. Cerveza artesanal, desde IPAs hasta cerveza negra. La Fábrica Maravillas es un pequeño pero espléndido pub que vende cinco cervezas elaboradas en el local. Hogar de una clientela amable y aficionados locales",
+            "image": "https://res.cloudinary.com/de8eg0q3r/image/upload/v1640105529/customers/breweries/Captura_tkn9i6.png",
+            "_is_active": True,
+            "_is_brewerie": True,
+            "_is_admin": False
+        },
+       {
+            "id": 8,
+            "email": "tengosed@cervezaslavirgen.com",
+            "_password": generate_password_hash('Cervecería La Virgen Vallehermoso', method='pbkdf2:sha256'),
+            "username": "Cervecería La Virgen Vallehermoso",
+            "country": "España",
+            "city": "Madrid",
+            "description": "Un espacio puramente castizo donde ahora puedes beber y comprar tu cerveza artesanal, recién traída desde fabrica.",
+            "image": "https://res.cloudinary.com/de8eg0q3r/image/upload/v1640105529/customers/breweries/Captura_tkn9i6.png",
+            "_is_active": True,
+            "_is_brewerie": True,
+            "_is_admin": False
+        },
+        {
+            "id": 9,
+            "email": "mail@heidenpeters.de",
+            "_password": generate_password_hash('Heidenpeters', method='pbkdf2:sha256'),
+            "username": "Heidenpeters",
+            "country": "Alemania",
+            "city": "Berlín",
+            "description": "Heidenpeters elabora cerveza en las bodegas del histórico MARKTHALLE NEUN . En el grifo de la casa, nuestra cerveza fluye naturalmente turbia y sin tratar desde 13 grifos directamente desde la cervecería de abajo hacia el vaso.",
+            "image": "https://res.cloudinary.com/de8eg0q3r/image/upload/v1640105529/customers/breweries/Captura_tkn9i6.png",
+            "_is_active": True,
+            "_is_brewerie": True,
+            "_is_admin": False
+        },
+        {
+            "id": 10,
+            "email": "info@punchdrinks.com",
+            "_password": generate_password_hash('Bier Kombinat Kreuzberg (Bkk)', method='pbkdf2:sha256'),
+            "username": "Bier Kombinat Kreuzberg (Bkk)",
+            "country": "Alemania",
+            "city": "Berlín",
+            "description": "El bar de culto Bierkombinat Kreuzberg elabora la cerveza artesanal BKK Forte, disponible en las variedades clara, oscura, bock y de trigo. También están disponibles las cervezas de Thorsten Schoppe, conocidas como 'Schoppebräu'. Ambas cervezas se elaboran al momento, por lo que su sabor es más pleno, fuerte e intenso.",
+            "image": "https://res.cloudinary.com/de8eg0q3r/image/upload/v1640105529/customers/breweries/Captura_tkn9i6.png",
+            "_is_active": True,
+            "_is_brewerie": True,
+            "_is_admin": False
+        },
+        {
+            "id": 11,
+            "email": "info@garagebeer.co",
+            "_password": generate_password_hash('Garage Beer Co', method='pbkdf2:sha256'),
+            "username": "Garage Beer Co",
+            "country": "España",
+            "city": "Barcelona",
+            "description": "Aquí la cultura de la cerveza se vive de una forma diferente: esto no es una cervecería, no es una fábrica, es el garaje de vuestros sueños, el antídoto contra la cerveza industrial de resaca gorda.",
+            "image": "https://res.cloudinary.com/de8eg0q3r/image/upload/v1640105529/customers/breweries/Captura_tkn9i6.png",
+            "_is_active": True,
+            "_is_brewerie": True,
+            "_is_admin": False
+        },
+        {
+            "id": 12,
+            "email": "info@birradelborgo.it",
+            "_password": generate_password_hash('Il Bancone di Birra del Borgo', method='pbkdf2:sha256'),
+            "username": "Il Bancone di Birra del Borgo",
+            "country": "Italia",
+            "city": "Roma",
+            "description": "Birra del Borgo crece y comienza a pensar en la cerveza de una manera cada vez más innovadora a partir de una reinterpretación de estilos tradicionales, buscando constantemente la elegancia y el equilibrio del producto final.",
+            "image": "https://res.cloudinary.com/de8eg0q3r/image/upload/v1640021736/noto_clinking-beer-mugs_rgwpyl.png",
+            "_is_active": True,
+            "_is_brewerie": True,
+            "_is_admin": False
+        },
+        {
+            "id": 13,
+            "email": "getintouch@camdentownbrewery.com",
+            "_password": generate_password_hash('Camden Town Brewery Bar', method='pbkdf2:sha256'),
+            "username": "Camden Town Brewery Bar",
+            "country": "Reino Unido",
+            "city": "Londres",
+            "description": "El fundador de Camden Town Brewery, Jasper Cuppaidge, comenzó a hacer cerveza por diversión en el sótano de su pub. Como propietario de un pub, decidió ingresar al mercado de la cerveza produciendo una cerveza dorada grande y reconocible. Las cervezas en Camden Town se hacen durante todo el año, y algunas veces puedes encontrar algunas ediciones limitadas. Para los tradicionalistas, Camden Hells Lager y Camden Pale Ale son must-tries.",
+            "image": "https://res.cloudinary.com/de8eg0q3r/image/upload/v1640105529/customers/breweries/Captura_tkn9i6.png",
+            "_is_active": True,
+            "_is_brewerie": True,
+            "_is_admin": False
+        },
+        {
+            "id": 14,
+            "email": "belhavenvisitors@greeneking.co.uk",
+            "_password": generate_password_hash('Belhaven Brewery', method='pbkdf2:sha256'),
+            "username": "Belhaven Brewery",
+            "country": "Reino Unido",
+            "city": "Dunbar",
+            "description": "Establecida en 1719, Belhaven Brewery es la fábrica de cerveza más antigua de Escocia. En Belhaven tenemos una pasión que nace de una orgullosa herencia cervecera. Con un equipo dedicado que se basa en una tradición cervecera que se remonta a más de 300 años, creamos cervezas amigables y accesibles repletas de carácter escocés, utilizando cebada malteada cien por cien escocesa, agua fresca de manantial de una fuente local junto con nuestra exclusiva levadura Belhaven.",
+            "image": "https://res.cloudinary.com/de8eg0q3r/image/upload/v1640105529/customers/breweries/Captura_tkn9i6.png",
+            "_is_active": True,
+            "_is_brewerie": True,
+            "_is_admin": False
+        },
+        {
+            "id": 15,
+            "email": "musadafabrica@cervejamusa.com",
+            "_password": generate_password_hash('Fabrica Musa', method='pbkdf2:sha256'),
+            "username": "Fabrica Musa",
+            "country": "Portugal",
+            "city": "Lisboa",
+            "description": "Fábrica Musa se encuentra en el barrio más industrial de Lisboa: Marvila. Produce alrededor de 250 mil litros de cerveza al año y muchos palets de rock and roll. Por aquí solemos decir que nos gusta elaborar cerveza que sepa a cerveza.",
+            "image": "https://res.cloudinary.com/de8eg0q3r/image/upload/v1640105529/customers/breweries/Captura_tkn9i6.png",
+            "_is_active": True,
+            "_is_brewerie": True,
+            "_is_admin": False
+        },
+        {
+            "id": 16,
+            "email": "info@cerveceriagolden.com",
+            "_password": generate_password_hash('Golden Rock and Beer', method='pbkdf2:sha256'),
+            "username": "Golden Rock and Beer",
+            "country": "España",
+            "city": "Burgos",
+            "description": "En Golden Rock and Beer tenemos una amplia variedad de cervezas artesanas y de importación que no encontrarás en ningún otro lugar. Además podrás saborear todo lo que nuestra carta te ofrece para vivir una experiencia gastronómica única y completa.",
+            "image": "https://res.cloudinary.com/de8eg0q3r/image/upload/v1640105529/customers/breweries/Captura_tkn9i6.png",
+            "_is_active": True,
+            "_is_brewerie": True,
+            "_is_admin": False
+        },
+        {
+            "id": 17,
+            "email": "info@hoppiness.com",
+            "_password": generate_password_hash('HOPPINESS', method='pbkdf2:sha256'),
+            "username": "HOPPINESS",
+            "country": "España",
+            "city": "Barcelona",
+            "description": "Hoppiness cuenta con 12 grifos que despachan cervezas artesanas elaboradas en Cataluña.",
+            "image": "https://res.cloudinary.com/de8eg0q3r/image/upload/v1640105529/customers/breweries/Captura_tkn9i6.png",
+            "_is_active": True,
+            "_is_brewerie": True,
+            "_is_admin": False
+        },
+        {
+            "id": 18,
+            "email": "info@kaderkold.com",
+            "_password": generate_password_hash('Kalderkold', method='pbkdf2:sha256'),
+            "username": "Kalderkold",
+            "country": "España",
+            "city": "Barcelona",
+            "description": "Un local emblemático en Barcelona es el Kælderkold, un pequeño sitio alternativo y un toque macarra que cuenta con casi una veintena de grifos con variedades de toda Europa.",
+            "image": "https://res.cloudinary.com/de8eg0q3r/image/upload/v1640105529/customers/breweries/Captura_tkn9i6.png",
+            "_is_active": True,
+            "_is_brewerie": True,
             "_is_admin": False
         },
     ],
@@ -227,11 +396,115 @@ data = {
         {
             "id": 2,
             "company_name": "Beer Joint",
-            "address": "Calle Rodas, 9, Madrid, Madrid 28005",
+            "address": "Calle Rodas, 9, Madrid 28005",
             "latitude": "40.41052423041596",
             "longitude": "-3.7054391670275773",
             "id_customer": 5
-        }
+        },
+        {
+            "id": 3,
+            "company_name": "La Textil",
+            "address": "Carrer de Casp, 33B, 08010 Barcelona",
+            "latitude": "41.72051622621701",
+            "longitude": "2.1762255931129895",
+            "id_customer": 6
+        },
+        {
+            "id": 4,
+            "company_name": "Fábrica Maravillas",
+            "address": "C. de Valverde, 29, 28004 Madrid",
+            "latitude": "40.42278878257719",
+            "longitude": "-3.7017784153414532",
+            "id_customer": 7
+        },
+        {
+            "id": 5,
+            "company_name": "Cervecería La Virgen Vallehermoso",
+            "address": " Mercado de Vallehermoso, C. de Vallehermoso, 36, 28015 Madrid",
+            "latitude": "41.72051622621701",
+            "longitude": "2.1762255931129895",
+            "id_customer": 8
+        },
+        {
+            "id": 6,
+            "company_name": "Heidenpeters",
+            "address": "Eisenbahnstraße 42-43, 10997 Berlin, Alemania",
+            "latitude": "52.502657475636624",
+            "longitude": "13.431856292048726",
+            "id_customer": 9
+        },
+        {
+            "id": 7,
+            "company_name": "Bier Kombinat Kreuzberg (Bkk)",
+            "address": "Manteuffelstraße 53, 10999 Berlin, Alemania",
+            "latitude": "52.49846413740166",
+            "longitude": "13.424865646024365",
+            "id_customer": 10
+        },
+        {
+            "id": 8,
+            "company_name": "Garage Beer Co",
+            "address": "Consell de Cent, 261 L'Eixample, 08011 Barcelona",
+            "latitude": "41.38713162170267",
+            "longitude": "2.1601337266753364",
+            "id_customer": 11
+        },
+        {
+            "id": 9,
+            "company_name": "Il Bancone di Birra del Borgo",
+            "address": "Via Silvestro Gherardi 19 - 00146 Roma",
+            "latitude": "42.576446644611934",
+            "longitude": "12.615648440262783",
+            "id_customer": 12
+        },
+        {
+            "id": 10,
+            "company_name": "Camden Town Brewery Bar",
+            "address": "55-59 Wilkin Street Mews, Londres, Reino Unido",
+            "latitude": "52.14828386179576",
+            "longitude": "-0.12793283766710126",
+            "id_customer": 13
+        },
+        {
+            "id": 11,
+            "company_name": "Belhaven Brewery",
+            "address": "Brewery Ln, Dunbar EH42 1PE, Reino Unido",
+            "latitude": "55.9974364780811",
+            "longitude": "-2.5374450250399296",
+            "id_customer": 14
+        },
+        {
+            "id": 12,
+            "company_name": "Fabrica Musa",
+            "address": "Rua do Açúcar 83, 1950-006 Lisboa, Portugal",
+            "latitude": "38.92401596030724",
+            "longitude": "-9.071186658325422",
+            "id_customer": 15
+        },
+        {
+            "id": 13,
+            "company_name": "Golden Rock and Beer",
+            "address": "C. de Valladolid, 13, 09002 Burgos",
+            "latitude": "42.4235314745026",
+            "longitude": "-3.7183951664382784",
+            "id_customer": 16
+        },
+        {
+            "id": 14,
+            "company_name": "HOPPINESS",
+            "address": "Carrer de Ramon Turró, 180, 08005 Barcelona",
+            "latitude": "41.72051622621701",
+            "longitude": "2.2345234527625846",
+            "id_customer": 17
+        },
+        {
+            "id": 15,
+            "company_name": "Kælderkold",
+            "address": "",
+            "latitude": "",
+            "longitude": "",
+            "id_customer": 18
+        }, 
     ],
 
     "BrewerieReview" : [
