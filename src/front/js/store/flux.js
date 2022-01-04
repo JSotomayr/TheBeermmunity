@@ -11,6 +11,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       login: [],
       currentUser: {},
       profileInfo: {},
+      allCustomers: [],
       isProfileLogged: false,
       beers: [],
       beersDetail: [],
@@ -129,6 +130,30 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
+      getCustomers: async () => {
+        try {
+          let response = await fetch(getStore().baseUrl.concat("customer"), {
+            method: "GET",
+            mode: "cors",
+            redirect: "follow",
+            headers: new Headers({
+              "Content-Type": "application/json",
+            }),
+          });
+          if (response.ok) {
+            let customers = await response.json();
+            setStore({
+              allCustomers: [...getStore().allCustomers, ...customers],
+            });
+            console.log("RESPUESTA", getStore().allCustomers);
+          } else {
+            throw new Error("Fail downloading customers.");
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      },
+
       getAllBreweries: () => {
         fetch(getStore().baseUrl.concat("brewerie/"))
           .then((resp) => resp.json())
@@ -159,7 +184,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           );
           if (response) {
             let userInfo = await response.json();
-            localStorage.setItem("user", userInfo.id);
             setStore({ profileInfo: userInfo, isProfileLoaded: true });
           } else {
             throw new Error("Fail downloading user info.");

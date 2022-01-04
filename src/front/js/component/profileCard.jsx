@@ -38,18 +38,20 @@ const ProfileCard = (props) => {
         <div className="profileContainer">
           <div className="profileContainer__top">
             <img className="profileContainer__img" src={props.element.image} />
-            <h2 className="profileContainer__title">
-              {props.element.username}
-            </h2>
-            <h3 className="profileContainer__subtitle">
-              {props.element.user_detail[0].company_name}
-            </h3>
-            <span className="profileContainer__text">
-              {props.element.city}, {props.element.country}
-            </span>
-            <span className="profileContainer__text">
-              {props.element.user_detail[0].address}
-            </span>
+            <div className="profileContainer__details">
+              <h2 className="profileContainer__title">
+                {props.element.username}
+              </h2>
+              <h3 className="profileContainer__subtitle">
+                {props.element.user_detail[0].company_name}
+              </h3>
+              <span className="profileContainer__text">
+                {props.element.city}, {props.element.country}
+              </span>
+              <span className="profileContainer__text">
+                {props.element.user_detail[0].address}
+              </span>
+            </div>
           </div>
           <div className="profileContainer__description">
             {props.element.description}

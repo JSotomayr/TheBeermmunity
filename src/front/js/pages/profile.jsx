@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import ProfileCard from "../component/profileCard.jsx";
 import DefaultCard from "../component/defaultCard.jsx";
 import Comment from "../component/comment.jsx";
-import { CommentForm } from "../component/commentForm.jsx";
+import { BrewerieCommentForm } from "../component/brewerieCommentForm.jsx";
 import "../../styles/profile.scss";
 
 export const Profile = () => {
@@ -20,17 +20,18 @@ export const Profile = () => {
   let params = useParams();
 
   useEffect(async () => {
-    await actions.getProfileInfo(localStorage.getItem("user"));
+    await actions.getProfileInfo(params.id);
     if (store.profileInfo.user_type) {
-      let brewerie_id = localStorage.getItem("user_type_id");
+      console.log(store.profileInfo);
+      let brewerie_id = store.profileInfo.user_detail[0].id;
       await actions.getBrewerieReviews(brewerie_id);
       console.log(store.storedBrewerieReviews);
     } else {
-      await actions.getFavouriteBeer(localStorage.getItem("user_type_id"));
-      await actions.getTastedBeer(localStorage.getItem("user_type_id"));
-      await actions.getWishedBeer(localStorage.getItem("user_type_id"));
+      await actions.getFavouriteBeer(store.profileInfo.user_detail[0].id);
+      await actions.getTastedBeer(store.profileInfo.user_detail[0].id);
+      await actions.getWishedBeer(store.profileInfo.user_detail[0].id);
     }
-  }, []);
+  }, [params.id]);
 
   useEffect(() => {
     if (Object.keys(store.profileInfo).length != 0) {
@@ -107,6 +108,7 @@ export const Profile = () => {
         <>
           <div>MAPA</div>
           <div className="commentContainer">{reviews} </div>
+          <BrewerieCommentForm />
           {!localStorage.getItem("logged") ? (
             <></>
           ) : store.profileInfo.user_type === true ? (
@@ -123,19 +125,52 @@ export const Profile = () => {
             <Link to={"/cerveteca"}>
               <p className="subtitle">Cerveteca</p>
             </Link>
-            <div className="display__cards">{myTastedBeers}</div>
+            <div className="display__cards">
+              {store.tastedBeer.slice(0, 4).map((tasted, index) => {
+                return (
+                  <>
+                    <DefaultCard
+                      key={Math.floor(Math.random() * 100)}
+                      element={tasted}
+                    />
+                  </>
+                );
+              })}
+            </div>
           </div>
           <div className="container__fav">
             <Link to={"/profile/:id/favourite"}>
               <p className="subtitle">Favoritas</p>
             </Link>
-            <div className="display__cards">{myFavBeers}</div>
+            <div className="display__cards">
+              {store.favouriteBeer.slice(0, 4).map((fav, index) => {
+                return (
+                  <>
+                    <DefaultCard
+                      key={Math.floor(Math.random() * 200)}
+                      element={fav}
+                    />
+                  </>
+                );
+              })}
+            </div>
           </div>
           <div className="container__wish">
             <Link to={"/wishlist"}>
               <p className="subtitle">Pendientes</p>
             </Link>
-            <div className="display__cards">{myWishBeers}</div>
+            <div className="display__cards">
+              {store.wishlist.slice(0, 4).map((wish, index) => {
+                return (
+                  <>
+                    <DefaultCard
+                      key={Math.floor(Math.random() * 300)}
+                      element={wish}
+                    />
+                  </>
+                );
+              })}
+            </div>
           </div>
         </>
       )}

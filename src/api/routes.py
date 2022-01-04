@@ -1,3 +1,4 @@
+
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
@@ -129,6 +130,18 @@ def get_customer(id):
     return jsonify({'msg' : 'Customer not foud'}), 404
 
 
+#   GET ALL CUSTOMER
+@api.route('/customer', methods=['GET'])
+def getAllBrewers():
+    customers = Customer.get_all()
+
+    if customers:
+        customer_list = [customer.to_dict() for customer in customers]
+        return jsonify(customer_list), 200
+
+    return jsonify({'error': 'Customers not found'}), 404
+
+
 #   GET ALL BEERS
 @api.route('/beer', methods=['GET'])
 def getAllBeers():
@@ -203,13 +216,10 @@ def add_favbeer(id_brewer, id_beer):
 
 #   GET FAVOURITE LIST   
 @api.route('/brewer/<int:id>/favourite-beer', methods = ['GET'])
-@jwt_required()
 def get_fav_beers(id):
-    identity = get_jwt_identity()
+    brewer = Brewer.get_by_id(id)     
     
-
-    if identity.get("id") == id:
-        brewer = Brewer.get_by_id(id)     
+    if brewer:
         return jsonify(list(map(lambda x:x.to_dict(), brewer.have_fav_beer))), 200
 
     return jsonify({'error': 'No favourite beers'}),404
@@ -241,12 +251,10 @@ def add_tasted_beer(id_brewer, id_beer):
 
 #   GET TASTED BEER
 @api.route('/brewer/<int:id>/tasted-beer', methods = ['GET'])
-@jwt_required()
 def get_tasted_beers(id):
-    identity = get_jwt_identity()
+    brewer = Brewer.get_by_id(id)       
     
-    if identity.get("id") == id: 
-        brewer = Brewer.get_by_id(id)       
+    if brewer: 
         return jsonify(list(map(lambda x:x.to_dict(), brewer.have_tasted_beer))), 200
 
     return jsonify({'error' : 'Tasted beers not found'}), 404
@@ -278,12 +286,10 @@ def add_wish_beer(id_brewer, id_beer):
 
 #   GET WISHED BEER
 @api.route('/brewer/<int:id>/wish-beer', methods = ['GET'])
-@jwt_required()
 def get_wish_beers(id):
-    identity = get_jwt_identity()
+    brewer = Brewer.get_by_id(id)       
     
-    if identity.get("id") == id: 
-        brewer = Brewer.get_by_id(id)       
+    if brewer: 
         return jsonify(list(map(lambda x:x.to_dict(), brewer.have_wish_beer))), 200
 
     return jsonify({'error' : 'Wished beers not found'}), 404

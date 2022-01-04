@@ -26,6 +26,9 @@ export const Navbar = () => {
           <Link to={"/map"}>
             <div className="btn container_btn_breweries m-2">CERVECERIAS</div>
           </Link>
+          <Link to={"/brewers"}>
+            <div className="btn container_btn_brewers m-2">CERVECEROS</div>
+          </Link>
         </div>
         {localStorage.getItem("logged") ? (
           <div className="icons_right">

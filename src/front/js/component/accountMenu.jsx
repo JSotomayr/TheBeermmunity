@@ -89,7 +89,7 @@ export default function AccountMenu() {
               <ListItemIcon>
                 <Logout fontSize="small" />
               </ListItemIcon>
-              <Link to="/">
+              <Link to="/" onClick={() => localStorage.clear()}>
                 <div className="menu">Salir</div>
               </Link>
             </MenuItem>
