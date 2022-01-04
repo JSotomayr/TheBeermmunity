@@ -29,7 +29,7 @@ export const Profile = () => {
       await actions.getTastedBeer(store.profileInfo.user_detail[0].id);
       await actions.getWishedBeer(store.profileInfo.user_detail[0].id);
     }
-  }, []);
+  }, [params.id]);
 
   useEffect(() => {
     if (Object.keys(store.profileInfo).length != 0) {
@@ -99,19 +99,52 @@ export const Profile = () => {
             <Link to={"/cerveteca"}>
               <p className="subtitle">Cerveteca</p>
             </Link>
-            <div className="display__cards">{myTastedBeers}</div>
+            <div className="display__cards">
+              {store.tastedBeer.slice(0, 4).map((tasted, index) => {
+                return (
+                  <>
+                    <DefaultCard
+                      key={Math.floor(Math.random() * 100)}
+                      element={tasted}
+                    />
+                  </>
+                );
+              })}
+            </div>
           </div>
           <div className="container__fav">
             <Link to={"/profile/:id/favourite"}>
               <p className="subtitle">Favoritas</p>
             </Link>
-            <div className="display__cards">{myFavBeers}</div>
+            <div className="display__cards">
+              {store.favouriteBeer.slice(0, 4).map((fav, index) => {
+                return (
+                  <>
+                    <DefaultCard
+                      key={Math.floor(Math.random() * 200)}
+                      element={fav}
+                    />
+                  </>
+                );
+              })}
+            </div>
           </div>
           <div className="container__wish">
             <Link to={"/wishlist"}>
               <p className="subtitle">Pendientes</p>
             </Link>
-            <div className="display__cards">{myWishBeers}</div>
+            <div className="display__cards">
+              {store.wishlist.slice(0, 4).map((wish, index) => {
+                return (
+                  <>
+                    <DefaultCard
+                      key={Math.floor(Math.random() * 300)}
+                      element={wish}
+                    />
+                  </>
+                );
+              })}
+            </div>
           </div>
         </>
       )}
