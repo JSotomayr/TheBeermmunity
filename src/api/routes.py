@@ -337,3 +337,16 @@ def get_all_breweries():
         return jsonify(all_breweries), 200
 
     return jsonify({'error': 'Brewerie not found'}), 400
+
+
+@api.route('/beer', methods=['POST'])
+def get_beer_byname():
+
+    name = request.json.get('name', None)
+    if name:
+        beers = Beers.query.filter(Beer.name.ilike('%' + name + '%'))
+
+        beers = beers.order_by(Beers.name).all()
+        return jsonify({'response': list(map(lambda x: x.to_dict(),beers))})
+    else:
+        return jsnofy({'response':[]})
