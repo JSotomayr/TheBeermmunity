@@ -326,7 +326,7 @@ class BrewerieReview(db.Model):
             "brewerie_id": self.brewerie_id,
             "username": self.username,
             "image": self.image,
-            "publishment_date": self.publishment_date.strftime('%d-%m-%Y')
+            "publishment_date": self.publishment_date
         }
 
 
@@ -359,7 +359,7 @@ class BeerReview(db.Model):
     image = db.Column(db.Text, unique=False, nullable=True)
     review_content = db.Column(db.Text, unique=False, nullable=False)
     rating = db.Column(db.Integer, unique=False, nullable=False)
-    publishment_date = db.Column(db.DATE(), unique=False, nullable=True)
+    publishment_date = db.Column(db.DATE(), unique=False, nullable=True, default=date.today())
 
     beer = db.relationship("Beer")
 
@@ -376,7 +376,7 @@ class BeerReview(db.Model):
             "beer_id": self.beer_id,
             "username": self.username,
             "image": self.image,
-            "publishment_date": self.publishment_date.strftime('%d-%m-%Y')
+            "publishment_date": self.publishment_date
         }
 
 
