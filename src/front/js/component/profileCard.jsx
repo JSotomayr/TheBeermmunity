@@ -2,11 +2,35 @@ import React, { Fragment, useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 
+import Rating from "@mui/material/Rating";
+import Box from "@mui/material/Box";
 import "../../styles/profile.scss";
 
 const ProfileCard = (props) => {
   const { actions, store } = useContext(Context);
   const [generateProfile, setGenerateProfile] = useState();
+
+  const beerRate = (
+    <img
+      className="full_beer"
+      src="https://res.cloudinary.com/de8eg0q3r/image/upload/v1640793667/full.beer_wotybg.png"
+      alt="full_beer"
+    />
+  );
+  const beerEmptyRate = (
+    <img
+      className="empty_beer"
+      src="https://res.cloudinary.com/de8eg0q3r/image/upload/v1640793667/empty.beer_iuwdku.png"
+      alt="empty_beer"
+    />
+  );
+  const averageValue = () => {
+    let rate = 0;
+    for (let i = 0; i < store.storedBrewerieReviews.length; i++) {
+      rate += store.storedBrewerieReviews[i].rating;
+    }
+    return rate / store.storedBrewerieReviews.length;
+  };
 
   return (
     <>
@@ -30,6 +54,17 @@ const ProfileCard = (props) => {
           <div className="profileContainer__description">
             {props.element.description}
           </div>
+          <div className="rating__box">
+            <Rating
+              name="rating"
+              value={averageValue()}
+              readOnly
+              icon={beerRate}
+              emptyIcon={beerEmptyRate}
+            />
+            <Box sx={{ ml: 2 }}>{averageValue()}</Box>
+          </div>
+          <div className="divider"></div>
         </div>
       ) : store.profileInfo.user_type == false ? (
         <div className="profileContainer">
@@ -51,6 +86,7 @@ const ProfileCard = (props) => {
           <div className="profileContainer__description">
             {props.element.description}
           </div>
+          <div className="divider"></div>
         </div>
       ) : null}
     </>

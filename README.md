@@ -1,6 +1,6 @@
-BeBeer
+#**BeBeer**
 
-Hey there! I’m using BeBeer! You??
+##*Hey there! I’m using BeBeer! You??*
 
 We are @JSotoMayor, @CarolTraba and @AnnaLemons.
 

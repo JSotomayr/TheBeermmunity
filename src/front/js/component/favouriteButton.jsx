@@ -7,11 +7,8 @@ import "../../styles/favouriteButton.scss";
 const FavouriteButton = (props) => {
   const { store, actions } = useContext(Context);
 
-  console.log(localStorage.getItem("user"));
-
   const storedUserId = localStorage.getItem("user_type_id");
 
-  console.log(storedUserId);
   return (
     <button
       className="btn"
