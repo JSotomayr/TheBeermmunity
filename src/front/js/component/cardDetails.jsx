@@ -63,12 +63,12 @@ const CardDetails = (props) => {
               <div className="detail__rate">
                 <Rating
                   name="rating"
-                  value={averageValue()}
+                  value={averageValue() || 0}
                   readOnly
                   icon={beerRate}
                   emptyIcon={beerEmptyRate}
                 />
-                <Box sx={{ ml: 2 }}>{averageValue()}</Box>
+                <Box sx={{ ml: 2 }}>{averageValue() || 0}</Box>
               </div>
             </div>
           </div>

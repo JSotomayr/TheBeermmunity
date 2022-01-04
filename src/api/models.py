@@ -1,4 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
+from datetime import date
+
 
 db = SQLAlchemy()
 
@@ -281,7 +283,7 @@ class Beer(db.Model):
             "drinking_temperature": self.drinking_temperature,
             "description": self.description,
             "image": self.image,
-            "publishment_date": self.publishment_date
+            "publishment_date": self.publishment_date.strftime('%d-%m-%Y')
         }
 
 
@@ -307,7 +309,7 @@ class BrewerieReview(db.Model):
     image = db.Column(db.Text, unique=False, nullable=True)
     review_content = db.Column(db.Text, unique=False, nullable=False)
     rating = db.Column(db.Integer, unique=False, nullable=False)
-    publishment_date = db.Column(db.DATE(), unique=False, nullable=True)
+    publishment_date = db.Column(db.DATE(), unique=False, nullable=True, default=date.today())
 
     brewerie = db.relationship("Brewerie")
 
@@ -324,7 +326,7 @@ class BrewerieReview(db.Model):
             "brewerie_id": self.brewerie_id,
             "username": self.username,
             "image": self.image,
-            "publishment_date": self.publishment_date
+            "publishment_date": self.publishment_date.strftime('%d-%m-%Y')
         }
 
 
@@ -374,7 +376,7 @@ class BeerReview(db.Model):
             "beer_id": self.beer_id,
             "username": self.username,
             "image": self.image,
-            "publishment_date": self.publishment_date
+            "publishment_date": self.publishment_date.strftime('%d-%m-%Y')
         }
 
 
