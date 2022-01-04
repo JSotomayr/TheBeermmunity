@@ -1,75 +1,153 @@
-import React, { Fragment, useState, useContext } from "react";
-import { Context } from "../store/appContext.js";
-import { useParams } from "react-router-dom";
+import React, { Fragment, useContext, useEffect, useState } from "react";
+import { Context } from "../store/appContext";
+import { Link, useParams } from "react-router-dom";
 
-import Rating from "@mui/material/Rating";
-import Box from "@mui/material/Box";
+import ProfileCard from "../component/profileCard.jsx";
+import DefaultCard from "../component/defaultCard.jsx";
+import "../../styles/profile.scss";
 
-export const CommentForm = () => {
+export const Profile = () => {
   const { store, actions } = useContext(Context);
-  const [value, setValue] = useState(3);
-  const [form, setForm] = useState({});
+
+  const [myFavBeers, setMyFavBeers] = useState([]);
+  const [myTastedBeers, setMyTastedBeers] = useState([]);
+  const [profileCard, setProfileCard] = useState(null);
+  const [myWishBeers, setMyWishBeers] = useState([]);
+  const [reviews, setReviews] = useState([]);
 
   let params = useParams();
 
-  const brewer_id = localStorage.getItem("user_type_id");
+  useEffect(async () => {
+    await actions.getProfileInfo(params.id);
+    if (store.profileInfo.user_type) {
+      console.log(store.profileInfo);
+      let brewerie_id = store.profileInfo.user_detail[0].id;
+      await actions.getBrewerieReviews(brewerie_id);
+      console.log(store.storedBrewerieReviews);
+    } else {
+      await actions.getFavouriteBeer(store.profileInfo.user_detail[0].id);
+      await actions.getTastedBeer(store.profileInfo.user_detail[0].id);
+      await actions.getWishedBeer(store.profileInfo.user_detail[0].id);
+    }
+  }, [params.id]);
 
-  const onSubmit = (reviewData) => {
-    actions.addBeerReview(brewer_id, params.id, reviewData);
-  };
+  useEffect(() => {
+    if (Object.keys(store.profileInfo).length != 0) {
+      setProfileCard(
+        <ProfileCard key={store.profileInfo.id} element={store.profileInfo} />
+      );
+    }
+  }, [store.profileInfo]);
 
-  const beerRate = (
-    <img
-      className="full_beer"
-      src="https://res.cloudinary.com/de8eg0q3r/image/upload/v1640793667/full.beer_wotybg.png"
-      alt="full_beer"
-    />
-  );
-  const beerEmptyRate = (
-    <img
-      className="empty_beer"
-      src="https://res.cloudinary.com/de8eg0q3r/image/upload/v1640793667/empty.beer_iuwdku.png"
-      alt="empty_beer"
-    />
-  );
+  useEffect(() => {
+    if (store.profileInfo.user_type) {
+      console.log("nothing to get");
+    } else {
+      if (store.tastedBeer.length != 0) {
+        setMyTastedBeers(
+          store.tastedBeer.slice(0, 4).map((tasted, index) => {
+            return (
+              <>
+                <DefaultCard
+                  key={Math.floor(Math.random() * 100)}
+                  element={tasted}
+                />
+              </>
+            );
+          })
+        );
+      }
+      if (store.favouriteBeer.length != 0) {
+        setMyFavBeers(
+          store.favouriteBeer.slice(0, 4).map((fav, index) => {
+            return (
+              <>
+                <DefaultCard
+                  key={Math.floor(Math.random() * 200)}
+                  element={fav}
+                />
+              </>
+            );
+          })
+        );
+      }
+      if (store.wishlist.length != 0) {
+        setMyWishBeers(
+          store.wishlist.slice(0, 4).map((wish, index) => {
+            return (
+              <>
+                <DefaultCard
+                  key={Math.floor(Math.random() * 300)}
+                  element={wish}
+                />
+              </>
+            );
+          })
+        );
+      }
+    }
+  }, [store.tastedBeer, store.favouriteBeer, store.wishlist]);
 
   return (
-    <div className="formContainer">
-      <h3 className="comment_subtitle">Tu review</h3>
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-          onSubmit(form);
-        }}
-      >
-        <div className="formContainer_review">
-          <label>Review</label>
-          <input
-            type="text"
-            placeholder="Your review"
-            onChange={(e) => {
-              setForm({ ...form, review_content: e.target.value });
-            }}
-          />
-        </div>
-        <div className="formContainer_rating">
-          <label>Rating</label>
-          <Rating
-            name="rating"
-            value={value}
-            max={5}
-            icon={beerRate}
-            emptyIcon={beerEmptyRate}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-              setForm({ ...form, rating: newValue });
-            }}
-          />
-          <Box sx={{ ml: 2 }}>{value}</Box>
-        </div>
-
-        <input type="submit" value="Post" />
-      </form>
-    </div>
+    <Fragment>
+      {profileCard}
+      {store.profileInfo.user_type ? (
+        <div>MAPA</div>
+      ) : (
+        <>
+          <div className="container__cerveteca">
+            <Link to={"/cerveteca"}>
+              <p className="subtitle">Cerveteca</p>
+            </Link>
+            <div className="display__cards">
+              {store.tastedBeer.slice(0, 4).map((tasted, index) => {
+                return (
+                  <>
+                    <DefaultCard
+                      key={Math.floor(Math.random() * 100)}
+                      element={tasted}
+                    />
+                  </>
+                );
+              })}
+            </div>
+          </div>
+          <div className="container__fav">
+            <Link to={"/profile/:id/favourite"}>
+              <p className="subtitle">Favoritas</p>
+            </Link>
+            <div className="display__cards">
+              {store.favouriteBeer.slice(0, 4).map((fav, index) => {
+                return (
+                  <>
+                    <DefaultCard
+                      key={Math.floor(Math.random() * 200)}
+                      element={fav}
+                    />
+                  </>
+                );
+              })}
+            </div>
+          </div>
+          <div className="container__wish">
+            <Link to={"/wishlist"}>
+              <p className="subtitle">Pendientes</p>
+            </Link>
+            <div className="display__cards">
+              {store.wishlist.slice(0, 4).map((wish, index) => {
+                return (
+                  <>
+                    <DefaultCard
+                      key={Math.floor(Math.random() * 300)}
+                      element={wish}
+                    />
+                  </>
+                );
+              })}
+            </div>
+          </div>
+        </>
+      )}
+    </Fragment>
   );
 };
