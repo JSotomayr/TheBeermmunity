@@ -1,6 +1,5 @@
 import React, { Fragment, useState, useContext } from "react";
 import { Context } from "../store/appContext.js";
-import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 
 import Rating from "@mui/material/Rating";
@@ -9,19 +8,14 @@ import Box from "@mui/material/Box";
 export const CommentForm = () => {
   const { store, actions } = useContext(Context);
   const [value, setValue] = useState(3);
-
-  const {
-    register,
-    getValues,
-    formState: { errors },
-  } = useForm();
+  const [form, setForm] = useState({});
 
   let params = useParams();
 
   const brewer_id = localStorage.getItem("user_type_id");
 
   const onSubmit = (reviewData) => {
-    console.log(reviewData);
+    console.log(brewer_id, params.id, reviewData);
     actions.addBeerReview(brewer_id, params.id, reviewData);
   };
 
@@ -45,20 +39,22 @@ export const CommentForm = () => {
       <h3 className="comment_subtitle">Tu review</h3>
       <form
         onSubmit={(event) => {
-          onSubmit(getValues());
+          event.preventDefault();
+          onSubmit(form);
         }}
       >
         <div className="formContainer_review">
           <label>Review</label>
           <input
             type="text"
-            {...register("review_content")}
             placeholder="Your review"
+            onChange={(e) => {
+              setForm({ ...form, review_content: e.target.value });
+            }}
           />
         </div>
         <div className="formContainer_rating">
           <label>Rating</label>
-          <input type="hidden" {...register("rating")} value={value} />
           <Rating
             name="rating"
             value={value}
@@ -67,7 +63,7 @@ export const CommentForm = () => {
             emptyIcon={beerEmptyRate}
             onChange={(event, newValue) => {
               setValue(newValue);
-              register("rating");
+              setForm({ ...form, rating: newValue });
             }}
           />
           <Box sx={{ ml: 2 }}>{value}</Box>

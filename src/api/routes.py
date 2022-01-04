@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 import os
-from datetime import timedelta, datetime
+from datetime import timedelta, datetime, date
 
 from flask import Flask, request, jsonify, url_for, Blueprint
 from flask_migrate import Migrate
@@ -396,8 +396,7 @@ def post_beer_review(id_brewer, id_beer):
 
     if token_id.get("id") == brewer.id_customer:
         new_content = request.json.get('review_content', None)
-        new_rating = request.json.get('rating', None)
-        
+        new_rating = request.json.get('rating', None)        
 
         if not (new_content and new_rating):
             return jsonify({'error': 'Missing rating parameters'}), 400
@@ -410,7 +409,7 @@ def post_beer_review(id_brewer, id_beer):
             brewer_id = id_brewer,
             beer_id = id_beer
         )
-        print(post_review.create())
+       
         try:
             post_review.create()
             return jsonify(post_review.to_dict()),200

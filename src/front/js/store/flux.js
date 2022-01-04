@@ -324,6 +324,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           );
           if (response.ok) {
             console.log("Review created");
+            getActions().getBeerReviews(beer_id);
           } else {
             throw new Error("Fail in creating review.");
           }
@@ -378,6 +379,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           );
           if (response.ok) {
             console.log("Review created");
+            getActions().getBrewerieReviews(brewerie_id);
           } else {
             throw new Error("Fail in creating review.");
           }
