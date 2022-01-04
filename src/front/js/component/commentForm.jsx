@@ -15,7 +15,6 @@ export const CommentForm = () => {
   const brewer_id = localStorage.getItem("user_type_id");
 
   const onSubmit = (reviewData) => {
-    console.log(brewer_id, params.id, reviewData);
     actions.addBeerReview(brewer_id, params.id, reviewData);
   };
 

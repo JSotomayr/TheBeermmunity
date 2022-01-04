@@ -396,8 +396,8 @@ def post_beer_review(id_brewer, id_beer):
 
     if token_id.get("id") == brewer.id_customer:
         new_content = request.json.get('review_content', None)
-        new_rating = request.json.get('rating', None)        
-
+        new_rating = request.json.get('rating', None)
+        
         if not (new_content and new_rating):
             return jsonify({'error': 'Missing rating parameters'}), 400
 

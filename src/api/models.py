@@ -309,7 +309,7 @@ class BrewerieReview(db.Model):
     image = db.Column(db.Text, unique=False, nullable=True)
     review_content = db.Column(db.Text, unique=False, nullable=False)
     rating = db.Column(db.Integer, unique=False, nullable=False)
-    publishment_date = db.Column(db.DATE(), unique=False, nullable=True)
+    publishment_date = db.Column(db.DATE(), unique=False, nullable=True, default=date.today())
 
     brewerie = db.relationship("Brewerie")
 
@@ -359,7 +359,7 @@ class BeerReview(db.Model):
     image = db.Column(db.Text, unique=False, nullable=True)
     review_content = db.Column(db.Text, unique=False, nullable=False)
     rating = db.Column(db.Integer, unique=False, nullable=False)
-    publishment_date = db.Column(db.DATE(), unique=False, nullable=True, default=date.today().strftime("%Y-%m-%d"))
+    publishment_date = db.Column(db.DATE(), unique=False, nullable=True, default=date.today())
 
     beer = db.relationship("Beer")
 
