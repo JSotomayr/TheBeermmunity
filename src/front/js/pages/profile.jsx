@@ -108,14 +108,13 @@ export const Profile = () => {
         <>
           <div>MAPA</div>
           <div className="commentContainer">{reviews} </div>
-          <BrewerieCommentForm />
           {!localStorage.getItem("logged") ? (
             <></>
-          ) : store.profileInfo.user_type === true ? (
+          ) : localStorage.getItem("user_type") === true ? (
             <></>
           ) : (
             <div className="commentForm">
-              <CommentForm />
+              <BrewerieCommentForm />
             </div>
           )}
         </>
