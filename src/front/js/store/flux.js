@@ -299,8 +299,28 @@ const getState = ({ getStore, getActions, setStore }) => {
         const beer = await response.json();
         setStore({ wishlist: beer });
       },
-    },
-  };
+
+      searchBeer: (data)=>{
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({'brand':data});
+
+        var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+        };
+
+        fetch(getStore().baseUrl.concat("search"))
+        .then(response => response.json())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+    
+      },
+    }
+  }
 };
 
 export default getState;
