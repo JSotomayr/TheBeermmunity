@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from "react";
+import React, {useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.scss";
 import { Link } from "react-router-dom";
@@ -15,6 +15,7 @@ export const Home = () => {
           <div className = "searchbar_container">
               <SearchBar />
           </div>
+          {store.searchBeers.map((beer, i) => {return <p>{beer.brand}</p>}) }
           <Landing />
         </div>
     

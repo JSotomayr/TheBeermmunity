@@ -1,5 +1,5 @@
 
-import React, { Fragment } from "react";
+import React, {useContext, useState }from "react";
 import { Context } from "../store/appContext";
 import Button from 'react-bootstrap/Button'
 import "../../styles/searchBar.scss"
@@ -10,7 +10,7 @@ const SearchBar = () =>{
     const searchIcon = <i className="fas fa-search"></i>
 
     return(
-        // <Fragment>                
+            
             <div className="searchBar__Box">
                 <input 
                     type="text" 
@@ -24,12 +24,12 @@ const SearchBar = () =>{
                             type="submit" 
                             value="" 
                             className="searchBar__button" 
-                            onClick = {() => {actions.searchBeer(brand)}}>
+                            onClick = {() => {actions.searchBeer(name)}}>
                             {searchIcon}
                         </button>   
                     </div> 
             </div>
-        // </Fragment>
+
     )
 }
 

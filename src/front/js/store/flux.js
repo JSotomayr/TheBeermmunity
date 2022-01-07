@@ -18,6 +18,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       tastedBeer: [],
       wishlist: [],
       breweries: [],
+      searchBeers: []
     },
     actions: {
       register: (dataRegister) => {
@@ -313,9 +314,9 @@ const getState = ({ getStore, getActions, setStore }) => {
         redirect: 'follow'
         };
 
-        fetch(getStore().baseUrl.concat("search"))
+        fetch(getStore().baseUrl.concat("search"), requestOptions)
         .then(response => response.json())
-        .then(result => console.log(result))
+        .then(result => setStore({searchBeers: result.response}) )
         .catch(error => console.log('error', error));
     
       },

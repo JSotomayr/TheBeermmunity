@@ -348,7 +348,7 @@ def get_beer_bybrand():
 
         beers = beers.order_by(Beer.brand).all()
         print(beers)
-        print(ist(map(lambda x: x.to_dict(),beers)))
+        print(list(map(lambda x: x.to_dict(),beers)))
         return jsonify({'response': list(map(lambda x: x.to_dict(),beers))})
     else:
         return jsnofy({'response':[]})
