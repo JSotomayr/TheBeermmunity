@@ -1,24 +1,28 @@
 
 import React, {useContext, useState }from "react";
 import { Context } from "../store/appContext";
-import Button from 'react-bootstrap/Button'
 import "../../styles/searchBar.scss"
+import { Link } from "react-router-dom";
 
 const SearchBar = () =>{
     const { store, actions } = useContext(Context);
     const [name, setName] = useState(null)
     const searchIcon = <i className="fas fa-search"></i>
 
+
     return(
-            
+
             <div className="searchBar__Box">
-                <input 
+            <input 
                     type="text" 
-                    placeholder="What are you looking for?" 
+                    placeholder="Buscar marcas de cervezas" 
                     className="searchBar__input" 
                     onChange = {(e) => {setName(e.target.value)}}
+
                 />
                     <div className="searchBar-container__button">
+                    <Link to={"/searchBeers"}>
+
                         <button 
                             as="input" 
                             type="submit" 
@@ -26,11 +30,12 @@ const SearchBar = () =>{
                             className="searchBar__button" 
                             onClick = {() => {actions.searchBeer(name)}}>
                             {searchIcon}
-                        </button>   
+                        </button>  
+                        </Link> 
                     </div> 
             </div>
 
-    )
+    );
 }
 
 
