@@ -1,222 +1,365 @@
-@media (max-width: 425px) {
-    .card {
-        width: 49%;
-        background: #2C363A;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        padding-bottom: 1rem;
-    }
-    
-    .card__body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .card__title {
-        margin-top: 0.5rem;
-        width: 100%;
-        height: fit-content;
-        left: 2.77rem;
-        top: calc(50% - 3.422rem/2 - 39.967rem);
-        word-wrap: none;
-    
-        font-family: Ultra;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 1.172rem;
-        line-height: 1.5rem;
-        text-align: center;
-    
-        color: #E49B0F;
-    }
-    
-    .card__img {
-        height: 9.358rem;
-        left: 3.634rem;
-        top: 16.794rem;
-        margin-top: 0.5rem;
-        
-    }
+@import url("https://fonts.googleapis.com/css2?family=Ultra&display=swap%27");
 
+@media (max-width: 767px) {
+  .firstCard {
+    width: 32%;
+    background-image: url("https://res.cloudinary.com/de8eg0q3r/image/upload/v1641546339/backgrounds/annie-spratt-0SIQ3DpQCcs-unsplash_tv59k4.jpg");
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 1rem;
+    margin-bottom: 0;
+  }
+  .secondCard {
+    width: 32%;
+    background-image: url("https://res.cloudinary.com/de8eg0q3r/image/upload/v1641547288/backgrounds/haniel-cal-tFRbAmaoNXM-unsplash_jsdmdx.jpg");
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 1rem;
+    margin-bottom: 0;
+  }
+
+  .card__header {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card__title {
+    margin-top: 0.5rem;
+    width: 100%;
+    height: fit-content;
+    left: 2.77rem;
+    top: calc(50% - 3.422rem / 2 - 39.967rem);
+    word-wrap: none;
+
+    font-family: "Ultra", serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.172rem;
+    line-height: 1rem;
+    text-align: center;
+
+    color: #e49b0f;
+  }
+
+  .card__img {
+    height: 9.358rem;
+    left: 3.634rem;
+    top: 16.794rem;
+    margin-top: 0.5rem;
+  }
 }
 
 @media (min-width: 768px) {
-    .card {
-        width: 24%;
-        background: #2C363A;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        padding-bottom: 1rem;
-    }
-    
-    .card__header{
-        display: flex;
-        flex-direction: column;
-    }
+  .firstCard {
+    width: 20%;
+    background-image: url("https://res.cloudinary.com/de8eg0q3r/image/upload/v1641546339/backgrounds/annie-spratt-0SIQ3DpQCcs-unsplash_tv59k4.jpg");
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 1rem;
+    margin-bottom: 0;
+  }
+  .secondCard {
+    width: 20%;
+    background-image: url("https://res.cloudinary.com/de8eg0q3r/image/upload/v1641547288/backgrounds/haniel-cal-tFRbAmaoNXM-unsplash_jsdmdx.jpg");
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 1rem;
+    margin-bottom: 0;
+  }
 
-    .card__body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .card__title {
-        margin-top: 0.5rem;
-        width: 100%;
-        height: fit-content;
-        left: 2.77rem;
-        top: calc(50% - 3.422rem/2 - 39.967rem);
-        word-wrap: none;
-    
-        font-family: Ultra;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 1.172rem;
-        line-height: 1.5rem;
-        text-align: center;
-    
-        color: #E49B0F;
-    }
-    
-    .card__img {
-        height: 9.358rem;
-        left: 3.347rem;
-        top: 16.794rem;
-        margin-top: 0.5rem;       
-    }
+  .card__header {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card__title {
+    margin-top: 0.5rem;
+    width: 100%;
+    height: fit-content;
+    left: 2.77rem;
+    top: calc(50% - 3.422rem / 2 - 39.967rem);
+    word-wrap: none;
+
+    font-family: "Ultra", serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    text-align: center;
+
+    color: #e49b0f;
+  }
+
+  .card__img {
+    height: 9.358rem;
+    left: 3.347rem;
+    top: 16.794rem;
+    margin-top: 0.5rem;
+  }
 }
 
 @media (min-width: 1024px) {
-    .card {
-        width: 20%;
-        background: #2C363A;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        padding-bottom: 1rem;
+  .firstCard {
+    width: 20%;
+    background-image: url("https://res.cloudinary.com/de8eg0q3r/image/upload/v1641546339/backgrounds/annie-spratt-0SIQ3DpQCcs-unsplash_tv59k4.jpg");
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 1rem;
+    margin-bottom: 0;
+  }
+  .secondCard {
+    width: 20%;
+    background-image: url("https://res.cloudinary.com/de8eg0q3r/image/upload/v1641547288/backgrounds/haniel-cal-tFRbAmaoNXM-unsplash_jsdmdx.jpg");
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 1rem;
+    margin-bottom: 0;
+  }
+  .card__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-    }
-    
-    .card__body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .card__title {
-        margin-top: 0.5rem;
-        width: 100%;
-        height: fit-content;
-        left: 2.77rem;
-        top: calc(50% - 3.422rem/2 - 39.967rem);
-        word-wrap: none;
-    
-        font-family: Ultra;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 1.172rem;
-        line-height: 1.5rem;
-        text-align: center;
-    
-        color: #E49B0F;
-    }
-    
-    .card__img {
-        height: 9.358rem;
-        left: 3.634rem;
-        top: 16.794rem;
-        margin-top: 0.5rem;
-    }
+  .card__title {
+    margin-top: 0.5rem;
+    width: 100%;
+    height: fit-content;
+    left: 2.77rem;
+    top: calc(50% - 3.422rem / 2 - 39.967rem);
+    word-wrap: none;
+
+    font-family: "Ultra", serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.7rem;
+    line-height: 1.5rem;
+    text-align: center;
+
+    color: #e49b0f;
+  }
+
+  .card__img {
+    height: 9.358rem;
+    left: 3.634rem;
+    top: 16.794rem;
+    margin-top: 0.5rem;
+  }
 }
 
 @media (min-width: 1440px) {
-    .card {
-        width: 15%;
-        background: #2C363A;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        padding-bottom: 1rem;
-    }
-    
-    .card__body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .card__title {
-        margin-top: 0.5rem;
-        width: 100%;
-        height: fit-content;
-        left: 2.77rem;
-        top: calc(50% - 3.422rem/2 - 39.967rem);
-        word-wrap: none;
-    
-        font-family: Ultra;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 1.172rem;
-        line-height: 1.5rem;
-        text-align: center;
-    
-        color: #E49B0F;
-    }
-    
-    .card__img {
-        height: 9.358rem;
-        left: 3.634rem;
-        top: 16.794rem;
-        margin-top: 0.5rem;
-    }
+  .firstCard {
+    width: 18%;
+    background-image: url("https://res.cloudinary.com/de8eg0q3r/image/upload/v1641546339/backgrounds/annie-spratt-0SIQ3DpQCcs-unsplash_tv59k4.jpg");
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 1rem;
+    margin-bottom: 0;
+  }
+  .secondCard {
+    width: 18%;
+    background-image: url("https://res.cloudinary.com/de8eg0q3r/image/upload/v1641547288/backgrounds/haniel-cal-tFRbAmaoNXM-unsplash_jsdmdx.jpg");
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 1rem;
+    margin-bottom: 0;
+  }
+
+  .card__header {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card__title {
+    margin-top: 0.5rem;
+    width: 100%;
+    height: fit-content;
+    left: 2.77rem;
+    top: calc(50% - 3.422rem / 2 - 39.967rem);
+    word-wrap: none;
+
+    font-family: "Ultra", serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 2.172rem;
+    line-height: 2.5rem;
+    text-align: center;
+
+    color: #e49b0f;
+  }
+
+  .card__img {
+    height: 17.358rem;
+    left: 3.634rem;
+    top: 16.794rem;
+    margin-top: 0.5rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  .firstCard {
+    width: 26%;
+    height: 46rem;
+    background-image: url("https://res.cloudinary.com/de8eg0q3r/image/upload/v1641546339/backgrounds/annie-spratt-0SIQ3DpQCcs-unsplash_tv59k4.jpg");
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 1rem;
+    margin-bottom: 0;
+  }
+  .secondCard {
+    width: 26%;
+    height: 46rem;
+    background-image: url(https://res.cloudinary.com/de8eg0q3r/image/upload/v1641547288/backgrounds/haniel-cal-tFRbAmaoNXM-unsplash_jsdmdx.jpg);
+    background-size: cover;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 1rem;
+    margin-bottom: 0;
+    flex-direction: column;
+  }
+  .card__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card__title {
+    margin-top: 0.5rem;
+    width: 100%;
+    height: fit-content;
+    left: 2.77rem;
+    top: calc(50% - 3.422rem / 2 - 39.967rem);
+    word-wrap: none;
+
+    font-family: "Ultra", serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 3.6rem;
+    line-height: 4rem;
+    text-align: center;
+
+    color: #e49b0f;
+  }
+
+  .card__img {
+    height: 27.358rem;
+    left: 3.634rem;
+    top: 16.794rem;
+    margin-top: 0.5rem;
+  }
 }
 
 @media (min-width: 2560px) {
-    .card {
-        width: 10%;
-        background: #2C363A;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        padding-bottom: 1rem;
-    }
-    
-    .card__body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .card__title {
-        margin-top: 0.5rem;
-        width: 100%;
-        height: fit-content;
-        left: 2.77rem;
-        top: calc(50% - 3.422rem/2 - 39.967rem);
-        word-wrap: none;
-    
-        font-family: Ultra;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 1.172rem;
-        line-height: 1.5rem;
-        text-align: center;
-    
-        color: #E49B0F;
-    }
-    
-    .card__img {
-        height: 9.358rem;
-        left: 3.634rem;
-        top: 16.794rem;
-        margin-top: 0.5rem;
-    }
+  .firstCard {
+    width: 20%;
+    height: 46rem;
+    background-image: url("https://res.cloudinary.com/de8eg0q3r/image/upload/v1641546339/backgrounds/annie-spratt-0SIQ3DpQCcs-unsplash_tv59k4.jpg");
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 1rem;
+    margin-bottom: 0;
+  }
+  .secondCard {
+    width: 20%;
+    height: 46rem;
+    background-image: url(https://res.cloudinary.com/de8eg0q3r/image/upload/v1641547288/backgrounds/haniel-cal-tFRbAmaoNXM-unsplash_jsdmdx.jpg);
+    background-size: cover;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 1rem;
+    margin-bottom: 0;
+    flex-direction: column;
+  }
+  .card__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card__title {
+    margin-top: 0.5rem;
+    width: 100%;
+    height: fit-content;
+    left: 2.77rem;
+    top: calc(50% - 3.422rem / 2 - 39.967rem);
+    word-wrap: none;
+
+    font-family: "Ultra", serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 3.6rem;
+    line-height: 4rem;
+    text-align: center;
+
+    color: #e49b0f;
+  }
+
+  .card__img {
+    height: 27.358rem;
+    left: 3.634rem;
+    top: 16.794rem;
+    margin-top: 0.5rem;
+  }
 }
