@@ -68,7 +68,9 @@ const CardDetails = (props) => {
                   icon={beerRate}
                   emptyIcon={beerEmptyRate}
                 />
-                <Box sx={{ ml: 2 }}>{averageValue() || 0}</Box>
+                <Box className="rating__num" sx={{ ml: 2 }}>
+                  {averageValue().toFixed() || 0}
+                </Box>
               </div>
             </div>
           </div>

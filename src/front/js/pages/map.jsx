@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { Context } from "../store/appContext";
 import L from "leaflet";
+// import "../../styles/map.scss";
 
 const Map = (props) => {
   const { store, actions } = useContext(Context);
@@ -29,10 +30,11 @@ const Map = (props) => {
   return (
     <div className="map-container">
       <MapContainer
-        center={{ lat: "0", lng: "0" }}
-        zoom={2}
-        minZoom={2}
+        center={{ lat: "47.60589937199735", lng: "14.22979455148893" }}
+        zoom={5}
+        minZoom={4}
         scrollWheelZoom={true}
+        trackResize={true}
       >
         <TileLayer
           attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

@@ -143,7 +143,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           if (response.ok) {
             let customers = await response.json();
             setStore({
-              allCustomers: [...getStore().allCustomers, ...customers],
+              allCustomers: customers,
             });
             console.log("RESPUESTA", getStore().allCustomers);
           } else {

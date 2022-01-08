@@ -31,10 +31,10 @@ const Comment = (props) => {
           <img className="comment__image" src={props.element.image} />
         </div>
       </div>
-      <div>
+      <div className="comment__detail">
         <div>
-          <div>{props.element.username}</div>
-          <div>{props.element.review_content}</div>
+          <div className="comment__username">{props.element.username}</div>
+          <div className="comment__content">{props.element.review_content}</div>
         </div>
         <div className="comment__bottom">
           <div className="rating__box">
@@ -45,7 +45,9 @@ const Comment = (props) => {
               icon={beerRate}
               emptyIcon={beerEmptyRate}
             />
-            <Box sx={{ ml: 2 }}>{props.element.rating}</Box>
+            <Box className="rating__num" sx={{ ml: 2 }}>
+              {props.element.rating}
+            </Box>
           </div>
           <div>{props.element.publishment_date}</div>
         </div>

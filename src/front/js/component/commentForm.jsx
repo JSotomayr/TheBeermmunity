@@ -43,29 +43,36 @@ export const CommentForm = () => {
         }}
       >
         <div className="formContainer_review">
-          <label>Review</label>
-          <input
+          <label className="form__label">Review</label>
+          <textarea
+            className="form__input"
+            rows="4"
+            cols="50"
             type="text"
-            placeholder="Your review"
+            placeholder="Danos tu opinión"
             onChange={(e) => {
               setForm({ ...form, review_content: e.target.value });
             }}
           />
         </div>
         <div className="formContainer_rating">
-          <label>Rating</label>
-          <Rating
-            name="rating"
-            value={value}
-            max={5}
-            icon={beerRate}
-            emptyIcon={beerEmptyRate}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-              setForm({ ...form, rating: newValue });
-            }}
-          />
-          <Box sx={{ ml: 2 }}>{value}</Box>
+          <label className="form__label">Rating</label>
+          <div className="detail__rate">
+            <Rating
+              name="rating"
+              value={value}
+              max={5}
+              icon={beerRate}
+              emptyIcon={beerEmptyRate}
+              onChange={(event, newValue) => {
+                setValue(newValue);
+                setForm({ ...form, rating: newValue });
+              }}
+            />
+            <Box className="rating__num" sx={{ ml: 2 }}>
+              {value}
+            </Box>
+          </div>
         </div>
 
         <input type="submit" value="Post" />
