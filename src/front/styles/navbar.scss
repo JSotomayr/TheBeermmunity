@@ -1,81 +1,501 @@
-.navbar {
-    background-color: #2C363A;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-}
-
-.icons_left {
-    margin-bottom: 1rem;
-    font-size: 2.7rem;
-}
-
-.icons_right {
-    display:flex;
-    justify-content: flex-end;
-    padding-right:1rem;
-}
-
-// .userIconText {
-//     margin-left: 6.5rem;
-// }
-
-.fa-user {
-    font-size: 2rem;
-    margin-left: 0.2rem;
-}
-
-.HeartIconText {
-    margin-left: 0.5rem;
-}
-
-.fa-heart {
-    margin-left: 0.7rem;
-    font-size: 2rem;
-}
-
 @media (min-width: 768px) {
-    .icons_left{
-        margin-right: 1rem;
-        display:none;
-    }
-    .icons_center {
-        display: flex;
-        justify-content: flex-start;
-        padding-left: 2rem;
-    }
-    .icons_right {
-        padding-top: 1rem;
-    }
-    .nabvar_menu{
-        display:flex;
-        justify-content: center;
-        font-size: 1.2rem;
-        margin: 1rem;
-        padding-top: 0.7rem;
-    }
-    .navbar {
-        height: 8rem;
-        }
+  .profile {
+    background-image: url("https://res.cloudinary.com/de8eg0q3r/image/upload/v1641546339/backgrounds/annie-spratt-0SIQ3DpQCcs-unsplash_tv59k4.jpg");
+  }
+  .profileContainer {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
 
+  .profileContainer__top {
+    width: 50%;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: rgba(24, 24, 24, 0.541);
+    border-radius: 1rem;
+  }
+
+  .profileContainer__details {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profileContainer__img {
+    width: 40%;
+    border-radius: 100%;
+    border: 0.2rem solid #e49b0f;
+  }
+  .profileContainer__title {
+    width: fit-content;
+    font-family: "Ultra", serif;
+    color: #e49b0f;
+  }
+  .profileContainer__subtitle {
+    width: fit-content;
+    font-family: "PT Serif Caption", serif;
+    color: #e49b0f;
+  }
+  .profileContainer__text {
+    width: fit-content;
+    font-family: "PT Serif Caption", serif;
+    color: #e49b0f;
+  }
+  .profileContainer__description {
+    font-family: "Pridi", serif;
+    font-size: 1.3rem;
+    margin-top: 1rem;
+    margin-right: 2.5rem;
+    margin-bottom: 1rem;
+    margin-left: 2.5rem;
+  }
+
+  .subtitle {
+    margin-left: 2.5rem;
+    font-family: "Ultra", serif;
+    color: #e49b0f;
+    text-align: left;
+    font-size: 1.5rem;
+  }
+
+  .container__cerveteca {
+    background-color: rgba(24, 24, 24, 0.541);
+    padding-top: 0.5rem;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container__fav {
+    background-color: rgba(24, 24, 24, 0.541);
+    padding-top: 0.5rem;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container__wish {
+    background-color: rgba(24, 24, 24, 0.541);
+    padding-top: 0.5rem;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .display__cards {
+    display: flex;
+    flex-direction: row;
+    margin-left: 2.5rem;
+  }
+
+  .firstCard {
+    margin-bottom: 1rem;
+  }
+
+  .secondCard {
+    margin-bottom: 1rem;
+  }
+
+  .commentForm {
+    border-radius: 0.5rem;
+    background-color: rgba(24, 24, 24, 0.541);
+    border: 1px solid #e49b0f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 1.5rem;
+    padding: 1rem;
+  }
+  .comment_subtitle {
+    padding-left: 1.5rem;
+    text-align: start;
+  }
 }
 
+@media (min-width: 1024px) {
+  .profile {
+    background-image: url("https://res.cloudinary.com/de8eg0q3r/image/upload/v1641546339/backgrounds/annie-spratt-0SIQ3DpQCcs-unsplash_tv59k4.jpg");
+  }
+  .profileContainer {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
 
-@media (max-width: 425px) {
-    .icons_left{
-        margin-left: 1rem;
-        display:flex;
-    }
-    .icons_center {
-        display: flex;
-        justify-content: center;
-    }
-    .nabvar_menu{
-        margin-right: 1rem;
-        display:none;
+  .profileContainer__top {
+    width: 50%;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: rgba(24, 24, 24, 0.541);
+    border-radius: 1rem;
+  }
 
-    }
+  .profileContainer__details {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profileContainer__img {
+    width: 30%;
+    border-radius: 100%;
+    border: 0.2rem solid #e49b0f;
+  }
+  .profileContainer__title {
+    width: fit-content;
+    font-family: "Ultra", serif;
+    font-size: 3rem;
+    color: #e49b0f;
+  }
+  .profileContainer__subtitle {
+    width: fit-content;
+    font-family: "PT Serif Caption", serif;
+    font-size: 2rem;
+    color: #e49b0f;
+  }
+  .profileContainer__text {
+    font-size: 1.5rem;
+    width: fit-content;
+    font-family: "PT Serif Caption", serif;
+    color: #e49b0f;
+  }
+  .profileContainer__description {
+    font-family: "Pridi", serif;
+    font-size: 1.6rem;
+    margin-top: 1rem;
+    margin-right: 2.5rem;
+    margin-bottom: 1rem;
+    margin-left: 2.5rem;
+  }
+
+  .subtitle {
+    margin-left: 2.5rem;
+    font-family: "Ultra", serif;
+    color: #e49b0f;
+    text-align: left;
+    font-size: 2rem;
+  }
+
+  .container__cerveteca {
+    background-color: rgba(24, 24, 24, 0.541);
+    padding-top: 0.5rem;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container__fav {
+    background-color: rgba(24, 24, 24, 0.541);
+    padding-top: 0.5rem;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container__wish {
+    background-color: rgba(24, 24, 24, 0.541);
+    padding-top: 0.5rem;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .display__cards {
+    display: flex;
+    flex-direction: row;
+    margin-left: 2.5rem;
+  }
+
+  .firstCard {
+    margin-bottom: 2rem;
+  }
+
+  .secondCard {
+    margin-bottom: 2rem;
+  }
+
+  .commentForm {
+    border-radius: 0.5rem;
+    background-color: rgba(24, 24, 24, 0.541);
+    border: 1px solid #e49b0f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 1.5rem;
+    padding: 1rem;
+  }
+  .comment_subtitle {
+    padding-left: 1.5rem;
+    text-align: start;
+  }
 }
 
-.nabvar_menu_friends:hover, .nabvar_menu_cerveteca:hover, .nabvar_menu_pending:hover, .userIconText:hover, .HeartIconText:hover {
-color: #E49B0F;
+@media (min-width: 1440px) {
+  .profile {
+    background-image: url("https://res.cloudinary.com/de8eg0q3r/image/upload/v1641546339/backgrounds/annie-spratt-0SIQ3DpQCcs-unsplash_tv59k4.jpg");
+    background-size: cover;
+  }
+  .profileContainer {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .profileContainer__top {
+    width: 50%;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: rgba(24, 24, 24, 0.541);
+    border-radius: 1rem;
+  }
+
+  .profileContainer__details {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profileContainer__img {
+    width: 30%;
+    border-radius: 100%;
+    border: 0.2rem solid #e49b0f;
+  }
+  .profileContainer__title {
+    width: fit-content;
+    font-family: "Ultra", serif;
+    font-size: 3rem;
+    color: #e49b0f;
+  }
+  .profileContainer__subtitle {
+    width: fit-content;
+    font-family: "PT Serif Caption", serif;
+    font-size: 2rem;
+    color: #e49b0f;
+  }
+  .profileContainer__text {
+    font-size: 1.5rem;
+    width: fit-content;
+    font-family: "PT Serif Caption", serif;
+    color: #e49b0f;
+  }
+  .profileContainer__description {
+    font-family: "Pridi", serif;
+    font-size: 1.6rem;
+    margin-top: 1rem;
+    margin-right: 2.5rem;
+    margin-bottom: 1rem;
+    margin-left: 2.5rem;
+  }
+
+  .subtitle {
+    margin-left: 2.5rem;
+    font-family: "Ultra", serif;
+    color: #e49b0f;
+    text-align: left;
+    font-size: 2rem;
+  }
+
+  .container__cerveteca {
+    background-color: rgba(24, 24, 24, 0.541);
+    padding-top: 0.5rem;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container__fav {
+    background-color: rgba(24, 24, 24, 0.541);
+    padding-top: 0.5rem;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container__wish {
+    background-color: rgba(24, 24, 24, 0.541);
+    padding-top: 0.5rem;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .display__cards {
+    display: flex;
+    flex-direction: row;
+    margin-left: 2.5rem;
+  }
+
+  .firstCard {
+    margin-bottom: 2rem;
+  }
+
+  .secondCard {
+    margin-bottom: 2rem;
+  }
+
+  .commentForm {
+    border-radius: 0.5rem;
+    background-color: rgba(24, 24, 24, 0.541);
+    border: 1px solid #e49b0f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 1.5rem;
+    padding: 1rem;
+  }
+  .comment_subtitle {
+    padding-left: 1.5rem;
+    text-align: start;
+  }
+}
+
+@media (min-width: 1920px) {
+  .profile {
+    background-image: url("https://res.cloudinary.com/de8eg0q3r/image/upload/v1641546339/backgrounds/annie-spratt-0SIQ3DpQCcs-unsplash_tv59k4.jpg");
+    background-size: cover;
+  }
+  .profileContainer {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .profileContainer__top {
+    width: 50%;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: rgba(0, 0, 0, 0.541);
+    border-radius: 1rem;
+  }
+
+  .profileContainer__details {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profileContainer__img {
+    width: 30%;
+    border-radius: 100%;
+    border: 0.2rem solid #e49b0f;
+  }
+  .profileContainer__title {
+    width: fit-content;
+    font-family: "Ultra", serif;
+    font-size: 4rem;
+    color: #e49b0f;
+  }
+  .profileContainer__subtitle {
+    width: fit-content;
+    font-family: "PT Serif Caption", serif;
+    font-size: 3rem;
+    color: #e49b0f;
+  }
+  .profileContainer__text {
+    font-size: 2rem;
+    width: fit-content;
+    font-family: "PT Serif Caption", serif;
+    color: #e49b0f;
+  }
+  .profileContainer__description {
+    font-family: "Pridi", serif;
+    font-size: 2.6rem;
+    margin-top: 1rem;
+    margin-right: 2.5rem;
+    margin-bottom: 1rem;
+    margin-left: 2.5rem;
+  }
+
+  .subtitle {
+    margin-left: 3.5rem;
+    font-family: "Ultra", serif;
+    color: #e49b0f;
+    text-align: left;
+    font-size: 2rem;
+  }
+
+  .container__cerveteca {
+    background-color: rgba(0, 0, 0, 0.541);
+    padding-top: 0.5rem;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container__fav {
+    background-color: rgba(0, 0, 0, 0.541);
+    padding-top: 0.5rem;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container__wish {
+    background-color: rgba(0, 0, 0, 0.541);
+    padding-top: 0.5rem;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .display__cards {
+    display: flex;
+    flex-direction: row;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+  }
+
+  .firstCard {
+    margin-bottom: 2rem;
+  }
+
+  .secondCard {
+    margin-bottom: 2rem;
+  }
+
+  .commentForm {
+    border-radius: 0.5rem;
+    background-color: rgba(24, 24, 24, 0.541);
+    border: 1px solid #e49b0f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 1.5rem;
+    padding: 1rem;
+  }
+  .comment_subtitle {
+    padding-left: 1.5rem;
+    text-align: start;
+  }
+
+  .minimap__container {
+    width: 60%;
+    margin-right: auto;
+    margin-left: auto;
+  }
 }

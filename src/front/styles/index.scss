@@ -2,102 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=PT+Serif+Caption&display=swap%27");
 @import url("https://fonts.googleapis.com/css2?family=Pridi:wght@200&display=swap%27");
 
-body {
-  background-color: #2d2d2d;
-  color: white;
-}
-
-.title {
-  font-family: "Ultra", serif;
-  color: #e49b0f;
-  font-size: 1.313rem;
-}
-
-.subtitle {
-  font-family: "PT Serif Caption", serif;
-}
-
-.subtitle_form {
-  font-family: "PT Serif Caption", serif;
-  margin-top: 1.2rem;
-  margin-bottom: 0.6rem;
-  margin-left: -0.1rem;
-}
-
-.subtitle {
-  font-family: "PT Serif Caption", serif;
-}
-
-.paragraph {
-  font-family: "Pridi", serif;
-}
-
-.btn {
-  color: white;
-  background: #2d2d2d;
-  border: 1px solid white;
-  border-radius: 0.2rem;
-}
-
-.btn:hover {
-  background: #e49b0f;
-  // background-color: #afad4c;
-  color: white;
-  text-decoration: none;
-}
-
-a,
-a:visited,
-a:hover,
-a:active {
-  color: white;
-  text-decoration: none;
-}
-
-.loginContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.btn_submit {
-  color: white;
-  font-size: 1.438rem;
-  background-color: #e49b0f;
-  border: 1px solid white;
-  box-shadow: inset 0px 2px 9px rgba(0, 0, 0, 0.25);
-}
-
-.btn_submit:hover {
-  background-color: #a77311;
-  color: white;
-  border: 3px solid #543b0b;
-}
-
-.alertDiv {
-  background-color: #7a731a;
-  color: white;
-}
-
-.chooseUserBusiness {
-  display: flex;
-  justify-content: space-between;
-}
-
-.alertDiv {
-  background-color: #ffc107;
-  color: #41464b;
-  display: flex;
-  justify-content: center;
-  font-size: 0.85rem;
-}
-
-.nearLog {
-  margin-left: 16rem;
-  margin-top: 1rem;
-}
-
 @media (min-width: 425px) {
   .nearLog {
     display: none;
@@ -128,4 +32,495 @@ a:active {
 
 .menu {
   color: #000000de;
+}
+
+@media (max-width: 767px) {
+  body {
+    background-color: #2d2d2d;
+    color: white;
+  }
+
+  .title {
+    font-family: "Ultra", serif;
+    color: #e49b0f;
+    font-size: 2.6rem;
+  }
+
+  .subtitle {
+    font-family: "PT Serif Caption", serif;
+  }
+
+  .subtitle_form {
+    font-family: "PT Serif Caption", serif;
+    margin-top: 1.2rem;
+    margin-bottom: 0.6rem;
+    margin-left: -0.1rem;
+  }
+
+  .subtitle {
+    font-family: "PT Serif Caption", serif;
+  }
+
+  .paragraph {
+    font-family: "Pridi", serif;
+  }
+
+  .btn {
+    color: white;
+    background: #2d2d2d;
+    border: 1px solid white;
+    border-radius: 0.2rem;
+  }
+
+  .btn:hover {
+    background: #e49b0f;
+    // background-color: #afad4c;
+    color: white;
+    text-decoration: none;
+  }
+
+  a,
+  a:visited,
+  a:hover,
+  a:active {
+    color: white;
+    text-decoration: none;
+  }
+
+  .loginContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn_submit {
+    color: white;
+    font-size: 1.438rem;
+    background-color: #e49b0f;
+    border: 1px solid white;
+    box-shadow: inset 0px 2px 9px rgba(0, 0, 0, 0.25);
+  }
+
+  .btn_submit:hover {
+    background-color: #a77311;
+    color: white;
+    border: 3px solid #543b0b;
+  }
+
+  .alertDiv {
+    background-color: #7a731a;
+    color: white;
+  }
+
+  .chooseUserBusiness {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .alertDiv {
+    background-color: #ffc107;
+    color: #41464b;
+    display: flex;
+    justify-content: center;
+    font-size: 0.85rem;
+  }
+
+  .nearLog {
+    margin-left: 16rem;
+    margin-top: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  body {
+    background-color: #2d2d2d;
+    color: white;
+  }
+
+  .title {
+    font-family: "Ultra", serif;
+    color: #e49b0f;
+    font-size: 2.6rem;
+  }
+
+  .subtitle {
+    font-family: "PT Serif Caption", serif;
+  }
+
+  .subtitle_form {
+    font-family: "PT Serif Caption", serif;
+    margin-top: 1.2rem;
+    margin-bottom: 0.6rem;
+    margin-left: -0.1rem;
+  }
+
+  .subtitle {
+    font-family: "PT Serif Caption", serif;
+  }
+
+  .paragraph {
+    font-family: "Pridi", serif;
+  }
+
+  .btn {
+    color: white;
+    background: #2d2d2d;
+    border: 1px solid white;
+    border-radius: 0.2rem;
+  }
+
+  .btn:hover {
+    background: #e49b0f;
+    // background-color: #afad4c;
+    color: white;
+    text-decoration: none;
+  }
+
+  a,
+  a:visited,
+  a:hover,
+  a:active {
+    color: white;
+    text-decoration: none;
+  }
+
+  .loginContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn_submit {
+    color: white;
+    font-size: 1.438rem;
+    background-color: #e49b0f;
+    border: 1px solid white;
+    box-shadow: inset 0px 2px 9px rgba(0, 0, 0, 0.25);
+  }
+
+  .btn_submit:hover {
+    background-color: #a77311;
+    color: white;
+    border: 3px solid #543b0b;
+  }
+
+  .alertDiv {
+    background-color: #7a731a;
+    color: white;
+  }
+
+  .chooseUserBusiness {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .alertDiv {
+    background-color: #ffc107;
+    color: #41464b;
+    display: flex;
+    justify-content: center;
+    font-size: 0.85rem;
+  }
+
+  .nearLog {
+    margin-left: 16rem;
+    margin-top: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    background-color: #2d2d2d;
+    color: white;
+  }
+
+  .title {
+    font-family: "Ultra", serif;
+    color: #e49b0f;
+    font-size: 3.6rem;
+  }
+
+  .subtitle {
+    font-family: "PT Serif Caption", serif;
+  }
+
+  .subtitle_form {
+    font-family: "PT Serif Caption", serif;
+    margin-top: 1.2rem;
+    margin-bottom: 0.6rem;
+    margin-left: -0.1rem;
+  }
+
+  .subtitle {
+    font-family: "PT Serif Caption", serif;
+  }
+
+  .paragraph {
+    font-family: "Pridi", serif;
+  }
+
+  .btn {
+    color: white;
+    background: #2d2d2d;
+    border: 1px solid white;
+    border-radius: 0.2rem;
+  }
+
+  .btn:hover {
+    background: #e49b0f;
+    // background-color: #afad4c;
+    color: white;
+    text-decoration: none;
+  }
+
+  a,
+  a:visited,
+  a:hover,
+  a:active {
+    color: white;
+    text-decoration: none;
+  }
+
+  .loginContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn_submit {
+    color: white;
+    font-size: 1.438rem;
+    background-color: #e49b0f;
+    border: 1px solid white;
+    box-shadow: inset 0px 2px 9px rgba(0, 0, 0, 0.25);
+  }
+
+  .btn_submit:hover {
+    background-color: #a77311;
+    color: white;
+    border: 3px solid #543b0b;
+  }
+
+  .alertDiv {
+    background-color: #7a731a;
+    color: white;
+  }
+
+  .chooseUserBusiness {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .alertDiv {
+    background-color: #ffc107;
+    color: #41464b;
+    display: flex;
+    justify-content: center;
+    font-size: 0.85rem;
+  }
+
+  .nearLog {
+    margin-left: 16rem;
+    margin-top: 1rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  body {
+    background-color: #2d2d2d;
+    color: white;
+  }
+
+  .title {
+    font-family: "Ultra", serif;
+    color: #e49b0f;
+    font-size: 3.8rem;
+  }
+
+  .subtitle {
+    font-family: "PT Serif Caption", serif;
+  }
+
+  .subtitle_form {
+    font-family: "PT Serif Caption", serif;
+    margin-top: 1.2rem;
+    margin-bottom: 0.6rem;
+    margin-left: -0.1rem;
+  }
+
+  .subtitle {
+    font-family: "PT Serif Caption", serif;
+  }
+
+  .paragraph {
+    font-family: "Pridi", serif;
+  }
+
+  .btn {
+    color: white;
+    background: #2d2d2d;
+    border: 1px solid white;
+    border-radius: 0.2rem;
+  }
+
+  .btn:hover {
+    background: #e49b0f;
+    // background-color: #afad4c;
+    color: white;
+    text-decoration: none;
+  }
+
+  a,
+  a:visited,
+  a:hover,
+  a:active {
+    color: white;
+    text-decoration: none;
+  }
+
+  .loginContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn_submit {
+    color: white;
+    font-size: 1.438rem;
+    background-color: #e49b0f;
+    border: 1px solid white;
+    box-shadow: inset 0px 2px 9px rgba(0, 0, 0, 0.25);
+  }
+
+  .btn_submit:hover {
+    background-color: #a77311;
+    color: white;
+    border: 3px solid #543b0b;
+  }
+
+  .alertDiv {
+    background-color: #7a731a;
+    color: white;
+  }
+
+  .chooseUserBusiness {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .alertDiv {
+    background-color: #ffc107;
+    color: #41464b;
+    display: flex;
+    justify-content: center;
+    font-size: 0.85rem;
+  }
+
+  .nearLog {
+    margin-left: 16rem;
+    margin-top: 1rem;
+  }
+}
+
+@media (min-width: 2560px) {
+  body {
+    background-color: #2d2d2d;
+    color: white;
+  }
+
+  .title {
+    font-family: "Ultra", serif;
+    color: #e49b0f;
+    font-size: 6.313rem;
+  }
+
+  .subtitle {
+    font-family: "PT Serif Caption", serif;
+  }
+
+  .subtitle_form {
+    font-family: "PT Serif Caption", serif;
+    margin-top: 1.2rem;
+    margin-bottom: 0.6rem;
+    margin-left: -0.1rem;
+  }
+
+  .subtitle {
+    font-family: "PT Serif Caption", serif;
+  }
+
+  .paragraph {
+    font-family: "Pridi", serif;
+  }
+
+  .btn {
+    color: white;
+    background: #2d2d2d;
+    border: 3px solid white;
+    border-radius: 0.5rem;
+    font-size: 3rem;
+  }
+
+  .btn:hover {
+    background: #e49b0f;
+    // background-color: #afad4c;
+    color: white;
+    text-decoration: none;
+  }
+
+  a,
+  a:visited,
+  a:hover,
+  a:active {
+    color: white;
+    text-decoration: none;
+  }
+
+  .loginContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn_submit {
+    color: white;
+    font-size: 1.438rem;
+    background-color: #e49b0f;
+    border: 1px solid white;
+    box-shadow: inset 0px 2px 9px rgba(0, 0, 0, 0.25);
+  }
+
+  .btn_submit:hover {
+    background-color: #a77311;
+    color: white;
+    border: 3px solid #543b0b;
+  }
+
+  .alertDiv {
+    background-color: #7a731a;
+    color: white;
+  }
+
+  .chooseUserBusiness {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .alertDiv {
+    background-color: #ffc107;
+    color: #41464b;
+    display: flex;
+    justify-content: center;
+    font-size: 0.85rem;
+  }
+
+  .nearLog {
+    margin-left: 16rem;
+    margin-top: 1rem;
+  }
 }

@@ -279,3 +279,220 @@
     background-color: #e49b0f;
   }
 }
+
+@media (min-width: 1920px) {
+  .detail {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0);
+  }
+
+  .detail__top {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .detail__image {
+    width: 22%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .bottle {
+    width: 100%;
+    margin-left: 2rem;
+  }
+
+  .detail__right {
+    background-color: rgba(155, 155, 155, 0.438);
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-radius: 1.5rem;
+  }
+  .detail__body {
+    display: flex;
+    margin-top: 1rem;
+    color: white;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .detail__title {
+    color: #e49b0f;
+    font-family: "Ultra", serif;
+    font-size: 4rem;
+  }
+
+  .detail__subtitle {
+    color: #e49b0f;
+    font-family: "PT Serif Caption", serif;
+    font-size: 3rem;
+  }
+
+  .detail__properties {
+    font-family: "Pridi", serif;
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    font-size: 2rem;
+  }
+
+  .detail__date {
+    color: rgb(236, 236, 236);
+    float: right;
+    font-size: 2rem;
+  }
+
+  .description {
+    font-family: "Pridi", serif;
+    width: 80%;
+    margin-left: 3rem;
+    margin-top: 0;
+    padding: 2rem;
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+  .detail__bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-right: 2rem;
+  }
+
+  .detail__rate {
+    display: flex;
+    align-items: center;
+  }
+  .full_beer {
+    width: 4rem;
+  }
+
+  .empty_beer {
+    width: 4rem;
+  }
+  .divider {
+    width: 100%;
+    height: 1rem;
+    background-color: #e49b0f;
+  }
+}
+
+@media (min-width: 2560px) {
+  .detail {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0);
+  }
+
+  .detail__top {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .detail__image {
+    width: 14%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .bottle {
+    width: 100%;
+    margin-left: 2rem;
+  }
+
+  .detail__right {
+    background-color: rgba(155, 155, 155, 0.438);
+    width: 64%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-radius: 1.5rem;
+  }
+  .detail__body {
+    display: flex;
+    margin-top: 1rem;
+    color: white;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .detail__title {
+    color: #e49b0f;
+    font-family: "Ultra", serif;
+    font-size: 5rem;
+  }
+
+  .detail__subtitle {
+    color: #e49b0f;
+    font-family: "PT Serif Caption", serif;
+    font-size: 4rem;
+  }
+
+  .detail__properties {
+    font-family: "Pridi", serif;
+    list-style-type: none;
+    padding: 0;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    font-size: 2.5rem;
+  }
+
+  .detail__date {
+    color: rgb(236, 236, 236);
+    float: right;
+    font-size: 2.5rem;
+  }
+
+  .description {
+    font-family: "Pridi", serif;
+    width: 80%;
+    margin-left: 3rem;
+    margin-top: 0;
+    padding: 2rem;
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+  .detail__bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-right: 2rem;
+  }
+
+  .detail__rate {
+    display: flex;
+    align-items: center;
+  }
+  .full_beer {
+    width: 6rem;
+  }
+
+  .empty_beer {
+    width: 6rem;
+  }
+  .divider {
+    width: 100%;
+    height: 1rem;
+    background-color: #e49b0f;
+  }
+}
