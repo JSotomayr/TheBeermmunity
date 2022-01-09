@@ -17,14 +17,16 @@ const AllCustomers = () => {
   useEffect(() => {
     setcustomerList(
       store.allCustomers.map((customer, index) => {
-        return <CustomerCard key={index.toString()} element={customer} />;
+        if (!customer.user_type) {
+          return <CustomerCard key={index.toString()} element={customer} />;
+        }
       })
     );
   }, [store.allCustomers]);
-
+  console.log(store.allCustomers);
   return (
-    <div>
-      <h1 className="title">Todos los amantes de la cerveza</h1>
+    <div className="allCustomers__container">
+      <h1 className="title">Nuestros amantes de la cerveza</h1>
       <div className="allCustomers">{customerList}</div>
     </div>
   );

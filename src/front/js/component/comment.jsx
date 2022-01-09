@@ -26,10 +26,8 @@ const Comment = (props) => {
 
   return (
     <div className="comment">
-      <div>
-        <div>
-          <img className="comment__image" src={props.element.image} />
-        </div>
+      <div className="imageContainer">
+        <img className="comment__image" src={props.element.image} />
       </div>
       <div className="comment__detail">
         <div>
@@ -49,7 +47,7 @@ const Comment = (props) => {
               {props.element.rating}
             </Box>
           </div>
-          <div>{props.element.publishment_date}</div>
+          <div className="comment__date">{props.element.publishment_date}</div>
         </div>
       </div>
     </div>

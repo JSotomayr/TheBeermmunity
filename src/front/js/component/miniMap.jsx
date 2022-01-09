@@ -26,7 +26,7 @@ const MiniMap = (props) => {
     <>
       {brewerie.map((item, i) => {
         return (
-          <div key={i}>
+          <div className="minimap__container" key={i}>
             <MapContainer
               center={{ lat: item.latitude, lng: item.longitude }}
               zoom={20}

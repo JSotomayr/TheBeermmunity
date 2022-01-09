@@ -5,13 +5,28 @@ import { Context } from "../store/appContext";
 import L from "leaflet";
 import "../../styles/map.scss";
 
+import CustomerCard from "../component/customerCard.jsx";
+import "../../styles/map.scss";
+
 const Map = (props) => {
   const { store, actions } = useContext(Context);
   const [brewerie, setBrewerie] = useState([]);
+  const [brewerieList, setBrewerieList] = useState([]);
 
   useEffect(() => {
     actions.getAllBreweries();
+    actions.getCustomers();
   }, []);
+
+  useEffect(() => {
+    setBrewerieList(
+      store.allCustomers.map((customer, index) => {
+        if (customer.user_type) {
+          return <CustomerCard key={index.toString()} element={customer} />;
+        }
+      })
+    );
+  }, [store.allCustomers]);
 
   const beerIcon = new L.icon({
     iconUrl:
@@ -28,32 +43,36 @@ const Map = (props) => {
   }, [store.breweries]);
 
   return (
-    <div className="map-container">
-      <MapContainer
-        center={{ lat: "47.60589937199735", lng: "14.22979455148893" }}
-        zoom={5}
-        minZoom={4}
-        scrollWheelZoom={true}
-        trackResize={true}
-      >
-        <TileLayer
-          attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}{r}.png"
-        />
-        {brewerie.map((item, i) => {
-          return (
-            <div key={i}>
-              <Marker
-                position={{ lat: item.latitude, lng: item.longitude }}
-                icon={beerIcon}
-              >
-                <Popup>{item.address}</Popup>
-              </Marker>
-            </div>
-          );
-        })}
-      </MapContainer>
-    </div>
+    <>
+      <div className="map-container">
+        <MapContainer
+          center={{ lat: "47.60589937199735", lng: "14.22979455148893" }}
+          zoom={5}
+          minZoom={4}
+          scrollWheelZoom={true}
+          trackResize={true}
+        >
+          <TileLayer
+            attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}{r}.png"
+          />
+          {brewerie.map((item, i) => {
+            return (
+              <div key={i}>
+                <Marker
+                  position={{ lat: item.latitude, lng: item.longitude }}
+                  icon={beerIcon}
+                >
+                  <Popup>{item.address}</Popup>
+                </Marker>
+              </div>
+            );
+          })}
+        </MapContainer>
+      </div>
+      <div className="title">Nuestras cervecerías</div>
+      <div className="allBreweries">{brewerieList}</div>
+    </>
   );
 };
 
