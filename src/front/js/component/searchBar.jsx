@@ -15,7 +15,7 @@ const SearchBar = () =>{
             <div className="searchBar__Box">
             <input 
                     type="text" 
-                    placeholder="Buscar marcas de cervezas" 
+                    placeholder="Buscar marcas cervezas" 
                     className="searchBar__input" 
                     onChange = {(e) => {setName(e.target.value)}}
 

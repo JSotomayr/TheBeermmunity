@@ -1,8 +1,9 @@
+
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 import os
-from datetime import timedelta, datetime
+from datetime import timedelta, datetime, date
 
 from flask import Flask, request, jsonify, url_for, Blueprint
 from flask_migrate import Migrate
@@ -129,6 +130,18 @@ def get_customer(id):
     return jsonify({'msg' : 'Customer not foud'}), 404
 
 
+#   GET ALL CUSTOMER
+@api.route('/customer', methods=['GET'])
+def getAllBrewers():
+    customers = Customer.get_all()
+
+    if customers:
+        customer_list = [customer.to_dict() for customer in customers]
+        return jsonify(customer_list), 200
+
+    return jsonify({'error': 'Customers not found'}), 404
+
+
 #   GET ALL BEERS
 @api.route('/beer', methods=['GET'])
 def getAllBeers():
@@ -203,13 +216,10 @@ def add_favbeer(id_brewer, id_beer):
 
 #   GET FAVOURITE LIST   
 @api.route('/brewer/<int:id>/favourite-beer', methods = ['GET'])
-@jwt_required()
 def get_fav_beers(id):
-    identity = get_jwt_identity()
+    brewer = Brewer.get_by_id(id)     
     
-
-    if identity.get("id") == id:
-        brewer = Brewer.get_by_id(id)     
+    if brewer:
         return jsonify(list(map(lambda x:x.to_dict(), brewer.have_fav_beer))), 200
 
     return jsonify({'error': 'No favourite beers'}),404
@@ -241,12 +251,10 @@ def add_tasted_beer(id_brewer, id_beer):
 
 #   GET TASTED BEER
 @api.route('/brewer/<int:id>/tasted-beer', methods = ['GET'])
-@jwt_required()
 def get_tasted_beers(id):
-    identity = get_jwt_identity()
+    brewer = Brewer.get_by_id(id)       
     
-    if identity.get("id") == id: 
-        brewer = Brewer.get_by_id(id)       
+    if brewer: 
         return jsonify(list(map(lambda x:x.to_dict(), brewer.have_tasted_beer))), 200
 
     return jsonify({'error' : 'Tasted beers not found'}), 404
@@ -278,12 +286,10 @@ def add_wish_beer(id_brewer, id_beer):
 
 #   GET WISHED BEER
 @api.route('/brewer/<int:id>/wish-beer', methods = ['GET'])
-@jwt_required()
 def get_wish_beers(id):
-    identity = get_jwt_identity()
+    brewer = Brewer.get_by_id(id)       
     
-    if identity.get("id") == id: 
-        brewer = Brewer.get_by_id(id)       
+    if brewer: 
         return jsonify(list(map(lambda x:x.to_dict(), brewer.have_wish_beer))), 200
 
     return jsonify({'error' : 'Wished beers not found'}), 404
@@ -352,3 +358,92 @@ def get_beer_bybrand():
         return jsonify({'response': list(map(lambda x: x.to_dict(),beers))})
     else:
         return jsnofy({'response':[]})
+#   POST BREWERIE REVIEW
+@api.route('/brewer/<int:id_brewer>/brewerie-review/<int:id_brewerie>', methods=['POST'])
+@jwt_required()
+def post_brewerie_review(id_brewer, id_brewerie):
+    token_id = get_jwt_identity()
+    brewer = Brewer.get_by_id(id_brewer)
+    print("brewer id", id_brewer)
+    print("token id", token_id.get("id"))
+
+    if token_id.get("id") == brewer.id_customer:
+        new_content = request.json.get('review_content', None)
+        new_rating = request.json.get('rating', None)
+        print("new content", new_content)
+        print("new rating", new_rating)
+
+        if not (new_content and new_rating):
+            return jsonify({'error': 'Missing rating parameters'}), 400
+
+        post_review = BrewerieReview(
+            username = token_id.get("username"),
+            image = token_id.get("image"),
+            review_content = new_content,
+            rating = new_rating,
+            brewer_id = id_brewer,
+            brewerie_id = id_brewerie
+        )
+        print(post_review.create())
+        try:
+            post_review.create()
+            return jsonify(post_review.to_dict()),200
+        except exc.IntegrityError:
+            return jsonify({'error': 'Fail in creating review'}), 400
+        
+    return jsonify({'success': 'Review posted'}), 200
+
+
+# GET BREWERIE REVIEWS
+@api.route('/brewerie-reviews/<int:brewerie_id>', methods=['GET'])
+def get_all_breweries_reviews(brewerie_id):
+    all_reviews = BrewerieReview.get_by_all_brewerie_reviews(brewerie_id)
+
+    if all_reviews:
+        return jsonify([reviews.to_dict() for reviews in all_reviews]), 200
+
+    return jsonify({'error': 'reviews not found'}), 400
+
+
+#   POST BEER REVIEW
+@api.route('/brewer/<int:id_brewer>/beer-review/<int:id_beer>', methods=['POST'])
+@jwt_required()
+def post_beer_review(id_brewer, id_beer):
+    token_id = get_jwt_identity()
+    brewer = Brewer.get_by_id(id_brewer)
+    print("este es el usuario", token_id.get("username"))
+
+    if token_id.get("id") == brewer.id_customer:
+        new_content = request.json.get('review_content', None)
+        new_rating = request.json.get('rating', None)
+        
+        if not (new_content and new_rating):
+            return jsonify({'error': 'Missing rating parameters'}), 400
+
+        post_review = BeerReview(
+            username = token_id.get("username"),
+            image = token_id.get("image"),
+            review_content = new_content,
+            rating = new_rating,
+            brewer_id = id_brewer,
+            beer_id = id_beer
+        )
+       
+        try:
+            post_review.create()
+            return jsonify(post_review.to_dict()),200
+        except exc.IntegrityError:
+            return jsonify({'error': 'Fail in creating review'}), 400
+        
+    return jsonify({'success': 'Review posted'}), 200
+
+
+# GET BEER REVIEWS
+@api.route('/beer-reviews/<int:beer_id>', methods=['GET'])
+def get_all_beer_reviews(beer_id):
+    all_reviews = BeerReview.get_by_all_beer_reviews(beer_id)
+
+    if all_reviews:
+        return jsonify([reviews.to_dict() for reviews in all_reviews]), 200
+
+    return jsonify({'error': 'reviews not found'}), 400
