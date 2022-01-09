@@ -30,16 +30,14 @@
   margin-left: 0.5rem;
 }
 
-.menu {
-  color: #000000de;
-}
-
 @media (max-width: 767px) {
   body {
     background-color: #2d2d2d;
     color: white;
   }
-
+  .menu {
+    color: #000000de;
+  }
   .title {
     font-family: "Ultra", serif;
     color: #e49b0f;
@@ -525,5 +523,9 @@
   .nearLog {
     margin-left: 16rem;
     margin-top: 1rem;
+  }
+  .menu {
+    color: #000000de;
+    font-size: 5rem;
   }
 }

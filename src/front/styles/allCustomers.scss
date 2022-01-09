@@ -1,4 +1,12 @@
+.title {
+  margin: 5rem;
+}
+
 .allCustomers {
+  width: 75%;
   display: flex;
   flex-direction: column;
+  margin-top: 3rem;
+  margin-left: auto;
+  margin-right: auto;
 }

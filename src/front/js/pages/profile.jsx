@@ -107,7 +107,7 @@ export const Profile = () => {
       {profileCard}
       {store.profileInfo.user_type ? (
         <>
-          <div className="minimap__container">
+          <div>
             <MiniMap element={store.profileInfo.user_detail[0]} />
           </div>
           <div className="divider"></div>

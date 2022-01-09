@@ -99,7 +99,7 @@
 
 @media (min-width: 2560px) {
   .comment {
-    background-color: rgba(155, 155, 155, 0.438);
+    background-color: rgba(104, 104, 104, 0.438);
     margin-top: 1.5rem;
     padding: 0.5rem;
     display: flex;
@@ -114,9 +114,9 @@
   }
 
   .comment__image {
-    width: 75%;
+    width: 100%;
     border-radius: 100%;
-    border: 4px solid #e49b0f;
+    border: 6px solid #e49b0f;
   }
 
   .comment__detail {
@@ -125,12 +125,12 @@
   .comment__username {
     font-family: "Ultra", serif;
     color: #e49b0f;
-    font-size: 3.5rem;
+    font-size: 6rem;
   }
 
   .comment__content {
     font-family: "Pridi", serif;
-    font-size: 3rem;
+    font-size: 5rem;
     text-align: left;
   }
   .rating__box {
@@ -150,6 +150,10 @@
   .rating__num {
     font-size: 3rem;
     color: #e49b0f;
+  }
+  .comment__date {
+    margin-top: 2rem;
+    font-size: 3rem;
   }
   .comment__bottom {
     display: flex;

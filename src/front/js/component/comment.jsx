@@ -49,7 +49,7 @@ const Comment = (props) => {
               {props.element.rating}
             </Box>
           </div>
-          <div>{props.element.publishment_date}</div>
+          <div className="comment__date">{props.element.publishment_date}</div>
         </div>
       </div>
     </div>

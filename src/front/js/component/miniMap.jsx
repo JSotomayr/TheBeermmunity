@@ -19,14 +19,14 @@ const MiniMap = (props) => {
     shadowUrl: null,
     shadowSize: null,
     shadowAnchor: null,
-    iconSize: (45, 45),
+    iconSize: (180, 180),
   });
 
   return (
     <>
       {brewerie.map((item, i) => {
         return (
-          <div key={i}>
+          <div className="minimap__container" key={i}>
             <MapContainer
               center={{ lat: item.latitude, lng: item.longitude }}
               zoom={20}

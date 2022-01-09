@@ -12,7 +12,7 @@ const CustomerCard = (props) => {
     <>
       <Link to={`/profile/${props.element.id}`}>
         <div className="customerContainer">
-          <div>
+          <div className="customer__card">
             <img
               className="customerContainer__image"
               src={props.element.image}
@@ -24,7 +24,7 @@ const CustomerCard = (props) => {
                 {props.element.username}
               </div>
               <div className="customerContainer__subtitle">
-                {props.element.city} {props.element.country}
+                {props.element.city}, {props.element.country}
               </div>
             </div>
           </div>
