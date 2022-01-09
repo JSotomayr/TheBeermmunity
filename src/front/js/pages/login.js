@@ -37,7 +37,7 @@ export const Login = () => {
 
       <div className="loginContainer">
         <Link to="/">
-          <img src={logoBig} />
+          <img src="https://res.cloudinary.com/de8eg0q3r/image/upload/v1641555560/TheBeermmunity_logos_colores-05_c8id3v.png" />
         </Link>
         <div className="title">Iniciar sesión</div>
         <div className="login-form">

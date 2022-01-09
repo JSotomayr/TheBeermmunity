@@ -46,8 +46,8 @@ export default function AccountMenu() {
             filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
             mt: 1.5,
             "& .MuiAvatar-root": {
-              width: 32,
-              height: 32,
+              width: 80,
+              height: 80,
               ml: -0.5,
               mr: 1,
             },
@@ -57,8 +57,8 @@ export default function AccountMenu() {
               position: "absolute",
               top: 0,
               right: 14,
-              width: 10,
-              height: 10,
+              width: 30,
+              height: 30,
               bgcolor: "background.paper",
               transform: "translateY(-50%) rotate(45deg)",
               zIndex: 0,
@@ -70,24 +70,24 @@ export default function AccountMenu() {
       >
         {localStorage.getItem("logged") ? (
           <div>
-            <MenuItem>
-              <ListItemIcon>
-                <Avatar />
-              </ListItemIcon>
-              <Link to={`/profile/${localStorage.getItem("user")}`}>
-                <div className="menu">Perfil</div>
-              </Link>
-            </MenuItem>
+            <Link to={`/profile/${localStorage.getItem("user")}`}>
+              <MenuItem>
+                <ListItemIcon>
+                  <Avatar />
+                  <div className="menu">Perfil</div>
+                </ListItemIcon>
+              </MenuItem>
+            </Link>
             <Divider />
             <MenuItem>
               <ListItemIcon>
-                <Settings fontSize="small" />
+                <Settings sx={{ width: 80, height: 80 }} />
               </ListItemIcon>
-              Configuración
+              <div className="menu">Configuración</div>
             </MenuItem>
             <MenuItem>
               <ListItemIcon>
-                <Logout fontSize="small" />
+                <Logout sx={{ width: 80, height: 80 }} />
               </ListItemIcon>
               <Link to="/" onClick={() => localStorage.clear()}>
                 <div className="menu">Salir</div>
@@ -98,7 +98,7 @@ export default function AccountMenu() {
           <div>
             <MenuItem>
               <Link to="/login">
-                <Avatar />
+                <Avatar sx={{ width: 80, height: 80 }} />
               </Link>
               <Link to="/login">
                 <div className="menu">Iniciar Sesión</div>
@@ -106,7 +106,7 @@ export default function AccountMenu() {
             </MenuItem>
             <MenuItem>
               <ListItemIcon>
-                <PersonAdd fontSize="small" />
+                <PersonAdd sx={{ width: 80, height: 80 }} />
               </ListItemIcon>
               <Link to="/register">
                 <div className="menu">Crear Cuenta</div>

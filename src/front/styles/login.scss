@@ -1,10 +1,36 @@
-
-
-.forgottenPassword{
-    margin-top: 0.5rem;
-    font-family: Roboto;
-    text-decoration-line: underline;
-    color: #777777;
-
+.forgottenPassword {
+  margin-top: 0.5rem;
+  font-family: Roboto;
+  text-decoration-line: underline;
+  color: #777777;
 }
 
+@media (min-width: 2560px) {
+  .loginContainer {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .login-form {
+    width: 25%;
+  }
+  .subtitle_form {
+    font-size: 4rem;
+    font-family: "PT Serif Caption", serif;
+  }
+  .form-control {
+    font-family: "Pridi", serif;
+    font-size: 4rem;
+    text-align: left;
+    border-radius: 2rem;
+  }
+  .chooseUserBusiness {
+    font-size: 4rem;
+    font-family: "PT Serif Caption", serif;
+  }
+  .btn_submit {
+    text-align: center;
+    font-size: 5rem;
+    font-weight: bold;
+  }
+}
