@@ -12,7 +12,7 @@ data = {
             "country": "España",
             "city": "Madrid",
             "description": "Amante de la buena comida y de una buena cerveza.",
-            "image": "https://res.cloudinary.com/de8eg0q3r/image/upload/v1639489231/customers/brewers/PERFIL_LEMONS_aqw80a.png",
+            "image": "https://res.cloudinary.com/de8eg0q3r/image/upload/c_scale,h_392,w_392/v1639489231/customers/brewers/PERFIL_LEMONS_aqw80a.png",
             "_is_active": True,
             "_is_brewerie": False,
             "_is_admin": True
@@ -25,7 +25,7 @@ data = {
             "country": "España",
             "city": "Madrid",
             "description": "Donde este una buena cervecería, que me quiten lo bailado.",
-            "image": "https://res.cloudinary.com/de8eg0q3r/image/upload/v1639489231/customers/brewers/CAROL_PERFIL_aay0hy.png",
+            "image": "https://res.cloudinary.com/de8eg0q3r/image/upload/c_scale,h_380,w_380/v1639489231/customers/brewers/CAROL_PERFIL_aay0hy.png",
             "_is_active": True,
             "_is_brewerie": False,
             "_is_admin": True
@@ -51,7 +51,7 @@ data = {
             "country": "España",
             "city": "Málaga",
             "description": "AY ZEÑÓ! Tu que le das cerveza a los pobres, y sacias la sed de los abstemios. No soy digno de entrar en tu pub.",
-            "image": "https://res.cloudinary.com/de8eg0q3r/image/upload/v1639489231/customers/brewers/LORD_FOLKEN_rzwlr0.png",
+            "image": "https://res.cloudinary.com/de8eg0q3r/image/upload/c_scale,h_818,w_818/v1639489231/customers/brewers/LORD_FOLKEN_rzwlr0.png",
             "_is_active": True,
             "_is_brewerie": False,
             "_is_admin": False
@@ -64,7 +64,7 @@ data = {
             "country": "España",
             "city": "Madrid",
             "description": "Local dedicado a la venta de cervezas artesanales ubicado en la zona del rastro. Contamos siempre con productos frescos de producción local, así como novedades internacionales.",
-            "image": "https://res.cloudinary.com/de8eg0q3r/image/upload/v1640105529/customers/breweries/Captura_tkn9i6.png",
+            "image": "https://res.cloudinary.com/de8eg0q3r/image/upload/c_scale,h_835,w_835/v1640105529/customers/breweries/Captura_tkn9i6.png",
             "_is_active": True,
             "_is_brewerie": True,
             "_is_admin": False
