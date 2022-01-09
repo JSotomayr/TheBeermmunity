@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { Context } from "../store/appContext";
 import L from "leaflet";
+import "../../styles/map.scss";
 
 import CustomerCard from "../component/customerCard.jsx";
 import "../../styles/map.scss";

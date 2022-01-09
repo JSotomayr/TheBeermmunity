@@ -19,7 +19,7 @@ const MiniMap = (props) => {
     shadowUrl: null,
     shadowSize: null,
     shadowAnchor: null,
-    iconSize: (180, 180),
+    iconSize: (45, 45),
   });
 
   return (

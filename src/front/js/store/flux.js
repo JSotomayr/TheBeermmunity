@@ -19,6 +19,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       tastedBeer: [],
       wishlist: [],
       breweries: [],
+      searchBeers: [],
       storedBeerReviews: [],
       storedBrewerieReviews: [],
     },
@@ -324,6 +325,26 @@ const getState = ({ getStore, getActions, setStore }) => {
         );
         const beer = await response.json();
         setStore({ wishlist: beer });
+      },
+
+      searchBeer: (data)=>{
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({'brand':data});
+
+        var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+        };
+
+        fetch(getStore().baseUrl.concat("search"), requestOptions)
+        .then(response => response.json())
+        .then(result => setStore({searchBeers: result.response}) )
+        .catch(error => console.log('error', error));
+    
       },
 
       addBeerReview: async (brewer_id, beer_id, review) => {

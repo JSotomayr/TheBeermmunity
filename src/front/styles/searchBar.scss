@@ -1,0 +1,39 @@
+.searchBar__Box{
+    width: 26rem;
+    height: 4rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgb(255, 255, 255);
+    border-radius: 38px;
+
+}
+
+.searchBar__input{
+    border: none;
+    font-size: 1.25rem;
+}
+
+
+.searchBar-container__button{
+    width: 3.5rem;
+    height: 3.5rem;
+    background:transparent;
+    border-left: 1px solid #2CB1AA;
+    padding-left: 2px;
+    display: contents;
+}
+
+
+
+.fa-search { 
+    font-size: 2rem; 
+    color: #d5961c;
+
+  } 
+
+.searchBar__button{
+  display: contents;
+  }
+
