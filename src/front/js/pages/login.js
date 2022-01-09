@@ -34,11 +34,11 @@ export const Login = () => {
           </div>
         </Link>
       </div>
-
       <div className="loginContainer">
-        <Link to="/">
-          <img src={logoBig} />
-        </Link>
+        <img
+          className="topImage"
+          src="https://res.cloudinary.com/de8eg0q3r/image/upload/v1641555560/TheBeermmunity_logos_colores-05_c8id3v.png"
+        />
         <div className="title">Iniciar sesión</div>
         <div className="login-form">
           <form onSubmit={handleSubmit(submit)}>
