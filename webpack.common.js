@@ -1,13 +1,12 @@
-
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
-const dotenv = require('dotenv');
+const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path");
+const dotenv = require("dotenv");
 
 dotenv.config();
 
 module.exports = {
-  entry: ['regenerator-runtime/runtime.js', './src/front/js/index.js'],
+  entry: ["regenerator-runtime/runtime.js", "./src/front/js/index.js"],
   output: {
     filename: "bundle.[hash].js",
     path: path.resolve(__dirname, "public"),
@@ -69,7 +68,7 @@ module.exports = {
       Dropdown: "exports-loader?Dropdown!bootstrap/js/dist/dropdown",
     }),
     new HtmlWebpackPlugin({
-      favicon: "4geeks.ico",
+      favicon: "src/front/img/Recurso 1.png",
       template: "template.html",
     }),
   ],

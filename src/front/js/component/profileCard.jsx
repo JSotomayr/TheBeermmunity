@@ -35,61 +35,65 @@ const ProfileCard = (props) => {
   return (
     <>
       {store.profileInfo.user_type == true ? (
-        <div className="profileContainer">
-          <div className="profileContainer__top">
+        <>
+          <div className="profileContainer">
             <img className="profileContainer__img" src={props.element.image} />
-            <div className="profileContainer__details">
-              <h2 className="profileContainer__title">
-                {props.element.username}
-              </h2>
-              <h3 className="profileContainer__subtitle">
-                {props.element.user_detail[0].company_name}
-              </h3>
-              <span className="profileContainer__text">
-                {props.element.city}, {props.element.country}
-              </span>
-              <span className="profileContainer__text">
-                {props.element.user_detail[0].address}
-              </span>
+            <div className="profileContainer__top">
+              <div className="profileContainer__details">
+                <h2 className="profileContainer__title">
+                  {props.element.username}
+                </h2>
+                <h3 className="profileContainer__subtitle">
+                  {props.element.user_detail[0].company_name}
+                </h3>
+                <span className="profileContainer__text">
+                  {props.element.city}, {props.element.country}
+                </span>
+                <span className="profileContainer__text">
+                  {props.element.user_detail[0].address}
+                </span>
+              </div>
+              <div className="profileContainer__description">
+                {props.element.description}
+              </div>
+              <div className="rating__box">
+                <Rating
+                  name="rating"
+                  value={averageValue()}
+                  readOnly
+                  icon={beerRate}
+                  emptyIcon={beerEmptyRate}
+                />
+                <Box sx={{ ml: 2 }}>{averageValue().toFixed()}</Box>
+              </div>
             </div>
           </div>
-          <div className="profileContainer__description">
-            {props.element.description}
-          </div>
-          <div className="rating__box">
-            <Rating
-              name="rating"
-              value={averageValue()}
-              readOnly
-              icon={beerRate}
-              emptyIcon={beerEmptyRate}
-            />
-            <Box sx={{ ml: 2 }}>{averageValue()}</Box>
-          </div>
           <div className="divider"></div>
-        </div>
+        </>
       ) : store.profileInfo.user_type == false ? (
-        <div className="profileContainer">
-          <div className="profileContainer__top">
+        <>
+          <div className="profileContainer">
             <img className="profileContainer__img" src={props.element.image} />
-            <div className="profileContainer__details">
-              <h2 className="profileContainer__title">
-                {props.element.username}
-              </h2>
-              <h3 className="profileContainer__subtitle">
-                {props.element.user_detail[0].name}{" "}
-                {props.element.user_detail[0].lastname}
-              </h3>
-              <span className="profileContainer__text">
-                {props.element.city}, {props.element.country}
-              </span>
+            <div className="profileContainer__top">
+              <div className="profileContainer__details">
+                <h2 className="profileContainer__title">
+                  {props.element.username}
+                </h2>
+                <h3 className="profileContainer__subtitle">
+                  {props.element.user_detail[0].name}{" "}
+                  {props.element.user_detail[0].lastname}
+                </h3>
+                <span className="profileContainer__text">
+                  {props.element.city}, {props.element.country}
+                </span>
+              </div>
+              <div className="profileContainer__description">
+                {props.element.description}
+              </div>
             </div>
           </div>
-          <div className="profileContainer__description">
-            {props.element.description}
-          </div>
           <div className="divider"></div>
-        </div>
+        </>
       ) : null}
     </>
   );

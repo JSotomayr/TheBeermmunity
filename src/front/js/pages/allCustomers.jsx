@@ -9,17 +9,17 @@ const AllCustomers = () => {
   const [customerList, setcustomerList] = useState([]);
 
   useEffect(() => {
-    actions.getCustomers();
+    if (customerList.length === 0) {
+      actions.getCustomers();
+    }
   }, []);
 
   useEffect(() => {
-    if (store.allCustomers.length != 0) {
-      setcustomerList(
-        store.allCustomers.map((customer, index) => {
-          return <CustomerCard key={index.toString()} element={customer} />;
-        })
-      );
-    }
+    setcustomerList(
+      store.allCustomers.map((customer, index) => {
+        return <CustomerCard key={index.toString()} element={customer} />;
+      })
+    );
   }, [store.allCustomers]);
 
   return (

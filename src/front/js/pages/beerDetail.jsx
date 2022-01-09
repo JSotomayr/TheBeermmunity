@@ -72,7 +72,7 @@ const BeerDetail = () => {
   }, [store.storedBeerReviews]);
 
   return (
-    <>
+    <div className="beerDetail">
       <div>{detailBeer}</div>
       <div className="commentContainer">{reviews} </div>
       {!localStorage.getItem("logged") ? (
@@ -84,7 +84,7 @@ const BeerDetail = () => {
           <CommentForm />
         </div>
       )}
-    </>
+    </div>
   );
 };
 
