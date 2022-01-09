@@ -26,10 +26,8 @@ const Comment = (props) => {
 
   return (
     <div className="comment">
-      <div>
-        <div>
-          <img className="comment__image" src={props.element.image} />
-        </div>
+      <div className="imageContainer">
+        <img className="comment__image" src={props.element.image} />
       </div>
       <div className="comment__detail">
         <div>

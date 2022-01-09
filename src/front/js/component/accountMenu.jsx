@@ -46,8 +46,8 @@ export default function AccountMenu() {
             filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
             mt: 1.5,
             "& .MuiAvatar-root": {
-              width: 80,
-              height: 80,
+              width: 40,
+              height: 40,
               ml: -0.5,
               mr: 1,
             },
@@ -81,13 +81,13 @@ export default function AccountMenu() {
             <Divider />
             <MenuItem>
               <ListItemIcon>
-                <Settings sx={{ width: 80, height: 80 }} />
+                <Settings sx={{ width: 40, height: 40 }} />
               </ListItemIcon>
               <div className="menu">Configuración</div>
             </MenuItem>
             <MenuItem>
               <ListItemIcon>
-                <Logout sx={{ width: 80, height: 80 }} />
+                <Logout sx={{ width: 40, height: 40 }} />
               </ListItemIcon>
               <Link to="/" onClick={() => localStorage.clear()}>
                 <div className="menu">Salir</div>
@@ -98,7 +98,7 @@ export default function AccountMenu() {
           <div>
             <MenuItem>
               <Link to="/login">
-                <Avatar sx={{ width: 80, height: 80 }} />
+                <Avatar sx={{ width: 40, height: 40 }} />
               </Link>
               <Link to="/login">
                 <div className="menu">Iniciar Sesión</div>
@@ -106,7 +106,7 @@ export default function AccountMenu() {
             </MenuItem>
             <MenuItem>
               <ListItemIcon>
-                <PersonAdd sx={{ width: 80, height: 80 }} />
+                <PersonAdd sx={{ width: 40, height: 40 }} />
               </ListItemIcon>
               <Link to="/register">
                 <div className="menu">Crear Cuenta</div>

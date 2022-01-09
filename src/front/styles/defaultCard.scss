@@ -248,8 +248,8 @@
 
 @media (min-width: 1920px) {
   .firstCard {
-    width: 26%;
-    height: 46rem;
+    width: 20%;
+    height: 23rem;
     background-image: url("https://res.cloudinary.com/de8eg0q3r/image/upload/v1641546339/backgrounds/annie-spratt-0SIQ3DpQCcs-unsplash_tv59k4.jpg");
     background-size: cover;
     display: flex;
@@ -261,8 +261,8 @@
     margin-bottom: 0;
   }
   .secondCard {
-    width: 26%;
-    height: 46rem;
+    width: 20%;
+    height: 23rem;
     background-image: url(https://res.cloudinary.com/de8eg0q3r/image/upload/v1641547288/backgrounds/haniel-cal-tFRbAmaoNXM-unsplash_jsdmdx.jpg);
     background-size: cover;
     display: flex;
@@ -290,7 +290,7 @@
     font-family: "Ultra", serif;
     font-style: normal;
     font-weight: normal;
-    font-size: 3.6rem;
+    font-size: 2rem;
     line-height: 4rem;
     text-align: center;
 
@@ -298,7 +298,7 @@
   }
 
   .card__img {
-    height: 27.358rem;
+    height: 13rem;
     left: 3.634rem;
     top: 16.794rem;
     margin-top: 0.5rem;
@@ -308,7 +308,7 @@
 @media (min-width: 2560px) {
   .firstCard {
     width: 15%;
-    height: 30vh;
+    height: 15vh;
     background-image: url("https://res.cloudinary.com/de8eg0q3r/image/upload/v1641546339/backgrounds/annie-spratt-0SIQ3DpQCcs-unsplash_tv59k4.jpg");
     background-size: cover;
     display: flex;
@@ -322,7 +322,7 @@
   }
   .secondCard {
     width: 15%;
-    height: 30vh;
+    height: 15vh;
     background-image: url(https://res.cloudinary.com/de8eg0q3r/image/upload/v1641547288/backgrounds/haniel-cal-tFRbAmaoNXM-unsplash_jsdmdx.jpg);
     background-size: cover;
     display: flex;
@@ -361,4 +361,3 @@
     margin-top: 0.5rem;
   }
 }
-

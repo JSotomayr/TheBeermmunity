@@ -13,20 +13,20 @@
 
   .comment__image {
     border-radius: 100%;
-    width: 3rem;
+    width: 100%;
   }
 
   .rating__box {
     display: flex;
   }
 
-  // .full_beer {
-  //   width: 2rem;
-  // }
+  .full_beer {
+    width: 2rem;
+  }
 
-  // .empty_beer {
-  //   width: 2rem;
-  // }
+  .empty_beer {
+    width: 2rem;
+  }
 
   .comment__bottom {
     display: flex;
@@ -37,7 +37,8 @@
 }
 @media (min-width: 1920px) {
   .comment {
-    background-color: rgba(155, 155, 155, 0.438);
+    background-color: rgba(66, 66, 66, 0.438);
+    backdrop-filter: blur(2px);
     margin-top: 1.5rem;
     padding: 0.5rem;
     display: flex;
@@ -46,29 +47,33 @@
     align-items: center;
     width: 60%;
     border-radius: 0.5rem;
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
     border: 4px solid #e49b0f;
   }
-
+  .imageContainer {
+    width: fit-content;
+  }
   .comment__image {
-    width: 75%;
+    width: 40%;
     border-radius: 100%;
-    border: 4px solid #e49b0f;
+    border: 2px solid #e49b0f;
   }
 
   .comment__detail {
-    width: 60%;
+    width: 100%;
+    margin-right: 2rem;
   }
   .comment__username {
     font-family: "Ultra", serif;
     color: #e49b0f;
-    font-size: 3.5rem;
+    font-size: 2rem;
+    text-align: left;
   }
 
   .comment__content {
     font-family: "Pridi", serif;
-    font-size: 3rem;
+    font-size: 1.5rem;
     text-align: left;
   }
   .rating__box {

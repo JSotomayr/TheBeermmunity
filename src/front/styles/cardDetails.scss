@@ -1,6 +1,6 @@
 @media (max-width: 425px) {
   .detail {
-    background: #2c363a;
+    background: #2c363a00;
     display: flex;
   }
 
@@ -92,7 +92,7 @@
 
 @media (min-width: 768px) {
   .detail {
-    background: #2c363a;
+    background: #2c363a00;
     display: flex;
   }
 
@@ -187,7 +187,7 @@
 
 @media (min-width: 1024px) {
   .detail {
-    background: #2c363a;
+    background: #2c363a00;
     display: flex;
   }
 
@@ -296,7 +296,7 @@
   }
 
   .detail__image {
-    width: 22%;
+    width: 10%;
     display: flex;
     justify-content: space-between;
   }
@@ -307,12 +307,15 @@
   }
 
   .detail__right {
-    background-color: rgba(155, 155, 155, 0.438);
-    width: 65%;
+    background-color: rgba(66, 66, 66, 0.438);
+    backdrop-filter: blur(2px);
+    width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     border-radius: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
   .detail__body {
     display: flex;
@@ -329,13 +332,13 @@
   .detail__title {
     color: #e49b0f;
     font-family: "Ultra", serif;
-    font-size: 4rem;
+    font-size: 2rem;
   }
 
   .detail__subtitle {
     color: #e49b0f;
     font-family: "PT Serif Caption", serif;
-    font-size: 3rem;
+    font-size: 1.5rem;
   }
 
   .detail__properties {
@@ -344,13 +347,14 @@
     padding: 0;
     display: flex;
     flex-direction: column;
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .detail__date {
     color: rgb(236, 236, 236);
     float: right;
-    font-size: 2rem;
+    font-size: 1rem;
+    padding-right: 6rem;
   }
 
   .description {
@@ -359,7 +363,7 @@
     margin-left: 3rem;
     margin-top: 0;
     padding: 2rem;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     text-align: center;
   }
 
@@ -373,17 +377,21 @@
   .detail__rate {
     display: flex;
     align-items: center;
+    padding-right: 6rem;
   }
   .full_beer {
-    width: 4rem;
+    width: 3rem;
   }
 
   .empty_beer {
-    width: 4rem;
+    width: 3rem;
+  }
+  .rating__num {
+    font-size: 1.5rem;
   }
   .divider {
     width: 100%;
-    height: 1rem;
+    height: 0.5rem;
     background-color: #e49b0f;
   }
 }

@@ -34,7 +34,7 @@ const Map = (props) => {
     shadowUrl: null,
     shadowSize: null,
     shadowAnchor: null,
-    iconSize: (180, 180),
+    iconSize: (45, 45),
   });
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const Map = (props) => {
       <div className="map-container">
         <MapContainer
           center={{ lat: "47.60589937199735", lng: "14.22979455148893" }}
-          zoom={7}
+          zoom={5}
           minZoom={4}
           scrollWheelZoom={true}
           trackResize={true}

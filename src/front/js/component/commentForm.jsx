@@ -75,7 +75,7 @@ export const CommentForm = () => {
           </div>
         </div>
 
-        <input className="btn" type="submit" value="Post" />
+        <input className="btn" type="submit" value="Comenta" />
       </form>
     </div>
   );

@@ -25,7 +25,7 @@ const AllCustomers = () => {
   }, [store.allCustomers]);
   console.log(store.allCustomers);
   return (
-    <div>
+    <div className="allCustomers__container">
       <h1 className="title">Nuestros amantes de la cerveza</h1>
       <div className="allCustomers">{customerList}</div>
     </div>
