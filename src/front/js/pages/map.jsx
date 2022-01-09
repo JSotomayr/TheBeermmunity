@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { Context } from "../store/appContext";
 import L from "leaflet";
-// import "../../styles/map.scss";
+import "../../styles/map.scss";
 
 const Map = (props) => {
   const { store, actions } = useContext(Context);
