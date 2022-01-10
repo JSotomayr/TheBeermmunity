@@ -44,9 +44,12 @@ export const BrewerieCommentForm = () => {
       >
         <div className="formContainer_review">
           <label>Review</label>
-          <input
+          <textarea
+            className="form__input"
+            rows="4"
+            cols="50"
             type="text"
-            placeholder="Your review"
+            placeholder="Danos tu opinión"
             onChange={(e) => {
               setForm({ ...form, review_content: e.target.value });
             }}
