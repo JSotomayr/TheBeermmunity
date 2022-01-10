@@ -64,6 +64,7 @@ public/
 !.htaccess
 !.eslintrc
 !.env.example
+.env
 .now
 
 # backend stuff

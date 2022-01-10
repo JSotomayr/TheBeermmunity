@@ -1,12 +1,18 @@
 import jwt_decode from "jwt-decode";
 
 const getState = ({ getStore, getActions, setStore }) => {
-  const PORT = 3001;
-  const [PROTOCOL, HOST] = process.env.GITPOD_WORKSPACE_URL.split("://");
+  let BACKEND_URL = "";
+  if (process.env.GITPOD_WORKSPACE_URL) {
+    const PORT = 3001;
+    const [PROTOCOL, HOST] = process.env.GITPOD_WORKSPACE_URL.split("://");
+    BACKEND_URL = `${PROTOCOL}://${PORT}-${HOST}`;
+  } else {
+    BACKEND_URL = process.env.BACKEND_URL;
+  }
 
   return {
     store: {
-      baseUrl: `${PROTOCOL}://${PORT}-${HOST}/api/`,
+      baseUrl: `${BACKEND_URL}/api/`,
       register: [],
       login: [],
       currentUser: {},
@@ -327,24 +333,23 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({ wishlist: beer });
       },
 
-      searchBeer: (data)=>{
+      searchBeer: (data) => {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-        var raw = JSON.stringify({'brand':data});
+        var raw = JSON.stringify({ brand: data });
 
         var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
+          method: "POST",
+          headers: myHeaders,
+          body: raw,
+          redirect: "follow",
         };
 
         fetch(getStore().baseUrl.concat("search"), requestOptions)
-        .then(response => response.json())
-        .then(result => setStore({searchBeers: result.response}) )
-        .catch(error => console.log('error', error));
-    
+          .then((response) => response.json())
+          .then((result) => setStore({ searchBeers: result.response }))
+          .catch((error) => console.log("error", error));
       },
 
       addBeerReview: async (brewer_id, beer_id, review) => {
