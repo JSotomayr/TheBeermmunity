@@ -10,7 +10,7 @@ const Landing = () => {
     <Fragment>
       <div className="homeTop">
         <p>
-          <img src={logoBig} />
+          <img src="https://res.cloudinary.com/de8eg0q3r/image/upload/v1641555560/TheBeermmunity_logos_colores-05_c8id3v.png" />
         </p>
         <h1 className="titleBeBeer">
           UNA RED SOCIAL PARA AMANTES DE LA CERVEZA ARTESANAL

@@ -1,0 +1,21 @@
+.map-container {
+  height: 100%;
+  margin-top: 5rem;
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
+
+.map-container > .leaflet-container {
+  height: 80vh;
+}
+
+.allBreweries {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-top: 3rem;
+  margin-left: auto;
+  margin-right: auto;
+}

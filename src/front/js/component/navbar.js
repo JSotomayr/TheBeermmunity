@@ -15,7 +15,10 @@ export const Navbar = () => {
         </div>
         <Link to={"/"}>
           <div className="icons_center">
-            <img className="logoNavbar" src={logoSmall} />
+            <img
+              className="logoNavbar"
+              src="https://res.cloudinary.com/de8eg0q3r/image/upload/v1641555560/TheBeermmunity_logos_colores-05_c8id3v.png"
+            />
           </div>
         </Link>
 
@@ -25,6 +28,9 @@ export const Navbar = () => {
           </Link>
           <Link to={"/map"}>
             <div className="btn container_btn_breweries m-2">CERVECERIAS</div>
+          </Link>
+          <Link to={"/brewers"}>
+            <div className="btn container_btn_brewers m-2">CERVECEROS</div>
           </Link>
         </div>
         {localStorage.getItem("logged") ? (

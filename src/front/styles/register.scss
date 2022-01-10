@@ -1,32 +1,98 @@
 .register-form {
-    margin: 0.3rem;
-
+  margin: 0.3rem;
 }
 
 .step {
-    display:flex;
-    justify-content: center;
-    margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
 }
-.step_left, .step_right_completed{
-    border-radius: 1rem;
-    border: solid 1px #d5961c;
-    width: 1.5rem;
-    height: 1.5rem;
-    font-size: 0.8rem;
-    display:flex;
-    justify-content: center;
-    background-color: #d5961c;
+.step_left,
+.step_right_completed {
+  border-radius: 1rem;
+  border: solid 1px #d5961c;
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+  background-color: #d5961c;
 }
 
 .step_right {
-    background-color: #F1C46D;
+  background-color: #f1c46d;
 }
 
-
 .step_line {
-    width: 3.7rem;
-    height: 0.2rem;
+  width: 3.7rem;
+  height: 0.2rem;
+  background-color: #d5961c;
+  margin-top: 0.6rem;
+}
+@media (min-width: 1920px) {
+  .topImage {
+    width: 15%;
+  }
+
+  .signin-form {
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .register-form {
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .form-control {
+    font-family: "Pridi", serif;
+    font-size: 1.5rem;
+    border-radius: 1rem;
+  }
+  .step {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  .step_left,
+  .step_right_completed {
+    border-radius: 100%;
+    border: solid 1px #d5961c;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #d5961c;
-    margin-top: 0.6rem;
+  }
+
+  .step_right {
+    background-color: #f1c46d;
+  }
+
+  .step_line {
+    width: 3rem;
+    height: 0.5rem;
+    background-color: #d5961c;
+    margin-top: 0.8rem;
+  }
+  .chooseUserBusiness {
+    font-size: 1.5rem;
+    font-family: "PT Serif Caption", serif;
+  }
+  .btn-primary {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  .radioInput {
+    display: flex;
+    align-items: center;
+  }
+  .usertype {
+    width: 1.5em;
+    height: 1.5rem;
+    margin-left: 0.5rem;
+  }
 }

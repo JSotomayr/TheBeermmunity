@@ -1,0 +1,305 @@
+@media (max-width: 425px) {
+  .beerDetail {
+    background-image: url("https://res.cloudinary.com/de8eg0q3r/image/upload/v1641547288/backgrounds/haniel-cal-tFRbAmaoNXM-unsplash_jsdmdx.jpg");
+    background-size: cover;
+  }
+
+  .button__container {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .commentContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .commentForm {
+    background: #2c363a;
+    width: 75%;
+    border-radius: 0.5rem;
+    border: 1px solid #e49b0f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .comment_subtitle {
+    padding-left: 1.5rem;
+    text-align: start;
+  }
+
+  .formContainer_rating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .formContainer_review {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (min-width: 768px) {
+  .beerDetail {
+    background-image: url("https://res.cloudinary.com/de8eg0q3r/image/upload/v1641547288/backgrounds/haniel-cal-tFRbAmaoNXM-unsplash_jsdmdx.jpg");
+    background-size: cover;
+  }
+
+  .button__container {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .commentContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .commentForm {
+    background: #2c363a;
+    border-radius: 0.5rem;
+    border: 1px solid #e49b0f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 1.5rem;
+    padding: 1rem;
+  }
+  .comment_subtitle {
+    padding-left: 1.5rem;
+    text-align: start;
+  }
+}
+
+@media (min-width: 1024px) {
+  .beerDetail {
+    background-image: url("https://res.cloudinary.com/de8eg0q3r/image/upload/v1641547288/backgrounds/haniel-cal-tFRbAmaoNXM-unsplash_jsdmdx.jpg");
+    background-size: cover;
+  }
+  .button__container {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .commentContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .commentForm {
+    background: #2c363a;
+    border-radius: 0.5rem;
+    border: 1px solid #e49b0f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 1.5rem;
+    padding: 1rem;
+  }
+  .comment_subtitle {
+    padding-left: 1.5rem;
+    text-align: start;
+  }
+}
+
+@media (min-width: 1440px) {
+  .beerDetail {
+    background-image: url("https://res.cloudinary.com/de8eg0q3r/image/upload/v1641547288/backgrounds/haniel-cal-tFRbAmaoNXM-unsplash_jsdmdx.jpg");
+    background-size: cover;
+  }
+  .button__container {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .commentContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .commentForm {
+    background: #2c363a;
+    border-radius: 0.5rem;
+    border: 1px solid #e49b0f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 1.5rem;
+    padding: 1rem;
+  }
+  .comment_subtitle {
+    padding-left: 1.5rem;
+    text-align: start;
+  }
+}
+
+@media (min-width: 1920px) {
+  .beerDetail {
+    background-image: url("https://res.cloudinary.com/de8eg0q3r/image/upload/v1641547288/backgrounds/haniel-cal-tFRbAmaoNXM-unsplash_jsdmdx.jpg");
+    background-size: cover;
+  }
+  .button__container {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .commentContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .commentForm {
+    background-color: rgba(66, 66, 66, 0.438);
+    backdrop-filter: blur(2px);
+    border-radius: 0.5rem;
+    border: 4px solid #e49b0f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    width: 45%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .form__label {
+    font-family: "PT Serif Caption", serif;
+    color: #e49b0f;
+    font-size: 2rem;
+    text-align: left;
+  }
+  .formContainer_review {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .comment_subtitle {
+    font-family: "Ultra", serif;
+    color: #e49b0f;
+    font-size: 2rem;
+    padding-left: 1.5rem;
+    text-align: start;
+  }
+
+  .form__input {
+    font-family: "Pridi", serif;
+    font-size: 1.5rem;
+    text-align: left;
+  }
+  .formContainer_rating {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (min-width: 2560px) {
+  .beerDetail {
+    background-image: url("https://res.cloudinary.com/de8eg0q3r/image/upload/v1641547288/backgrounds/haniel-cal-tFRbAmaoNXM-unsplash_jsdmdx.jpg");
+    background-size: cover;
+  }
+  .button__container {
+    display: flex;
+    justify-content: flex-end;
+    width: 55%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .commentContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .commentForm {
+    background-color: rgba(104, 104, 104, 0.438);
+    border-radius: 0.5rem;
+    border: 4px solid #e49b0f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    width: 60%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .form__label {
+    font-family: "PT Serif Caption", serif;
+    color: #e49b0f;
+    font-size: 5rem;
+    text-align: left;
+  }
+  .formContainer_review {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .comment_subtitle {
+    font-family: "Ultra", serif;
+    color: #e49b0f;
+    font-size: 7rem;
+    padding-left: 1.5rem;
+    text-align: start;
+  }
+
+  .form__input {
+    font-family: "Pridi", serif;
+    font-size: 5rem;
+    text-align: left;
+    border-radius: 2rem;
+  }
+  .formContainer_rating {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .rating__num {
+    font-size: 4rem;
+  }
+}

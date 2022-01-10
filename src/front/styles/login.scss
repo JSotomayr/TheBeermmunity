@@ -1,10 +1,31 @@
-
-
-.forgottenPassword{
-    margin-top: 0.5rem;
+@media (min-width: 1920px) {
+  .login-form {
+    width: 25%;
+  }
+  .subtitle_form {
+    font-size: 1.5rem;
+    font-family: "PT Serif Caption", serif;
+  }
+  .form-control {
+    font-family: "Pridi", serif;
+    font-size: 1.5rem;
+    text-align: left;
+    border-radius: 1rem;
+  }
+  .chooseUserBusiness {
+    font-size: 1.5rem;
+    font-family: "PT Serif Caption", serif;
+  }
+  .btn_primary {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .forgottenPassword {
+    margin-top: 1rem;
     font-family: Roboto;
+    font-size: 1.5rem;
     text-decoration-line: underline;
     color: #777777;
-
+  }
 }
-

@@ -1,9 +1,69 @@
-.homeLog_container {
-  text-align: left;
-  margin-left: 3rem;
-  font-size: 1.3rem;
+
+
+.carousel_container{
+  top: 10px;
+  position: relative;
+  padding: 5% 10%;
+  width: 100%;
+  background-image: url("https://res.cloudinary.com/de8eg0q3r/image/upload/v1641546339/backgrounds/annie-spratt-0SIQ3DpQCcs-unsplash_tv59k4.jpg");
+  background-size: cover;
 }
 
-.homeLog_container_favourites {
-  margin-top: 3rem;
+.Carousel.Caption {
+padding-bottom: 5rem;
+}
+
+
+
+.title__two {
+  margin-top: 6rem;
+}
+
+.card_event {
+  background-image: url("https://images.pexels.com/photos/5858069/pexels-photo-5858069.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
+}
+
+.cards {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 6rem;
+}
+
+.cards__container{
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
+
+.cards_title{
+  position: absolute;
+  top: 80%;
+  left: 36%;
+  transform: translate(-50%, -50%);
+  text-align: left;
+}
+
+.date {
+  position: absolute;
+  top: 0%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  background-color: orange;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  box-shadow: -4px 3px 5px 0px rgb(0 0 0 / 61%);
+}
+
+.date__number {
+  font-size: 2rem;
+  margin-bottom: 0rem;
+}
+
+.cards_place {
+  font-size: 0.76rem;
+}
+
+.cards_info {
+  font-size: 1.3rem;
+
 }

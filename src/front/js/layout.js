@@ -16,6 +16,9 @@ import BeerDetail from "./pages/beerDetail.jsx";
 import Cerveteca from "./pages/cerveteca.jsx";
 import Wishlist from "./pages/wishlist.jsx";
 import { HomeLog } from "./pages/homeLog";
+import { SearchBeers } from "./pages/searchBeers.jsx";
+
+import AllCustomers from "./pages/allCustomers.jsx";
 
 //create your first component
 const Layout = () => {
@@ -31,6 +34,7 @@ const Layout = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/brewers" element={<AllCustomers />} />
           <Route path="/profile/:id" element={<Profile />} />
           <Route path="/cerveteca" element={<Cerveteca />} />
           <Route path="/profile/:id/favourite" element={<Favourite />} />
@@ -39,6 +43,8 @@ const Layout = () => {
           <Route path="/beer/:id" element={<BeerDetail />} />
           <Route path="/map" element={<Map />} />
           <Route path="/homeLog" element={<HomeLog />} />
+          <Route path="/searchBeers" element={<SearchBeers />} />
+
         </Routes>
       </BrowserRouter>
     </div>
