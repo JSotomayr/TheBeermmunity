@@ -44,6 +44,7 @@ const Map = (props) => {
 
   return (
     <>
+       <div className="title mt-4">Nuestras cervecerías</div>
       <div className="map-container">
         <MapContainer
           center={{ lat: "47.60589937199735", lng: "14.22979455148893" }}
@@ -70,7 +71,7 @@ const Map = (props) => {
           })}
         </MapContainer>
       </div>
-      <div className="title">Nuestras cervecerías</div>
+     
       <div className="allBreweries">{brewerieList}</div>
     </>
   );

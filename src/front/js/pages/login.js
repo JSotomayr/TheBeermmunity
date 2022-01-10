@@ -110,7 +110,7 @@ export const Login = () => {
 
             <input
               type="submit"
-              className="btn form-control btn_submit mt-5"
+              className="btn_login"
               value="Acceder"
             />
             {errors.submit && errors.submit.type === "required" && (

@@ -10,6 +10,9 @@ export const HomeLog = () => {
             <div className="container_searchBar"> 
         <SearchBar /> 
             </div>
+      <div>  
+          <img className="homeTop" src="https://res.cloudinary.com/de8eg0q3r/image/upload/v1641555560/TheBeermmunity_logos_colores-05_c8id3v.png" />
+      </div>
             <h1 className ="title__one">Últimas novedades en el sector cervecero</h1>
            
       <Carousel className ="carousel_container">    
@@ -57,7 +60,7 @@ export const HomeLog = () => {
             <div className ="date">
               <p className ="date__number">17</p> <p>ENE.</p>
             </div>
-            <img src="https://media.istockphoto.com/photos/people-talking-and-toasting-in-a-pub-with-the-beers-picture-id1091469178?b=1&k=20&m=1091469178&s=170667a&w=0&h=OuQcjvOg_8eAnsXMLyDRD8CafkkYIJNL8nihkmlQ4Kk=" />
+            <img src="https://media.istockphoto.com/photos/beer-bottles-picture-id157419167?b=1&k=20&m=157419167&s=170667a&w=0&h=RjL4GTY9zUYhR25gM8gWqmYTqXikUa7yskQoQkSu6yw=" />
             <div className="cards_title">
               <p className ="cards_info">17 enero 2022 - 23 enero 2022</p>
               <p className ="cards_info">Festival de la cerveza</p>
@@ -81,24 +84,11 @@ export const HomeLog = () => {
             <div className ="date">
               <p className ="date__number">15</p> <p>ABR.</p>
             </div>
-            <img src="https://media.istockphoto.com/photos/happy-friends-at-a-rooftop-party-backlit-by-sunlight-picture-id900853584?b=1&k=20&m=900853584&s=170667a&w=0&h=Hjkq0UFnOV7LZiPW8l_ocptrlfnOz9D2zovyUzy_Hn0=" />
+            <img src="https://media.istockphoto.com/photos/people-talking-and-toasting-in-a-pub-with-the-beers-picture-id1091469178?b=1&k=20&m=1091469178&s=170667a&w=0&h=OuQcjvOg_8eAnsXMLyDRD8CafkkYIJNL8nihkmlQ4Kk=" />
             <div className="cards_title">
               <p className ="cards_info">15 abril 2022 - 18 abril 2022</p>
               <p className ="cards_info">Mash Beer Fest</p>
               <p className ="cards_place">Lugo</p>
-            </div>
-        </div>
-
-        <div className="cards__container">
-            <div className ="date">
-              <p className ="date__number">2</p> <p>JUN.</p>
-            </div>
-            <img src="https://media.istockphoto.com/photos/beer-tasting-picture-id488101157?b=1&k=20&m=488101157&s=170667a&w=0&h=Jyg9GeyKOj4CzL7oND2AvUsV9pB0EqxfF7UcbTjsH24=" />
-            
-            <div className="cards_title">
-              <p className ="cards_info">2 jun 2022 - 23 jun 2022</p>
-              <p className ="cards_info">Tour de cerveza europea</p>
-              <p className ="cards_place">Madrid</p>
             </div>
         </div>
 

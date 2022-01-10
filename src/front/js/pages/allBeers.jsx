@@ -30,7 +30,7 @@ const AllBeers = () => {
 
 	return (
 		<div>
-			<h1 className="title">Toda la cerveza</h1>
+			<h1 className="title mt-4">Las protagonistas</h1>
 			<div className="allBeers">{beerList}</div>
 		</div>);
 

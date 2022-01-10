@@ -31,7 +31,7 @@ const Layout = () => {
       <BrowserRouter basename={basename}>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<HomeLog /> } />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/brewers" element={<AllCustomers />} />
@@ -42,7 +42,6 @@ const Layout = () => {
           <Route path="/beer" element={<AllBeers />} />
           <Route path="/beer/:id" element={<BeerDetail />} />
           <Route path="/map" element={<Map />} />
-          <Route path="/homeLog" element={<HomeLog />} />
           <Route path="/searchBeers" element={<SearchBeers />} />
 
         </Routes>

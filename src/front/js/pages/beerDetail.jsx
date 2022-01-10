@@ -31,9 +31,11 @@ const BeerDetail = () => {
         store.beersDetail.map((detail, index) => {
           return (
             <div className="detail__container" key={detail.id}>
-              <div className="btn">
-                <Link to="/beer">volver</Link>
-              </div>
+               <Link to="/beer">
+                  <div className="btn">
+                      volver
+                  </div>
+              </Link>
               <CardDetails key={index.toString()} element={detail} />
             </div>
           );
@@ -44,9 +46,11 @@ const BeerDetail = () => {
         store.beersDetail.map((detail, index) => {
           return (
             <div className="detail__container" key={detail.id}>
+              <Link to="/beer">
               <div className="btn">
-                <Link to="/beer">volver</Link>
+                  volver     
               </div>
+              </Link>
               <CardDetails key={index.toString()} element={detail} />
               <div className="button__container">
                 <FavouriteButton element={detail} />
