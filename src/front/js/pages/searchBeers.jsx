@@ -17,7 +17,7 @@ export const SearchBeers = () => {
         <div className="container_searchBar"> 
             <SearchBar /> 
         </div> 
-        <div className ="container_searchBeers">
+        <div className ="container_searchBeers mt-5">
             {store.searchBeers.map((beer, index) => {return <DefaultCard key={index.toString()} element={beer} />;}) }
         </div>
 
