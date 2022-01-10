@@ -15,6 +15,7 @@ import AllBeers from "./pages/allBeers.jsx";
 import BeerDetail from "./pages/beerDetail.jsx";
 import Cerveteca from "./pages/cerveteca.jsx";
 import Wishlist from "./pages/wishlist.jsx";
+import { HomeLog } from "./pages/homeLog";
 import { SearchBeers } from "./pages/searchBeers.jsx";
 
 import AllCustomers from "./pages/allCustomers.jsx";
@@ -30,7 +31,7 @@ const Layout = () => {
       <BrowserRouter basename={basename}>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<HomeLog /> } />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/brewers" element={<AllCustomers />} />

@@ -82,39 +82,38 @@ export default function AccountMenu() {
             <MenuItem>
               <ListItemIcon>
                 <Settings sx={{ width: 40, height: 40 }} />
-              </ListItemIcon>
+              </ListItemIcon>          
               <div className="menu">Configuración</div>
             </MenuItem>
+            <Link to="/" onClick={() => localStorage.clear()}>
             <MenuItem>
               <ListItemIcon>
                 <Logout sx={{ width: 40, height: 40 }} />
               </ListItemIcon>
-              <Link to="/" onClick={() => localStorage.clear()}>
                 <div className="menu">Salir</div>
-              </Link>
             </MenuItem>
+            </Link>
           </div>
         ) : (
           <div>
-            <MenuItem>
-              <Link to="/login">
+            <Link to="/login">
+              <MenuItem>
                 <Avatar sx={{ width: 40, height: 40 }} />
-              </Link>
-              <Link to="/login">
                 <div className="menu">Iniciar Sesión</div>
-              </Link>
-            </MenuItem>
-            <MenuItem>
-              <ListItemIcon>
-                <PersonAdd sx={{ width: 40, height: 40 }} />
-              </ListItemIcon>
-              <Link to="/register">
-                <div className="menu">Crear Cuenta</div>
-              </Link>
-            </MenuItem>
+              </MenuItem>
+            </Link>
+            <Link to="/register">
+              <MenuItem>
+                <ListItemIcon>
+                  <PersonAdd sx={{ width: 40, height: 40 }} />
+                </ListItemIcon>
+                  <div className="menu">Crear Cuenta</div>
+              </MenuItem>
+            </Link>
           </div>
         )}
       </Menu>
     </React.Fragment>
   );
 }
+

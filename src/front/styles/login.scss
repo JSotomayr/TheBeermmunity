@@ -16,11 +16,21 @@
     font-size: 1.5rem;
     font-family: "PT Serif Caption", serif;
   }
-  .btn_primary {
+  .btn_login{
+    color: white;
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: bold;
-  }
+    background-color: #e49b0f;
+    border: 1px solid white;
+    box-shadow: inset 0px 2px 9px rgb(0 0 0 / 25%);
+    font-family: "Pridi", serif;
+    border-radius: 1rem;
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 2rem;
+}
+
   .forgottenPassword {
     margin-top: 1rem;
     font-family: Roboto;
