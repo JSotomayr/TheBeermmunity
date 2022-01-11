@@ -1,13 +1,13 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
-import Grow from '@mui/material/Grow';
-import Paper from '@mui/material/Paper';
-import Popper from '@mui/material/Popper';
-import MenuItem from '@mui/material/MenuItem';
-import MenuList from '@mui/material/MenuList';
-import Stack from '@mui/material/Stack';
-import Divider from '@mui/material/Divider';
+import * as React from "react";
+import Button from "@mui/material/Button";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
+import Grow from "@mui/material/Grow";
+import Paper from "@mui/material/Paper";
+import Popper from "@mui/material/Popper";
+import MenuItem from "@mui/material/MenuItem";
+import MenuList from "@mui/material/MenuList";
+import Stack from "@mui/material/Stack";
+import Divider from "@mui/material/Divider";
 import "../../styles/menuListComposition.scss";
 import { Link } from "react-router-dom";
 
@@ -28,10 +28,10 @@ export default function MenuListComposition() {
   };
 
   function handleListKeyDown(event) {
-    if (event.key === 'Tab') {
+    if (event.key === "Tab") {
       event.preventDefault();
       setOpen(false);
-    } else if (event.key === 'Escape') {
+    } else if (event.key === "Escape") {
       setOpen(false);
     }
   }
@@ -47,21 +47,18 @@ export default function MenuListComposition() {
 
   return (
     <Stack direction="row" spacing={2}>
-
       <div>
         <Button
           ref={anchorRef}
           id="composition-button"
-          aria-controls={open ? 'composition-menu' : undefined}
-          aria-expanded={open ? 'true' : undefined}
+          aria-controls={open ? "composition-menu" : undefined}
+          aria-expanded={open ? "true" : undefined}
           aria-haspopup="true"
           onClick={handleToggle}
         >
-         
-            <div className="button_menu_line top"></div>
-            <div className="button_menu_line middle"></div>
-            <div className="button_menu_line bottom"></div>
-          
+          <div className="button_menu_line top"></div>
+          <div className="button_menu_line middle"></div>
+          <div className="button_menu_line bottom"></div>
         </Button>
         <Popper
           open={open}
@@ -76,7 +73,7 @@ export default function MenuListComposition() {
               {...TransitionProps}
               style={{
                 transformOrigin:
-                  placement === 'bottom-start' ? 'left top' : 'left bottom',
+                  placement === "bottom-start" ? "left top" : "left bottom",
               }}
             >
               <Paper>
@@ -87,17 +84,29 @@ export default function MenuListComposition() {
                     aria-labelledby="composition-button"
                     onKeyDown={handleListKeyDown}
                   >
-                    <MenuItem onClick={handleClose}>
-                        <Link to={"/beer"}><div className ="menu">
-                      <i className="fas fa-beer menu_beer">
-                        </i>Cervezas</div>
-                      </Link>
+                    <Link to={"/beer"}>
+                      <MenuItem onClick={handleClose}>
+                        <div className="menu">
+                          <i className="fas fa-beer menu_beer"></i>Cervezas
+                        </div>
                       </MenuItem>
-                    <MenuItem onClick={handleClose}>
-                    <i className="fas fa-store-alt menu_brewerie"></i>
-                      Cervecerías
+                    </Link>
+                    <Link to="/map">
+                      <MenuItem onClick={handleClose}>
+                        <div className="menu">
+                          <i className="fas fa-store-alt menu_brewerie"></i>
+                          Cervecerías
+                        </div>
                       </MenuItem>
-
+                    </Link>
+                    <Link to="/brewers">
+                      <MenuItem onClick={handleClose}>
+                        <div className="menu">
+                          <i class="fas fa-users menu_brewerie"></i>
+                          Cerveceros
+                        </div>
+                      </MenuItem>
+                    </Link>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
