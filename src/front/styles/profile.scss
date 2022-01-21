@@ -1,3 +1,133 @@
+@media (max-width: 425px) {
+  .profile {
+    background-image: url("https://res.cloudinary.com/de8eg0q3r/image/upload/v1641546339/backgrounds/annie-spratt-0SIQ3DpQCcs-unsplash_tv59k4.jpg");
+    background-size: cover;
+  }
+  .profileContainer {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+  }
+
+  .profileContainer__top {
+    width: 100%;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: rgba(0, 0, 0, 0.541);
+    border-radius: 1rem;
+  }
+
+  .profileContainer__img {
+    border-radius: 100%;
+    border: 0.4rem solid #e49b0f;
+    width: 50%;
+  }
+  .profileContainer__title {
+    width: fit-content;
+    font-family: "Ultra", serif;
+    font-size: 1.75rem;
+    color: #e49b0f;
+  }
+
+  .profileContainer__subtitle {
+    width: fit-content;
+    font-family: "PT Serif Caption", serif;
+    font-size: 1.5rem;
+    color: #e49b0f;
+  }
+
+  .profileContainer__text {
+    font-size: 1.25rem;
+    width: fit-content;
+    font-family: "PT Serif Caption", serif;
+    color: #e49b0f;
+  }
+  .profileContainer__description {
+    font-family: "Pridi", serif;
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    margin-left: 1rem;
+    font-family: "Ultra", serif;
+    color: #e49b0f;
+    text-align: left;
+    font-size: 1.25rem;
+  }
+
+  .container__cerveteca {
+    background-color: rgba(0, 0, 0, 0.541);
+    padding-top: 0.5rem;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container__fav {
+    background-color: rgba(0, 0, 0, 0.541);
+    padding-top: 0.5rem;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container__wish {
+    background-color: rgba(0, 0, 0, 0.541);
+    padding-top: 0.5rem;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .display__cards {
+    display: flex;
+    flex-direction: row;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .firstCard {
+    margin-bottom: 1rem;
+  }
+
+  .secondCard {
+    margin-bottom: 1rem;
+  }
+
+  .commentForm {
+    border-radius: 0.5rem;
+    background-color: rgba(24, 24, 24, 0.541);
+    border: 1px solid #e49b0f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 1.5rem;
+    padding: 1rem;
+  }
+  .comment_subtitle {
+    padding-left: 1.5rem;
+    text-align: start;
+  }
+
+  .minimap__container {
+    width: 60%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
 @media (min-width: 768px) {
   .profile {
     background-image: url("https://res.cloudinary.com/de8eg0q3r/image/upload/v1641546339/backgrounds/annie-spratt-0SIQ3DpQCcs-unsplash_tv59k4.jpg");
@@ -251,9 +381,6 @@
   }
 }
 
-
-
-
 @media (min-width: 1440px) {
   .profile {
     background-image: url("https://res.cloudinary.com/de8eg0q3r/image/upload/v1641546339/backgrounds/annie-spratt-0SIQ3DpQCcs-unsplash_tv59k4.jpg");
@@ -378,7 +505,6 @@
     text-align: start;
   }
 }
-
 
 @media (min-width: 1440px) {
   .profile {
@@ -776,4 +902,3 @@
     margin-left: auto;
   }
 }
-

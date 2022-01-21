@@ -1,3 +1,49 @@
+@media (max-width: 425px) {
+  .customerContainer {
+    width: 85%;
+    background-image: url(https://res.cloudinary.com/de8eg0q3r/image/upload/v1641546339/backgrounds/annie-spratt-0SIQ3DpQCcs-unsplash_tv59k4.jpg);
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 1rem;
+    border: 0.2rem solid #e49b0f;
+    padding: 0rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0.5rem;
+  }
+
+  .customerContainer__image {
+    width: 30vw;
+    border-radius: 100%;
+    border: 0.2rem solid #e49b0f;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .customerContainer__right {
+    width: 60%;
+  }
+  .customerContainer__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .customerContainer__title {
+    font-family: "Ultra", serif;
+    font-size: 1.5rem;
+    color: #e49b0f;
+  }
+  .customerContainer__subtitle {
+    display: flex;
+    flex-direction: row;
+    font-family: "PT Serif Caption", serif;
+    font-size: 1.1rem;
+    color: #e49b0f;
+  }
+}
+
 @media (min-width: 768px) {
   .customerContainer {
     width: 100%;

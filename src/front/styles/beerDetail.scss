@@ -12,16 +12,19 @@
     margin-bottom: 1.5rem;
   }
 
-  .commentContainer {
+  .button__container {
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 0;
   }
 
   .commentForm {
-    background: #2c363a;
-    width: 75%;
+    background-color: rgba(66, 66, 66, 0.438);
+    backdrop-filter: blur(2px);
+    width: 100%;
     border-radius: 0.5rem;
     border: 1px solid #e49b0f;
     display: flex;
@@ -34,20 +37,42 @@
   }
 
   .comment_subtitle {
+    font-family: "Ultra", serif;
+    color: #e49b0f;
+    font-size: 1.25rem;
     padding-left: 1.5rem;
     text-align: start;
   }
 
-  .formContainer_rating {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .form__label {
+    font-family: "PT Serif Caption", serif;
+    color: #e49b0f;
+    font-size: 1.25rem;
+    text-align: left;
+  }
+
+  .form__input {
+    font-family: "Pridi", serif;
+    font-size: 1.5rem;
+    text-align: left;
   }
 
   .formContainer_review {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    width: 87%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .formContainer_rating {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    width: 87%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0.5rem;
   }
 }
 
