@@ -1,11 +1,27 @@
-.allCustomers__container {
-  margin-top: 2rem;
+@media (max-width: 425px) {
+  .allCustomers__container {
+    margin-top: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+  .allCustomers {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+  }
 }
-.allCustomers {
-  width: 75%;
-  display: flex;
-  flex-direction: column;
-  margin-top: 3rem;
-  margin-left: auto;
-  margin-right: auto;
+
+@media (min-width: 1920px) {
+  .allCustomers__container {
+    margin-top: 2rem;
+  }
+  .allCustomers {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

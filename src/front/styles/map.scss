@@ -1,21 +1,45 @@
-.map-container {
-  height: 100%;
-  margin-top: 3rem;
-  padding-left: 6rem;
-  padding-right: 6rem;
+@media (max-width: 425px) {
+  .map-container {
+    height: 100%;
+    margin-top: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .map-container > .leaflet-container {
+    height: 40vh;
+  }
+
+  .allBreweries {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 1rem;
+  }
 }
 
-.map-container > .leaflet-container {
-  height: 80vh;
-}
+@media (min-width: 1920px) {
+  .map-container {
+    height: 100%;
+    margin-top: 3rem;
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
 
-.allBreweries {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  margin-top: 3rem;
-  margin-left: auto;
-  margin-right: auto;
+  .map-container > .leaflet-container {
+    height: 80vh;
+  }
+
+  .allBreweries {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

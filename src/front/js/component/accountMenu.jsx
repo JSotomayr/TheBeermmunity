@@ -82,16 +82,16 @@ export default function AccountMenu() {
             <MenuItem>
               <ListItemIcon>
                 <Settings sx={{ width: 40, height: 40 }} />
-              </ListItemIcon>          
+              </ListItemIcon>
               <div className="menu">Configuración</div>
             </MenuItem>
             <Link to="/" onClick={() => localStorage.clear()}>
-            <MenuItem>
-              <ListItemIcon>
-                <Logout sx={{ width: 40, height: 40 }} />
-              </ListItemIcon>
+              <MenuItem>
+                <ListItemIcon>
+                  <Logout sx={{ width: 40, height: 40 }} />
+                </ListItemIcon>
                 <div className="menu">Salir</div>
-            </MenuItem>
+              </MenuItem>
             </Link>
           </div>
         ) : (
@@ -107,7 +107,7 @@ export default function AccountMenu() {
                 <ListItemIcon>
                   <PersonAdd sx={{ width: 40, height: 40 }} />
                 </ListItemIcon>
-                  <div className="menu">Crear Cuenta</div>
+                <div className="menu">Crear Cuenta</div>
               </MenuItem>
             </Link>
           </div>
@@ -116,4 +116,3 @@ export default function AccountMenu() {
     </React.Fragment>
   );
 }
-

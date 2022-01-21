@@ -1,32 +1,45 @@
 @media (max-width: 425px) {
   .detail {
-    background: #2c363a00;
     display: flex;
+    background-color: rgba(255, 255, 255, 0);
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
   }
 
   .detail__top {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
+    flex-wrap: nowrap;
     justify-content: space-evenly;
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
+    align-items: center;
   }
 
   .detail__image {
-    width: 100%;
+    width: 10%;
     display: flex;
     justify-content: center;
   }
 
   .bottle {
-    width: 25%;
+    height: 40vh;
   }
 
   .detail__right {
+    background-color: rgba(66, 66, 66, 0.438);
+    backdrop-filter: blur(2px);
+    width: 100%;
+    margin-top: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    border-radius: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
+
   .detail__body {
     display: flex;
     margin-top: 1rem;
@@ -41,31 +54,37 @@
 
   .detail__title {
     color: #e49b0f;
-    font-size: 2rem;
+    font-family: "Ultra", serif;
+    font-size: 1.75rem;
   }
 
   .detail__subtitle {
     color: #e49b0f;
-    font-size: 1.5rem;
+    font-family: "PT Serif Caption", serif;
+    font-size: 1.35rem;
   }
 
   .detail__properties {
+    font-family: "Pridi", serif;
     list-style-type: none;
     padding: 0;
-    font-size: 1rem;
     display: flex;
     flex-direction: column;
+    font-size: 1rem;
   }
 
   .detail__date {
-    color: rgb(184, 184, 184);
+    color: #ececec;
     float: right;
+    font-size: 0.75rem;
+    padding-right: 3rem;
   }
 
   .description {
-    width: 89%;
+    font-family: "Pridi", serif;
+    width: 99%;
     margin-top: 0;
-    padding: inherit;
+    padding: 1rem;
     font-size: 1rem;
     text-align: center;
   }
@@ -74,17 +93,26 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    padding-right: 2rem;
+  }
+
+  .detail__rate {
+    display: flex;
+    align-items: center;
+    padding-right: 3rem;
   }
 
   .full_beer {
-    width: 3rem;
+    width: 2rem;
   }
 
   .empty_beer {
-    width: 3rem;
+    width: 2rem;
+  }
+  .rating__num {
+    font-size: 1rem;
   }
   .divider {
+    width: 100%;
     height: 0.5rem;
     background-color: #e49b0f;
   }

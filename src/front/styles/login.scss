@@ -1,3 +1,56 @@
+@media (max-width: 425px) {
+  .topImage {
+    width: 50%;
+  }
+  .login-form {
+    width: 70%;
+  }
+  .subtitle_form {
+    font-size: 1.5rem;
+    font-family: "PT Serif Caption", serif;
+  }
+  .form-control {
+    font-family: "Pridi", serif;
+    font-size: 1.2rem;
+    text-align: left;
+    border-radius: 1rem;
+  }
+  .chooseUserBusiness {
+    font-size: 1.5rem;
+    font-family: "PT Serif Caption", serif;
+  }
+  .btn_login {
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: #e49b0f;
+    border: 1px solid white;
+    box-shadow: inset 0px 2px 9px rgb(0 0 0 / 25%);
+    font-family: "Pridi", serif;
+    border-radius: 1rem;
+    width: 90%;
+    padding: 0.5rem;
+    margin-top: 2rem;
+  }
+  .form-check-input {
+    width: 1rem;
+    height: 1rem;
+    margin-top: 0.8rem;
+  }
+  .form-check-label {
+    font-size: 1.2rem;
+  }
+
+  .forgottenPassword {
+    margin-top: 1rem;
+    font-family: "Pridi", serif;
+    font-size: 1rem;
+    text-decoration-line: underline;
+    color: #777777;
+  }
+}
+
 @media (min-width: 1920px) {
   .login-form {
     width: 25%;
@@ -16,7 +69,7 @@
     font-size: 1.5rem;
     font-family: "PT Serif Caption", serif;
   }
-  .btn_login{
+  .btn_login {
     color: white;
     text-align: center;
     font-size: 2rem;
@@ -29,7 +82,7 @@
     width: 100%;
     padding: 0.5rem;
     margin-top: 2rem;
-}
+  }
 
   .forgottenPassword {
     margin-top: 1rem;

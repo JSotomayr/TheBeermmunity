@@ -24,7 +24,7 @@ export const Register = () => {
 
   useEffect(() => {
     setRegisterForm(
-      <div className="signin-form">
+      <div className="register-form">
         <label htmlFor="username" className="subtitle_form">
           Usuario
         </label>
@@ -78,7 +78,6 @@ export const Register = () => {
 
         <div className="chooseUserBusiness mt-3">
           <div className="radioInput">
-            <label>Usuario</label>
             <input
               className="usertype"
               type="radio"
@@ -87,9 +86,9 @@ export const Register = () => {
               name="userType"
               {...register("userType")}
             />
+            <label className="form-check-label">Usuario</label>
           </div>
           <div className="radioInput">
-            <label>Empresa</label>
             <input
               className="usertype"
               type="radio"
@@ -98,10 +97,11 @@ export const Register = () => {
               name="userType"
               {...register("userType")}
             />
+            <label className="form-check-label">Empresa</label>
           </div>
         </div>
         <button
-          className="btn btn-primary form-control btn_submit mt-5"
+          className="btn btn_login btn_submit mt-5"
           onClick={(event) => {
             event.preventDefault();
             if (
@@ -172,7 +172,7 @@ export const Register = () => {
 
           <input
             type="submit"
-            className="btn form-control btn_submit mt-5"
+            className="btn btn_login btn_submit mt-5"
             value="Acceder"
           />
         </div>
@@ -228,7 +228,7 @@ export const Register = () => {
 
           <input
             type="submit"
-            className="btn btn_primary btn_submit mt-5"
+            className="btn btn_login btn_submit mt-5"
             value="Acceder"
           />
         </div>
